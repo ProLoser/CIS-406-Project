@@ -406,15 +406,11 @@ public class Database {
         System.out.println("Query: " +query);
 
         try {
-            // Setup the connection with the DB
-            connect = DriverManager.getConnection("jdbc:mysql://" + dbHost + "/"
-                    + dbDatabase + "?user=" + dbUsername + "&password=" + dbPassword);
-            /*Class.forName("org.apache.derby.jdbc.ClientDriver");
-            connect = DriverManager.getConnection("jdbc:derby:" + dbDatabase + ";");*/
-
+            connect();
             statement = connect.createStatement();
             resultSet = statement.executeQuery(query);
         } catch (Exception e) {
+            System.out.println("Failed to query the database");
             System.out.println(e.getMessage());
         }
         return resultSet;
@@ -429,9 +425,10 @@ public class Database {
     public static Connection connect() {
         connect = null;
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            connect = DriverManager.getConnection("jdbc:derby:" + dbDatabase + ";");
+            connect = DriverManager.getConnection("jdbc:mysql://" + dbHost + "/"
+                    + dbDatabase + "?user=" + dbUsername + "&password=" + dbPassword);
         } catch (Exception e) {
+            System.out.println("Failed to connect");
             System.out.println(e.getMessage());
         }
         return connect;
@@ -445,15 +442,14 @@ public class Database {
             if (resultSet != null) {
                 resultSet.close();
             }
-
             if (statement != null) {
                 statement.close();
             }
-
             if (connect != null) {
                 connect.close();
             }
         } catch (Exception e) {
+            System.out.println("Failed to close the connection");
         }
     }
 }
