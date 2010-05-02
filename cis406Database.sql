@@ -1,6 +1,6 @@
 CREATE TABLE user
 (
-	user_id              INTEGER NOT NULL,
+	user_id              INTEGER AUTO_INCREMENT,
 	password             VARCHAR(20) NULL,
 	status               INTEGER NULL,
 	clearance            INTEGER NULL,
@@ -15,7 +15,7 @@ CREATE TABLE user
 
 CREATE TABLE question_key
 (
-	question_key_id      INTEGER NOT NULL,
+	question_key_id      INTEGER AUTO_INCREMENT,
 	question             TEXT NULL,
 	PRIMARY KEY (question_key_id)
 );
@@ -24,7 +24,7 @@ CREATE TABLE question_key
 
 CREATE TABLE answer
 (
-	answer_id            INTEGER NOT NULL,
+	answer_id            INTEGER AUTO_INCREMENT,
 	question_key_id      INTEGER NOT NULL,
 	user_id              INTEGER NOT NULL,
 	answer               VARCHAR(20) NULL,
@@ -37,7 +37,7 @@ CREATE TABLE answer
 
 CREATE TABLE user_log
 (
-	user_log_id          INTEGER NOT NULL,
+	user_log_id          INTEGER AUTO_INCREMENT,
 	date                 DATE NULL,
 	description          TEXT NULL,
 	user_id              INTEGER NULL,
@@ -49,7 +49,7 @@ CREATE TABLE user_log
 
 CREATE TABLE industry
 (
-	industry_id          INTEGER NOT NULL,
+	industry_id          INTEGER AUTO_INCREMENT,
 	industry_name        VARCHAR(50) NULL,
 	PRIMARY KEY (industry_id)
 );
@@ -58,7 +58,7 @@ CREATE TABLE industry
 
 CREATE TABLE company
 (
-	company_id           INTEGER NOT NULL,
+	company_id           INTEGER AUTO_INCREMENT,
 	industry_id          INTEGER NOT NULL,
 	phone                int NULL,
 	name                 VARCHAR(50) NULL,
@@ -70,7 +70,7 @@ CREATE TABLE company
 
 CREATE TABLE contact_person
 (
-	contact_id           VARCHAR(20) NOT NULL,
+	contact_id           INTEGER AUTO_INCREMENT,
 	first_name           VARCHAR(25) NULL,
 	last_name            VARCHAR(25) NULL,
 	phone                VARCHAR(15) NULL,
@@ -87,7 +87,7 @@ CREATE TABLE contact_person
 
 CREATE TABLE internship
 (
-	internship_id        INTEGER NOT NULL,
+	internship_id        INTEGER AUTO_INCREMENT,
 	company_id           INTEGER NOT NULL,
 	title                VARCHAR(50) NULL,
 	description          VARCHAR(255) NULL,
@@ -103,11 +103,11 @@ CREATE TABLE internship
 
 CREATE TABLE correspondence
 (
-	correspondence_id    VARCHAR(20) NOT NULL,
+	correspondence_id    INTEGER AUTO_INCREMENT,
 	date                 DATE NULL,
 	type                 VARCHAR(20) NULL,
 	note                 VARCHAR(255) NULL,
-	contact_id           VARCHAR(20) NULL,
+	contact_id           INTEGER NULL,
 	internship_id        INTEGER NULL,
 	user_id              INTEGER NULL,
 	PRIMARY KEY (correspondence_id),
@@ -120,13 +120,13 @@ CREATE TABLE correspondence
 
 CREATE TABLE task
 (
-	task_id              VARCHAR(20) NOT NULL,
+	task_id              INTEGER AUTO_INCREMENT,
 	description          VARCHAR(255) NULL,
 	start_date           DATE NULL,
 	due_date             DATE NULL,
 	complete_date        DATE NULL,
-	contact_id           VARCHAR(20) NULL,
-	correspondence_id    VARCHAR(20) NULL,
+	contact_id           INTEGER NULL,
+	correspondence_id    INTEGER NULL,
 	PRIMARY KEY (task_id),
 	FOREIGN KEY R_36 (contact_id) REFERENCES contact_person (contact_id),
 	FOREIGN KEY R_37 (correspondence_id) REFERENCES correspondence (correspondence_id)
@@ -136,7 +136,7 @@ CREATE TABLE task
 
 CREATE TABLE address
 (
-	address_id           INTEGER NOT NULL,
+	address_id           INTEGER AUTO_INCREMENT,
 	company_id           INTEGER NOT NULL,
 	address_type         INTEGER NULL,
 	street               VARCHAR(25) NULL,
@@ -151,7 +151,7 @@ CREATE TABLE address
 
 CREATE TABLE minor
 (
-	minor_id             INTEGER NOT NULL,
+	minor_id             INTEGER AUTO_INCREMENT,
 	minor_name           VARCHAR(35) NULL,
 	PRIMARY KEY (minor_id)
 );
@@ -169,7 +169,8 @@ CREATE TABLE cis_club
 
 CREATE TABLE student
 (
-	student_id           int NOT NULL,
+	student_id           int AUTO_INCREMENT,
+	bronco_id            INTEGER NULL,
 	cis_club_id          INTEGER NOT NULL,
 	minor_id             INTEGER NOT NULL,
 	last_name            VARCHAR(25) NULL,
@@ -190,7 +191,7 @@ CREATE TABLE student
 
 CREATE TABLE student_internship
 (
-	student_internship_id CHAR(18) NOT NULL,
+	student_internship_id INTEGER AUTO_INCREMENT,
 	student_id           int NOT NULL,
 	internship_id        INTEGER NOT NULL,
 	date_secured         DATE NULL,
