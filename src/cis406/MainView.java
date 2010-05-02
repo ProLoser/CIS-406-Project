@@ -139,6 +139,8 @@ public class MainView extends FrameView {
         mainToolBar.setRollover(true);
         mainToolBar.setName("mainToolBar"); // NOI18N
 
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(MainView.class, this);
+        newButton.setAction(actionMap.get("clickNew")); // NOI18N
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(MainView.class);
         newButton.setText(resourceMap.getString("NewButton.text")); // NOI18N
         newButton.setFocusable(false);
@@ -147,6 +149,7 @@ public class MainView extends FrameView {
         newButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(newButton);
 
+        saveButton.setAction(actionMap.get("clickSave")); // NOI18N
         saveButton.setText(resourceMap.getString("SaveButton.text")); // NOI18N
         saveButton.setFocusable(false);
         saveButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -154,6 +157,7 @@ public class MainView extends FrameView {
         saveButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(saveButton);
 
+        loadButton.setAction(actionMap.get("clickLoad")); // NOI18N
         loadButton.setText(resourceMap.getString("LoadButton.text")); // NOI18N
         loadButton.setFocusable(false);
         loadButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -161,6 +165,7 @@ public class MainView extends FrameView {
         loadButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(loadButton);
 
+        deleteButton.setAction(actionMap.get("clickDelete")); // NOI18N
         deleteButton.setText(resourceMap.getString("DeleteButton.text")); // NOI18N
         deleteButton.setFocusable(false);
         deleteButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -168,6 +173,7 @@ public class MainView extends FrameView {
         deleteButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(deleteButton);
 
+        clearButton.setAction(actionMap.get("clickClear")); // NOI18N
         clearButton.setText(resourceMap.getString("ClearButton.text")); // NOI18N
         clearButton.setFocusable(false);
         clearButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -225,7 +231,6 @@ public class MainView extends FrameView {
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(MainView.class, this);
         settingsMenuItem.setAction(actionMap.get("showSettingsBox")); // NOI18N
         settingsMenuItem.setText(resourceMap.getString("settingsMenuItem.text")); // NOI18N
         settingsMenuItem.setName("settingsMenuItem"); // NOI18N
@@ -290,6 +295,33 @@ public class MainView extends FrameView {
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
+
+
+    @Action
+    public void clickNew() {
+        mainTabbedPane.getSelectedComponent().clickNew();
+        mainTabbedPane.getSelectedComponent();
+    }
+
+    @Action
+    public void clickSave() {
+        mainTabbedPane.getSelectedComponent().clickSave();
+    }
+
+    @Action
+    public void clickLoad() {
+        mainTabbedPane.getSelectedComponent().clickLoad();
+    }
+
+    @Action
+    public void clickDelete() {
+        mainTabbedPane.getSelectedComponent().clickDelete();
+    }
+
+    @Action
+    public void clickClear() {
+        mainTabbedPane.getSelectedComponent().clickClear();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton clearButton;

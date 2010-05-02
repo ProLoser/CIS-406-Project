@@ -11,6 +11,8 @@
 
 package cis406;
 
+import org.jdesktop.application.Action;
+
 /**
  *
  * @author Dean Sofer
@@ -31,20 +33,25 @@ public class InternshipPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         titleLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextarea = new javax.swing.JTextArea();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        postedField = new javax.swing.JFormattedTextField();
+        expiresField = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        attachmentField = new javax.swing.JTextField();
+        titleField = new javax.swing.JTextField();
         descriptionLabel = new javax.swing.JLabel();
         attachmentLabel = new javax.swing.JLabel();
         postedLabel = new javax.swing.JLabel();
         expiresLabel = new javax.swing.JLabel();
-        quantityField = new javax.swing.JTextField();
         quantityLabel = new javax.swing.JLabel();
+        companyComboBox = new javax.swing.JComboBox();
+        companyLabel = new javax.swing.JLabel();
+        quantityField = new javax.swing.JFormattedTextField();
+
+        jFileChooser1.setName("jFileChooser1"); // NOI18N
 
         setName("Form"); // NOI18N
 
@@ -59,20 +66,27 @@ public class InternshipPanel extends javax.swing.JPanel {
         descriptionTextarea.setName("descriptionTextArea"); // NOI18N
         jScrollPane1.setViewportView(descriptionTextarea);
 
-        jFormattedTextField1.setText(resourceMap.getString("postedFTextField.text")); // NOI18N
-        jFormattedTextField1.setName("postedFTextField"); // NOI18N
+        postedField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        postedField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        postedField.setText(resourceMap.getString("postedFTextField.text")); // NOI18N
+        postedField.setName("postedFTextField"); // NOI18N
 
-        jFormattedTextField2.setText(resourceMap.getString("expiresFTextField.text")); // NOI18N
-        jFormattedTextField2.setName("expiresFTextField"); // NOI18N
+        expiresField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        expiresField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        expiresField.setText(resourceMap.getString("expiresFTextField.text")); // NOI18N
+        expiresField.setName("expiresFTextField"); // NOI18N
 
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(InternshipPanel.class, this);
+        jButton1.setAction(actionMap.get("browse")); // NOI18N
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
 
-        jTextField1.setText(resourceMap.getString("attachmentTextField.text")); // NOI18N
-        jTextField1.setName("attachmentTextField"); // NOI18N
+        attachmentField.setText(resourceMap.getString("attachmentTextField.text")); // NOI18N
+        attachmentField.setEnabled(false);
+        attachmentField.setName("attachmentTextField"); // NOI18N
 
-        jTextField2.setText(resourceMap.getString("titleTextField.text")); // NOI18N
-        jTextField2.setName("titleTextField"); // NOI18N
+        titleField.setText(resourceMap.getString("titleTextField.text")); // NOI18N
+        titleField.setName("titleTextField"); // NOI18N
 
         descriptionLabel.setText(resourceMap.getString("descriptionLabel.text")); // NOI18N
         descriptionLabel.setName("descriptionLabel"); // NOI18N
@@ -86,11 +100,19 @@ public class InternshipPanel extends javax.swing.JPanel {
         expiresLabel.setText(resourceMap.getString("expiresLabel.text")); // NOI18N
         expiresLabel.setName("expiresLabel"); // NOI18N
 
-        quantityField.setText(resourceMap.getString("quantityTextField.text")); // NOI18N
-        quantityField.setName("quantityTextField"); // NOI18N
-
         quantityLabel.setText(resourceMap.getString("quantityLabel.text")); // NOI18N
         quantityLabel.setName("quantityLabel"); // NOI18N
+
+        companyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        companyComboBox.setName("companyComboBox"); // NOI18N
+
+        companyLabel.setText(resourceMap.getString("companyLabel.text")); // NOI18N
+        companyLabel.setName("companyLabel"); // NOI18N
+
+        quantityField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        quantityField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        quantityField.setText(resourceMap.getString("quantityField.text")); // NOI18N
+        quantityField.setName("quantityField"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,33 +124,39 @@ public class InternshipPanel extends javax.swing.JPanel {
                         .addGap(19, 19, 19)
                         .addComponent(titleLabel)
                         .addGap(6, 6, 6)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(attachmentLabel)
-                        .addGap(6, 6, 6)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(postedLabel)
-                        .addGap(6, 6, 6)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
-                        .addComponent(expiresLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(titleField, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(quantityLabel)
                                 .addComponent(descriptionLabel))
-                            .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(quantityLabel))
+                            .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(attachmentLabel)
+                                .addGap(6, 6, 6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(companyLabel)
+                                    .addComponent(postedLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(postedField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                                .addComponent(expiresLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(expiresField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(attachmentField, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))
+                            .addComponent(companyComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 351, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -136,48 +164,92 @@ public class InternshipPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titleLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(attachmentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(attachmentLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(postedLabel)
-                    .addComponent(expiresLabel))
+                    .addComponent(expiresField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(expiresLabel)
+                    .addComponent(postedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(postedLabel))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(companyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(companyLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(descriptionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                         .addComponent(quantityLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    @Action
+    public void browse() {
+        int success = jFileChooser1.showOpenDialog(this);
+        if (success == jFileChooser1.APPROVE_OPTION) {
+            attachmentField.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField attachmentField;
     private javax.swing.JLabel attachmentLabel;
+    private javax.swing.JComboBox companyComboBox;
+    private javax.swing.JLabel companyLabel;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextArea descriptionTextarea;
+    private javax.swing.JFormattedTextField expiresField;
     private javax.swing.JLabel expiresLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JFormattedTextField postedField;
     private javax.swing.JLabel postedLabel;
-    private javax.swing.JTextField quantityField;
+    private javax.swing.JFormattedTextField quantityField;
     private javax.swing.JLabel quantityLabel;
+    private javax.swing.JTextField titleField;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
+
+
+    public void clickNew() {
+
+    }
+
+    public void clickSave() {
+        Internship record = new Internship();
+        record.setCompany_id(companyComboBox.getSelectedIndex());
+        record.setTitle(titleField.getText());
+        record.setDescription(descriptionTextarea.getText());
+        record.setPost_date(postedField.getText());
+        record.setExpiration(expiresField.getText());
+        record.setQuantity(Integer.parseInt(quantityField.getText()));
+        record.setAttachment(attachmentField.getText());
+        record.save();
+    }
+
+    public void clickLoad() {
+
+    }
+
+    public void clickDelete() {
+
+    }
+
+    public void clickClear() {
+
+    }
 
 }

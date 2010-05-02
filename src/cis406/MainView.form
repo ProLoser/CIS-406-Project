@@ -40,6 +40,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="newButton">
               <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="cis406.MainView" id="clickNew" methodName="clickNew"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="NewButton.text"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -52,6 +55,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="saveButton">
               <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="cis406.MainView" id="clickSave" methodName="clickSave"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="SaveButton.text"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -64,6 +70,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="loadButton">
               <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="cis406.MainView" id="clickLoad" methodName="clickLoad"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="LoadButton.text"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -76,6 +85,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="deleteButton">
               <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="cis406.MainView" id="clickDelete" methodName="clickDelete"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="DeleteButton.text"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -88,6 +100,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="clearButton">
               <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="cis406.MainView" id="clickClear" methodName="clickClear"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="ClearButton.text"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>

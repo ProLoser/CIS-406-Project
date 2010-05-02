@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JFileChooser" name="jFileChooser1">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jFileChooser1" noResource="true"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
   </Properties>
@@ -25,38 +32,50 @@
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Component id="titleLabel" min="-2" max="-2" attributes="1"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="jTextField2" pref="449" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="attachmentLabel" min="-2" max="-2" attributes="1"/>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="jTextField1" pref="376" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="postedLabel" min="-2" max="-2" attributes="1"/>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField1" min="-2" pref="70" max="-2" attributes="1"/>
-                      <EmptySpace pref="269" max="32767" attributes="0"/>
-                      <Component id="expiresLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField2" min="-2" pref="71" max="-2" attributes="1"/>
+                      <Component id="titleField" pref="351" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                              <Component id="descriptionLabel" min="-2" max="-2" attributes="1"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="quantityLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                              <Component id="descriptionLabel" alignment="1" min="-2" max="-2" attributes="1"/>
                           </Group>
-                          <Component id="quantityField" alignment="0" min="-2" pref="69" max="-2" attributes="1"/>
-                          <Component id="quantityLabel" alignment="0" min="-2" max="-2" attributes="1"/>
+                          <Component id="quantityField" min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="449" max="32767" attributes="1"/>
+                      <Component id="jScrollPane1" pref="353" max="32767" attributes="1"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="attachmentLabel" min="-2" max="-2" attributes="1"/>
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="companyLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                                  <Component id="postedLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="postedField" min="-2" pref="70" max="-2" attributes="1"/>
+                              <EmptySpace pref="171" max="32767" attributes="0"/>
+                              <Component id="expiresLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="expiresField" min="-2" pref="71" max="-2" attributes="1"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="attachmentField" pref="278" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="companyComboBox" alignment="1" pref="351" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -68,32 +87,37 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="titleField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="titleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="attachmentField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="attachmentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jFormattedTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jFormattedTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="postedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="expiresField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="expiresLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="postedField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="postedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="companyComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="companyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="222" max="32767" attributes="0"/>
+                      <EmptySpace pref="81" max="32767" attributes="0"/>
                       <Component id="quantityLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="quantityField" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="1" pref="276" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="135" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -126,31 +150,43 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+    <Component class="javax.swing.JFormattedTextField" name="postedField">
       <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format subtype="1" type="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" resourceKey="postedFTextField.text"/>
         <Property name="name" type="java.lang.String" value="postedFTextField" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField2">
+    <Component class="javax.swing.JFormattedTextField" name="expiresField">
       <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format subtype="1" type="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" resourceKey="expiresFTextField.text"/>
         <Property name="name" type="java.lang.String" value="expiresFTextField" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
+        <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+          <action class="cis406.InternshipPanel" id="browse" methodName="browse"/>
+        </Property>
         <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
         <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="attachmentField">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="attachmentTextField.text"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="attachmentTextField" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="titleField">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="titleTextField.text"/>
         <Property name="name" type="java.lang.String" value="titleTextField" noResource="true"/>
@@ -180,16 +216,39 @@
         <Property name="name" type="java.lang.String" value="expiresLabel" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="quantityField">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="quantityTextField.text"/>
-        <Property name="name" type="java.lang.String" value="quantityTextField" noResource="true"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="quantityLabel">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="quantityLabel.text"/>
         <Property name="name" type="java.lang.String" value="quantityLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="companyComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="companyComboBox" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="companyLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="companyLabel.text"/>
+        <Property name="name" type="java.lang.String" value="companyLabel" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="quantityField">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format subtype="1" type="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" resourceKey="quantityField.text"/>
+        <Property name="name" type="java.lang.String" value="quantityField" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

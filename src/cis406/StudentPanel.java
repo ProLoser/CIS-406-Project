@@ -80,4 +80,25 @@ public class StudentPanel extends javax.swing.JPanel {
         }
     }
 
+
+    public void clickNew() {
+
+    }
+
+    public void clickSave() {
+
+    }
+
+    public void clickLoad() {
+
+    }
+
+    public void clickDelete() {
+
+    }
+
+    public void clickClear() {
+
+    }
+
 }
