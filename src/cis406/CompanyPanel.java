@@ -15,7 +15,7 @@ package cis406;
  *
  * @author Dean Sofer
  */
-public class CompanyPanel extends javax.swing.JPanel {
+public class CompanyPanel extends javax.swing.JPanel implements CisPanel {
 
     /** Creates new form CompanyPanel */
     public CompanyPanel() {
@@ -48,5 +48,28 @@ public class CompanyPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+
+
+
+    public void clickNew() {
+
+    }
+
+    public void clickSave() {
+
+    }
+
+    public void clickLoad() {
+
+    }
+
+    public void clickDelete() {
+
+    }
+
+    public void clickClear() {
+
+    }
 
 }

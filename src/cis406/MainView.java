@@ -79,6 +79,7 @@ public class MainView extends FrameView {
                 }
             }
         });
+
     }
 
     @Action
@@ -299,28 +300,27 @@ public class MainView extends FrameView {
 
     @Action
     public void clickNew() {
-        mainTabbedPane.getSelectedComponent().clickNew();
-        mainTabbedPane.getSelectedComponent();
+        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickNew();
     }
 
     @Action
     public void clickSave() {
-        mainTabbedPane.getSelectedComponent().clickSave();
+        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickSave();
     }
 
     @Action
     public void clickLoad() {
-        mainTabbedPane.getSelectedComponent().clickLoad();
+        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickLoad();
     }
 
     @Action
     public void clickDelete() {
-        mainTabbedPane.getSelectedComponent().clickDelete();
+        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickDelete();
     }
 
     @Action
     public void clickClear() {
-        mainTabbedPane.getSelectedComponent().clickClear();
+        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickClear();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

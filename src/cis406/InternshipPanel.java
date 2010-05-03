@@ -17,7 +17,7 @@ import org.jdesktop.application.Action;
  *
  * @author Dean Sofer
  */
-public class InternshipPanel extends javax.swing.JPanel {
+public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
 
     /** Creates new form InternshipPanel */
     public InternshipPanel() {
@@ -249,6 +249,16 @@ public class InternshipPanel extends javax.swing.JPanel {
     }
 
     public void clickClear() {
+        companyComboBox.setSelectedIndex(0);
+        titleField.setText("");
+        descriptionTextarea.setText("");
+        postedField.setText("mm/dd/yy");
+        expiresField.setText("mm/dd/yy");
+        quantityField.setText("1");
+        attachmentField.setText("");
+    }
+
+    public void reset() {
 
     }
 

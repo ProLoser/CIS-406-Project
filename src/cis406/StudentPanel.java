@@ -18,7 +18,7 @@ import org.jdesktop.application.Action;
  *
  * @author Dean Sofer
  */
-public class StudentPanel extends javax.swing.JPanel {
+public class StudentPanel extends javax.swing.JPanel implements CisPanel {
 
     /** Creates new form StudentPanel */
     public StudentPanel() {
