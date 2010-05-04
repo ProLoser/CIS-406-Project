@@ -17,9 +17,10 @@ public class Database {
 
     // CONFIGURATION OPTIONS
     private static final String dbHost = "localhost";
-    private static final String dbUsername = "root";
+    private static final String dbUsername = "";
     private static final String dbPassword = "";
-    private static final String dbDatabase = "cis406";
+    private static final String dbDatabase = "internshipsdb";
+    private static final String dbType = "derby"; // mysql
     // DO NOT EDIT BELOW THIS POINT!!!
     private String table = "";
     private String joins = "";
@@ -207,9 +208,11 @@ public class Database {
 
     /**
      * The UPDATE statement is used to update existing records in a table.
+     *
      * @param fields values to be updated
+     * @return recordsAffected int
      */
-    public ResultSet update(Map<String, String> fields) {
+    public int update(Map<String, String> fields) {
         String query;
         Boolean first = true;
         query = "UPDATE " + t(table) + " SET ";
@@ -221,16 +224,18 @@ public class Database {
             first = false;
         }
         query += compileConditions();
-        return execute(query);
+        return executeWrite(query);
     }
 
     /**
      * The DELETE statement is used to delete rows in a table.
+     *
+     * @return recordsAffected int
      */
-    public ResultSet delete() {
+    public int delete() {
         String query;
         query = "DELETE FROM " + t(table) + joins + compileConditions();
-        return execute(query);
+        return executeWrite(query);
     }
 
 
@@ -297,8 +302,9 @@ public class Database {
      *
      * @param table
      * @param fields
+     * @return recordsAffected int
      */
-    public static void write(String table, Map<String, String> fields) {
+    public static int write(String table, Map<String, String> fields) {
         String query = "";
         String fieldList = "";
         String valueList = "";
@@ -332,7 +338,7 @@ public class Database {
                     + fields.get(id(table));
         }
 
-        execute(query);
+        return executeWrite(query);
     }
 
     /**
@@ -340,23 +346,25 @@ public class Database {
      *
      * @param table
      * @param id
+     * @return recordsAffected int
      */
-    public static void delete(String table, int id) {
+    public static int delete(String table, int id) {
         String query = "";
         query = "DELETE FROM " + t(table) + " WHERE " + t(id(table)) + "=" + id;
-        execute(query);
+        return executeWrite(query);
     }
 
     /**
      * Delete a record from a table based on a map of field => value conditions
      * @param table
      * @param conditions
+     * @return recordsAffected int
      */
-    public static void delete(String table, Map<String, String> conditions) {
+    public static int delete(String table, Map<String, String> conditions) {
         String query = "";
         query = "DELETE FROM " + t(table);
         query += buildConditions(conditions);
-        execute(query);
+        return executeWrite(query);
     }
 
     /**
@@ -417,6 +425,26 @@ public class Database {
     }
 
     /**
+     * Executes a raw sql query
+     *
+     * @param query new value of query
+     * @return recordsAffected
+     */
+    public static int executeWrite(String query) {
+        int recordsAffected = 0;
+        System.out.println("Query: " +query);
+        try {
+            connect();
+            statement = connect.createStatement();
+            recordsAffected = statement.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Failed to update the database");
+            System.out.println(e.getMessage());
+        }
+        return recordsAffected;
+    }
+
+    /**
      * Returns an active connection object to be used and manipulated at the
      * developers will. MUST BE CLOSED BY THE DEVELOPER!
      *
@@ -425,8 +453,7 @@ public class Database {
     public static Connection connect() {
         connect = null;
         try {
-            connect = DriverManager.getConnection("jdbc:mysql://" + dbHost + "/"
-                    + dbDatabase + "?user=" + dbUsername + "&password=" + dbPassword);
+            connect = DriverManager.getConnection("jdbc:" + dbType + "://" + dbHost + "/" + dbDatabase + "?user=" + dbUsername + "&password=" + dbPassword);
         } catch (Exception e) {
             System.out.println("Failed to connect");
             System.out.println(e.getMessage());

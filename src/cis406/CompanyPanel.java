@@ -72,4 +72,20 @@ public class CompanyPanel extends javax.swing.JPanel implements CisPanel {
 
     }
 
+    public void clickForm() {
+
+    }
+
+    public void clickReport() {
+
+    }
+
+    public void switchTo() {
+
+    }
+
+    public void switchAway() {
+
+    }
+
 }

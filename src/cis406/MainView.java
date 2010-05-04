@@ -119,9 +119,9 @@ public class MainView extends FrameView {
         deleteButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         mainTabbedPane = new javax.swing.JTabbedPane();
-        companyPanel1 = new cis406.CompanyPanel();
         studentPanel1 = new cis406.StudentPanel();
         internshipPanel1 = new cis406.InternshipPanel();
+        companyPanel1 = new cis406.CompanyPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         settingsMenuItem = new javax.swing.JMenuItem();
@@ -185,6 +185,12 @@ public class MainView extends FrameView {
         mainTabbedPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         mainTabbedPane.setName("jTabbedPane"); // NOI18N
 
+        studentPanel1.setName("studentPanel1"); // NOI18N
+        mainTabbedPane.addTab(resourceMap.getString("studentPanel1.TabConstraints.tabTitle"), studentPanel1); // NOI18N
+
+        internshipPanel1.setName("internshipPanel1"); // NOI18N
+        mainTabbedPane.addTab(resourceMap.getString("internshipPanel1.TabConstraints.tabTitle"), internshipPanel1); // NOI18N
+
         companyPanel1.setName("companyPanel1"); // NOI18N
 
         javax.swing.GroupLayout companyPanel1Layout = new javax.swing.GroupLayout(companyPanel1);
@@ -199,12 +205,6 @@ public class MainView extends FrameView {
         );
 
         mainTabbedPane.addTab(resourceMap.getString("companyPanel1.TabConstraints.tabTitle"), companyPanel1); // NOI18N
-
-        studentPanel1.setName("studentPanel1"); // NOI18N
-        mainTabbedPane.addTab(resourceMap.getString("studentPanel1.TabConstraints.tabTitle"), studentPanel1); // NOI18N
-
-        internshipPanel1.setName("internshipPanel1"); // NOI18N
-        mainTabbedPane.addTab(resourceMap.getString("internshipPanel1.TabConstraints.tabTitle"), internshipPanel1); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);

@@ -258,7 +258,19 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
         attachmentField.setText("");
     }
 
-    public void reset() {
+    public void clickForm() {
+
+    }
+
+    public void clickReport() {
+
+    }
+
+    public void switchTo() {
+
+    }
+
+    public void switchAway() {
 
     }
 
