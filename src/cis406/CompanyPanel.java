@@ -80,8 +80,8 @@ public class CompanyPanel extends javax.swing.JPanel implements CisPanel {
 
     }
 
-    public void switchTo() {
-
+    public void switchTo(javax.swing.ButtonGroup activeView) {
+        activeView.setSelected(, true);
     }
 
     public void switchAway() {

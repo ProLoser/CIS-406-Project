@@ -21,10 +21,14 @@ import javax.swing.JFrame;
  */
 public class MainView extends FrameView {
 
+    private int activeTabIndex;
+
     public MainView(SingleFrameApplication app) {
         super(app);
 
         initComponents();
+
+        activeTabIndex = mainTabbedPane.getSelectedIndex();
 
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -118,6 +122,9 @@ public class MainView extends FrameView {
         loadButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        formButton = new javax.swing.JToggleButton();
+        reportButton = new javax.swing.JToggleButton();
         mainTabbedPane = new javax.swing.JTabbedPane();
         studentPanel1 = new cis406.StudentPanel();
         internshipPanel1 = new cis406.InternshipPanel();
@@ -134,6 +141,7 @@ public class MainView extends FrameView {
         statusMessageLabel = new javax.swing.JLabel();
         statusAnimationLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
+        activeViewButtonGroup = new javax.swing.ButtonGroup();
 
         mainPanel.setName("mainPanel"); // NOI18N
 
@@ -182,8 +190,37 @@ public class MainView extends FrameView {
         clearButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(clearButton);
 
+        jSeparator2.setName("jSeparator2"); // NOI18N
+        mainToolBar.add(jSeparator2);
+
+        formButton.setAction(actionMap.get("clickForm")); // NOI18N
+        activeViewButtonGroup.add(formButton);
+        formButton.setSelected(true);
+        formButton.setText(resourceMap.getString("formButton.text")); // NOI18N
+        formButton.setFocusable(false);
+        formButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        formButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        formButton.setName("formButton"); // NOI18N
+        formButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mainToolBar.add(formButton);
+
+        reportButton.setAction(actionMap.get("clickReport")); // NOI18N
+        activeViewButtonGroup.add(reportButton);
+        reportButton.setText(resourceMap.getString("reportButton.text")); // NOI18N
+        reportButton.setFocusable(false);
+        reportButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        reportButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        reportButton.setName("reportButton"); // NOI18N
+        reportButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mainToolBar.add(reportButton);
+
         mainTabbedPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         mainTabbedPane.setName("jTabbedPane"); // NOI18N
+        mainTabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                mainTabbedPaneStateChanged(evt);
+            }
+        });
 
         studentPanel1.setName("studentPanel1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("studentPanel1.TabConstraints.tabTitle"), studentPanel1); // NOI18N
@@ -210,11 +247,11 @@ public class MainView extends FrameView {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+            .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,6 +334,14 @@ public class MainView extends FrameView {
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mainTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabbedPaneStateChanged
+        if (activeTabIndex != mainTabbedPane.getSelectedIndex()) {
+            ((CisPanel)mainTabbedPane.getComponentAt(activeTabIndex)).switchAway();
+            activeTabIndex = mainTabbedPane.getSelectedIndex();
+            ((CisPanel)mainTabbedPane.getSelectedComponent()).switchTo(activeViewButtonGroup);
+        }
+    }//GEN-LAST:event_mainTabbedPaneStateChanged
+
 
     @Action
     public void clickNew() {
@@ -323,12 +368,25 @@ public class MainView extends FrameView {
         ((CisPanel)mainTabbedPane.getSelectedComponent()).clickClear();
     }
 
+    @Action
+    public void clickForm() {
+        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickForm();
+    }
+
+    @Action
+    public void clickReport() {
+        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickReport();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup activeViewButtonGroup;
     public javax.swing.JButton clearButton;
     private cis406.CompanyPanel companyPanel1;
     public javax.swing.JButton deleteButton;
+    private javax.swing.JToggleButton formButton;
     private cis406.InternshipPanel internshipPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
     public javax.swing.JButton loadButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTabbedPane mainTabbedPane;
@@ -336,6 +394,7 @@ public class MainView extends FrameView {
     private javax.swing.JMenuBar menuBar;
     public javax.swing.JButton newButton;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JToggleButton reportButton;
     public javax.swing.JButton saveButton;
     private javax.swing.JMenuItem settingsMenuItem;
     private javax.swing.JLabel statusAnimationLabel;

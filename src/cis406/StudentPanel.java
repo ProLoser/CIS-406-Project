@@ -109,7 +109,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
 
     }
 
-    public void switchTo() {
+    public void switchTo(javax.swing.ButtonGroup activeView) {
 
     }
 

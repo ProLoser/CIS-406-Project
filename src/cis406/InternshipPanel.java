@@ -259,19 +259,19 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void clickForm() {
-
+        System.out.println("form");
     }
 
     public void clickReport() {
-
+        System.out.println("report");
     }
 
-    public void switchTo() {
-
+    public void switchTo(javax.swing.ButtonGroup activeView) {
+        System.out.println("to");
     }
 
     public void switchAway() {
-
+        System.out.println("away");
     }
 
 }
