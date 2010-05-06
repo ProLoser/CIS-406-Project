@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
+  </Properties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="2"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblDescription1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="scpDescription" pref="389" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblCommMethod1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cboCommMethod" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblFName" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCompanySelect1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCity1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblState1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPhone1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblStreet1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblZip1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEmail1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPosition1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtZip" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Component id="txtCity" min="-2" pref="131" max="-2" attributes="1"/>
+                          <Component id="txtPosition" min="-2" pref="146" max="-2" attributes="0"/>
+                          <Component id="txtEmail" alignment="0" min="-2" pref="302" max="-2" attributes="1"/>
+                          <Component id="cboState" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Component id="txtStreet" alignment="0" min="-2" pref="260" max="-2" attributes="1"/>
+                          <Component id="cboCompany" min="-2" pref="131" max="-2" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="139" pref="139" max="139" attributes="0"/>
+                              <Component id="lblLName1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtLName" min="-2" pref="174" max="-2" attributes="1"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="txtPhoneLeftParenthesis1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtPhoneArea" min="-2" pref="45" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblPhoneRightParenthesis1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtPhoneFirst" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtPhoneDash1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtPhoneLast" min="-2" pref="71" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblCompanySelect" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCity" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblState" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="txtFName" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="lblLName" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="txtPhoneLeftParenthesis" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                                  <Component id="lblPhoneRightParenthesis" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                  <Component id="txtPhoneDash" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Component id="lblDescription" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblStreet" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblZip" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPosition" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCommMethod" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblFName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLName1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtLName" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblCompanySelect1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cboCompany" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblStreet1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtStreet" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblZip1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtZip" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblCity1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCity" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblState1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cboState" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblEmail1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtPhoneLeftParenthesis1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPhoneRightParenthesis1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPhone1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPhoneDash1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPhoneArea" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPhoneFirst" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPhoneLast" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblPosition1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPosition" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblCommMethod1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cboCommMethod" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblDescription1" min="-2" max="-2" attributes="0"/>
+                  <Component id="scpDescription" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
+          </Group>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtFName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblLName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblCompanySelect" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblStreet" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblZip" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblCity" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblState" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblEmail" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtPhoneLeftParenthesis" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPhoneRightParenthesis" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPhoneDash" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblPosition" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblCommMethod" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblDescription" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="290" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JTextField" name="txtFName">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtFName" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLName">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblLName" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtLName">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtLName" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCompanySelect">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblCompanySelect" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cboCompany">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value=""/>
+            <StringItem index="1" value="Edison"/>
+            <StringItem index="2" value="JPL"/>
+            <StringItem index="3" value="Adobe"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="cboCompany" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblStreet">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblStreet" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtStreet">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtStreet" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCity">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblCity" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCity">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtCity" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblState">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblState" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cboState">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="5">
+            <StringItem index="0" value=""/>
+            <StringItem index="1" value="CA"/>
+            <StringItem index="2" value="OR"/>
+            <StringItem index="3" value="NV"/>
+            <StringItem index="4" value="etc"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="cboState" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblZip">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblZip" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtZip">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtZip" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEmail">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblEmail" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtEmail">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtEmail" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPhone">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblPhone" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtPhoneLeftParenthesis">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtPhoneLeftParenthesis" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPhoneArea">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtPhoneArea" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPhoneRightParenthesis">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblPhoneRightParenthesis" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPhoneFirst">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[3, 3]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="txtPhoneFirst" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtPhoneDash">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtPhoneDash" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPhoneLast">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtPhoneLast" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPosition">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblPosition" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPosition">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtPosition" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCommMethod">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblCommMethod" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cboCommMethod">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Email"/>
+            <StringItem index="1" value="Phone"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="cboCommMethod" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDescription">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="lblDescription" noResource="true"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="scpDescription">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="scpDescription" noResource="true"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="txaDescription">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="name" type="java.lang.String" value="txaDescription" noResource="true"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="txtPhoneDash1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtPhoneDash1.text"/>
+        <Property name="name" type="java.lang.String" value="txtPhoneDash1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPhoneRightParenthesis1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblPhoneRightParenthesis1.text"/>
+        <Property name="name" type="java.lang.String" value="lblPhoneRightParenthesis1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtPhoneLeftParenthesis1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtPhoneLeftParenthesis1.text"/>
+        <Property name="name" type="java.lang.String" value="txtPhoneLeftParenthesis1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCommMethod1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblCommMethod1.text"/>
+        <Property name="name" type="java.lang.String" value="lblCommMethod1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDescription1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblDescription1.text"/>
+        <Property name="name" type="java.lang.String" value="lblDescription1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPosition1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblPosition1.text"/>
+        <Property name="name" type="java.lang.String" value="lblPosition1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPhone1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblPhone1.text"/>
+        <Property name="name" type="java.lang.String" value="lblPhone1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEmail1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblEmail1.text"/>
+        <Property name="name" type="java.lang.String" value="lblEmail1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblState1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblState1.text"/>
+        <Property name="name" type="java.lang.String" value="lblState1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCity1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblCity1.text"/>
+        <Property name="name" type="java.lang.String" value="lblCity1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblZip1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblZip1.text"/>
+        <Property name="name" type="java.lang.String" value="lblZip1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblStreet1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblStreet1.text"/>
+        <Property name="name" type="java.lang.String" value="lblStreet1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCompanySelect1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblCompanySelect1.text"/>
+        <Property name="name" type="java.lang.String" value="lblCompanySelect1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblFName">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblFName.text"/>
+        <Property name="name" type="java.lang.String" value="lblFName" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLName1">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblLName1.text"/>
+        <Property name="name" type="java.lang.String" value="lblLName1" noResource="true"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

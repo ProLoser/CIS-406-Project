@@ -129,7 +129,8 @@ public class MainView extends FrameView {
         studentPanel1 = new cis406.StudentPanel();
         internshipPanel1 = new cis406.InternshipPanel();
         companyPanel1 = new cis406.CompanyPanel();
-        testingPanel1 = new cis406.TestingPanel();
+        contactPanel1 = new cis406.ContactPanel();
+        correspondence1 = new cis406.Correspondence();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         settingsMenuItem = new javax.swing.JMenuItem();
@@ -199,20 +200,20 @@ public class MainView extends FrameView {
         formButton.setSelected(true);
         formButton.setText(resourceMap.getString("formButton.text")); // NOI18N
         formButton.setFocusable(false);
-        formButton.setHorizontalAlignment(4);
-        formButton.setHorizontalTextPosition(0);
+        formButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        formButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         formButton.setName("formButton"); // NOI18N
-        formButton.setVerticalTextPosition(3);
+        formButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(formButton);
 
         reportButton.setAction(actionMap.get("clickReport")); // NOI18N
         activeViewButtonGroup.add(reportButton);
         reportButton.setText(resourceMap.getString("reportButton.text")); // NOI18N
         reportButton.setFocusable(false);
-        reportButton.setHorizontalAlignment(4);
-        reportButton.setHorizontalTextPosition(0);
+        reportButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        reportButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         reportButton.setName("reportButton"); // NOI18N
-        reportButton.setVerticalTextPosition(3);
+        reportButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(reportButton);
 
         mainTabbedPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -230,34 +231,13 @@ public class MainView extends FrameView {
         mainTabbedPane.addTab(resourceMap.getString("internshipPanel1.TabConstraints.tabTitle"), internshipPanel1); // NOI18N
 
         companyPanel1.setName("companyPanel1"); // NOI18N
-
-        javax.swing.GroupLayout companyPanel1Layout = new javax.swing.GroupLayout(companyPanel1);
-        companyPanel1.setLayout(companyPanel1Layout);
-        companyPanel1Layout.setHorizontalGroup(
-            companyPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
-        );
-        companyPanel1Layout.setVerticalGroup(
-            companyPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
-        );
-
         mainTabbedPane.addTab(resourceMap.getString("companyPanel1.TabConstraints.tabTitle"), companyPanel1); // NOI18N
 
-        testingPanel1.setName("testingPanel1"); // NOI18N
+        contactPanel1.setName("contactPanel1"); // NOI18N
+        mainTabbedPane.addTab(resourceMap.getString("contactPanel1.TabConstraints.tabTitle"), contactPanel1); // NOI18N
 
-        javax.swing.GroupLayout testingPanel1Layout = new javax.swing.GroupLayout(testingPanel1);
-        testingPanel1.setLayout(testingPanel1Layout);
-        testingPanel1Layout.setHorizontalGroup(
-            testingPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
-        );
-        testingPanel1Layout.setVerticalGroup(
-            testingPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
-        );
-
-        mainTabbedPane.addTab(resourceMap.getString("testingPanel1.TabConstraints.tabTitle"), testingPanel1); // NOI18N
+        correspondence1.setName("correspondence1"); // NOI18N
+        mainTabbedPane.addTab(resourceMap.getString("correspondence1.TabConstraints.tabTitle"), correspondence1); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -265,7 +245,7 @@ public class MainView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
         );
@@ -274,7 +254,7 @@ public class MainView extends FrameView {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(mainToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -327,7 +307,7 @@ public class MainView extends FrameView {
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 336, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 362, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -398,6 +378,8 @@ public class MainView extends FrameView {
     private javax.swing.ButtonGroup activeViewButtonGroup;
     public javax.swing.JButton clearButton;
     private cis406.CompanyPanel companyPanel1;
+    private cis406.ContactPanel contactPanel1;
+    private cis406.Correspondence correspondence1;
     public javax.swing.JButton deleteButton;
     private javax.swing.JToggleButton formButton;
     private cis406.InternshipPanel internshipPanel1;
@@ -417,7 +399,6 @@ public class MainView extends FrameView {
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     private cis406.StudentPanel studentPanel1;
-    private cis406.TestingPanel testingPanel1;
     // End of variables declaration//GEN-END:variables
 
     private final Timer messageTimer;
