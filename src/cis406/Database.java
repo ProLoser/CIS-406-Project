@@ -453,7 +453,8 @@ public class Database {
     public static Connection connect() {
         connect = null;
         try {
-            connect = DriverManager.getConnection("jdbc:" + dbType + "://" + dbHost + "/" + dbDatabase + "?user=" + dbUsername + "&password=" + dbPassword);
+            //connect = DriverManager.getConnection("jdbc:" + dbType + "://" + dbHost + "/" + dbDatabase + "?user=" + dbUsername + "&password=" + dbPassword);
+            connect = DriverManager.getConnection("jdbc:" + dbType + "://" + dbHost + "/" + dbDatabase);
         } catch (Exception e) {
             System.out.println("Failed to connect");
             System.out.println(e.getMessage());

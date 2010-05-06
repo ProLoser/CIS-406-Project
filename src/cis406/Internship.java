@@ -16,6 +16,7 @@ public class Internship {
 
     private int id;
     private int company_id;
+    private int career_path_id;
     private String title;
     private String description;
     private String post_date;
@@ -26,8 +27,9 @@ public class Internship {
     public Internship() {
     }
 
-    public Internship(int company_id, String title, String description, String post_date, String expiration, int quantity, String attachment) {
+    public Internship(int company_id, int career_path_id, String title, String description, String post_date, String expiration, int quantity, String attachment) {
         this.company_id = company_id;
+        this.career_path_id = career_path_id;
         this.title = title;
         this.description = description;
         this.post_date = post_date;
@@ -36,12 +38,21 @@ public class Internship {
         this.attachment = attachment;
     }
 
+
     public String getAttachment() {
         return attachment;
     }
 
     public void setAttachment(String attachment) {
         this.attachment = attachment;
+    }
+
+    public int getCareer_path_id() {
+        return career_path_id;
+    }
+
+    public void setCareer_path_id(int career_path_id) {
+        this.career_path_id = career_path_id;
     }
 
     public int getCompany_id() {
@@ -99,6 +110,8 @@ public class Internship {
     public void setTitle(String title) {
         this.title = title;
     }
+
+
     
     public void save() {
         Map<String, String> fields = new HashMap();
@@ -109,6 +122,7 @@ public class Internship {
         fields.put("post_date", post_date);
         fields.put("expiration", expiration);
         fields.put("quantity", Integer.toString(quantity));
+        fields.put("career_path_id", Integer.toString(career_path_id));
         fields.put("attachment", attachment);
 
         Database.write("internship_list", fields);
