@@ -125,7 +125,7 @@ public class Internship {
         fields.put("career_path_id", Integer.toString(career_path_id));
         fields.put("attachment", attachment);
 
-        Database.write("internship_list", fields);
+        Database.write("internship", fields);
     }
 
 }

@@ -26,10 +26,10 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
 
         DefaultListModel model = new DefaultListModel();
         try {
-            ResultSet rs = Database.execute("select distinct user_id from user_log");
+            ResultSet rs = Database.execute("select distinct users_id from user_log");
             while (rs.next()) {
                 int pos = model.getSize();
-                model.add(pos, rs.getString("user_id"));
+                model.add(pos, rs.getString("users_id"));
             }
 
         } catch (Exception e) {
@@ -251,7 +251,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
     private void lstUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstUsersMouseClicked
         DefaultListModel model = new DefaultListModel();
         try {
-            ResultSet rs = Database.execute("select user_log_id from user_log where user_id = '" + lstUsers.getSelectedValue() + "'");
+            ResultSet rs = Database.execute("select user_log_id from user_log where users_id = '" + lstUsers.getSelectedValue() + "'");
             while (rs.next()) {
                 int pos = model.getSize();
                 model.add(pos, rs.getString("user_log_id"));

@@ -3,6 +3,7 @@ package cis406;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
@@ -375,12 +376,12 @@ public class Database {
      * @return the value of table
      */
     public static String t(String value) {
-        int index = value.indexOf(".");
+        /*int index = value.indexOf(".");
         if (index >= 0) {
             value = "`" + value.substring(0, index) + "`.`" + value.substring(index) + "`";
         } else {
             value = "`" + value + "`";
-        }
+        }*/
         return value;
     }
 
@@ -455,6 +456,9 @@ public class Database {
         try {
             //connect = DriverManager.getConnection("jdbc:" + dbType + "://" + dbHost + "/" + dbDatabase + "?user=" + dbUsername + "&password=" + dbPassword);
             connect = DriverManager.getConnection("jdbc:derby:internshipsdb");
+        } catch (SQLException se) {
+            System.out.println("Failed to connect: SQL Exception");
+            for (Throwable t : se) { t.printStackTrace(); }
         } catch (Exception e) {
             System.out.println("Failed to connect");
             System.out.println(e.getMessage());
