@@ -4,6 +4,8 @@
  */
 package cis406;
 
+import java.io.*;
+
 /**
  *
  * @author elunoysolo
@@ -95,11 +97,42 @@ public class Configuration {
             tmpStr = vProp.getProperty("orString");
             System.out.println("ConnString is \n" + tmpStr);
 
-
-
         } catch (java.lang.Exception ex) {
-            throw new java.lang.Exception("[readProp01]" + ex.getMessage());
+            throw new java.lang.Exception(ex.getMessage());
         }
 
+    }
+
+    public void save() {
+        Writer output = null;
+        File file = new File("internapp.config");
+        try {
+                output = new BufferedWriter(new FileWriter(file));
+                output.write(password_interval + ","
+                                + password_length + ","
+                                + session_timeout);
+                output.close();
+                System.out.println("Your file has been written");
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
+    }
+
+    public static String[] load() {
+        String[] config = null;
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("internapp.config"));
+            String str;
+            while ((str = in.readLine()) != null) {
+                System.out.println(str);
+                config = str.split(",");
+            }
+            in.close();
+
+                System.out.println(config[1]);
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
+        return config;
     }
 }

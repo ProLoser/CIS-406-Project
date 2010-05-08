@@ -1,8 +1,7 @@
 
- /* To change this template, choose Tools | Templates
+/* To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cis406;
 
 import java.text.SimpleDateFormat;
@@ -16,22 +15,19 @@ public class Timer {
 
     public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
 
+    public static void Timer2() {
 
-    public static void Timer2 (){
 
-
-    try{
-        String str = now();//date-time with the pattern "yyyy-M-d-k-m"
-        java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-M-d k:m:s");
-        java.util.Date date = formatter.parse(str);
-        java.util.Timer timer = new java.util.Timer();
-        long target = date.getTime();//target date-time in Milliseconds
-        Task0 task = new Task0(target);
-        timer.schedule(task, 0L, 1000L);
-    }
-    catch (Exception e){
-
-    }
+        try {
+            String str = now();//date-time with the pattern "yyyy-M-d-k-m"
+            java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-M-d k:m:s");
+            java.util.Date date = formatter.parse(str);
+            java.util.Timer timer = new java.util.Timer();
+            long target = date.getTime();//target date-time in Milliseconds
+            Task0 task = new Task0(target);
+            timer.schedule(task, 0L, 1000L);
+        } catch (Exception e) {
+        }
     }
 
     public static String now() {
@@ -71,4 +67,3 @@ class Task0 extends java.util.TimerTask {
         }//end of if
     }
 }
-// TODO code application logic here

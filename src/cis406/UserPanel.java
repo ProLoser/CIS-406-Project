@@ -26,21 +26,10 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void clickNew() {
-
+        clickClear();
     }
 
     public void clickSave() {
-        User user = new User();
-
-        user.setUserID(Integer.parseInt(txtUserID.getText()));
-        user.setUsername(txtUsername.getText());
-        user.setfName(txtFirstName.getText());
-        user.setlName(txtLastName.getText());
-        user.setPassword(txtPassword1.getText());
-        user.setStatus(Integer.parseInt(txtStatus.getText()));
-        user.setEmail(txtEmail.getText());
-
-        AddUpdateDelete.updateUser(user);
 
 
         String firstPassword = txtPassword1.getText();
@@ -64,19 +53,23 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
                     JOptionPane.showMessageDialog(null, "Change your password, it doesn't meet CSU Pomona's password complexity requirements");
             }
             else{
-                user.username = txtUsername.getText();
-                user.fName = txtFirstName.getText();
-                user.lName = txtLastName.getText();
-                user.password = firstPassword;
-                user.status = Integer.parseInt(txtStatus.getText());
-                user.email = txtEmail.getText();
+                User user = new User();
 
-                AddUpdateDelete.updateUser(user);
+                user.setUserID(Integer.parseInt(txtUserID.getText()));
+                user.setUsername(txtUsername.getText());
+                user.setfName(txtFirstName.getText());
+                user.setlName(txtLastName.getText());
+                user.setPassword(txtPassword1.getText());
+                user.setStatus(ddlStatus.getSelectedIndex());
+                user.setEmail(txtEmail.getText());
+
+                user.updateUser();
             }
         }
     }
 
     public void clickLoad() {
+        clickClear();
         String userID = SelectUserDialog.getValue();
 
         if (Integer.parseInt(userID) > -1) {
@@ -88,9 +81,10 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
                     txtFirstName.setText(rs.getString("first_name"));
                     txtLastName.setText(rs.getString("last_name"));
                     txtEmail.setText(rs.getString("email"));
-                    txtStatus.setText(rs.getString("status"));
+                    ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
                     ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
-                    //txtPassword.setText(rs.getString("password"));
+                    txtPassword1.setText(rs.getString("password"));
+                    txtPassword2.setText(rs.getString("password"));
                 }
 
             } catch (Exception e) {
@@ -102,11 +96,27 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void clickDelete() {
-
+        if (!(txtUserID.getText().equals(""))) {
+            int answer = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this user?");
+            if (answer == JOptionPane.YES_OPTION) {
+                User.deleteUser(Integer.parseInt(txtUserID.getText()));
+                clickClear();
+            }
+        }
     }
 
     public void clickClear() {
-
+        txtUsername.setText("");
+        txtUserID.setText("");
+        txtPassword1.setText("");
+        txtPassword2.setText("");
+        ddlStatus.setSelectedIndex(0);
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtAnswer.setText("");
+        txtEmail.setText("");
+        ddlSecurityLevel.setSelectedIndex(0);
+        ddlSecurityQuestions.setSelectedIndex(0);
     }
 
     public void clickReport() {
@@ -146,7 +156,6 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
         ddlSecurityLevel = new javax.swing.JComboBox();
         lblSecurityLevel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtStatus = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtPassword1 = new javax.swing.JTextField();
         txtPassword2 = new javax.swing.JTextField();
@@ -156,6 +165,7 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtUserID = new javax.swing.JTextField();
+        ddlStatus = new javax.swing.JComboBox();
 
         setName("Form"); // NOI18N
 
@@ -196,9 +206,6 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
         jLabel8.setName("jLabel8"); // NOI18N
 
-        txtStatus.setText(resourceMap.getString("txtStatus.text")); // NOI18N
-        txtStatus.setName("txtStatus"); // NOI18N
-
         txtEmail.setText(resourceMap.getString("txtEmail.text")); // NOI18N
         txtEmail.setName("txtEmail"); // NOI18N
 
@@ -226,6 +233,9 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
         txtUserID.setEditable(false);
         txtUserID.setText(resourceMap.getString("txtUserID.text")); // NOI18N
         txtUserID.setName("txtUserID"); // NOI18N
+
+        ddlStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disabled", "Enabled" }));
+        ddlStatus.setName("ddlStatus"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -259,7 +269,7 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
                             .addComponent(lblSecurityLevel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtStatus)
+                            .addComponent(ddlStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ddlSecurityLevel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,8 +316,8 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
                     .addComponent(txtPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(ddlStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ddlSecurityLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -328,6 +338,7 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox ddlSecurityLevel;
     private javax.swing.JComboBox ddlSecurityQuestions;
+    private javax.swing.JComboBox ddlStatus;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel8;
@@ -344,7 +355,6 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtPassword1;
     private javax.swing.JTextField txtPassword2;
-    private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtUserID;
     private javax.swing.JTextField txtUsername;
     private javax.swing.JLabel usernameLabel;

@@ -51,7 +51,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtStatus" max="32767" attributes="1"/>
+                          <Component id="ddlStatus" max="32767" attributes="1"/>
                           <Component id="ddlSecurityLevel" alignment="0" max="32767" attributes="1"/>
                       </Group>
                   </Group>
@@ -114,8 +114,8 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ddlStatus" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -140,46 +140,55 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="txtFirstName">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtFirstName.text"/>
         <Property name="name" type="java.lang.String" value="txtFirstName" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtLastName">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtLastName.text"/>
         <Property name="name" type="java.lang.String" value="txtLastName" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="usernameLabel">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="usernameLabel.text"/>
         <Property name="name" type="java.lang.String" value="usernameLabel" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblFirstName">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblFirstName.text"/>
         <Property name="name" type="java.lang.String" value="lblFirstName" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLastName">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblLastName.text"/>
         <Property name="name" type="java.lang.String" value="lblLastName" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUsername">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtUsername.text"/>
         <Property name="name" type="java.lang.String" value="txtUsername" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEmail">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblEmail.text"/>
         <Property name="name" type="java.lang.String" value="lblEmail" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPassword">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblPassword.text"/>
         <Property name="name" type="java.lang.String" value="lblPassword" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblConfPass">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblConfPass.text"/>
         <Property name="name" type="java.lang.String" value="lblConfPass" noResource="true"/>
       </Properties>
     </Component>
@@ -197,36 +206,37 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblSecurityLevel">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblSecurityLevel.text"/>
         <Property name="name" type="java.lang.String" value="lblSecurityLevel" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel8.text"/>
         <Property name="name" type="java.lang.String" value="jLabel8" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtStatus">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="txtStatus" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmail">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtEmail.text"/>
         <Property name="name" type="java.lang.String" value="txtEmail" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPassword1">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtPassword1.text"/>
         <Property name="name" type="java.lang.String" value="txtPassword1" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPassword2">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtPassword2.text"/>
         <Property name="name" type="java.lang.String" value="txtPassword2" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel9.text"/>
         <Property name="name" type="java.lang.String" value="jLabel9" noResource="true"/>
       </Properties>
     </Component>
@@ -243,23 +253,38 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtAnswer">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtAnswer.text"/>
         <Property name="name" type="java.lang.String" value="txtAnswer" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel10.text"/>
         <Property name="name" type="java.lang.String" value="jLabel10" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel11.text"/>
         <Property name="name" type="java.lang.String" value="jLabel11" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUserID">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" resourceKey="txtUserID.text"/>
         <Property name="name" type="java.lang.String" value="txtUserID" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="ddlStatus">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Disabled"/>
+            <StringItem index="1" value="Enabled"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="ddlStatus" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

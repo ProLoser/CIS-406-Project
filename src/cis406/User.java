@@ -5,12 +5,15 @@
 
 package cis406;
 
+import java.util.HashMap;
+
 /**
  *
  * @author Raf
  */
 public class User {
 
+    public static HashMap hmUser = new HashMap();
     int securityLevel;
     String fName;
     String lName;
@@ -97,6 +100,58 @@ public class User {
 
     public void setlName(String lName) {
         this.lName = lName;
+    }
+
+    public void addUser() {
+
+        hmUser.put("user_id", id);
+        hmUser.put("username", username);
+        hmUser.put("password", password);
+        hmUser.put("first_name", fName);
+        hmUser.put("last_name", lName);
+        hmUser.put("clearance", Integer.toString(securityLevel));
+        hmUser.put("email", email);
+        hmUser.put("status", status);
+
+        Database.write("User", hmUser);
+    }
+
+    public static void deleteUser(int user_id) {
+        Database.executeWrite("DELETE FROM user WHERE user_id = '" + user_id + "'");
+    }
+
+    public void updateUser() {
+        String hash = "";
+        try {
+            hash = byteArrayToHexString(computeHash(password));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Database.executeWrite("UPDATE user SET password = '" +
+        hash + "', status = '" + status + "', first_name = '" + fName +
+         "', last_name = '" + lName + "', clearance = '" + securityLevel +
+         "', email = '" + email + "', status = '" + status + "', username = '" +
+        username + "' WHERE user_id = '" + id + "'");
+    }
+    
+    public static byte[] computeHash(String x) throws Exception {
+        java.security.MessageDigest d = null;
+        d = java.security.MessageDigest.getInstance("SHA-1");
+        d.reset();
+        d.update(x.getBytes());
+        return d.digest();
+    }
+
+    public static String byteArrayToHexString(byte[] b) {
+        StringBuffer sb = new StringBuffer(b.length * 2);
+        for (int i = 0; i < b.length; i++) {
+            int v = b[i] & 0xff;
+            if (v < 16) {
+                sb.append('0');
+            }
+            sb.append(Integer.toHexString(v));
+        }
+        return sb.toString().toUpperCase();
     }
 
 }

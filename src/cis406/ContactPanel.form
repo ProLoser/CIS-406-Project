@@ -52,7 +52,6 @@
                           <Component id="txtEmail" alignment="0" min="-2" pref="302" max="-2" attributes="1"/>
                           <Component id="cboState" min="-2" pref="69" max="-2" attributes="0"/>
                           <Component id="txtStreet" alignment="0" min="-2" pref="260" max="-2" attributes="1"/>
-                          <Component id="cboCompany" min="-2" pref="131" max="-2" attributes="1"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="139" pref="139" max="139" attributes="0"/>
                               <Component id="lblLName1" min="-2" max="-2" attributes="0"/>
@@ -72,6 +71,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtPhoneLast" min="-2" pref="71" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="cboCompany" alignment="0" min="-2" pref="285" max="-2" attributes="1"/>
                       </Group>
                   </Group>
               </Group>
