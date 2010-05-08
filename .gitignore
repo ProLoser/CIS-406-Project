@@ -3,3 +3,4 @@ dist/*
 nbproject/*
 sample/*
 internshipsdb/log/*
+derby.log
