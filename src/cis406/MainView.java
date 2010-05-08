@@ -122,6 +122,7 @@ public class MainView extends FrameView {
         correspondence1 = new cis406.CorrespondencePanel();
         securityLogPanel1 = new cis406.SecurityLogPanel();
         userPanel1 = new cis406.UserPanel();
+        studentPanel1 = new cis406.StudentPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         settingsMenuItem = new javax.swing.JMenuItem();
@@ -234,15 +235,18 @@ public class MainView extends FrameView {
         userPanel1.setName("userPanel1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("userPanel1.TabConstraints.tabTitle"), userPanel1); // NOI18N
 
+        studentPanel1.setName("studentPanel1"); // NOI18N
+        mainTabbedPane.addTab(resourceMap.getString("studentPanel1.TabConstraints.tabTitle"), studentPanel1); // NOI18N
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+            .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,11 +301,11 @@ public class MainView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 424, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -407,6 +411,7 @@ public class MainView extends FrameView {
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
+    private cis406.StudentPanel studentPanel1;
     private cis406.UserPanel userPanel1;
     // End of variables declaration//GEN-END:variables
 
