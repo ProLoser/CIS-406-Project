@@ -8,11 +8,12 @@
  *
  * Created on Apr 22, 2010, 6:05:03 AM
  */
-
 package cis406;
 
 import java.sql.ResultSet;
+import java.util.Date;
 import org.jdesktop.application.Action;
+import javax.swing.*;
 
 /**
  *
@@ -34,87 +35,399 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        lblGradDate = new javax.swing.JLabel();
+        lblClubs = new javax.swing.JLabel();
+        lblInterests = new javax.swing.JLabel();
+        txtBroncoNum = new javax.swing.JTextField();
+        lblBroncoNum = new javax.swing.JLabel();
+        txtFName = new javax.swing.JTextField();
+        lblFName = new javax.swing.JLabel();
+        chkSWIFT = new javax.swing.JCheckBox();
+        chkMISSA = new javax.swing.JCheckBox();
+        lblRelocate = new javax.swing.JLabel();
+        chkRelocate = new javax.swing.JCheckBox();
+        chkIWDSA = new javax.swing.JCheckBox();
+        lblGradeLev = new javax.swing.JLabel();
+        chkFAST = new javax.swing.JCheckBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaInterests = new javax.swing.JTextArea();
+        chkOtherClub = new javax.swing.JCheckBox();
+        txtLName = new javax.swing.JTextField();
+        lblLName = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
+        lblLastCis = new javax.swing.JLabel();
+        txtUnitsTaken = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblLastUpdate = new javax.swing.JLabel();
+        txtMajor = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtMinor = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtLastCIS = new javax.swing.JTextField();
+        txtExpGradDate = new javax.swing.JFormattedTextField();
+        txtPhone = new javax.swing.JFormattedTextField();
 
         setName("Form"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(StudentPanel.class, this);
-        jButton1.setAction(actionMap.get("testDatabase")); // NOI18N
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(StudentPanel.class);
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
+        lblGradDate.setText(resourceMap.getString("lblGradDate.text")); // NOI18N
+        lblGradDate.setName("lblGradDate"); // NOI18N
+
+        lblClubs.setText(resourceMap.getString("lblClubs.text")); // NOI18N
+        lblClubs.setName("lblClubs"); // NOI18N
+
+        lblInterests.setText(resourceMap.getString("lblInterests.text")); // NOI18N
+        lblInterests.setName("lblInterests"); // NOI18N
+
+        txtBroncoNum.setName("txtBroncoNum"); // NOI18N
+
+        lblBroncoNum.setText(resourceMap.getString("lblBroncoNum.text")); // NOI18N
+        lblBroncoNum.setName("lblBroncoNum"); // NOI18N
+
+        txtFName.setName("txtFName"); // NOI18N
+
+        lblFName.setText(resourceMap.getString("lblFName.text")); // NOI18N
+        lblFName.setName("lblFName"); // NOI18N
+
+        chkSWIFT.setText(resourceMap.getString("chkSWIFT.text")); // NOI18N
+        chkSWIFT.setName("chkSWIFT"); // NOI18N
+
+        chkMISSA.setText(resourceMap.getString("chkMISSA.text")); // NOI18N
+        chkMISSA.setName("chkMISSA"); // NOI18N
+
+        lblRelocate.setText(resourceMap.getString("lblRelocate.text")); // NOI18N
+        lblRelocate.setName("lblRelocate"); // NOI18N
+
+        chkRelocate.setText(resourceMap.getString("chkRelocate.text")); // NOI18N
+        chkRelocate.setName("chkRelocate"); // NOI18N
+
+        chkIWDSA.setText(resourceMap.getString("chkIWDSA.text")); // NOI18N
+        chkIWDSA.setName("chkIWDSA"); // NOI18N
+
+        lblGradeLev.setText(resourceMap.getString("lblGradeLev.text")); // NOI18N
+        lblGradeLev.setName("lblGradeLev"); // NOI18N
+
+        chkFAST.setText(resourceMap.getString("chkFAST.text")); // NOI18N
+        chkFAST.setName("chkFAST"); // NOI18N
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        txaInterests.setColumns(20);
+        txaInterests.setLineWrap(true);
+        txaInterests.setRows(5);
+        txaInterests.setWrapStyleWord(true);
+        txaInterests.setName("txaInterests"); // NOI18N
+        jScrollPane1.setViewportView(txaInterests);
+
+        chkOtherClub.setText(resourceMap.getString("chkOtherClub.text")); // NOI18N
+        chkOtherClub.setName("chkOtherClub"); // NOI18N
+        chkOtherClub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkOtherClubActionPerformed(evt);
+            }
+        });
+
+        txtLName.setName("txtLName"); // NOI18N
+
+        lblLName.setText(resourceMap.getString("lblLName.text")); // NOI18N
+        lblLName.setName("lblLName"); // NOI18N
+
+        txtEmail.setName("txtEmail"); // NOI18N
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
+
+        lblEmail.setText(resourceMap.getString("lblEmail.text")); // NOI18N
+        lblEmail.setName("lblEmail"); // NOI18N
+
+        lblLastCis.setText(resourceMap.getString("lblLastCis.text")); // NOI18N
+        lblLastCis.setName("lblLastCis"); // NOI18N
+
+        txtUnitsTaken.setText(resourceMap.getString("txtUnitsTaken.text")); // NOI18N
+        txtUnitsTaken.setName("txtUnitsTaken"); // NOI18N
+
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setName("jLabel2"); // NOI18N
+
+        lblLastUpdate.setText(resourceMap.getString("lblLastUpdate.text")); // NOI18N
+        lblLastUpdate.setName("lblLastUpdate"); // NOI18N
+
+        txtMajor.setText(resourceMap.getString("txtMajor.text")); // NOI18N
+        txtMajor.setName("txtMajor"); // NOI18N
+
+        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
+        jLabel5.setName("jLabel5"); // NOI18N
+
+        txtMinor.setText(resourceMap.getString("txtMinor.text")); // NOI18N
+        txtMinor.setName("txtMinor"); // NOI18N
+
+        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
+        jLabel6.setName("jLabel6"); // NOI18N
+
+        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
+        jLabel4.setName("jLabel4"); // NOI18N
+
+        txtLastCIS.setText(resourceMap.getString("txtLastCIS.text")); // NOI18N
+        txtLastCIS.setName("txtLastCIS"); // NOI18N
+
+        txtExpGradDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M/yyyy"))));
+        txtExpGradDate.setName("txtExpGradDate"); // NOI18N
+
+        try {
+            txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ### - ####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtPhone.setName("txtPhone"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblInterests)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblBroncoNum)
+                            .addComponent(lblFName)
+                            .addComponent(jLabel1)
+                            .addComponent(lblGradeLev)
+                            .addComponent(lblLastCis))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtFName, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                                            .addComponent(txtUnitsTaken, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtLastCIS))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblEmail)
+                                            .addComponent(lblLName)
+                                            .addComponent(lblGradDate)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblClubs)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6)
+                                            .addComponent(lblRelocate)
+                                            .addComponent(jLabel2))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chkRelocate)
+                                    .addComponent(txtLName, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                                    .addComponent(chkOtherClub)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtMajor, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(chkMISSA)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(chkIWDSA))
+                                        .addComponent(txtMinor, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblLastUpdate)
+                                        .addGap(206, 206, 206))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(chkSWIFT)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(chkFAST)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel4))
+                                    .addComponent(txtExpGradDate, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtBroncoNum, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(153, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblBroncoNum)
+                            .addComponent(txtBroncoNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblFName)
+                            .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLName))
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(lblEmail)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtUnitsTaken, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblGradeLev)
+                            .addComponent(lblGradDate)
+                            .addComponent(txtExpGradDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(chkSWIFT)
+                                    .addComponent(chkFAST)
+                                    .addComponent(lblClubs))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(chkMISSA)
+                                    .addComponent(chkIWDSA))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(chkOtherClub)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtMajor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtMinor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblInterests)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(99, 99, 99)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(chkRelocate)
+                                            .addComponent(lblRelocate))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(lblLastUpdate)
+                                            .addComponent(jLabel2)))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtLastCIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLastCis))))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void chkOtherClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkOtherClubActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_chkOtherClubActionPerformed
 
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_txtEmailActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox chkFAST;
+    private javax.swing.JCheckBox chkIWDSA;
+    private javax.swing.JCheckBox chkMISSA;
+    private javax.swing.JCheckBox chkOtherClub;
+    private javax.swing.JCheckBox chkRelocate;
+    private javax.swing.JCheckBox chkSWIFT;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblBroncoNum;
+    private javax.swing.JLabel lblClubs;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFName;
+    private javax.swing.JLabel lblGradDate;
+    private javax.swing.JLabel lblGradeLev;
+    private javax.swing.JLabel lblInterests;
+    private javax.swing.JLabel lblLName;
+    private javax.swing.JLabel lblLastCis;
+    private javax.swing.JLabel lblLastUpdate;
+    private javax.swing.JLabel lblRelocate;
+    private javax.swing.JTextArea txaInterests;
+    private javax.swing.JTextField txtBroncoNum;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JFormattedTextField txtExpGradDate;
+    private javax.swing.JTextField txtFName;
+    private javax.swing.JTextField txtLName;
+    private javax.swing.JTextField txtLastCIS;
+    private javax.swing.JTextField txtMajor;
+    private javax.swing.JTextField txtMinor;
+    private javax.swing.JFormattedTextField txtPhone;
+    private javax.swing.JTextField txtUnitsTaken;
     // End of variables declaration//GEN-END:variables
-
-    @Action
-    public void testDatabase() {
-        Database db = new Database("users");
-        ResultSet data = db.select();
-        try {
-            while (data.next()) {
-                System.out.println(data.getString("name"));
-            }
-        } catch (Exception e) {
-
-        }
-    }
-
-
+    private String fName;
+    private String lName;
+    private String broncoNum;
+    private String email;
+    private String phone;
+    private int gradeLvl;
+    private String lastCIS;
+    private String interests;
+    private Boolean relocate;
+    private String major;
+    private String minor;
+    private Date gradDate;
+    private int clubMissa;
+    private int clubSwift;
+    private int clubFast;
+    private int clubIwdsa;
+    private int clubOther;
+    
+    
     public void clickNew() {
-
     }
 
     public void clickSave() {
-
+        fName = txtFName.getText();
+        lName = txtLName.getText();
+        Name studName = new Name(fName, lName, "");
+        broncoNum = txtBroncoNum.getText();
+        email = txtEmail.getText();
+        phone = txtPhone.getText();
+        gradeLvl = Integer.parseInt(txtUnitsTaken.getText());
+        gradDate = Date.parse(txtExpGradDate.getText());
+        lastCIS = txtLastCIS.getText();
+         
     }
 
     public void clickLoad() {
-
     }
 
     public void clickDelete() {
-
     }
 
     public void clickClear() {
-
     }
 
     public void clickForm() {
-
     }
 
     public void clickReport() {
-
     }
 
     public void switchTo(javax.swing.ButtonGroup activeView) {
-
     }
 
     public void switchAway() {
-
     }
-
 }
