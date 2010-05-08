@@ -2,7 +2,7 @@
 CREATE TABLE users
 (
 	users_id              INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-	password             VARCHAR(20) ,
+	password             VARCHAR(255) ,
 	status               INTEGER ,
 	clearance            INTEGER ,
 	user_name            SMALLINT ,
@@ -28,7 +28,7 @@ CREATE TABLE answer
 	answer_id            INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 	question_key_id      INTEGER NOT NULL,
 	users_id              INTEGER NOT NULL,
-	answer               VARCHAR(20),
+	answer               VARCHAR(20) ,
 	PRIMARY KEY (answer_id)
 );
 
@@ -48,7 +48,7 @@ CREATE TABLE user_log
 CREATE TABLE industry
 (
 	industry_id          INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-	industry_name        VARCHAR(50) ,
+	industry_name        VARCHAR(50) NOT NULL,
 	PRIMARY KEY (industry_id)
 );
 
@@ -148,8 +148,7 @@ CREATE TABLE student
 	email                VARCHAR(40) ,
 	phone                VARCHAR(15) ,
 	class_standing       VARCHAR(10) ,
-	relocate             VARCHAR(3) ,
-	expected_graduation_year DATE ,
+	relocate             SMALLINT ,
 	last_update          DATE ,
 	interest             LONG VARCHAR ,
 	missa_club           SMALLINT ,
@@ -157,6 +156,10 @@ CREATE TABLE student
 	iwdsa_club           SMALLINT ,
 	swift_club           SMALLINT ,
 	other_club           SMALLINT ,
+	major                VARCHAR(55) ,
+	minor                VARCHAR(55) ,
+	expected_graduation_year INTEGER ,
+	expected_graduation_quarter VARCHAR(6) ,
 	PRIMARY KEY (student_id)
 );
 
@@ -171,3 +174,5 @@ CREATE TABLE student_internship
 	course_credit        VARCHAR(100) ,
 	PRIMARY KEY (student_internship_id)
 );
+
+

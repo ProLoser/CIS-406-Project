@@ -454,7 +454,7 @@ public class Database {
         connect = null;
         try {
             //connect = DriverManager.getConnection("jdbc:" + dbType + "://" + dbHost + "/" + dbDatabase + "?user=" + dbUsername + "&password=" + dbPassword);
-            connect = DriverManager.getConnection("jdbc:" + dbType + "://" + dbHost + "/" + dbDatabase);
+            connect = DriverManager.getConnection("jdbc:derby:internshipsdb");
         } catch (Exception e) {
             System.out.println("Failed to connect");
             System.out.println(e.getMessage());
