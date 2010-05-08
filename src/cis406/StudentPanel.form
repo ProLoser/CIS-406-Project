@@ -22,82 +22,141 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblBroncoNum" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblFName" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblGradeLev" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLastCis" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="lblInterests" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblBroncoNum" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblFName" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblGradeLev" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblLastCis" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtFName" alignment="0" pref="139" max="32767" attributes="1"/>
-                                          <Component id="txtUnitsTaken" min="-2" pref="48" max="-2" attributes="0"/>
-                                          <Component id="txtPhone" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
-                                          <Component id="txtLastCIS" alignment="0" max="32767" attributes="1"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="lblEmail" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblLName" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblGradDate" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                      <Component id="lblClubs" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblRelocate" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="chkRelocate" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtLName" alignment="0" pref="237" max="32767" attributes="1"/>
-                                  <Component id="chkOtherClub" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="txtMajor" alignment="0" max="32767" attributes="1"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="chkMISSA" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="chkIWDSA" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtMinor" alignment="0" max="32767" attributes="1"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblLastUpdate" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="206" pref="206" max="206" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtEmail" alignment="0" max="32767" attributes="1"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="chkSWIFT" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="chkFAST" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtExpGradDate" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
+                                  <Component id="txtFName" alignment="0" pref="200" max="32767" attributes="1"/>
+                                  <Component id="txtPhone" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <Component id="txtLastCIS" alignment="0" pref="200" max="32767" attributes="1"/>
+                                  <Component id="txtUnitsTaken" alignment="0" pref="200" max="32767" attributes="1"/>
+                                  <Component id="txtBroncoNum" alignment="0" pref="200" max="32767" attributes="1"/>
                               </Group>
                           </Group>
-                          <Component id="txtBroncoNum" min="-2" pref="104" max="-2" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" pref="234" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblInterests" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="chkSWIFT" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="chkMISSA" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="chkIWDSA" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="chkFAST" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="chkOtherClub" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="chkRelocate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtMinor" alignment="0" pref="164" max="32767" attributes="1"/>
+                          <Component id="txtMajor" alignment="0" max="32767" attributes="1"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" alignment="1" groupAlignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtExpGradDate" min="-2" pref="76" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="txtEmail" min="-2" pref="198" max="-2" attributes="1"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="lblEmail" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblLName" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblGradDate" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                  <Component id="lblClubs" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                      <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lblRelocate" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace pref="34" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblLastUpdate" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Component id="txtLName" min="-2" pref="288" max="-2" attributes="1"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -109,93 +168,150 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                      <Component id="lblLastCis" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblBroncoNum" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtBroncoNum" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblFName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtFName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtLName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblLName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtPhone" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtUnitsTaken" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblGradeLev" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblGradDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtExpGradDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="chkSWIFT" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="chkFAST" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblClubs" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="chkMISSA" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="chkIWDSA" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="chkOtherClub" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtMajor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtMinor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtLastCIS" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtBroncoNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtLName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblInterests" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane1" alignment="0" pref="194" max="32767" attributes="1"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblBroncoNum" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lblFName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblLName" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="chkRelocate" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblRelocate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtFName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtExpGradDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtUnitsTaken" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblGradeLev" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblGradDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+                      <Component id="lblClubs" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="0" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                                      <Component id="lblRelocate" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="lblLastUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Component id="lblInterests" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
+                              <EmptySpace pref="67" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="jLabel17" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkSWIFT" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkFAST" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel18" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel25" alignment="2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="jLabel16" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkMISSA" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkIWDSA" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel19" alignment="2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="jLabel20" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkOtherClub" alignment="2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtMajor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtMinor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="chkRelocate" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="21" max="32767" attributes="0"/>
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtLastCIS" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblLastCis" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="177" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="jScrollPane1" pref="203" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -205,19 +321,16 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblGradDate">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblGradDate.text"/>
         <Property name="name" type="java.lang.String" value="lblGradDate" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblClubs">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblClubs.text"/>
         <Property name="name" type="java.lang.String" value="lblClubs" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblInterests">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblInterests.text"/>
         <Property name="name" type="java.lang.String" value="lblInterests" noResource="true"/>
       </Properties>
     </Component>
@@ -228,7 +341,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblBroncoNum">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblBroncoNum.text"/>
         <Property name="name" type="java.lang.String" value="lblBroncoNum" noResource="true"/>
       </Properties>
     </Component>
@@ -239,49 +351,41 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblFName">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblFName.text"/>
         <Property name="name" type="java.lang.String" value="lblFName" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkSWIFT">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="chkSWIFT.text"/>
         <Property name="name" type="java.lang.String" value="chkSWIFT" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkMISSA">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="chkMISSA.text"/>
         <Property name="name" type="java.lang.String" value="chkMISSA" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblRelocate">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblRelocate.text"/>
         <Property name="name" type="java.lang.String" value="lblRelocate" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkRelocate">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="chkRelocate.text"/>
         <Property name="name" type="java.lang.String" value="chkRelocate" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkIWDSA">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="chkIWDSA.text"/>
         <Property name="name" type="java.lang.String" value="chkIWDSA" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblGradeLev">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblGradeLev.text"/>
         <Property name="name" type="java.lang.String" value="lblGradeLev" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkFAST">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="chkFAST.text"/>
         <Property name="name" type="java.lang.String" value="chkFAST" noResource="true"/>
       </Properties>
     </Component>
@@ -308,7 +412,6 @@
     </Container>
     <Component class="javax.swing.JCheckBox" name="chkOtherClub">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="chkOtherClub.text"/>
         <Property name="name" type="java.lang.String" value="chkOtherClub" noResource="true"/>
       </Properties>
       <Events>
@@ -322,7 +425,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblLName">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblLName.text"/>
         <Property name="name" type="java.lang.String" value="lblLName" noResource="true"/>
       </Properties>
     </Component>
@@ -336,73 +438,61 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblEmail">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblEmail.text"/>
         <Property name="name" type="java.lang.String" value="lblEmail" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLastCis">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblLastCis.text"/>
         <Property name="name" type="java.lang.String" value="lblLastCis" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUnitsTaken">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtUnitsTaken.text"/>
         <Property name="name" type="java.lang.String" value="txtUnitsTaken" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel1.text"/>
         <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel2.text"/>
         <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLastUpdate">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblLastUpdate.text"/>
         <Property name="name" type="java.lang.String" value="lblLastUpdate" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMajor">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtMajor.text"/>
         <Property name="name" type="java.lang.String" value="txtMajor" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel5.text"/>
         <Property name="name" type="java.lang.String" value="jLabel5" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMinor">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtMinor.text"/>
         <Property name="name" type="java.lang.String" value="txtMinor" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel6.text"/>
         <Property name="name" type="java.lang.String" value="jLabel6" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel4.text"/>
         <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtLastCIS">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtLastCIS.text"/>
         <Property name="name" type="java.lang.String" value="txtLastCIS" noResource="true"/>
       </Properties>
     </Component>
@@ -420,6 +510,126 @@
           <Format format="(###) ### - ####" subtype="-1" type="5"/>
         </Property>
         <Property name="name" type="java.lang.String" value="txtPhone" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel3.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel7">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel7.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel7" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel8.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel8" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel9.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel9" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel10.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel10" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel11">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel11.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel11" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel12">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel12.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel12" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel13">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel13.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel13" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel14">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel14.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel14" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel15">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel15.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel15" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel17">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel17.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel17" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel18">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel18.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel18" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel16">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel16.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel16" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel19">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel19.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel19" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel20">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel20.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel20" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel21">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel21.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel21" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel22">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel22.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel22" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel23">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel23.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel23" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel24">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel24.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel24" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel25">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel25.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel25" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
