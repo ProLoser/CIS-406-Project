@@ -6,14 +6,16 @@
 /*
  * CompanyPanel.java
  *
- * Created on Apr 22, 2010, 6:05:13 AM
+ * Created on May 6, 2010, 12:25:07 AM
  */
 
 package cis406;
 
+import cis406.CisPanel;
+
 /**
  *
- * @author Dean Sofer
+ * @author Mark
  */
 public class CompanyPanel extends javax.swing.JPanel implements CisPanel {
 
@@ -31,60 +33,68 @@ public class CompanyPanel extends javax.swing.JPanel implements CisPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tabCompany = new javax.swing.JTabbedPane();
+        externalCompanyPanel1 = new cis406.ExternalCompanyPanel();
+        divisionPanel1 = new cis406.DivisionPanel();
+        industryPanel1 = new cis406.IndustryPanel();
+
         setName("Form"); // NOI18N
+
+        tabCompany.setName("tabCompany"); // NOI18N
+
+        externalCompanyPanel1.setName("externalCompanyPanel1"); // NOI18N
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(CompanyPanel.class);
+        tabCompany.addTab(resourceMap.getString("externalCompanyPanel1.TabConstraints.tabTitle"), externalCompanyPanel1); // NOI18N
+
+        divisionPanel1.setName("divisionPanel1"); // NOI18N
+        tabCompany.addTab(resourceMap.getString("divisionPanel1.TabConstraints.tabTitle"), divisionPanel1); // NOI18N
+
+        industryPanel1.setName("industryPanel1"); // NOI18N
+        tabCompany.addTab(resourceMap.getString("industryPanel1.TabConstraints.tabTitle"), industryPanel1); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabCompany, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabCompany, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private cis406.DivisionPanel divisionPanel1;
+    private cis406.ExternalCompanyPanel externalCompanyPanel1;
+    private cis406.IndustryPanel industryPanel1;
+    private javax.swing.JTabbedPane tabCompany;
     // End of variables declaration//GEN-END:variables
 
-
-
-
     public void clickNew() {
-
     }
-
     public void clickSave() {
-
     }
-
     public void clickLoad() {
-
     }
-
     public void clickDelete() {
-
     }
-
     public void clickClear() {
-
+        ((CisPanel)tabCompany.getSelectedComponent()).clickClear();
     }
-
     public void clickForm() {
-
     }
-
     public void clickReport() {
-
     }
-
     public void switchTo(javax.swing.ButtonGroup activeView) {
     }
-
     public void switchAway() {
-
     }
-
 }
