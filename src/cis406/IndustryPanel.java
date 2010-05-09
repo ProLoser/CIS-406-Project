@@ -76,6 +76,9 @@ public class IndustryPanel extends javax.swing.JPanel implements CisPanel  {
     public void clickNew() {
     }
     public void clickSave() {
+        Industry record = new Industry();
+        record.setName(txtIndustryName.getText());
+        record.save();
     }
     public void clickLoad() {
     }

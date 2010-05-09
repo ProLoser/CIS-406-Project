@@ -413,6 +413,20 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     public void clickNew() {
     }
     public void clickSave() {
+        Contact record = new Contact();
+        record.setFname(txtFName.getText());
+        record.setLname(txtLName.getText());
+        record.setCompany_id(cboCompany.getSelectedIndex());
+        record.setStreet(txtStreet.getText());
+        record.setZip(Integer.parseInt(txtZip.getText()));
+        record.setCity(txtCity.getText());
+        record.setState(cboState.getSelectedIndex());
+        record.setEmail(txtEmail.getText());
+        record.setPhone(Integer.parseInt(txtPhoneArea.getText()), Integer.parseInt(txtPhoneFirst.getText()), Integer.parseInt(txtPhoneLast.getText()));
+        record.setPosition(txtPosition.getText());
+        record.setComm_method(cboCommMethod.getSelectedIndex());
+        record.setDescription(txaDescription.getText());
+        record.save();
     }
     public void clickLoad() {
     }
