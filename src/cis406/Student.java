@@ -1,6 +1,8 @@
 package cis406;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Student {
 //attributes
@@ -227,6 +229,29 @@ public class Student {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public void save(){
+        Map<String, String> fields = new HashMap();
+        fields.put("bronco_id", broncoNum);
+        fields.put("last_name", studName.lastName);
+        fields.put("first_name", studName.firstName);
+        fields.put("email", email);
+        fields.put("phone", phone);
+        fields.put("class_standing", Integer.toString(gradeLevel));
+        String now = updateDate.toString();
+        fields.put("last_update", now);
+        fields.put("interest", interests);
+        fields.put("major", major);
+        fields.put("minor", minor);
+        fields.put("expected_graduation_quarter", gradDate);
+        fields.put("relocate", Integer.toString(relocate));
+        fields.put("missa_club", Integer.toString(clubMissa));
+        fields.put("fast_club", Integer.toString(clubFast));
+        fields.put("iwdsa_club", Integer.toString(clubIwdsa));
+        fields.put("swift_club", Integer.toString(clubSwift));
+        fields.put("other_club", Integer.toString(clubOther));
+        Database.write("student", fields);
     }
 
     @Override

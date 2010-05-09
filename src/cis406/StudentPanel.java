@@ -590,29 +590,19 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void clickSave() {
-        broncoNum = txtBroncoNum.getText();
-        fields.put("BRONCO_ID", broncoNum);
-        lName = txtLName.getText();
-        fields.put("LAST_NAME", lName);
-        fName = txtFName.getText();
-        fields.put("FIRST_NAME", fName);
-        email = txtEmail.getText();
-        fields.put("EMAIL", email);
-        phone = txtPhone.getText();
-        fields.put("PHONE", phone);
-        gradeLvl = txtUnitsTaken.getText();
-        fields.put("CLASS_STANDING", gradeLvl);
+        Student newStudent = new Student();
+        newStudent.broncoNum = txtBroncoNum.getText();
+        newStudent.studName.lastName = txtLName.getText();
+        newStudent.studName.firstName = txtFName.getText();
+        newStudent.email = txtEmail.getText();
+        newStudent.phone = txtPhone.getText();
+        newStudent.gradeLevel = Integer.parseInt(txtUnitsTaken.getText());
         Date now = new Date();
-        lastUpdate = now.toString();
-        fields.put("LAST_UPDATE", lastUpdate);
-        interests = txaInterests.getText();
-        fields.put("INTEREST", interests);
-        major = txtMajor.getText();
-        fields.put("MAJOR", major);
-        minor = txtMinor.getText();
-        fields.put("MINOR", minor);
-        gradDate = txtExpGradDate.getText();
-        fields.put("EXPECTED_GRADUATION_QUARTER", gradDate);
+        newStudent.updateDate = now;
+        newStudent.interests = txaInterests.getText();
+        newStudent.major = txtMajor.getText();
+        newStudent.minor = txtMinor.getText();
+        newStudent.gradDate = txtExpGradDate.getText();
         //lastCIS = txtLastCIS.getText();
         //fields.put("FIRST_NAME", lastCIS);
         chkMissa = chkMISSA.isSelected();
@@ -622,42 +612,37 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
         chkOther = chkOtherClub.isSelected();
         chkRelocateTst = chkRelocate.isSelected();
         if (chkRelocateTst = true) {
-            relocate = "1";
+            newStudent.relocate = 1;
         } else {
-            relocate = "0";
+            newStudent.relocate = 0;
         }
-        fields.put("RELOCATE", relocate);
         if (chkMissa = true) {
-            clubMissa = "1";
+            newStudent.clubMissa = 1;
         } else {
-            clubMissa = "0";
+            newStudent.clubMissa = 0;
         }
-        fields.put("MISSA_CLUB", clubMissa);
         if (chkFast = true) {
-            clubFast = "1";
+            newStudent.clubFast = 1;
         } else {
-            clubFast = "0";
+            newStudent.clubFast = 0;
         }
-        fields.put("FAST_CLUB", clubFast);
         if (chkIwdsa = true) {
-            clubIwdsa = "1";
+            newStudent.clubIwdsa = 1;
         } else {
-            clubIwdsa = "0";
+            newStudent.clubIwdsa = 0;
         }
-        fields.put("IWDSA_CLUB", clubIwdsa);
+
         if (chkSwift = true) {
-            clubSwift = "1";
+            newStudent.clubSwift = 1;
         } else {
-            clubSwift = "0";
+            newStudent.clubSwift = 0;
         }
-        fields.put("SWIFT_CLUB", clubSwift);
         if (chkOther = true) {
-            clubOther = "1";
+            newStudent.clubOther = 1;
         } else {
-            clubOther = "0";
+            newStudent.clubOther = 0;
         }
-        fields.put("OTHER_CLUB", clubOther);
-        Database.write("STUDENT", fields);
+        newStudent.save();
 
 
     }
