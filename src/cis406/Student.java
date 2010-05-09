@@ -1,208 +1,274 @@
 package cis406;
 
-
 import java.util.Date;
 
-
-public class Student 
-{
+public class Student {
 //attributes
-	Name studName;
-	String broncoNum;
-	String email;
-	String homeLocation;
-	String gradeLevel;
-	String lastCISCourse;
-	String interests;
-	String priorInternship;
-	Boolean relocate;
-	String clubs;
-	String minor;
-	String gradDate;
-	Date updateDate;
-        
-	
-	//constructor
-	public Student()
-	{
-		studName=null;
-		broncoNum=null;
-		email=null;
-		homeLocation=null;
-		gradeLevel=null;
-		lastCISCourse=null;
-		interests=null;
-		priorInternship=null;
-		relocate=null;
-		clubs=null;
-		minor=null;
-		gradDate=null;
-		updateDate=null;
-	}
-	
-	//constructor with params
-	public Student(Name studName, String broncoNum, String email, String homeLocation, String gradeLevel, String lastCISCourse, String interests, String priorInternship, Boolean relocate, String clubs, String minor, String gradDate, Date updateDate)
-	{
-		//this.studID = studID;
-		this.studName=studName;
-		this.broncoNum=broncoNum;
-		this.email=email;
-		this.homeLocation=homeLocation;
-		this.gradeLevel=gradeLevel;
-		this.lastCISCourse=lastCISCourse;
-		this.interests=interests;
-		this.priorInternship=priorInternship;
-		this.relocate=relocate;
-		this.clubs=clubs;
-		this.minor=minor;
-		this.gradDate=gradDate;
-		this.updateDate=updateDate;
-	}
 
-	//public String getStudID() {
-	//	return studID;
-	//}
+    String broncoNum;
+    Name studName;
+    String email;
+    String phone;
+    int gradeLevel;
+    int relocate;
+    Date updateDate;
+    String interests;
+    int clubMissa;
+    int clubFast;
+    int clubIwdsa;
+    int clubSwift;
+    int clubOther;
+    String major;
+    String minor;
+    String gradDate;
+    String lastCISCourse;
 
-	//public void setStudID(String studID) {
-	//	this.studID = studID;
-	//}
+    //constructor
+    public Student() {
+        broncoNum = "";
+        studName = null;
+        email = "";
+        phone = "";
+        gradeLevel = 0;
+        relocate = 0;
+        updateDate = null;
+        interests = "";
+        clubMissa = 0;
+        clubFast = 0;
+        clubIwdsa = 0;
+        clubSwift = 0;
+        clubOther = 0;
+        major = "";
+        minor = "";
+        gradDate = "";
+        lastCISCourse = "";
+    }
 
-	public Name getStudName() {
-		return studName;
-	}
+    /*constructor with params
+    *
+     * 17 total params
+     * @param broncoNum
+     * @param studName
+     * @param email
+     * @param phone
+     * @param gradeLevel
+     * @param relocate
+     * @param updateDate
+     * @param interests
+     * @param clubMissa
+     * @param clubFast
+     * @param clubIwdsa
+     * @param clubSwift
+     * @param clubOther
+     * @param major
+     * @param minor
+     * @param gradDate
+     * @param lastCISCourse
+     *
+     */
+    public Student(String broncoNum, Name studName, String email, String phone, int gradeLevel, int relocate, Date updateDate, String interests, int clubMissa, int clubFast, int clubIwdsa, int clubSwift, int clubOther, String major, String minor, String gradDate, String lastCISCourse) {
+        //this.studID = studID;
+        this.broncoNum = broncoNum;
+        this.studName = studName;
+        this.email = email;
+        this.phone = phone;
+        this.gradeLevel = gradeLevel;
+        this.relocate = relocate;
+        this.updateDate = updateDate;
+        this.interests = interests;
+        this.clubMissa = clubMissa;
+        this.clubFast = clubFast;
+        this.clubIwdsa = clubIwdsa;
+        this.clubSwift = clubSwift;
+        this.clubOther = clubOther;
+        this.major = major;
+        this.minor = minor;
+        this.gradDate = gradDate;
+        this.lastCISCourse = lastCISCourse;
+    }
 
-	public void setStudName(Name studName) {
-		this.studName = studName;
-	}
+    //public String getStudID() {
+    //	return studID;
+    //}
+    //public void setStudID(String studID) {
+    //	this.studID = studID;
+    //}
+    public Name getStudName() {
+        return studName;
+    }
 
-	public String getBroncoNum() {
-		return broncoNum;
-	}
+    public void setStudName(Name studName) {
+        this.studName = studName;
+    }
 
-	public void setBroncoNum(String broncoNum) {
-		this.broncoNum = broncoNum;
-	}
+    public String getBroncoNum() {
+        return broncoNum;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setBroncoNum(String broncoNum) {
+        this.broncoNum = broncoNum;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getHomeLocation() {
-		return homeLocation;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setHomeLocation(String homeLocation) {
-		this.homeLocation = homeLocation;
-	}
+    public int getClubFast() {
+        return clubFast;
+    }
 
-	public String getGradeLevel() {
-		return gradeLevel;
-	}
+    public void setClubFast(int clubFast) {
+        this.clubFast = clubFast;
+    }
 
-	public void setGradeLevel(String gradeLevel) {
-		this.gradeLevel = gradeLevel;
-	}
+    public int getClubIwdsa() {
+        return clubIwdsa;
+    }
 
-	public String getLastCISCourse() {
-		return lastCISCourse;
-	}
+    public void setClubIwdsa(int clubIwdsa) {
+        this.clubIwdsa = clubIwdsa;
+    }
 
-	public void setLastCISCourse(String lastCISCourse) {
-		this.lastCISCourse = lastCISCourse;
-	}
+    public int getClubMissa() {
+        return clubMissa;
+    }
 
-	public String getInterests() {
-		return interests;
-	}
+    public void setClubMissa(int clubMissa) {
+        this.clubMissa = clubMissa;
+    }
 
-	public void setInterests(String interests) {
-		this.interests = interests;
-	}
+    public int getClubOther() {
+        return clubOther;
+    }
 
-	public String getPriorInternship() {
-		return priorInternship;
-	}
+    public void setClubOther(int clubOther) {
+        this.clubOther = clubOther;
+    }
 
-	public void setPriorInternship(String priorInternship) {
-		this.priorInternship = priorInternship;
-	}
+    public int getClubSwift() {
+        return clubSwift;
+    }
 
-	public Boolean getRelocate() {
-		return relocate;
-	}
+    public void setClubSwift(int clubSwift) {
+        this.clubSwift = clubSwift;
+    }
 
-	public void setRelocate(Boolean relocate) {
-		this.relocate = relocate;
-	}
+    public int getGradeLevel() {
+        return gradeLevel;
+    }
 
-	public String getClubs() {
-		return clubs;
-	}
+    public void setGradeLevel(int gradeLevel) {
+        this.gradeLevel = gradeLevel;
+    }
 
-	public void setClubs(String clubs) {
-		this.clubs = clubs;
-	}
+    public String getMajor() {
+        return major;
+    }
 
-	public String getMinor() {
-		return minor;
-	}
+    public void setMajor(String major) {
+        this.major = major;
+    }
 
-	public void setMinor(String minor) {
-		this.minor = minor;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public String getGradDate() {
-		return gradDate;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setGradDate(String gradDate) {
-		this.gradDate = gradDate;
-	}
+    public int getRelocate() {
+        return relocate;
+    }
 
-	public Date getUpdateDate() {
-		return updateDate;
-	}
+    public void setRelocate(int relocate) {
+        this.relocate = relocate;
+    }
 
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
-	
+    public String getLastCISCourse() {
+        return lastCISCourse;
+    }
+
+    public void setLastCISCourse(String lastCISCourse) {
+        this.lastCISCourse = lastCISCourse;
+    }
+
+    public String getInterests() {
+        return interests;
+    }
+
+    public void setInterests(String interests) {
+        this.interests = interests;
+    }
+
+    public String getMinor() {
+        return minor;
+    }
+
+    public void setMinor(String minor) {
+        this.minor = minor;
+    }
+
+    public String getGradDate() {
+        return gradDate;
+    }
+
+    public void setGradDate(String gradDate) {
+        this.gradDate = gradDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
     @Override
-	public String toString() 
-	{
-		String classDescription = getClass().getName() + "[";
-		//classDescription +="studID" + "=";
-		//classDescription +=studID;
-		classDescription +="Name" + "=";
-		classDescription +=studName;
-		classDescription +="broncoNumber" +"=";
-		classDescription +=broncoNum;
-		classDescription +="email" + "=";
-		classDescription +=email;
-		classDescription +="homeLocation" + "=";
-		classDescription +="gradeLevel" + "=";
-		classDescription +=gradeLevel;
-		classDescription +="lastCISCourse" + "=";
-		classDescription +=lastCISCourse;
-		classDescription +="interests" + "=";
-		classDescription +=interests;
-		classDescription +="priorInternship" + "=";
-		classDescription +=priorInternship;
-		classDescription +="relocate" + "=";
-		classDescription +=relocate;
-		classDescription +="clubs" + "=";
-		classDescription +=clubs;
-		classDescription +="minor" + '=';
-		classDescription +=minor;
-		classDescription +="gradDate" + "=";
-		classDescription +=gradDate;
-		classDescription +="updateDate" + "=";
-		classDescription +=updateDate;
-		classDescription += "]";
-		return classDescription;
-	}
+    public String toString() {
+        String classDescription = getClass().getName() + "[";
+        //classDescription +="studID" + "=";
+        //classDescription +=studID;
+        classDescription += "broncoNumber" + "=";
+        classDescription += broncoNum;
+        classDescription += "Name" + "=";
+        classDescription += studName;
+        classDescription += "email" + "=";
+        classDescription += email;
+        classDescription += "phone" + "=";
+        classDescription += phone;
+        classDescription += "gradeLevel" + "=";
+        classDescription += gradeLevel;
+        classDescription += "relocate" + "=";
+        classDescription += relocate;
+        classDescription += "updateDate" + "=";
+        classDescription += updateDate;
+        classDescription += "interests" + "=";
+        classDescription += interests;
+        classDescription += "clubMissa" + "=";
+        classDescription += clubMissa;
+        classDescription += "clubFast" + "=";
+        classDescription += clubFast;
+        classDescription += "clubIwdsa" + "=";
+        classDescription += clubIwdsa;
+        classDescription += "clubOther" + "=";
+        classDescription += clubOther;
+        classDescription += "major" + "=";
+        classDescription += major;
+        classDescription += "minor" + "=";
+        classDescription += minor;
+        classDescription += "gradDate" + "=";
+        classDescription += gradDate;
+        classDescription += "lastCISCourse" + "=";
+        classDescription += lastCISCourse;
+        classDescription += "email" + "=";
+        classDescription += email;
+        classDescription += "]";
+        return classDescription;
+    }
 }

@@ -10,14 +10,11 @@
  */
 package cis406;
 
-import java.sql.ResultSet;
-import java.util.Date;
-import org.jdesktop.application.Action;
-import javax.swing.*;
+import java.util.*;
 
 /**
  *
- * @author Dean Sofer
+ * @author Oscar Munoz
  */
 public class StudentPanel extends javax.swing.JPanel implements CisPanel {
 
@@ -171,7 +168,6 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
 
         txtLastCIS.setName("txtLastCIS"); // NOI18N
 
-        txtExpGradDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M/yyyy"))));
         txtExpGradDate.setName("txtExpGradDate"); // NOI18N
 
         try {
@@ -543,34 +539,101 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
     private String broncoNum;
     private String email;
     private String phone;
-    private int gradeLvl;
+    private String gradeLvl;
     private String lastCIS;
     private String interests;
-    private Boolean relocate;
+    private String relocate;
     private String major;
     private String minor;
-    private Date gradDate;
-    private int clubMissa;
-    private int clubSwift;
-    private int clubFast;
-    private int clubIwdsa;
-    private int clubOther;
-    
-    
+    private String gradDate;
+    private String clubMissa;
+    private String clubSwift;
+    private String clubFast;
+    private String clubIwdsa;
+    private String clubOther;
+    private Boolean chkMissa;
+    private Boolean chkSwift;
+    private Boolean chkFast;
+    private Boolean chkIwdsa;
+    private Boolean chkOther;
+    private Boolean chkRelocateTst;
+    HashMap fields = new HashMap();
+    private String lastUpdate;
+
     public void clickNew() {
     }
 
     public void clickSave() {
-        fName = txtFName.getText();
-        lName = txtLName.getText();
-        Name studName = new Name(fName, lName, "");
         broncoNum = txtBroncoNum.getText();
+        fields.put("BRONCO_ID", broncoNum);
+        lName = txtLName.getText();
+        fields.put("LAST_NAME", lName);
+        fName = txtFName.getText();
+        fields.put("FIRST_NAME", fName);
         email = txtEmail.getText();
+        fields.put("EMAIL", email);
         phone = txtPhone.getText();
-        gradeLvl = Integer.parseInt(txtUnitsTaken.getText());
-        //gradDate = Date.parse(txtExpGradDate.getText());
-        lastCIS = txtLastCIS.getText();
-         
+        fields.put("PHONE", phone);
+        gradeLvl = txtUnitsTaken.getText();
+        fields.put("CLASS_STANDING", gradeLvl);
+        Date now = new Date();
+        lastUpdate = now.toString();
+        fields.put("LAST_UPDATE", lastUpdate);
+        interests = txaInterests.getText();
+        fields.put("INTEREST", interests);
+        major = txtMajor.getText();
+        fields.put("MAJOR", major);
+        minor = txtMinor.getText();
+        fields.put("MINOR", minor);
+        gradDate = txtExpGradDate.getText();
+        fields.put("EXPECTED_GRADUATION_QUARTER", gradDate);
+        //lastCIS = txtLastCIS.getText();
+        //fields.put("FIRST_NAME", lastCIS);
+        chkMissa = chkMISSA.isSelected();
+        chkSwift = chkSWIFT.isSelected();
+        chkFast = chkFAST.isSelected();
+        chkIwdsa = chkIWDSA.isSelected();
+        chkOther = chkOtherClub.isSelected();
+        chkRelocateTst = chkRelocate.isSelected();
+        if (chkRelocateTst = true) {
+            relocate = "1";
+        } else {
+            relocate = "0";
+        }
+        fields.put("RELOCATE", relocate);
+        if (chkMissa = true) {
+            clubMissa = "1";
+        } else {
+            clubMissa = "0";
+        }
+        fields.put("MISSA_CLUB", clubMissa);
+        if (chkFast = true) {
+            clubFast = "1";
+        } else {
+            clubFast = "0";
+        }
+        fields.put("FAST_CLUB", clubFast);
+        if (chkIwdsa = true) {
+            clubIwdsa = "1";
+        } else {
+            clubIwdsa = "0";
+        }
+        fields.put("IWDSA_CLUB", clubIwdsa);
+        if (chkSwift = true) {
+            clubSwift = "1";
+        } else {
+            clubSwift = "0";
+        }
+        fields.put("SWIFT_CLUB", clubSwift);
+        if (chkOther = true) {
+            clubOther = "1";
+        } else {
+            clubOther = "0";
+        }
+        fields.put("OTHER_CLUB", clubOther);
+        Database.write("STUDENT", fields);
+
+
     }
 
     public void clickLoad() {
