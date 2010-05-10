@@ -22,38 +22,39 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblCompany" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblExt" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblIndustry" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblIndustry" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblExt" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCompany" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtPhoneExt" min="-2" pref="68" max="-2" attributes="0"/>
-                  <Component id="txtCompany" min="-2" pref="218" max="-2" attributes="1"/>
-                  <Component id="cboIndustry" alignment="0" min="-2" pref="250" max="-2" attributes="1"/>
+                  <Component id="cboIndustry" alignment="0" pref="143" max="32767" attributes="1"/>
+                  <Component id="txtCompany" alignment="0" pref="143" max="32767" attributes="1"/>
+                  <Component id="txtPhoneExt" alignment="0" pref="143" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblIndustry" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cboIndustry" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCompany" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCompany" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblExt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPhoneExt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="45" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

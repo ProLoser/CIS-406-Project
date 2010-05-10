@@ -5,9 +5,6 @@
 
 package cis406;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *
  * @author Mark
@@ -34,11 +31,17 @@ public class ExternalCompany {
         this.ext = ext;
     }
     public void save() {
-        Map<String, String> fields = new HashMap();
+        Database db = new Database("company");
 
-        fields.put("industry_id", Integer.toString(industry));
-        fields.put("name", name);
-        fields.put("phone", ext);
-        Database.write("company", fields);
+        db.addField("industry_id", industry);
+        db.addField("name", name);
+        db.addField("phone", ext);
+
+        try {
+            db.insert();
+        } catch (Exception e) {
+            System.out.println("Failed to Add the company");
+            System.out.println(e.getMessage());
+        }
     }
 }

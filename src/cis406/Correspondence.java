@@ -5,9 +5,6 @@
 
 package cis406;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *
  * @author Mark
@@ -40,12 +37,18 @@ public class Correspondence {
         this.notes = notes;
     }
     public void save() {
-        Map<String, String> fields = new HashMap();
+        Database db = new Database("correspondence");
 
-        fields.put("contact_id", Integer.toString(contact_id));
-        fields.put("type", Integer.toString(type));
-        fields.put("date", date);
-        fields.put("note", notes);
-        Database.write("correspondence", fields);
+        db.addField("contact_id", Integer.toString(contact_id));
+        db.addField("type", Integer.toString(type));
+        db.addField("date", date);
+        db.addField("note", notes);
+        
+        try {
+            db.insert();
+        } catch (Exception e) {
+            System.out.println("Failed to Add the correspondence");
+            System.out.println(e.getMessage());
+        }
     }
 }

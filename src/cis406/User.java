@@ -2,10 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cis406;
-
-import java.util.HashMap;
 
 /**
  *
@@ -13,7 +10,6 @@ import java.util.HashMap;
  */
 public class User {
 
-    public static HashMap hmUser = new HashMap();
     int securityLevel;
     String fName;
     String lName;
@@ -22,7 +18,6 @@ public class User {
     String username;
     int status;
     int id;
-
 
     public String getUsername() {
         return username;
@@ -56,16 +51,17 @@ public class User {
 
     }
 
-
     public User() {
     }
 
     public String getEmail() {
         return email;
     }
-    public int getStatus(){
+
+    public int getStatus() {
         return status;
     }
+
     public String getPassword() {
         return password;
     }
@@ -102,38 +98,43 @@ public class User {
         this.lName = lName;
     }
 
-    public void addUser() {
+    public void add() {
+        Database db = new Database("users");
+        db.addField("user_id", id);
+        db.addField("username", username);
+        db.addField("password", password);
+        db.addField("first_name", fName);
+        db.addField("last_name", lName);
+        db.addField("clearance", securityLevel);
+        db.addField("email", email);
+        db.addField("status", status);
 
-        hmUser.put("user_id", id);
-        hmUser.put("username", username);
-        hmUser.put("password", password);
-        hmUser.put("first_name", fName);
-        hmUser.put("last_name", lName);
-        hmUser.put("clearance", Integer.toString(securityLevel));
-        hmUser.put("email", email);
-        hmUser.put("status", status);
-
-        Database.write("User", hmUser);
+        try {
+            db.insert();
+        } catch (Exception e) {
+            System.out.println("Failed to add the user");
+            System.out.println(e.getMessage());
+        }
     }
 
-    public static void deleteUser(int user_id) {
-        Database.executeWrite("DELETE FROM user WHERE user_id = '" + user_id + "'");
+    public static void delete(int userId) {
+        Database.delete("user", userId);
     }
 
-    public void updateUser() {
+    public void update() {
         String hash = "";
         try {
             hash = byteArrayToHexString(computeHash(password));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Database.executeWrite("UPDATE user SET password = '" +
-        hash + "', status = '" + status + "', first_name = '" + fName +
-         "', last_name = '" + lName + "', clearance = '" + securityLevel +
-         "', email = '" + email + "', status = '" + status + "', username = '" +
-        username + "' WHERE user_id = '" + id + "'");
+        Database.executeWrite("UPDATE user SET password = '"
+                + hash + "', status = '" + status + "', first_name = '" + fName
+                + "', last_name = '" + lName + "', clearance = '" + securityLevel
+                + "', email = '" + email + "', status = '" + status + "', username = '"
+                + username + "' WHERE user_id = '" + id + "'");
     }
-    
+
     public static byte[] computeHash(String x) throws Exception {
         java.security.MessageDigest d = null;
         d = java.security.MessageDigest.getInstance("SHA-1");
@@ -153,5 +154,4 @@ public class User {
         }
         return sb.toString().toUpperCase();
     }
-
 }

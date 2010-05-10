@@ -34,32 +34,18 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     private void initComponents() {
 
         txtFName = new javax.swing.JTextField();
-        lblLName = new javax.swing.JLabel();
         txtLName = new javax.swing.JTextField();
-        lblCompanySelect = new javax.swing.JLabel();
         cboCompany = new javax.swing.JComboBox();
-        lblStreet = new javax.swing.JLabel();
         txtStreet = new javax.swing.JTextField();
-        lblCity = new javax.swing.JLabel();
         txtCity = new javax.swing.JTextField();
-        lblState = new javax.swing.JLabel();
         cboState = new javax.swing.JComboBox();
-        lblZip = new javax.swing.JLabel();
         txtZip = new javax.swing.JTextField();
-        lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        lblPhone = new javax.swing.JLabel();
-        txtPhoneLeftParenthesis = new javax.swing.JLabel();
         txtPhoneArea = new javax.swing.JTextField();
-        lblPhoneRightParenthesis = new javax.swing.JLabel();
         txtPhoneFirst = new javax.swing.JTextField();
-        txtPhoneDash = new javax.swing.JLabel();
         txtPhoneLast = new javax.swing.JTextField();
-        lblPosition = new javax.swing.JLabel();
         txtPosition = new javax.swing.JTextField();
-        lblCommMethod = new javax.swing.JLabel();
         cboCommMethod = new javax.swing.JComboBox();
-        lblDescription = new javax.swing.JLabel();
         scpDescription = new javax.swing.JScrollPane();
         txaDescription = new javax.swing.JTextArea();
         txtPhoneDash1 = new javax.swing.JLabel();
@@ -82,61 +68,33 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
 
         txtFName.setName("txtFName"); // NOI18N
 
-        lblLName.setName("lblLName"); // NOI18N
-
         txtLName.setName("txtLName"); // NOI18N
-
-        lblCompanySelect.setName("lblCompanySelect"); // NOI18N
 
         cboCompany.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Edison", "JPL", "Adobe" }));
         cboCompany.setName("cboCompany"); // NOI18N
 
-        lblStreet.setName("lblStreet"); // NOI18N
-
         txtStreet.setName("txtStreet"); // NOI18N
 
-        lblCity.setName("lblCity"); // NOI18N
-
         txtCity.setName("txtCity"); // NOI18N
-
-        lblState.setName("lblState"); // NOI18N
 
         cboState.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "CA", "OR", "NV", "etc" }));
         cboState.setName("cboState"); // NOI18N
 
-        lblZip.setName("lblZip"); // NOI18N
-
         txtZip.setName("txtZip"); // NOI18N
-
-        lblEmail.setName("lblEmail"); // NOI18N
 
         txtEmail.setName("txtEmail"); // NOI18N
 
-        lblPhone.setName("lblPhone"); // NOI18N
-
-        txtPhoneLeftParenthesis.setName("txtPhoneLeftParenthesis"); // NOI18N
-
         txtPhoneArea.setName("txtPhoneArea"); // NOI18N
-
-        lblPhoneRightParenthesis.setName("lblPhoneRightParenthesis"); // NOI18N
 
         txtPhoneFirst.setMaximumSize(new java.awt.Dimension(3, 3));
         txtPhoneFirst.setName("txtPhoneFirst"); // NOI18N
 
-        txtPhoneDash.setName("txtPhoneDash"); // NOI18N
-
         txtPhoneLast.setName("txtPhoneLast"); // NOI18N
-
-        lblPosition.setName("lblPosition"); // NOI18N
 
         txtPosition.setName("txtPosition"); // NOI18N
 
-        lblCommMethod.setName("lblCommMethod"); // NOI18N
-
         cboCommMethod.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Email", "Phone" }));
         cboCommMethod.setName("cboCommMethod"); // NOI18N
-
-        lblDescription.setName("lblDescription"); // NOI18N
 
         scpDescription.setName("scpDescription"); // NOI18N
 
@@ -246,33 +204,9 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(11, 11, 11)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblCompanySelect)
-                                .addComponent(lblCity)
-                                .addComponent(lblState)
-                                .addComponent(lblPhone))
-                            .addGap(73, 73, 73)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lblLName))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(txtPhoneLeftParenthesis)
-                                    .addGap(53, 53, 53)
-                                    .addComponent(lblPhoneRightParenthesis)
-                                    .addGap(58, 58, 58)
-                                    .addComponent(txtPhoneDash))))
-                        .addComponent(lblDescription)
-                        .addComponent(lblStreet)
-                        .addComponent(lblZip)
-                        .addComponent(lblEmail)
-                        .addComponent(lblPosition)
-                        .addComponent(lblCommMethod))
-                    .addGap(190, 190, 190)))
+                    .addGap(84, 84, 84)
+                    .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(208, 208, 208)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,34 +265,8 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(13, 13, 13)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblLName))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblCompanySelect)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblStreet)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblZip)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblCity)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblState)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblEmail)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtPhoneLeftParenthesis)
-                        .addComponent(lblPhoneRightParenthesis)
-                        .addComponent(txtPhoneDash)
-                        .addComponent(lblPhone))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblPosition)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblCommMethod)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblDescription)
-                    .addContainerGap(290, Short.MAX_VALUE)))
+                    .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(350, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -367,30 +275,18 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     private javax.swing.JComboBox cboCommMethod;
     private javax.swing.JComboBox cboCompany;
     private javax.swing.JComboBox cboState;
-    private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblCity1;
-    private javax.swing.JLabel lblCommMethod;
     private javax.swing.JLabel lblCommMethod1;
-    private javax.swing.JLabel lblCompanySelect;
     private javax.swing.JLabel lblCompanySelect1;
-    private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblDescription1;
-    private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmail1;
     private javax.swing.JLabel lblFName;
-    private javax.swing.JLabel lblLName;
     private javax.swing.JLabel lblLName1;
-    private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblPhone1;
-    private javax.swing.JLabel lblPhoneRightParenthesis;
     private javax.swing.JLabel lblPhoneRightParenthesis1;
-    private javax.swing.JLabel lblPosition;
     private javax.swing.JLabel lblPosition1;
-    private javax.swing.JLabel lblState;
     private javax.swing.JLabel lblState1;
-    private javax.swing.JLabel lblStreet;
     private javax.swing.JLabel lblStreet1;
-    private javax.swing.JLabel lblZip;
     private javax.swing.JLabel lblZip1;
     private javax.swing.JScrollPane scpDescription;
     private javax.swing.JTextArea txaDescription;
@@ -399,11 +295,9 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     private javax.swing.JTextField txtFName;
     private javax.swing.JTextField txtLName;
     private javax.swing.JTextField txtPhoneArea;
-    private javax.swing.JLabel txtPhoneDash;
     private javax.swing.JLabel txtPhoneDash1;
     private javax.swing.JTextField txtPhoneFirst;
     private javax.swing.JTextField txtPhoneLast;
-    private javax.swing.JLabel txtPhoneLeftParenthesis;
     private javax.swing.JLabel txtPhoneLeftParenthesis1;
     private javax.swing.JTextField txtPosition;
     private javax.swing.JTextField txtStreet;

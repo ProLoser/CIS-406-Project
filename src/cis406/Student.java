@@ -243,27 +243,32 @@ public class Student extends Person {
     }
 
     public void save(){
-        Map<String, String> fields = new HashMap();
-        fields.put("bronco_id", Integer.toString(broncoNum));
-        fields.put("last_name", lastName); 
-        fields.put("first_name", firstName);
-        fields.put("email", email);
-        fields.put("phone", phone);
-        fields.put("class_standing", gradeLevel);
-        String now = updateDate.toString();
-        fields.put("last_update", now);
-        fields.put("interest", interests);
-        fields.put("major", major);
-        fields.put("minor", minor);
-        fields.put("expected_graduation_quarter", gradDate);
-        fields.put("relocate", Integer.toString(relocate));
-        fields.put("missa_club", Integer.toString(clubMissa));
-        fields.put("fast_club", Integer.toString(clubFast));
-        fields.put("iwdsa_club", Integer.toString(clubIwdsa));
-        fields.put("swift_club", Integer.toString(clubSwift));
-        fields.put("other_club", Integer.toString(clubOther));
-        Database.write("student", fields);
-        String sqlStr = "INSERT INTO student (swift_club, other_club, phone, minor, relocate, missa_club, bronco_id, first_name, last_update, email, interest, last_name, expected_graduation_quarter, iwdsa_club, fast_club, class_standing, major) VALUES (clubSwift, clubOther, phone, minor, relocate, clubMissa, broncoNum, firstName, updateDate, email, interests, lastName, gradDate, clubIwdsa, clubFast, gradeLevel, major)";
+        Database db = new Database("student");
+        db.addField("bronco_id", broncoNum);
+        db.addField("bronco_id", Integer.toString(broncoNum));
+        db.addField("last_name", lastName);
+        db.addField("first_name", firstName);
+        db.addField("email", email);
+        db.addField("phone", phone);
+        db.addField("class_standing", gradeLevel);
+        db.addField("last_update", updateDate.toString());
+        db.addField("interest", interests);
+        db.addField("major", major);
+        db.addField("minor", minor);
+        db.addField("expected_graduation_quarter", gradDate);
+        db.addField("relocate", relocate);
+        db.addField("missa_club", Integer.toString(clubMissa));
+        db.addField("fast_club", Integer.toString(clubFast));
+        db.addField("iwdsa_club", Integer.toString(clubIwdsa));
+        db.addField("swift_club", Integer.toString(clubSwift));
+        db.addField("other_club", Integer.toString(clubOther));
+        try {
+            db.insert();
+        } catch (Exception e) {
+            System.out.println("Failed to save the student");
+            System.out.println(e.getMessage());
+        }
+        //String sqlStr = "INSERT INTO student (swift_club, other_club, phone, minor, relocate, missa_club, bronco_id, first_name, last_update, email, interest, last_name, expected_graduation_quarter, iwdsa_club, fast_club, class_standing, major) VALUES (clubSwift, clubOther, phone, minor, relocate, clubMissa, broncoNum, firstName, updateDate, email, interests, lastName, gradDate, clubIwdsa, clubFast, gradeLevel, major)";
         //Database.executeWrite( sqlStr);
     }
 

@@ -5,9 +5,6 @@
 
 package cis406;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *
  * @author Mark
@@ -83,20 +80,24 @@ public class Contact {
     }
 
     public void save() {
-        Map<String, String> fields = new HashMap();
-
-        fields.put("first_name", fname);
-        fields.put("last_name", lname);
-        fields.put("company_id", Integer.toString(company_id));
-        fields.put("street", street);
-        fields.put("zip", Integer.toString(zip));
-        fields.put("city", city);
-        fields.put("state", Integer.toString(state));
-        fields.put("email", email);
-        fields.put("phone", Integer.toString(phone));
-        fields.put("position", position);
-        fields.put("preferred_contact", Integer.toString(comm_method));
-        fields.put("initial_contact_description", description);
-        Database.write("contact_person", fields);
+        Database db = new Database("contact_person");
+        db.addField("first_name", fname);
+        db.addField("last_name", lname);
+        db.addField("company_id", company_id);
+        db.addField("street", street);
+        db.addField("zip", Integer.toString(zip));
+        db.addField("city", city);
+        db.addField("state", Integer.toString(state));
+        db.addField("email", email);
+        db.addField("phone", Integer.toString(phone));
+        db.addField("position", position);
+        db.addField("preferred_contact", Integer.toString(comm_method));
+        db.addField("initial_contact_description", description);
+        try {
+            db.insert();
+        } catch (Exception e) {
+            System.out.println("Failed to Add the contact_person");
+            System.out.println(e.getMessage());
+        }
     }
 }

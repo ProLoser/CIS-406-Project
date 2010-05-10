@@ -5,9 +5,6 @@
 
 package cis406;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *
  * @author Mark
@@ -24,9 +21,13 @@ public class Industry {
         this.name = name;
     }
     public void save() {
-        Map<String, String> fields = new HashMap();
-
-        fields.put("industry_name", name);
-        Database.write("industry", fields);
+        Database db = new Database("industry");
+        db.addField("industry_name", name);
+        try {
+            db.insert();
+        } catch (Exception e) {
+            System.out.println("Failed to add the industry");
+            System.out.println(e.getMessage());
+        }
     }
 }
