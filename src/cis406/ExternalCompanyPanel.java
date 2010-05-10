@@ -38,6 +38,8 @@ public class ExternalCompanyPanel extends javax.swing.JPanel implements CisPanel
         txtCompany = new javax.swing.JTextField();
         lblIndustry = new javax.swing.JLabel();
         cboIndustry = new javax.swing.JComboBox();
+        txtPhoneExt = new javax.swing.JTextField();
+        lblExt = new javax.swing.JLabel();
 
         setName("Form"); // NOI18N
 
@@ -50,8 +52,19 @@ public class ExternalCompanyPanel extends javax.swing.JPanel implements CisPanel
         lblIndustry.setText(resourceMap.getString("lblIndustry.text")); // NOI18N
         lblIndustry.setName("lblIndustry"); // NOI18N
 
-        cboIndustry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Telecommnications", "Web Development", "Forensics", "Security" }));
+        cboIndustry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cal Poly Pomona", "Telecommnications", "Web Development", "Forensics", "Security" }));
         cboIndustry.setName("cboIndustry"); // NOI18N
+        cboIndustry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboIndustryActionPerformed(evt);
+            }
+        });
+
+        txtPhoneExt.setText(resourceMap.getString("txtPhoneExt.text")); // NOI18N
+        txtPhoneExt.setName("txtPhoneExt"); // NOI18N
+
+        lblExt.setText(resourceMap.getString("lblExt.text")); // NOI18N
+        lblExt.setName("lblExt"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -61,39 +74,63 @@ public class ExternalCompanyPanel extends javax.swing.JPanel implements CisPanel
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCompany)
+                    .addComponent(lblExt)
                     .addComponent(lblIndustry))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboIndustry, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCompany, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
-                .addContainerGap(379, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPhoneExt, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(158, 158, 158))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIndustry)
+                    .addComponent(cboIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCompany)
                     .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIndustry)
-                    .addComponent(cboIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(262, Short.MAX_VALUE))
+                    .addComponent(lblExt)
+                    .addComponent(txtPhoneExt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cboIndustryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboIndustryActionPerformed
+        int industry = cboIndustry.getSelectedIndex();
+        if(industry == 0) {
+            txtPhoneExt.setEnabled(true);
+            lblCompany.setText("Division Name:");
+        }
+        else {
+            txtPhoneExt.setEnabled(false);
+            lblCompany.setText("Company Name:");
+        }
+    }//GEN-LAST:event_cboIndustryActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cboIndustry;
     private javax.swing.JLabel lblCompany;
+    private javax.swing.JLabel lblExt;
     private javax.swing.JLabel lblIndustry;
     private javax.swing.JTextField txtCompany;
+    private javax.swing.JTextField txtPhoneExt;
     // End of variables declaration//GEN-END:variables
 
     public void clickNew() {
     }
     public void clickSave() {
+        ExternalCompany record = new ExternalCompany();
+        record.setIndustry(cboIndustry.getSelectedIndex());
+        record.setName(txtCompany.getText());
+        record.setExt(txtPhoneExt.getText());
+        record.save();
     }
     public void clickLoad() {
     }
@@ -102,6 +139,7 @@ public class ExternalCompanyPanel extends javax.swing.JPanel implements CisPanel
     public void clickClear() {
         txtCompany.setText("");
         cboIndustry.setSelectedIndex(0);
+        txtPhoneExt.setText("");
     }
     public void clickForm() {
     }
