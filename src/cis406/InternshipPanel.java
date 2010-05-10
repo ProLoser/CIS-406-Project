@@ -66,12 +66,12 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
         descriptionTextarea.setName("descriptionTextArea"); // NOI18N
         jScrollPane1.setViewportView(descriptionTextarea);
 
-        postedField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        postedField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM-dd-yyyy"))));
         postedField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         postedField.setText(resourceMap.getString("postedFTextField.text")); // NOI18N
         postedField.setName("postedFTextField"); // NOI18N
 
-        expiresField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        expiresField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM-dd-yyyy"))));
         expiresField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         expiresField.setText(resourceMap.getString("expiresFTextField.text")); // NOI18N
         expiresField.setName("expiresFTextField"); // NOI18N
@@ -269,6 +269,10 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void switchAway() {
+    }
+
+    public void populateCompany() {
+
     }
 
 }

@@ -5,9 +5,6 @@
 
 package cis406;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *
  * @author Dean Sofer
@@ -37,7 +34,6 @@ public class Internship {
         this.quantity = quantity;
         this.attachment = attachment;
     }
-
 
     public String getAttachment() {
         return attachment;
@@ -111,21 +107,15 @@ public class Internship {
         this.title = title;
     }
 
-
-    
     public void save() {
-        Map<String, String> fields = new HashMap();
+        
+        String fields = "company_id, title, description, post_date, expiration, quantity, career_path_id, attachment";
+        String values = company_id + ", " + title + ", " + description
+                + ", " + post_date + ", " + expiration + ", " + quantity
+                + ", " + career_path_id + ", " + attachment;
+        
 
-        fields.put("company_id", Integer.toString(company_id));
-        fields.put("title", title);
-        fields.put("description", description);
-        fields.put("post_date", post_date);
-        fields.put("expiration", expiration);
-        fields.put("quantity", Integer.toString(quantity));
-        fields.put("career_path_id", Integer.toString(career_path_id));
-        fields.put("attachment", attachment);
-
-        Database.write("internship", fields);
+        Database.executeWrite("INSERT INTO internship (" + fields + ") VALUES (" + values + ")");
     }
 
 }

@@ -2,10 +2,15 @@ package cis406;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  * A database wrapping class. Either call the static methods for direct access
@@ -25,12 +30,15 @@ public class Database {
     // DO NOT EDIT BELOW THIS POINT!!!
     private String table = "";
     private String joins = "";
-    private Map<String, String> andConditions;
-    private Map<String, String> orConditions;
+    private Map<String, Object> andConditions;
+    private Map<String, Object> orConditions;
+    private Map<String, Object> fields;
     private List<String> orderBys;
     private int limit = 0;
+    private List<Object> preValues = null;
     private static Connection connect = null;
     private static Statement statement = null;
+    private static PreparedStatement preStatement = null;
     private static ResultSet resultSet = null;
 
     /**
@@ -40,58 +48,97 @@ public class Database {
     }
 
     /**
-     * Build a custom query object with the table set
+     * Build a custom query object with the mian query table set
      * @param table
      */
     public Database(String table) {
         this.table = table;
     }
 
+    /**
+     * Sets the table the query will be run on
+     * @param table
+     */
     public void setTable(String table) {
         this.table = table;
     }
 
+    /**
+     * Retrieves the table the query will be run on
+     * @return
+     */
     public String getTable() {
         return table;
     }
 
+    /**
+     * Sets the fieldsAffected limit for update/delete/select
+     * @param limit int
+     */
     public void setLimit(int limit) {
         this.limit = limit;
     }
 
+    /**
+     * Returns the currently set fieldsAffected limit for update/delete/select
+     * @return limit int
+     */
     public int getLimit() {
         return limit;
     }
 
     /**
-     * Returns the current build of the query
+     * Adds a field/value pair to the array of fields to be stored
+     *
+     * @param field
+     * @param value
+     */
+    public void addField(String field, Object value) {
+        fields.put(field, value);
+    }
+
+    /**
+     * Removes the field from the array of fields to be stored
+     *
+     * @param field
+     */
+    public void removeField(String field) {
+        fields.remove(field);
+    }
+
+    /**
+     * Returns the value to be stored of the field
+     *
+     * @param field
+     * @return
+     */
+    public Object getField(String field) {
+        return fields.get(field);
+    }
+
+    /**
+     * Returns the current build of the query for use with a PreparedStatement
+     * Requires compilePreValues() to be run before executing query
      *
      * @return the value of query
      */
     private String compileConditions() {
-        Boolean first = true;
         String conditions = " WHERE 1=1 ";
         if (andConditions != null) {
-            for (Map.Entry<String, String> cond : andConditions.entrySet()) {
-                conditions += " AND ";
-                conditions += cond.getKey() + " = " + e(cond.getValue());
+            for (Map.Entry<String, Object> cond : andConditions.entrySet()) {
+                conditions += " AND " + cond.getKey() + " = ?";
+                preValues.add(cond.getValue());
             }
         }
         if (orConditions != null) {
-            for (Map.Entry<String, String> cond : orConditions.entrySet()) {
-                conditions += " OR ";
-                conditions += cond.getKey() + " = " + e(cond.getValue());
+            for (Map.Entry<String, Object> cond : orConditions.entrySet()) {
+                conditions += " OR " + cond.getKey() + " = ?";
+                preValues.add(cond.getValue());
             }
         }
         if (orderBys != null) {
             conditions += " ORDER BY ";
-            for (String ob : orderBys) {
-                if (!first) {
-                    conditions += ", ";
-                }
-                conditions += ob;
-                first = false;
-            }
+            conditions += implode((String[]) orderBys.toArray());
         }
         if (limit > 0) {
             conditions += " LIMIT " + limit;
@@ -101,12 +148,22 @@ public class Database {
     }
 
     /**
+     * Inserts all the preValues into the PreparedStatement query before execution
+     * @throws Exception
+     */
+    private void compilePreValues() throws Exception {
+        for (int i = 0; i < preValues.size(); i++) {
+            preStatement.setObject(i, preValues.get(i));
+        }
+    }
+
+    /**
      * Add an 'or' condition to the query object
      *
      * @param field
      * @param value
      */
-    public void or(String field, String value) {
+    public void or(String field, Object value) {
         orConditions.put(field, value);
     }
 
@@ -116,7 +173,7 @@ public class Database {
      * @param field
      * @param value
      */
-    public void and(String field, String value) {
+    public void and(String field, Object value) {
         andConditions.put(field, value);
     }
 
@@ -127,7 +184,7 @@ public class Database {
      * @param foreignKey
      */
     public void inner(String joinTable, String foreignKey) {
-        joins += " INNER JOIN " + t(joinTable);
+        joins += " INNER JOIN " + joinTable;
         join(joinTable, foreignKey);
     }
 
@@ -139,7 +196,7 @@ public class Database {
      * @param foreignKey
      */
     public void left(String joinTable, String foreignKey) {
-        joins += " LEFT JOIN " + t(joinTable);
+        joins += " LEFT JOIN " + joinTable;
         join(joinTable, foreignKey);
     }
 
@@ -151,7 +208,7 @@ public class Database {
      * @param foreignKey
      */
     public void right(String joinTable, String foreignKey) {
-        joins += " RIGHT JOIN " + t(joinTable);
+        joins += " RIGHT JOIN " + joinTable;
         join(joinTable, foreignKey);
     }
 
@@ -162,7 +219,7 @@ public class Database {
      * @param foreignKey
      */
     public void full(String joinTable, String foreignKey) {
-        joins += " FULL JOIN " + t(joinTable);
+        joins += " FULL JOIN " + joinTable;
         join(joinTable, foreignKey);
     }
 
@@ -174,7 +231,7 @@ public class Database {
      */
     private String join(String joinTable, String foreignKey) {
         String query;
-        query = " ON " + t(table + "." + id(table)) + "=" + t(joinTable + "." + foreignKey);
+        query = " ON " + table + "." + id(table) + "=" + joinTable + "." + foreignKey;
         return query;
     }
 
@@ -182,9 +239,10 @@ public class Database {
      * The SELECT statement is used to select data from a database.
      * @return
      */
-    public ResultSet select() {
-        String query;
-        query = "SELECT * FROM " + t(table) + compileConditions();
+    public ResultSet select() throws Exception {
+        String query = "SELECT * FROM " + table + " " + joins + " " + compileConditions();
+        preStatement = connect().prepareStatement(query);
+        compilePreValues();
         return execute(query);
     }
 
@@ -192,79 +250,84 @@ public class Database {
      * The SELECT statement is used to select data from a database.
      * @param fields columns to retrieve
      */
-    public ResultSet select(String[] fields) {
+    public ResultSet select(String[] fields) throws Exception {
         String query;
-        Boolean first = true;
-        query = "SELECT ";
-        for (String field : fields) {
-            if (!first) {
-                query += ", ";
-            }
-            query += field;
-            first = false;
-        }
-        query += " FROM " + t(table) + compileConditions();
+        preValues = new ArrayList<Object>();
+        query = "SELECT " + implode(fields) + " FROM " + table + joins + compileConditions();
         return execute(query);
     }
 
     /**
-     * The UPDATE statement is used to update existing records in a table.
+     * Compiles and executes an INSERT query.
      *
      * @param fields values to be updated
      * @return recordsAffected int
      */
-    public int update(Map<String, String> fields) {
-        String query;
+    public int insert() throws Exception {
+        String query = "INSERT INTO " + table + " SET ";
+        preValues = new ArrayList<Object>();
         Boolean first = true;
-        query = "UPDATE " + t(table) + " SET ";
-        for (Map.Entry<String, String> field : fields.entrySet()) {
+        for (Map.Entry<String, Object> field : fields.entrySet()) {
             if (!first) {
                 query += ", ";
             }
-            query += field.getKey() + " = " + e(field.getValue());
+            query += field.getKey() + " = ?";
+            preValues.add(field.getValue());
             first = false;
         }
         query += compileConditions();
-        return executeWrite(query);
+        preStatement = connect().prepareStatement(query);
+        compilePreValues();
+        return preStatement.executeUpdate();
     }
 
     /**
-     * The DELETE statement is used to delete rows in a table.
+     * Compiles and executes an UPDATE query. Returns the number of records affected
+     *
+     * @param fields values to be updated
+     * @return recordsAffected int
+     */
+    public int update() throws Exception {
+        String query = "UPDATE " + table + " SET ";
+        Boolean first = true;
+        preValues = new ArrayList<Object>();
+        for (Map.Entry<String, Object> field : fields.entrySet()) {
+            if (!first) {
+                query += ", ";
+            }
+            query += field.getKey() + " = ?";
+            preValues.add(field.getValue());
+            first = false;
+        }
+        query += compileConditions();
+        preStatement = connect().prepareStatement(query);
+        compilePreValues();
+        return preStatement.executeUpdate();
+    }
+
+    /**
+     * Compiles the and executes a DELETE query. Returns the number of records affected
      *
      * @return recordsAffected int
      */
-    public int delete() {
-        String query;
-        query = "DELETE FROM " + t(table) + joins + compileConditions();
-        return executeWrite(query);
+    public int delete() throws Exception {
+        String query = "DELETE FROM " + table + compileConditions();
+        preValues = new ArrayList<Object>();
+        preStatement = connect().prepareStatement(query);
+        compilePreValues();
+        return preStatement.executeUpdate();
     }
-
 
     /////////////STATIC METHODS/////////////////
 
-
     /**
-     *
-     * @param fields
-     * @return
-     */
-    private static String buildConditions(Map<String, String> fields) {
-        String query = " WHERE 1=1 ";
-        for (Map.Entry<String, String> field : fields.entrySet()) {
-            query += " AND ";
-            query += t(field.getKey()) + "=" + e(field.getValue());
-        }
-        return query;
-    }
-
-    /**
-     *
+     * Selects all records from the table
      * @param table
      * @return
      */
     public static ResultSet read(String table) {
         String query;
-        query = "SELECT * FROM " + t(table);
+        query = "SELECT * FROM " + table;
         return execute(query);
     }
 
@@ -277,69 +340,8 @@ public class Database {
      */
     public static ResultSet read(String table, int id) {
         String query;
-        query = "SELECT * FROM " + t(table) + " WHERE " + id(table) + "=" + id;
+        query = "SELECT * FROM " + table + " WHERE " + id(table) + "=" + id;
         return execute(query);
-    }
-
-    /**
-     * Read specific fields based on conditions. Pass a Map of fields you wish
-     * to pull from the table, with their values set as conditions. Set the
-     * value to null to not filter by the field but only add it to the resultSet
-     *
-     * @param table
-     * @param fields
-     * @return
-     */
-    public static ResultSet read(String table, Map<String, String> fields) {
-        String query;
-        query = "SELECT * FROM " + t(table);
-        query += buildConditions(fields);
-        return execute(query);
-    }
-
-    /**
-     * Insert into the table a new record. If ID field is passed, an UPDATE will
-     * be performed instead based on this condition.
-     *
-     * @param table
-     * @param fields
-     * @return recordsAffected int
-     */
-    public static int write(String table, Map<String, String> fields) {
-        String query = "";
-        String fieldList = "";
-        String valueList = "";
-        Boolean first = true;
-        if (fields.get(id(table)) == null) {
-            // Since the ID field was not passed, perform an INSERT
-            for (Map.Entry<String, String> field : fields.entrySet()) {
-                if (!first) {
-                    fieldList += ", ";
-                    valueList += ", ";
-                }
-                fieldList += t(field.getKey());
-                valueList += e(field.getValue());
-                first = false;
-            }
-            query = "INSERT INTO " + t(table) + " (" + fieldList + ") VALUES ("
-                    + valueList + ")";
-        } else {
-            // Since the ID field WAS passed, perform an update
-            query = "UPDATE " + t(table) + " SET (";
-            for (Map.Entry<String, String> field : fields.entrySet()) {
-                if (field.getKey().equals(id(table))) {
-                    if (!first) {
-                        query += ", ";
-                    }
-                    query += t(field.getKey()) + "=" + e(field.getValue());
-                    first = false;
-                }
-            }
-            query += ") WHERE " + t(table + "." + id(table)) + "="
-                    + fields.get(id(table));
-        }
-
-        return executeWrite(query);
     }
 
     /**
@@ -351,58 +353,8 @@ public class Database {
      */
     public static int delete(String table, int id) {
         String query = "";
-        query = "DELETE FROM " + t(table) + " WHERE " + t(id(table)) + "=" + id;
+        query = "DELETE FROM " + table + " WHERE " + id(table) + "=" + id;
         return executeWrite(query);
-    }
-
-    /**
-     * Delete a record from a table based on a map of field => value conditions
-     * @param table
-     * @param conditions
-     * @return recordsAffected int
-     */
-    public static int delete(String table, Map<String, String> conditions) {
-        String query = "";
-        query = "DELETE FROM " + t(table);
-        query += buildConditions(conditions);
-        return executeWrite(query);
-    }
-
-    /**
-     * Adds ` backticks around the table/field name. You can also pass
-     * table.fieldname and they will individually be wrapped in backticks also.
-     *
-     * @param value String table/field name or table.fieldname combo
-     * @return the value of table
-     */
-    public static String t(String value) {
-        /*int index = value.indexOf(".");
-        if (index >= 0) {
-            value = "`" + value.substring(0, index) + "`.`" + value.substring(index) + "`";
-        } else {
-            value = "`" + value + "`";
-        }*/
-        return value;
-    }
-
-    /**
-     * Escapes and wraps the value in single quotes
-     *
-     * @return the value of table
-     */
-    public static String e(String value) {
-        value = "'" + value.replaceAll("'", "\'") + "'";
-        return value;
-    }
-
-    /**
-     * Returns a string version of the primary_key from the table
-     *
-     * @param table
-     * @return
-     */
-    public static String id(String table) {
-        return table + "_id";
     }
 
     /**
@@ -412,7 +364,7 @@ public class Database {
      * @return resultset
      */
     public static ResultSet execute(String query) {
-        System.out.println("Query: " +query);
+        System.out.println("Query: " + query);
 
         try {
             connect();
@@ -433,7 +385,7 @@ public class Database {
      */
     public static int executeWrite(String query) {
         int recordsAffected = 0;
-        System.out.println("Query: " +query);
+        System.out.println("Query: " + query);
         try {
             connect();
             statement = connect.createStatement();
@@ -452,16 +404,19 @@ public class Database {
      * @return connection
      */
     public static Connection connect() {
-        connect = null;
-        try {
-            //connect = DriverManager.getConnection("jdbc:" + dbType + "://" + dbHost + "/" + dbDatabase + "?user=" + dbUsername + "&password=" + dbPassword);
-            connect = DriverManager.getConnection("jdbc:derby:internshipsdb");
-        } catch (SQLException se) {
-            System.out.println("Failed to connect: SQL Exception");
-            for (Throwable t : se) { t.printStackTrace(); }
-        } catch (Exception e) {
-            System.out.println("Failed to connect");
-            System.out.println(e.getMessage());
+        if (connect == null) {
+            try {
+                //connect = DriverManager.getConnection("jdbc:" + dbType + "://" + dbHost + "/" + dbDatabase + "?user=" + dbUsername + "&password=" + dbPassword);
+                connect = DriverManager.getConnection("jdbc:derby:internshipsdb");
+            } catch (SQLException se) {
+                System.out.println("Failed to connect: SQL Exception");
+                for (Throwable t : se) {
+                    t.printStackTrace();
+                }
+            } catch (Exception e) {
+                System.out.println("Failed to connect");
+                System.out.println(e.getMessage());
+            }
         }
         return connect;
     }
@@ -482,6 +437,108 @@ public class Database {
             }
         } catch (Exception e) {
             System.out.println("Failed to close the connection");
+            System.out.println(e.getMessage());
         }
+    }
+
+    ////////////////// UTILITY FUNCTIONS //////////////////
+    /**
+     * Returns a string version of the primary_key from the table
+     *
+     * @param table
+     * @return
+     */
+    public static String id(String table) {
+        return table + "_id";
+    }
+
+    /**
+     * Combines an array into a comma-deliminated string
+     *
+     * @param ary
+     * @param delim
+     * @return
+     */
+    public static String implode(String[] ary) {
+        return implode(ary, ", ");
+    }
+
+    /**
+     * Combines an array into a deliminator separated string
+     * @param ary
+     * @param delim
+     * @return
+     */
+    public static String implode(String[] ary, String delim) {
+        String out = "";
+        for (int i = 0; i < ary.length; i++) {
+            if (i != 0) {
+                out += delim;
+            }
+            out += ary[i];
+        }
+        return out;
+    }
+
+    //////////////// COMBOBOX CODE //////////////////
+    /**
+     * Returns a dataset to be used to populate a combobox
+     *
+     * @param query new value of query
+     * @return resultset
+     */
+    public static Vector<String> populateCombo(String table, String displayField) {
+        return populateCombo(table, "");
+    }
+
+    /**
+     * Returns a dataset to be used to populate a combobox
+     *
+     * @param query new value of query
+     * @return resultset
+     */
+    public static DefaultComboBoxModel populateCombo(String table, String displayField, String conditions) {
+        DefaultComboBoxModel results;
+        ResultSet data;
+        Vector<String> items = new Vector();
+        String query;
+
+        query = "SELECT " + id(table) + ", " + displayField + " FROM " + table
+                + " " + conditions;
+
+        try {
+            data = execute(query);
+
+            while (data.next()) {
+                items.add(data.getString(displayField));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Failed to query the database");
+            System.out.println(e.getMessage());
+        }
+
+        results = new DefaultComboBoxModel(items);
+
+        return results;
+    }
+}
+
+/**
+ * For use in setting up combobox population queries
+ *
+ * @author Dean Sofer
+ */
+class ComboBoxPopulator {
+
+    String id;
+    String displayField;
+    String field1;
+    String field2;
+    String separator = ", ";
+
+    @Override
+    public String toString() {
+        return displayField;
     }
 }

@@ -154,7 +154,7 @@
     <Component class="javax.swing.JFormattedTextField" name="postedField">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format subtype="1" type="1"/>
+          <Format format="MM-dd-yyyy" subtype="-1" type="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" resourceKey="postedFTextField.text"/>
@@ -164,7 +164,7 @@
     <Component class="javax.swing.JFormattedTextField" name="expiresField">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format subtype="1" type="1"/>
+          <Format format="MM-dd-yyyy" subtype="-1" type="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" resourceKey="expiresFTextField.text"/>
