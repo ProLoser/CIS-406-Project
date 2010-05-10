@@ -2,8 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cis406;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -12,25 +17,25 @@ package cis406;
 public class Internship {
 
     private int id;
-    private int company_id;
-    private int career_path_id;
+    private int companyId;
+    private int careerPathId;
     private String title;
     private String description;
-    private String post_date;
-    private String expiration;
+    private Date postDate;
+    private Date expiration;
     private int quantity;
     private String attachment;
 
     public Internship() {
     }
 
-    public Internship(int company_id, int career_path_id, String title, String description, String post_date, String expiration, int quantity, String attachment) {
-        this.company_id = company_id;
-        this.career_path_id = career_path_id;
+    public Internship(int companyId, int careerPathId, String title, String description, String postDate, String expiration, int quantity, String attachment) {
+        this.companyId = companyId;
+        this.careerPathId = careerPathId;
         this.title = title;
         this.description = description;
-        this.post_date = post_date;
-        this.expiration = expiration;
+        setPostDate(postDate);
+        setExpiration(expiration);
         this.quantity = quantity;
         this.attachment = attachment;
     }
@@ -43,20 +48,20 @@ public class Internship {
         this.attachment = attachment;
     }
 
-    public int getCareer_path_id() {
-        return career_path_id;
+    public int getCareerPathId() {
+        return careerPathId;
     }
 
-    public void setCareer_path_id(int career_path_id) {
-        this.career_path_id = career_path_id;
+    public void setCareerPathId(int careerPathId) {
+        this.careerPathId = careerPathId;
     }
 
-    public int getCompany_id() {
-        return company_id;
+    public int getCompanyId() {
+        return companyId;
     }
 
-    public void setCompany_id(int company_id) {
-        this.company_id = company_id;
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
     }
 
     public String getDescription() {
@@ -68,11 +73,16 @@ public class Internship {
     }
 
     public String getExpiration() {
-        return expiration;
+        return expiration.toString();
     }
 
     public void setExpiration(String expiration) {
-        this.expiration = expiration;
+        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+        try {
+            this.postDate = df.parse(expiration);
+        } catch (Exception e) {
+            System.out.println("Failed to convert the expiration date");
+        }
     }
 
     public int getId() {
@@ -83,12 +93,17 @@ public class Internship {
         this.id = id;
     }
 
-    public String getPost_date() {
-        return post_date;
+    public String getPostDate() {
+        return postDate.toString();
     }
 
-    public void setPost_date(String post_date) {
-        this.post_date = post_date;
+    public void setPostDate(String postDate) {
+        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+        try {
+            this.postDate = df.parse(postDate);
+        } catch (Exception e) {
+            System.out.println("Failed to convert the post date");
+        }
     }
 
     public int getQuantity() {
@@ -108,14 +123,26 @@ public class Internship {
     }
 
     public void save() {
+        Database db = new Database("internship");
+        db.addField("title", title);
+        // Add Attachment
+        File attachmentFile = new File(attachment);
+        //db.addField("attachment", attachmentFile);
         
-        String fields = "company_id, title, description, post_date, expiration, quantity, career_path_id, attachment";
-        String values = company_id + ", " + title + ", " + description
-                + ", " + post_date + ", " + expiration + ", " + quantity
-                + ", " + career_path_id + ", " + attachment;
-        
-
-        Database.executeWrite("INSERT INTO internship (" + fields + ") VALUES (" + values + ")");
+        db.addField("company_id", companyId);
+        db.addField("career_path_id", careerPathId);
+        // Add date fields
+        /*java.sql.Date aDate = new java.sql.Date(postDate.getTime());
+        db.addField("post_date", aDate);
+        aDate = new java.sql.Date(expiration.getTime());
+        db.addField("expiration", aDate);*/
+        db.addField("description", description);
+        db.addField("quantity", quantity);
+        try {
+            db.insert();
+        } catch (Exception e) {
+            System.out.println("Failed to add the internship");
+            System.out.println(e.getMessage());
+        }
     }
-
 }

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -45,6 +46,9 @@ public class Database {
      * Build a custom query object
      */
     public Database() {
+        fields = new HashMap<String, Object>();
+        orConditions = new HashMap<String, Object>();
+        andConditions = new HashMap<String, Object>();
     }
 
     /**
@@ -53,6 +57,9 @@ public class Database {
      */
     public Database(String table) {
         this.table = table;
+        fields = new HashMap<String, Object>();
+        orConditions = new HashMap<String, Object>();
+        andConditions = new HashMap<String, Object>();
     }
 
     /**
@@ -151,9 +158,17 @@ public class Database {
      * Inserts all the preValues into the PreparedStatement query before execution
      * @throws Exception
      */
-    private void compilePreValues() throws Exception {
-        for (int i = 0; i < preValues.size(); i++) {
-            preStatement.setObject(i, preValues.get(i));
+    private void compilePreValues() {
+        int i = 0;
+        
+        try {
+            for (i = 0; i < preValues.size(); i++) {
+                //System.out.println(preValues.get(i));
+                preStatement.setObject(i+1, preValues.get(i));
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to set slot [" + (i+1) + "] to \"" + preValues.get(i) + "\"");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -261,24 +276,32 @@ public class Database {
      * Compiles and executes an INSERT query.
      *
      * @param fields values to be updated
-     * @return recordsAffected int
+     * @return ResultSet of the newly created primary keys
      */
-    public int insert() throws Exception {
-        String query = "INSERT INTO " + table + " SET ";
+    public ResultSet insert() throws Exception {
+        String query = "INSERT INTO " + table;
         preValues = new ArrayList<Object>();
+        String keys = "";
+        String values = "";
         Boolean first = true;
+
         for (Map.Entry<String, Object> field : fields.entrySet()) {
             if (!first) {
-                query += ", ";
+                keys += ", ";
+                values += ", ";
             }
-            query += field.getKey() + " = ?";
+            keys += field.getKey();
+            values += "?";
             preValues.add(field.getValue());
             first = false;
         }
-        query += compileConditions();
+        query += " (" + keys + ") VALUES (" + values + ")";
+
+        System.out.println("Query: " + query);
         preStatement = connect().prepareStatement(query);
         compilePreValues();
-        return preStatement.executeUpdate();
+        preStatement.executeUpdate();
+        return preStatement.getGeneratedKeys();
     }
 
     /**
@@ -300,6 +323,7 @@ public class Database {
             first = false;
         }
         query += compileConditions();
+        System.out.println("Query: " + query);
         preStatement = connect().prepareStatement(query);
         compilePreValues();
         return preStatement.executeUpdate();
@@ -313,13 +337,13 @@ public class Database {
     public int delete() throws Exception {
         String query = "DELETE FROM " + table + compileConditions();
         preValues = new ArrayList<Object>();
+        System.out.println("Query: " + query);
         preStatement = connect().prepareStatement(query);
         compilePreValues();
         return preStatement.executeUpdate();
     }
 
     /////////////STATIC METHODS/////////////////
-
     /**
      * Selects all records from the table
      * @param table

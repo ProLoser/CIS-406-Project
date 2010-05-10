@@ -104,7 +104,7 @@ CREATE TABLE internship
 	post_date            DATE ,
 	expiration           DATE ,
 	quantity             int ,
-	attachment           CHAR(18) ,
+	attachment           BLOB,
 	career_path_id       INTEGER ,
 	PRIMARY KEY (internship_id)
 );

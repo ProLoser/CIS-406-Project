@@ -50,6 +50,8 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
         companyComboBox = new javax.swing.JComboBox();
         companyLabel = new javax.swing.JLabel();
         quantityField = new javax.swing.JFormattedTextField();
+        careerComboBox = new javax.swing.JComboBox();
+        careerLabel = new javax.swing.JLabel();
 
         jFileChooser1.setName("jFileChooser1"); // NOI18N
 
@@ -114,6 +116,12 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
         quantityField.setText(resourceMap.getString("quantityField.text")); // NOI18N
         quantityField.setName("quantityField"); // NOI18N
 
+        careerComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        careerComboBox.setName("careerComboBox"); // NOI18N
+
+        careerLabel.setText(resourceMap.getString("careerLabel.text")); // NOI18N
+        careerLabel.setName("careerLabel"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,16 +132,14 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
                         .addGap(19, 19, 19)
                         .addComponent(titleLabel)
                         .addGap(6, 6, 6)
-                        .addComponent(titleField, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+                        .addComponent(titleField, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(quantityLabel)
-                                .addComponent(descriptionLabel))
+                            .addComponent(quantityLabel)
                             .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                        .addGap(4, 4, 4)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -143,21 +149,24 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(companyLabel)
-                                    .addComponent(postedLabel))
+                                    .addComponent(postedLabel)
+                                    .addComponent(careerLabel)
+                                    .addComponent(descriptionLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(postedField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                                 .addComponent(expiresLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(expiresField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(attachmentField, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                .addComponent(attachmentField, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1))
-                            .addComponent(companyComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 248, Short.MAX_VALUE))))
+                            .addComponent(companyComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 225, Short.MAX_VALUE)
+                            .addComponent(careerComboBox, 0, 225, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -183,14 +192,18 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
                     .addComponent(companyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(companyLabel))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(careerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(careerLabel))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(descriptionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                         .addComponent(quantityLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -207,6 +220,8 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField attachmentField;
     private javax.swing.JLabel attachmentLabel;
+    private javax.swing.JComboBox careerComboBox;
+    private javax.swing.JLabel careerLabel;
     private javax.swing.JComboBox companyComboBox;
     private javax.swing.JLabel companyLabel;
     private javax.swing.JLabel descriptionLabel;
@@ -231,13 +246,14 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
 
     public void clickSave() {
         Internship record = new Internship();
-        record.setCompany_id(companyComboBox.getSelectedIndex());
         record.setTitle(titleField.getText());
-        record.setDescription(descriptionTextarea.getText());
-        record.setPost_date(postedField.getText());
-        record.setExpiration(expiresField.getText());
-        record.setQuantity(Integer.parseInt(quantityField.getText()));
+        record.setCompanyId(companyComboBox.getSelectedIndex());
+        record.setCareerPathId(careerComboBox.getSelectedIndex());
         record.setAttachment(attachmentField.getText());
+        record.setPostDate(postedField.getText());
+        record.setExpiration(expiresField.getText());
+        record.setDescription(descriptionTextarea.getText());
+        record.setQuantity(Integer.parseInt(quantityField.getText()));
         record.save();
     }
 
@@ -251,6 +267,7 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
 
     public void clickClear() {
         companyComboBox.setSelectedIndex(0);
+        careerComboBox.setSelectedIndex(0);
         titleField.setText("");
         descriptionTextarea.setText("");
         postedField.setText("mm-dd-yyyy");

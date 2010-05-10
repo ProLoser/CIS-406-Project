@@ -32,19 +32,16 @@
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Component id="titleLabel" min="-2" max="-2" attributes="1"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="titleField" pref="248" max="32767" attributes="0"/>
+                      <Component id="titleField" pref="225" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="quantityLabel" alignment="1" min="-2" max="-2" attributes="1"/>
-                              <Component id="descriptionLabel" alignment="1" min="-2" max="-2" attributes="1"/>
-                          </Group>
+                          <Component id="quantityLabel" alignment="0" min="-2" max="-2" attributes="1"/>
                           <Component id="quantityField" min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="250" max="32767" attributes="1"/>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="227" max="32767" attributes="1"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -57,6 +54,8 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="companyLabel" alignment="1" min="-2" max="-2" attributes="1"/>
                                   <Component id="postedLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                                  <Component id="careerLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                                  <Component id="descriptionLabel" alignment="1" min="-2" max="-2" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -64,18 +63,19 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="postedField" min="-2" pref="70" max="-2" attributes="1"/>
-                              <EmptySpace pref="68" max="32767" attributes="0"/>
+                              <EmptySpace pref="45" max="32767" attributes="0"/>
                               <Component id="expiresLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="expiresField" min="-2" pref="71" max="-2" attributes="1"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="attachmentField" pref="175" max="32767" attributes="0"/>
+                              <Component id="attachmentField" pref="152" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="companyComboBox" alignment="1" pref="248" max="32767" attributes="0"/>
+                          <Component id="companyComboBox" alignment="1" pref="225" max="32767" attributes="0"/>
+                          <Component id="careerComboBox" alignment="0" pref="225" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -110,15 +110,20 @@
                   <Component id="companyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="careerComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="careerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="50" max="32767" attributes="0"/>
+                      <EmptySpace pref="78" max="32767" attributes="0"/>
                       <Component id="quantityLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="quantityField" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" pref="104" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="132" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -250,6 +255,25 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" resourceKey="quantityField.text"/>
         <Property name="name" type="java.lang.String" value="quantityField" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="careerComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="careerComboBox" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="careerLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="careerLabel.text"/>
+        <Property name="name" type="java.lang.String" value="careerLabel" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
