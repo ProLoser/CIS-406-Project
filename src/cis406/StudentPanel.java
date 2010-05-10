@@ -54,7 +54,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
         txtEmail = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         lblLastCis = new javax.swing.JLabel();
-        txtUnitsTaken = new javax.swing.JTextField();
+        txtLastCis = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblLastUpdate = new javax.swing.JLabel();
@@ -63,7 +63,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
         txtMinor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtLastCIS = new javax.swing.JTextField();
+        txtTotalUnits = new javax.swing.JTextField();
         txtExpGradDate = new javax.swing.JFormattedTextField();
         txtPhone = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -148,7 +148,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
 
         lblLastCis.setName("lblLastCis"); // NOI18N
 
-        txtUnitsTaken.setName("txtUnitsTaken"); // NOI18N
+        txtLastCis.setName("txtLastCis"); // NOI18N
 
         jLabel1.setName("jLabel1"); // NOI18N
 
@@ -169,7 +169,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
 
         jLabel4.setName("jLabel4"); // NOI18N
 
-        txtLastCIS.setName("txtLastCIS"); // NOI18N
+        txtTotalUnits.setName("txtTotalUnits"); // NOI18N
 
         txtExpGradDate.setName("txtExpGradDate"); // NOI18N
 
@@ -280,7 +280,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
                                 .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                                 .addGap(84, 84, 84))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(txtUnitsTaken, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtLastCis, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,7 +310,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
                                     .addComponent(txtMinor, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(txtLName, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtLastCIS, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))))
+                                        .addComponent(txtTotalUnits, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(53, 53, 53)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,11 +442,11 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(15, 15, 15)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER, false)
-                                    .addComponent(txtUnitsTaken, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtLastCis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(txtLastCIS, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTotalUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER, false)
@@ -554,11 +554,11 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
     private javax.swing.JFormattedTextField txtExpGradDate;
     private javax.swing.JTextField txtFName;
     private javax.swing.JTextField txtLName;
-    private javax.swing.JTextField txtLastCIS;
+    private javax.swing.JTextField txtLastCis;
     private javax.swing.JTextField txtMajor;
     private javax.swing.JTextField txtMinor;
     private javax.swing.JFormattedTextField txtPhone;
-    private javax.swing.JTextField txtUnitsTaken;
+    private javax.swing.JTextField txtTotalUnits;
     // End of variables declaration//GEN-END:variables
     private String fName;
     private String lName;
@@ -591,57 +591,25 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
 
     public void clickSave() {
         Student newStudent = new Student();
-        newStudent.broncoNum = txtBroncoNum.getText();
-        newStudent.studName.lastName = txtLName.getText();
-        newStudent.studName.firstName = txtFName.getText();
+        newStudent.broncoNum = Integer.parseInt(txtBroncoNum.getText());
+        newStudent.lastName = txtLName.getText();
+        newStudent.firstName = txtFName.getText();
         newStudent.email = txtEmail.getText();
         newStudent.phone = txtPhone.getText();
-        newStudent.gradeLevel = Integer.parseInt(txtUnitsTaken.getText());
+        newStudent.gradeLevel = txtTotalUnits.getText();  
         Date now = new Date();
         newStudent.updateDate = now;
         newStudent.interests = txaInterests.getText();
         newStudent.major = txtMajor.getText();
         newStudent.minor = txtMinor.getText();
         newStudent.gradDate = txtExpGradDate.getText();
-        //lastCIS = txtLastCIS.getText();
-        //fields.put("FIRST_NAME", lastCIS);
-        chkMissa = chkMISSA.isSelected();
-        chkSwift = chkSWIFT.isSelected();
-        chkFast = chkFAST.isSelected();
-        chkIwdsa = chkIWDSA.isSelected();
-        chkOther = chkOtherClub.isSelected();
-        chkRelocateTst = chkRelocate.isSelected();
-        if (chkRelocateTst = true) {
-            newStudent.relocate = 1;
-        } else {
-            newStudent.relocate = 0;
-        }
-        if (chkMissa = true) {
-            newStudent.clubMissa = 1;
-        } else {
-            newStudent.clubMissa = 0;
-        }
-        if (chkFast = true) {
-            newStudent.clubFast = 1;
-        } else {
-            newStudent.clubFast = 0;
-        }
-        if (chkIwdsa = true) {
-            newStudent.clubIwdsa = 1;
-        } else {
-            newStudent.clubIwdsa = 0;
-        }
-
-        if (chkSwift = true) {
-            newStudent.clubSwift = 1;
-        } else {
-            newStudent.clubSwift = 0;
-        }
-        if (chkOther = true) {
-            newStudent.clubOther = 1;
-        } else {
-            newStudent.clubOther = 0;
-        }
+        newStudent.lastCISCourse = txtTotalUnits.getText();
+        newStudent.setRelocate(chkRelocate.isSelected());
+        newStudent.setClubMissa(chkMISSA.isSelected());
+        newStudent.setClubFast(chkFAST.isSelected());
+        newStudent.setClubIwdsa(chkIWDSA.isSelected());
+        newStudent.setClubSwift(chkSWIFT.isSelected());
+        newStudent.setClubOther(chkOtherClub.isSelected());
         newStudent.save();
 
 

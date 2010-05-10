@@ -4,14 +4,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Student {
+public class Student extends Person {
 //attributes
 
-    String broncoNum;
-    Name studName;
-    String email;
-    String phone;
-    int gradeLevel;
+    int broncoNum;
+    String gradeLevel;
     int relocate;
     Date updateDate;
     String interests;
@@ -27,11 +24,10 @@ public class Student {
 
     //constructor
     public Student() {
-        broncoNum = "";
-        studName = null;
-        email = "";
-        phone = "";
-        gradeLevel = 0;
+        super(); // runs the code in the Person constructor method
+        // Then you proceed to run your own modifications
+        broncoNum = 0;
+        gradeLevel = "";
         relocate = 0;
         updateDate = null;
         interests = "";
@@ -68,12 +64,10 @@ public class Student {
      * @param lastCISCourse
      *
      */
-    public Student(String broncoNum, Name studName, String email, String phone, int gradeLevel, int relocate, Date updateDate, String interests, int clubMissa, int clubFast, int clubIwdsa, int clubSwift, int clubOther, String major, String minor, String gradDate, String lastCISCourse) {
+    public Student(int broncoNum, String firstName, String lastName, String middleInitial, String email, String phone, String gradeLevel, int relocate, Date updateDate, String interests, int clubMissa, int clubFast, int clubIwdsa, int clubSwift, int clubOther, String major, String minor, String gradDate, String lastCISCourse) {
+        super(firstName, lastName, middleInitial, email, phone);
         //this.studID = studID;
         this.broncoNum = broncoNum;
-        this.studName = studName;
-        this.email = email;
-        this.phone = phone;
         this.gradeLevel = gradeLevel;
         this.relocate = relocate;
         this.updateDate = updateDate;
@@ -95,19 +89,12 @@ public class Student {
     //public void setStudID(String studID) {
     //	this.studID = studID;
     //}
-    public Name getStudName() {
-        return studName;
-    }
 
-    public void setStudName(Name studName) {
-        this.studName = studName;
-    }
-
-    public String getBroncoNum() {
+    public int getBroncoNum() {
         return broncoNum;
     }
 
-    public void setBroncoNum(String broncoNum) {
+    public void setBroncoNum(int broncoNum) {
         this.broncoNum = broncoNum;
     }
 
@@ -123,47 +110,67 @@ public class Student {
         return clubFast;
     }
 
-    public void setClubFast(int clubFast) {
-        this.clubFast = clubFast;
-    }
+    public void setClubFast(Boolean confirm) {
+        if (confirm) {
+            this.clubFast = 1;
+        } else {
+            this.clubFast = 0;
+        }
+     }
 
     public int getClubIwdsa() {
         return clubIwdsa;
     }
 
-    public void setClubIwdsa(int clubIwdsa) {
-        this.clubIwdsa = clubIwdsa;
+    public void setClubIwdsa(Boolean confirm) {
+        if (confirm) {
+            this.clubIwdsa = 1;
+        } else {
+            this.clubIwdsa = 0;
+        }
     }
 
     public int getClubMissa() {
         return clubMissa;
     }
 
-    public void setClubMissa(int clubMissa) {
-        this.clubMissa = clubMissa;
+    public void setClubMissa(Boolean confirm) {
+        if (confirm) {
+            this.clubMissa = 1;
+        } else {
+            this.clubMissa = 0;
+        }
     }
 
     public int getClubOther() {
         return clubOther;
     }
 
-    public void setClubOther(int clubOther) {
-        this.clubOther = clubOther;
+    public void setClubOther(Boolean confirm) {
+        if (confirm) {
+            this.clubOther = 1;
+        } else {
+            this.clubOther = 0;
+        }
     }
 
     public int getClubSwift() {
         return clubSwift;
     }
 
-    public void setClubSwift(int clubSwift) {
-        this.clubSwift = clubSwift;
+    public void setClubSwift(Boolean confirm) {
+        if (confirm) {
+            this.clubSwift = 1;
+        } else {
+            this.clubSwift = 0;
+        }
     }
 
-    public int getGradeLevel() {
+    public String getGradeLevel() {
         return gradeLevel;
     }
 
-    public void setGradeLevel(int gradeLevel) {
+    public void setGradeLevel(String gradeLevel) {
         this.gradeLevel = gradeLevel;
     }
 
@@ -187,8 +194,12 @@ public class Student {
         return relocate;
     }
 
-    public void setRelocate(int relocate) {
-        this.relocate = relocate;
+    public void setRelocate(Boolean confirm) {
+        if (confirm) {
+            this.relocate = 1;
+        } else {
+            this.relocate = 0;
+        } 
     }
 
     public String getLastCISCourse() {
@@ -233,12 +244,12 @@ public class Student {
 
     public void save(){
         Map<String, String> fields = new HashMap();
-        fields.put("bronco_id", broncoNum);
-        fields.put("last_name", studName.lastName);
-        fields.put("first_name", studName.firstName);
+        fields.put("bronco_id", Integer.toString(broncoNum));
+        fields.put("last_name", lastName); 
+        fields.put("first_name", firstName);
         fields.put("email", email);
         fields.put("phone", phone);
-        fields.put("class_standing", Integer.toString(gradeLevel));
+        fields.put("class_standing", gradeLevel);
         String now = updateDate.toString();
         fields.put("last_update", now);
         fields.put("interest", interests);
@@ -252,6 +263,8 @@ public class Student {
         fields.put("swift_club", Integer.toString(clubSwift));
         fields.put("other_club", Integer.toString(clubOther));
         Database.write("student", fields);
+        String sqlStr = "INSERT INTO student (swift_club, other_club, phone, minor, relocate, missa_club, bronco_id, first_name, last_update, email, interest, last_name, expected_graduation_quarter, iwdsa_club, fast_club, class_standing, major) VALUES (clubSwift, clubOther, phone, minor, relocate, clubMissa, broncoNum, firstName, updateDate, email, interests, lastName, gradDate, clubIwdsa, clubFast, gradeLevel, major)";
+        //Database.executeWrite( sqlStr);
     }
 
     @Override
@@ -262,7 +275,7 @@ public class Student {
         classDescription += "broncoNumber" + "=";
         classDescription += broncoNum;
         classDescription += "Name" + "=";
-        classDescription += studName;
+        classDescription += getFullName();
         classDescription += "email" + "=";
         classDescription += email;
         classDescription += "phone" + "=";
