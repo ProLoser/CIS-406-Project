@@ -69,29 +69,6 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void clickLoad() {
-        clickClear();
-        String userID = SelectUserDialog.getValue();
-
-        if (Integer.parseInt(userID) > -1) {
-            try {
-                ResultSet rs = Database.execute("select * from user where user_id = '" + userID + "'");
-                while (rs.next()) {
-                    txtUserID.setText(rs.getString("user_id"));
-                    txtUsername.setText(rs.getString("username"));
-                    txtFirstName.setText(rs.getString("first_name"));
-                    txtLastName.setText(rs.getString("last_name"));
-                    txtEmail.setText(rs.getString("email"));
-                    ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
-                    ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
-                    txtPassword1.setText(rs.getString("password"));
-                    txtPassword2.setText(rs.getString("password"));
-                }
-
-            } catch (Exception e) {
-                System.out.println("Could not execute query");
-                System.out.println(e.getMessage());
-            }
-        }
 
     }
 
@@ -120,6 +97,29 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void clickReport() {
+        clickClear();
+        String userID = SelectUserDialog.getValue();
+
+        if (Integer.parseInt(userID) > -1) {
+            try {
+                ResultSet rs = Database.execute("select * from user where user_id = '" + userID + "'");
+                while (rs.next()) {
+                    txtUserID.setText(rs.getString("user_id"));
+                    txtUsername.setText(rs.getString("username"));
+                    txtFirstName.setText(rs.getString("first_name"));
+                    txtLastName.setText(rs.getString("last_name"));
+                    txtEmail.setText(rs.getString("email"));
+                    ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
+                    ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
+                    txtPassword1.setText(rs.getString("password"));
+                    txtPassword2.setText(rs.getString("password"));
+                }
+
+            } catch (Exception e) {
+                System.out.println("Could not execute query");
+                System.out.println(e.getMessage());
+            }
+        }
 
     }
 
@@ -255,13 +255,13 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUserID, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(txtFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(txtLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(txtPassword1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(txtPassword2, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
+                            .addComponent(txtUserID, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                            .addComponent(txtFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                            .addComponent(txtLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                            .addComponent(txtPassword1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                            .addComponent(txtPassword2, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -274,10 +274,10 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
                                 .addComponent(jLabel9)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAnswer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(ddlSecurityQuestions, javax.swing.GroupLayout.Alignment.TRAILING, 0, 163, Short.MAX_VALUE)
-                            .addComponent(ddlStatus, 0, 163, Short.MAX_VALUE)
-                            .addComponent(ddlSecurityLevel, 0, 163, Short.MAX_VALUE))))
+                            .addComponent(txtAnswer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                            .addComponent(ddlSecurityQuestions, javax.swing.GroupLayout.Alignment.TRAILING, 0, 277, Short.MAX_VALUE)
+                            .addComponent(ddlStatus, 0, 277, Short.MAX_VALUE)
+                            .addComponent(ddlSecurityLevel, 0, 277, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -327,7 +327,7 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addContainerGap())
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -29,17 +29,6 @@ public class Internship {
     public Internship() {
     }
 
-    public Internship(int companyId, int careerPathId, String title, String description, String postDate, String expiration, int quantity, String attachment) {
-        this.companyId = companyId;
-        this.careerPathId = careerPathId;
-        this.title = title;
-        this.description = description;
-        setPostDate(postDate);
-        setExpiration(expiration);
-        this.quantity = quantity;
-        this.attachment = attachment;
-    }
-
     public String getAttachment() {
         return attachment;
     }
@@ -79,7 +68,7 @@ public class Internship {
     public void setExpiration(String expiration) {
         DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         try {
-            this.postDate = df.parse(expiration);
+            this.expiration = df.parse(expiration);
         } catch (Exception e) {
             System.out.println("Failed to convert the expiration date");
         }
@@ -123,19 +112,23 @@ public class Internship {
     }
 
     public void save() {
+        java.sql.Date sqlDate;
         Database db = new Database("internship");
         db.addField("title", title);
         // Add Attachment
         File attachmentFile = new File(attachment);
         //db.addField("attachment", attachmentFile);
-        
+
         db.addField("company_id", companyId);
         db.addField("career_path_id", careerPathId);
         // Add date fields
-        /*java.sql.Date aDate = new java.sql.Date(postDate.getTime());
-        db.addField("post_date", aDate);
-        aDate = new java.sql.Date(expiration.getTime());
-        db.addField("expiration", aDate);*/
+
+        sqlDate = new java.sql.Date(postDate.getTime());
+        db.addField("post_date", sqlDate);
+        if (expiration != null) {
+            sqlDate = new java.sql.Date(expiration.getTime());
+            db.addField("expiration", sqlDate);
+        }
         db.addField("description", description);
         db.addField("quantity", quantity);
         try {
@@ -144,5 +137,15 @@ public class Internship {
             System.out.println("Failed to add the internship");
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Populates a internships report table
+     * @return
+     */
+    static public CisTable generateTable() {
+        CisTable table = new CisTable("internship");
+        table.setIdField("internship_id");
+        return table.parseData();
     }
 }

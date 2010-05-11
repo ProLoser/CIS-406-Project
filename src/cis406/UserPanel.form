@@ -34,13 +34,13 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtUserID" pref="163" max="32767" attributes="1"/>
-                          <Component id="txtUsername" alignment="0" pref="163" max="32767" attributes="1"/>
-                          <Component id="txtFirstName" alignment="0" pref="163" max="32767" attributes="1"/>
-                          <Component id="txtLastName" alignment="0" pref="163" max="32767" attributes="1"/>
-                          <Component id="txtEmail" alignment="0" pref="163" max="32767" attributes="1"/>
-                          <Component id="txtPassword1" alignment="0" pref="163" max="32767" attributes="1"/>
-                          <Component id="txtPassword2" alignment="0" pref="163" max="32767" attributes="1"/>
+                          <Component id="txtUserID" pref="274" max="32767" attributes="1"/>
+                          <Component id="txtUsername" alignment="0" pref="274" max="32767" attributes="1"/>
+                          <Component id="txtFirstName" alignment="0" pref="274" max="32767" attributes="1"/>
+                          <Component id="txtLastName" alignment="0" pref="274" max="32767" attributes="1"/>
+                          <Component id="txtEmail" alignment="0" pref="274" max="32767" attributes="1"/>
+                          <Component id="txtPassword1" alignment="0" pref="274" max="32767" attributes="1"/>
+                          <Component id="txtPassword2" alignment="0" pref="274" max="32767" attributes="1"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -59,10 +59,10 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtAnswer" alignment="1" pref="163" max="32767" attributes="1"/>
-                          <Component id="ddlSecurityQuestions" alignment="1" pref="163" max="32767" attributes="1"/>
-                          <Component id="ddlStatus" pref="163" max="32767" attributes="1"/>
-                          <Component id="ddlSecurityLevel" alignment="0" pref="163" max="32767" attributes="1"/>
+                          <Component id="txtAnswer" alignment="1" pref="277" max="32767" attributes="1"/>
+                          <Component id="ddlSecurityQuestions" alignment="1" pref="277" max="32767" attributes="1"/>
+                          <Component id="ddlStatus" pref="277" max="32767" attributes="1"/>
+                          <Component id="ddlSecurityLevel" alignment="0" pref="277" max="32767" attributes="1"/>
                       </Group>
                   </Group>
               </Group>
@@ -128,7 +128,7 @@
                   <Component id="txtAnswer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
