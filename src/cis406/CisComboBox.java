@@ -5,7 +5,6 @@
 package cis406;
 
 import java.sql.ResultSet;
-import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -110,7 +109,7 @@ public class CisComboBox extends DefaultComboBoxModel {
                 addElement(new ComboItem(data.getString(displayField), data.getInt(Database.id(table))));
             }
         } catch (Exception e) {
-            System.out.println("Failed to query the database");
+            System.out.println("Failed to add the fields from the data");
             System.out.println(e.getMessage());
         }
     }

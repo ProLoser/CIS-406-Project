@@ -32,7 +32,7 @@
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Component id="titleLabel" min="-2" max="-2" attributes="1"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="titleField" pref="325" max="32767" attributes="0"/>
+                      <Component id="titleField" pref="283" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -41,7 +41,7 @@
                           <Component id="quantityField" min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="317" max="32767" attributes="1"/>
+                      <Component id="jScrollPane1" pref="285" max="32767" attributes="1"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -61,21 +61,21 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="postedField" min="-2" max="-2" attributes="1"/>
-                              <EmptySpace pref="46" max="32767" attributes="0"/>
-                              <Component id="expiresCheckBox" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="expiresField" min="-2" max="-2" attributes="1"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="attachmentField" pref="230" max="32767" attributes="0"/>
+                              <Component id="attachmentField" pref="210" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="companyComboBox" alignment="1" pref="327" max="32767" attributes="0"/>
-                          <Component id="careerComboBox" alignment="0" pref="327" max="32767" attributes="0"/>
+                          <Component id="companyComboBox" alignment="1" pref="283" max="32767" attributes="0"/>
+                          <Component id="careerComboBox" alignment="0" pref="283" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="postedField" min="-2" pref="98" max="-2" attributes="1"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="expiresCheckBox" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="expiresField" min="-2" pref="104" max="-2" attributes="1"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -99,9 +99,9 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="expiresField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="postedField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="postedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="expiresField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="expiresCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -118,12 +118,12 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="66" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="quantityLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="quantityField" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" pref="134" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="60" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -250,13 +250,8 @@
     <Component class="javax.swing.JComboBox" name="careerComboBox">
       <Properties>
         <Property name="editable" type="boolean" value="true"/>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new CisComboBox(&quot;career_path&quot;, &quot;name&quot;)" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="careerComboBox" noResource="true"/>
       </Properties>

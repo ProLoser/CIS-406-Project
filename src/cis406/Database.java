@@ -278,7 +278,7 @@ public class Database {
      * @param fields values to be updated
      * @return ResultSet of the newly created primary keys
      */
-    public ResultSet insert() throws Exception {
+    public int insert() throws Exception {
         String query = "INSERT INTO " + table;
         preValues = new ArrayList<Object>();
         String keys = "";
@@ -301,7 +301,7 @@ public class Database {
         preStatement = connect().prepareStatement(query);
         compilePreValues();
         preStatement.executeUpdate();
-        return preStatement.getGeneratedKeys();
+        return preStatement.getGeneratedKeys().getInt(id(table));
     }
 
     /**

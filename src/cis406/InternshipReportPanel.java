@@ -22,8 +22,6 @@ public class InternshipReportPanel extends javax.swing.JPanel implements CisPane
     /** Creates new form InternshipReportPanel */
     public InternshipReportPanel() {
         initComponents();
-
-        reportTable.setModel(Internship.generateTable());
     }
 
     /** This method is called from within the constructor to
@@ -42,27 +40,7 @@ public class InternshipReportPanel extends javax.swing.JPanel implements CisPane
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        reportTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Sr Web Developr", "02-06-2010", "NASA", "Web Development", new Integer(2)},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Title", "Posted", "Company", "Career Path", "Positions Open"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        reportTable.setModel(Internship.generateTable());
         reportTable.setColumnSelectionAllowed(true);
         reportTable.setName("reportTable"); // NOI18N
         jScrollPane1.setViewportView(reportTable);
