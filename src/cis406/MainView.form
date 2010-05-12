@@ -12,7 +12,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="mainTabbedPane" pref="712" max="32767" attributes="0"/>
+                  <Component id="mainTabbedPane" pref="706" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Component id="mainToolBar" alignment="0" pref="732" max="32767" attributes="0"/>
@@ -23,7 +23,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="mainToolBar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="mainTabbedPane" pref="709" max="32767" attributes="0"/>
+                  <Component id="mainTabbedPane" pref="694" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -61,7 +61,6 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" resourceKey="SaveButton.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="SaveButton.text"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
                 <Property name="name" type="java.lang.String" value="SaveButton" noResource="true"/>
@@ -110,7 +109,6 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" resourceKey="ClearButton.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="ClearButton.text"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
                 <Property name="name" type="java.lang.String" value="ClearButton" noResource="true"/>
@@ -127,7 +125,6 @@
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" resourceKey="cancelButton.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="cancelButton.text"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
                 <Property name="name" type="java.lang.String" value="cancelButton" noResource="true"/>
@@ -202,18 +199,6 @@
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Internships">
                     <Property name="tabTitle" type="java.lang.String" resourceKey="internshipPanel1.TabConstraints.tabTitle"/>
-                  </JTabbedPaneConstraints>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="cis406.CompanyPanel" name="companyPanel1">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="companyPanel1" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Companies">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="companyPanel1.TabConstraints.tabTitle"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -367,7 +352,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="562" max="32767" attributes="0"/>
+                  <EmptySpace pref="536" max="32767" attributes="0"/>
                   <Component id="progressBar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
