@@ -11,9 +11,6 @@
 
 package cis406;
 
-import cis406.CisPanel;
-import cis406.CisPanel;
-
 /**
  *
  * @author Mark
@@ -91,7 +88,7 @@ public class IndustryPanel extends javax.swing.JPanel implements CisPanel  {
     }
     public void clickReport() {
     }
-    public void switchTo(javax.swing.ButtonGroup activeView) {
+    public void switchTo(String actionCommand) {
     }
     public void switchAway() {
     }

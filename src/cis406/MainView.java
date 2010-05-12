@@ -1,7 +1,6 @@
 /*
  * CIS406View.java
  */
-
 package cis406;
 
 import org.jdesktop.application.Action;
@@ -34,6 +33,7 @@ public class MainView extends FrameView {
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
         messageTimer = new Timer(messageTimeout, new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 statusMessageLabel.setText("");
             }
@@ -44,6 +44,7 @@ public class MainView extends FrameView {
             busyIcons[i] = resourceMap.getIcon("StatusBar.busyIcons[" + i + "]");
         }
         busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
                 statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
@@ -56,6 +57,7 @@ public class MainView extends FrameView {
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
         taskMonitor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 String propertyName = evt.getPropertyName();
                 if ("started".equals(propertyName)) {
@@ -72,11 +74,11 @@ public class MainView extends FrameView {
                     progressBar.setVisible(false);
                     progressBar.setValue(0);
                 } else if ("message".equals(propertyName)) {
-                    String text = (String)(evt.getNewValue());
+                    String text = (String) (evt.getNewValue());
                     statusMessageLabel.setText((text == null) ? "" : text);
                     messageTimer.restart();
                 } else if ("progress".equals(propertyName)) {
-                    int value = (Integer)(evt.getNewValue());
+                    int value = (Integer) (evt.getNewValue());
                     progressBar.setVisible(true);
                     progressBar.setIndeterminate(false);
                     progressBar.setValue(value);
@@ -96,6 +98,16 @@ public class MainView extends FrameView {
         MainApp.getApplication().show(aboutBox);
     }
 
+    @Action
+    public void showSettingsBox() {
+        if (settingsBox == null) {
+            JFrame mainFrame = MainApp.getApplication().getMainFrame();
+            settingsBox = new SettingsBox(mainFrame, true);
+            settingsBox.setLocationRelativeTo(mainFrame);
+        }
+        MainApp.getApplication().show(settingsBox);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -112,6 +124,7 @@ public class MainView extends FrameView {
         loadButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         formButton = new javax.swing.JToggleButton();
         reportButton = new javax.swing.JToggleButton();
@@ -146,65 +159,86 @@ public class MainView extends FrameView {
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(MainView.class, this);
         newButton.setAction(actionMap.get("clickNew")); // NOI18N
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(MainView.class);
+        newButton.setIcon(resourceMap.getIcon("NewButton.icon")); // NOI18N
         newButton.setText(resourceMap.getString("NewButton.text")); // NOI18N
         newButton.setFocusable(false);
-        newButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        newButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         newButton.setName("NewButton"); // NOI18N
         newButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(newButton);
 
         saveButton.setAction(actionMap.get("clickSave")); // NOI18N
+        saveButton.setIcon(resourceMap.getIcon("SaveButton.icon")); // NOI18N
         saveButton.setText(resourceMap.getString("SaveButton.text")); // NOI18N
+        saveButton.setEnabled(false);
         saveButton.setFocusable(false);
-        saveButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        saveButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         saveButton.setName("SaveButton"); // NOI18N
         saveButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(saveButton);
 
         loadButton.setAction(actionMap.get("clickLoad")); // NOI18N
+        loadButton.setIcon(resourceMap.getIcon("LoadButton.icon")); // NOI18N
         loadButton.setText(resourceMap.getString("LoadButton.text")); // NOI18N
         loadButton.setFocusable(false);
-        loadButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        loadButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         loadButton.setName("LoadButton"); // NOI18N
         loadButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(loadButton);
 
         deleteButton.setAction(actionMap.get("clickDelete")); // NOI18N
+        deleteButton.setIcon(resourceMap.getIcon("DeleteButton.icon")); // NOI18N
         deleteButton.setText(resourceMap.getString("DeleteButton.text")); // NOI18N
         deleteButton.setFocusable(false);
-        deleteButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        deleteButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         deleteButton.setName("DeleteButton"); // NOI18N
         deleteButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(deleteButton);
 
         clearButton.setAction(actionMap.get("clickClear")); // NOI18N
+        clearButton.setIcon(resourceMap.getIcon("ClearButton.icon")); // NOI18N
         clearButton.setText(resourceMap.getString("ClearButton.text")); // NOI18N
+        clearButton.setEnabled(false);
         clearButton.setFocusable(false);
-        clearButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        clearButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         clearButton.setName("ClearButton"); // NOI18N
         clearButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(clearButton);
+
+        cancelButton.setAction(actionMap.get("clickCancel")); // NOI18N
+        cancelButton.setIcon(resourceMap.getIcon("cancelButton.icon")); // NOI18N
+        cancelButton.setText(resourceMap.getString("cancelButton.text")); // NOI18N
+        cancelButton.setEnabled(false);
+        cancelButton.setFocusable(false);
+        cancelButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cancelButton.setName("cancelButton"); // NOI18N
+        cancelButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mainToolBar.add(cancelButton);
 
         jSeparator2.setName("jSeparator2"); // NOI18N
         mainToolBar.add(jSeparator2);
 
         formButton.setAction(actionMap.get("clickForm")); // NOI18N
         activeViewButtonGroup.add(formButton);
-        formButton.setSelected(true);
+        formButton.setIcon(resourceMap.getIcon("formButton.icon")); // NOI18N
         formButton.setText(resourceMap.getString("formButton.text")); // NOI18N
+        formButton.setActionCommand(resourceMap.getString("formButton.actionCommand")); // NOI18N
         formButton.setFocusable(false);
         formButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        formButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        formButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         formButton.setName("formButton"); // NOI18N
         formButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(formButton);
 
         reportButton.setAction(actionMap.get("clickReport")); // NOI18N
         activeViewButtonGroup.add(reportButton);
+        reportButton.setIcon(resourceMap.getIcon("reportButton.icon")); // NOI18N
+        reportButton.setSelected(true);
         reportButton.setText(resourceMap.getString("reportButton.text")); // NOI18N
+        reportButton.setActionCommand(resourceMap.getString("reportButton.actionCommand")); // NOI18N
         reportButton.setFocusable(false);
         reportButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        reportButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        reportButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         reportButton.setName("reportButton"); // NOI18N
         reportButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(reportButton);
@@ -244,16 +278,16 @@ public class MainView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
+            .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(mainToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 526, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -264,6 +298,7 @@ public class MainView extends FrameView {
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
+        settingsMenuItem.setAction(actionMap.get("showSettingsBox")); // NOI18N
         settingsMenuItem.setText(resourceMap.getString("settingsMenuItem.text")); // NOI18N
         settingsMenuItem.setName("settingsMenuItem"); // NOI18N
         fileMenu.add(settingsMenuItem);
@@ -301,11 +336,11 @@ public class MainView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 533, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 562, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -343,50 +378,81 @@ public class MainView extends FrameView {
 
     private void mainTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabbedPaneStateChanged
         if (activeTabIndex != mainTabbedPane.getSelectedIndex()) {
-            ((CisPanel)mainTabbedPane.getComponentAt(activeTabIndex)).switchAway();
+            ((CisPanel) mainTabbedPane.getComponentAt(activeTabIndex)).switchAway();
             activeTabIndex = mainTabbedPane.getSelectedIndex();
-            ((CisPanel)mainTabbedPane.getSelectedComponent()).switchTo(activeViewButtonGroup);
+            String actionCommand = activeViewButtonGroup.getSelection().getActionCommand();
+            ((CisPanel) mainTabbedPane.getSelectedComponent()).switchTo(actionCommand);
+
         }
     }//GEN-LAST:event_mainTabbedPaneStateChanged
 
-
     @Action
     public void clickNew() {
-        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickNew();
+        changeButtons("Form");
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickNew();
     }
 
     @Action
     public void clickSave() {
-        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickSave();
+        changeButtons("Report");
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickSave();
     }
 
     @Action
     public void clickLoad() {
-        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickLoad();
+        changeButtons("Form");
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickLoad();
     }
 
     @Action
     public void clickDelete() {
-        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickDelete();
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickDelete();
     }
 
     @Action
     public void clickClear() {
-        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickClear();
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickClear();
+    }
+
+    @Action
+    public void clickCancel() {
+        changeButtons("Report");
     }
 
     @Action
     public void clickForm() {
-        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickForm();
+        changeButtons("Form");
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickForm();
     }
 
     @Action
     public void clickReport() {
-        ((CisPanel)mainTabbedPane.getSelectedComponent()).clickReport();
+        changeButtons("Report");
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickReport();
+    }
+
+
+    public void changeButtons(String mode) {
+        if (mode.equalsIgnoreCase("Form")) {
+            newButton.setEnabled(false);
+            saveButton.setEnabled(true);
+            loadButton.setEnabled(false);
+            deleteButton.setEnabled(false);
+            clearButton.setEnabled(true);
+            cancelButton.setEnabled(true);
+        } else {
+            newButton.setEnabled(true);
+            saveButton.setEnabled(false);
+            loadButton.setEnabled(true);
+            deleteButton.setEnabled(true);
+            clearButton.setEnabled(false);
+            cancelButton.setEnabled(false);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup activeViewButtonGroup;
+    private javax.swing.JButton cancelButton;
     public javax.swing.JButton clearButton;
     private cis406.CompanyPanel companyPanel1;
     private cis406.ContactPanel contactPanel1;
@@ -414,13 +480,11 @@ public class MainView extends FrameView {
     private cis406.StudentPanel studentPanel1;
     private cis406.UserPanel userPanel1;
     // End of variables declaration//GEN-END:variables
-
     private final Timer messageTimer;
     private final Timer busyIconTimer;
     private final Icon idleIcon;
     private final Icon[] busyIcons = new Icon[15];
     private int busyIconIndex = 0;
-
     private JDialog aboutBox;
     private JDialog settingsBox;
 }

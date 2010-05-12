@@ -34,13 +34,13 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtUserID" pref="274" max="32767" attributes="1"/>
-                          <Component id="txtUsername" alignment="0" pref="274" max="32767" attributes="1"/>
-                          <Component id="txtFirstName" alignment="0" pref="274" max="32767" attributes="1"/>
-                          <Component id="txtLastName" alignment="0" pref="274" max="32767" attributes="1"/>
-                          <Component id="txtEmail" alignment="0" pref="274" max="32767" attributes="1"/>
-                          <Component id="txtPassword1" alignment="0" pref="274" max="32767" attributes="1"/>
-                          <Component id="txtPassword2" alignment="0" pref="274" max="32767" attributes="1"/>
+                          <Component id="txtUserID" pref="277" max="32767" attributes="1"/>
+                          <Component id="txtUsername" alignment="0" pref="277" max="32767" attributes="1"/>
+                          <Component id="txtFirstName" alignment="0" pref="277" max="32767" attributes="1"/>
+                          <Component id="txtLastName" alignment="0" pref="277" max="32767" attributes="1"/>
+                          <Component id="txtEmail" alignment="0" pref="277" max="32767" attributes="1"/>
+                          <Component id="txtPassword1" alignment="0" pref="277" max="32767" attributes="1"/>
+                          <Component id="txtPassword2" alignment="0" pref="277" max="32767" attributes="1"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">

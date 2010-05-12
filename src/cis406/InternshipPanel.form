@@ -19,16 +19,6 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
-    <Component class="cis406.InternshipFormPanel" name="internshipFormPanel1">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="internshipFormPanel1" noResource="true"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="Form"/>
-        </Constraint>
-      </Constraints>
-    </Component>
     <Component class="cis406.InternshipReportPanel" name="internshipReportPanel1">
       <Properties>
         <Property name="name" type="java.lang.String" value="internshipReportPanel1" noResource="true"/>
@@ -36,6 +26,16 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="Report"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="cis406.InternshipFormPanel" name="internshipFormPanel1">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="internshipFormPanel1" noResource="true"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="Form"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -11,8 +11,6 @@
 
 package cis406;
 
-import javax.swing.ButtonGroup;
-
 /**
  *
  * @author Dean
@@ -44,14 +42,7 @@ public class InternshipReportPanel extends javax.swing.JPanel implements CisPane
         reportTable.setColumnSelectionAllowed(true);
         reportTable.setName("reportTable"); // NOI18N
         jScrollPane1.setViewportView(reportTable);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(InternshipReportPanel.class);
         reportTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        reportTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("reportTable.columnModel.title0")); // NOI18N
-        reportTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("reportTable.columnModel.title1")); // NOI18N
-        reportTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("reportTable.columnModel.title2")); // NOI18N
-        reportTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("reportTable.columnModel.title3")); // NOI18N
-        reportTable.getColumnModel().getColumn(4).setResizable(false);
-        reportTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("reportTable.columnModel.title4")); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -103,7 +94,7 @@ public class InternshipReportPanel extends javax.swing.JPanel implements CisPane
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void switchTo(ButtonGroup activeView) {
+    public void switchTo(String actionCommand) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

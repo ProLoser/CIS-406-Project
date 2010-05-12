@@ -67,7 +67,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
 
     }
 
-    public void switchTo(javax.swing.ButtonGroup activeView) {
+    public void switchTo(String actionCommand) {
 
     }
 

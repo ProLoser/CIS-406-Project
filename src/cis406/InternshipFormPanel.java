@@ -254,8 +254,9 @@ public class InternshipFormPanel extends javax.swing.JPanel {
 
         // Saves the rest of the internship record
         record.setTitle(titleField.getText());
-        record.setCompanyId(companyComboBox.getSelectedIndex());
-        record.setCareerPathId(careerComboBox.getSelectedIndex());
+        // The selected item must be cast into a ComboItem object so you can access it's attributes
+        record.setCompanyId(((ComboItem)companyComboBox.getSelectedItem()).id);
+        record.setCareerPathId(((ComboItem)companyComboBox.getSelectedItem()).id);
         record.setAttachment(attachmentField.getText());
         record.setPostDate(postedField.getText());
         record.setExpiration(expiresField.getText());

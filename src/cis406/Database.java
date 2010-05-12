@@ -301,7 +301,10 @@ public class Database {
         preStatement = connect().prepareStatement(query);
         compilePreValues();
         preStatement.executeUpdate();
-        return preStatement.getGeneratedKeys().getInt(id(table));
+        System.out.println("Getting keys");
+        ResultSet newKeys = preStatement.getGeneratedKeys();
+        System.out.println("New ID is: " + newKeys.getInt(1));
+        return newKeys.getInt(1);
     }
 
     /**

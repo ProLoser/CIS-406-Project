@@ -11,8 +11,6 @@
 
 package cis406;
 
-import cis406.CisPanel;
-
 /**
  *
  * @author Mark
@@ -94,7 +92,7 @@ public class CompanyPanel extends javax.swing.JPanel implements CisPanel {
     public void clickReport() {
         ((CisPanel)tabCompany.getSelectedComponent()).clickReport();
     }
-    public void switchTo(javax.swing.ButtonGroup activeView) {
+    public void switchTo(String actionCommand) {
     }
     public void switchAway() {
         ((CisPanel)tabCompany.getSelectedComponent()).switchAway();

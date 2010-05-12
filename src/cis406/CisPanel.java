@@ -18,7 +18,7 @@ public interface CisPanel {
     void clickClear();
     void clickForm();
     void clickReport();
-    void switchTo(javax.swing.ButtonGroup activeView);
+    void switchTo(String actionCommand);
     void switchAway();
 
 }

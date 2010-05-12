@@ -11,7 +11,6 @@
 package cis406;
 
 import java.awt.CardLayout;
-import javax.swing.ButtonGroup;
 
 /**
  *
@@ -35,17 +34,17 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        internshipFormPanel1 = new cis406.InternshipFormPanel();
         internshipReportPanel1 = new cis406.InternshipReportPanel();
+        internshipFormPanel1 = new cis406.InternshipFormPanel();
 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
 
-        internshipFormPanel1.setName("internshipFormPanel1"); // NOI18N
-        add(internshipFormPanel1, "Form");
-
         internshipReportPanel1.setName("internshipReportPanel1"); // NOI18N
         add(internshipReportPanel1, "Report");
+
+        internshipFormPanel1.setName("internshipFormPanel1"); // NOI18N
+        add(internshipFormPanel1, "Form");
     }// </editor-fold>//GEN-END:initComponents
 
     public void clickClear() {
@@ -53,13 +52,6 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void clickDelete() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void clickForm() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Form");
-        activeCard = "Form";
     }
 
     public void clickLoad() {
@@ -67,7 +59,15 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void clickNew() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Form");
+        activeCard = "Form";
+    }
+
+    public void clickForm() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Form");
+        activeCard = "Form";
     }
 
     public void clickReport() {
@@ -82,11 +82,14 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void switchAway() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void switchTo(ButtonGroup activeView) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void switchTo(String actionCommand) {
+        if (actionCommand.equalsIgnoreCase("Form")) {
+            clickForm();
+        } else {
+            clickReport();
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cis406.InternshipFormPanel internshipFormPanel1;
