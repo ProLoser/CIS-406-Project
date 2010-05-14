@@ -21,11 +21,15 @@ import javax.swing.JFrame;
 public class MainView extends FrameView {
 
     private int activeTabIndex;
+    final String[] assistantPanels = {"Users", "Security Log"};
+    final String[] coordinatorPanels = {"Users", "Security Log"};
 
-    public MainView(SingleFrameApplication app) {
+    public MainView(SingleFrameApplication app, int user_id, int security_level) {
         super(app);
 
         initComponents();
+
+        setupTabs(security_level);
 
         activeTabIndex = mainTabbedPane.getSelectedIndex();
 
@@ -378,6 +382,19 @@ public class MainView extends FrameView {
 
         }
     }//GEN-LAST:event_mainTabbedPaneStateChanged
+
+    private void setupTabs (int security_level){
+        if (security_level == 1){
+            for (int i = 0; i < coordinatorPanels.length; i++){
+                mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(coordinatorPanels[i]));
+            }
+        }
+        else if (security_level == 2){
+            for (int i = 0; i < assistantPanels.length; i++){
+                mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(assistantPanels[i]));
+            }
+        }
+    }
 
     @Action
     public void clickNew() {
