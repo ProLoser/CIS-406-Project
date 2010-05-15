@@ -19,14 +19,22 @@ import org.jdesktop.application.Action;
  */
 public class UserLoginBox extends javax.swing.JDialog {
 
+    private static Boolean success = false;
+    private static String[] userInfo;
+
     /** Creates new form UserLoginBox */
     public UserLoginBox(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    @Action public void attemptLogin() {
-        dispose();
+    @Action private void attemptLogin() {
+        getInputs();
+        System.out.println(userInfo[0]);
+        System.out.println(userInfo[1]);
+        if (User.tryLogon(userInfo[0], userInfo[1])) {
+            success = true;
+        }       
     }
 
     /** This method is called from within the constructor to
@@ -121,16 +129,11 @@ public class UserLoginBox extends javax.swing.JDialog {
         });
     }
 
-    public static String[] getUserInformation() {
-        UserLoginBox loginDialog = new UserLoginBox(new javax.swing.JFrame(), true);
-        loginDialog.setVisible(true);
-
-        return loginDialog.getEnteredInformation();
-    }
-
-    private String[] getEnteredInformation() {
-        String[] userInfo = new String[2];
-        
+    /**
+     * retrieves and parses user login credentials from view
+     * @return
+     */
+    private String[] getInputs() {
         char[] password = pwdPassword.getPassword();
         String strPassword = "";
         for (int i = 0; i < password.length; i++){
@@ -140,6 +143,19 @@ public class UserLoginBox extends javax.swing.JDialog {
         userInfo[0] = txtUsername.getText();
         userInfo[1] = strPassword;
         return userInfo;
+    }
+
+    /**
+     * Renders login box and returns to app success or failure boolean
+     * @return
+     */
+    public static Boolean login() {
+
+        UserLoginBox loginDialog = new UserLoginBox(new javax.swing.JFrame(), true);
+        loginDialog.setVisible(true);
+        //attempt to login
+
+        return success;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

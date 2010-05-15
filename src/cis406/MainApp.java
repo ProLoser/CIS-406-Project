@@ -16,21 +16,16 @@ public class MainApp extends SingleFrameApplication {
      */
     @Override
     protected void startup() {
-        boolean successfulLogin = false;
-        String[] loginInformation = new String[2];
 
-        do{
-            loginInformation = UserLoginBox.getUserInformation();
-            if (User.tryLogon(loginInformation[0], loginInformation[1])){
-                successfulLogin = true;
-            }
+        if (UserLoginBox.login()) {
+            show(new MainView(this, 1, 1));
+
+            Thread sessionThread = new Thread(new SessionThread(), "thread1");
+            sessionThread.start();
+        } else {
+            System.exit(0);
         }
-        while (successfulLogin == false);
 
-        show(new MainView(this, 1, 1));
-
-	Thread sessionThread = new Thread(new SessionThread(), "thread1");
-        sessionThread.start();
     }
 
     /**
