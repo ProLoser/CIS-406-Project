@@ -32,7 +32,7 @@
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Component id="titleLabel" min="-2" max="-2" attributes="1"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="titleField" pref="283" max="32767" attributes="0"/>
+                      <Component id="titleField" pref="305" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -41,7 +41,7 @@
                           <Component id="quantityField" min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="285" max="32767" attributes="1"/>
+                      <Component id="jScrollPane1" pref="297" max="32767" attributes="1"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -67,8 +67,8 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="companyComboBox" alignment="1" pref="283" max="32767" attributes="0"/>
-                          <Component id="careerComboBox" alignment="0" pref="283" max="32767" attributes="0"/>
+                          <Component id="companyComboBox" alignment="1" pref="307" max="32767" attributes="0"/>
+                          <Component id="careerComboBox" alignment="0" pref="307" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="postedField" min="-2" pref="98" max="-2" attributes="1"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -123,7 +123,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="quantityField" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" pref="60" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="76" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

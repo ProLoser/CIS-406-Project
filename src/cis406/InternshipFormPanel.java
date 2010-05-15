@@ -8,7 +8,6 @@
  *
  * Created on Apr 22, 2010, 6:03:34 AM
  */
-
 package cis406;
 
 import org.jdesktop.application.Action;
@@ -218,8 +217,6 @@ public class InternshipFormPanel extends javax.swing.JPanel {
             attachmentField.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
         }
     }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField attachmentField;
     private javax.swing.JLabel attachmentLabel;
@@ -242,7 +239,6 @@ public class InternshipFormPanel extends javax.swing.JPanel {
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
-
     public void save() {
         Internship record = new Internship();
 
@@ -255,11 +251,13 @@ public class InternshipFormPanel extends javax.swing.JPanel {
         // Saves the rest of the internship record
         record.setTitle(titleField.getText());
         // The selected item must be cast into a ComboItem object so you can access it's attributes
-        record.setCompanyId(((ComboItem)companyComboBox.getSelectedItem()).id);
-        record.setCareerPathId(((ComboItem)companyComboBox.getSelectedItem()).id);
+        record.setCompanyId(((ComboItem) companyComboBox.getSelectedItem()).id);
+        record.setCareerPathId(((ComboItem) companyComboBox.getSelectedItem()).id);
         record.setAttachment(attachmentField.getText());
         record.setPostDate(postedField.getText());
-        record.setExpiration(expiresField.getText());
+        if (expiresCheckBox.isSelected()) {
+            record.setExpiration(expiresField.getText());
+        }
         record.setDescription(descriptionTextarea.getText());
         record.setQuantity(Integer.parseInt(quantityField.getText()));
         record.save();
@@ -271,8 +269,9 @@ public class InternshipFormPanel extends javax.swing.JPanel {
         titleField.setText("");
         descriptionTextarea.setText("");
         postedField.setText("mm-dd-yyyy");
-        if (expiresCheckBox.isSelected())
-            expiresField.setText("mm-dd-yyyy");
+        expiresCheckBox.setSelected(false);
+        expiresField.setText("mm-dd-yyyy");
+        expiresField.setEnabled(false);
         quantityField.setText("1");
         attachmentField.setText("");
     }
@@ -281,5 +280,4 @@ public class InternshipFormPanel extends javax.swing.JPanel {
     public void toggleExpires() {
         expiresField.setEnabled(expiresCheckBox.isSelected());
     }
-
 }
