@@ -4,6 +4,8 @@
  */
 package cis406;
 
+import java.sql.ResultSet;
+
 /**
  *
  * @author Raf
@@ -153,5 +155,32 @@ public class User {
             sb.append(Integer.toHexString(v));
         }
         return sb.toString().toUpperCase();
+    }
+
+    public static boolean tryLogon(String username, String password){
+        String hash = "";
+        try {
+            hash = byteArrayToHexString(computeHash(password));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(hash);
+
+        try
+        {
+            ResultSet rs = Database.execute("select password from users where user_name = '" + username + "'");
+            while (rs.next())
+            {
+                if ( hash.equals(rs.getString("password")))
+                {
+                    return true;
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Could not execute query");
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 }
