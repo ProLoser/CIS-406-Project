@@ -24,7 +24,7 @@ public class CisComboBox extends DefaultComboBoxModel {
     public CisComboBox(String table, String displayField) {
         this.table = table;
         this.displayField = displayField;
-        query("");
+        query(" ORDER BY " + displayField + " ASC");
         addFields();
     }
 
