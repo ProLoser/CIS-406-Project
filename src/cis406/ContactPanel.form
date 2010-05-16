@@ -27,11 +27,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblCompanyTitle" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="405" max="32767" attributes="0"/>
+                      <EmptySpace pref="605" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblCompanyTitle1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="417" max="32767" attributes="0"/>
+                      <EmptySpace pref="617" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -80,7 +80,7 @@
                                       <Component id="txtLName" min="-2" pref="174" max="-2" attributes="1"/>
                                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="scpDescription" pref="391" max="32767" attributes="1"/>
+                                  <Component id="scpDescription" pref="591" max="32767" attributes="1"/>
                               </Group>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -178,7 +178,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblDescription1" min="-2" max="-2" attributes="0"/>
-                  <Component id="scpDescription" pref="176" max="32767" attributes="0"/>
+                  <Component id="scpDescription" pref="120" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -224,6 +224,10 @@
       <Properties>
         <Property name="name" type="java.lang.String" value="txtZip" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtZipMouseExited"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtZipActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmail">
       <Properties>

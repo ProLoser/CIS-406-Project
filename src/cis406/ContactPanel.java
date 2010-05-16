@@ -1,15 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * AddContact.java
- *
- * Created on May 4, 2010, 11:59:35 AM
- */
-
 package cis406;
+
+import java.sql.ResultSet;
 
 /**
  *
@@ -84,6 +75,16 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
         cboState.setName("cboState"); // NOI18N
 
         txtZip.setName("txtZip"); // NOI18N
+        txtZip.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtZipMouseExited(evt);
+            }
+        });
+        txtZip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtZipActionPerformed(evt);
+            }
+        });
 
         txtEmail.setName("txtEmail"); // NOI18N
 
@@ -192,10 +193,10 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCompanyTitle)
-                        .addContainerGap(405, Short.MAX_VALUE))
+                        .addContainerGap(605, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCompanyTitle1)
-                        .addContainerGap(417, Short.MAX_VALUE))
+                        .addContainerGap(617, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -240,7 +241,7 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(34, 34, 34))
-                                    .addComponent(scpDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)))
+                                    .addComponent(scpDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -318,7 +319,7 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDescription1)
-                    .addComponent(scpDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
+                    .addComponent(scpDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -332,6 +333,27 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
             lblIndustryDivision.setText("Industry:");
         }
 }//GEN-LAST:event_cboCompanyActionPerformed
+
+    private void txtZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZipActionPerformed
+    
+    }//GEN-LAST:event_txtZipActionPerformed
+
+    private void txtZipMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtZipMouseExited
+        String city = "";
+        String state = "";
+        try {
+            ResultSet rs = Database.execute("select CITY, STATE from Zip WHERE ZIP = 92867");
+            while (rs.next()) {
+                city = rs.getString("CITY");
+                state = rs.getString("STATE");
+            }
+        } catch (Exception e) {
+            System.out.println("Could not execute query");
+            System.out.println(e.getMessage());
+        }
+        txtCity.setText(city);
+        cboState.setSelectedItem(state);
+    }//GEN-LAST:event_txtZipMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -378,6 +400,20 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     }
     public void clickSave() {
         Contact record = new Contact();
+        // Saves the Company if it's a new entry
+        if (cboCompany.getSelectedIndex() == -1) {
+            Company comp = new Company(cboCompany.getSelectedItem().toString());
+            record.setCompanyId(comp.save());
+        } else {
+            record.setCompanyId(((ComboItem) cboCompany.getSelectedItem()).id);
+        }
+        // Saves the Industry if it's a new entry
+        if (cboIndustry.getSelectedIndex() == -1) {
+            Industry indust = new Industry(cboIndustry.getSelectedItem().toString());
+            record.setIndustryId(indust.save());
+        } else {
+            record.setIndustryId(((ComboItem) cboIndustry.getSelectedItem()).id);
+        }
         record.setFname(txtFName.getText());
         record.setLname(txtLName.getText());
         record.setCompany_id(cboCompany.getSelectedIndex());
@@ -397,9 +433,10 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     public void clickDelete() {
     }
     public void clickClear() {
+        cboCompany.setSelectedIndex(0);
+        cboIndustry.setSelectedIndex(0);
         txtFName.setText("");
         txtLName.setText("");
-        cboCompany.setSelectedIndex(0);
         txtStreet.setText("");
         txtZip.setText("");
         txtCity.setText("");
@@ -408,6 +445,7 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
         txtPhoneArea.setText("");
         txtPhoneFirst.setText("");
         txtPhoneLast.setText("");
+        txtPhoneExt.setText("");
         txtPosition.setText("");
         cboCommMethod.setSelectedIndex(0);
         txaDescription.setText("");
@@ -422,6 +460,4 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     }
     public void switchAway() {
     }
-
 }
-

@@ -1,19 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * CorrespondencePanel.java
- *
- * Created on May 4, 2010, 11:57:30 AM
- */
-
 package cis406;
 
 /**
  *
- * @author Mark
+ * @author Mark Lenser
  */
 public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel {
 

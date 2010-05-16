@@ -7,7 +7,7 @@ package cis406;
 
 /**
  *
- * @author Mark
+ * @author Mark  Lenser
  */
 public class Contact {
     private String fname;
@@ -25,6 +25,9 @@ public class Contact {
     private String position;
     private int comm_method;
     private String description;
+    //company
+    private int companyId;
+    private int industryId;
 
     public Contact() {
     }
@@ -42,6 +45,22 @@ public class Contact {
         setComm_method(comm_method);
         setDescription(description);
     }
+
+    //company
+    public int getCompanyId() {
+        return companyId;
+    }
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+    public int getIndustryId() {
+        return industryId;
+    }
+    public void setIndustryId(int industryId) {
+        this.industryId = industryId;
+    }
+
+
     public void setFname(String fname) {
         this.fname = fname;
     }
