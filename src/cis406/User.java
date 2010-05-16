@@ -157,30 +157,25 @@ public class User {
         return sb.toString().toUpperCase();
     }
 
-    public static boolean tryLogon(String username, String password){
+    public static boolean login(String username, String password) {
         String hash = "";
+        Boolean result = false;
+
         try {
             hash = byteArrayToHexString(computeHash(password));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(hash);
-
-        try
-        {
-            ResultSet rs = Database.execute("select password from users where user_name = '" + username + "'");
-            while (rs.next())
-            {
-                if ( hash.equals(rs.getString("password")))
-                {
-                    return true;
-                }
+            Database db = new Database("users");
+            db.and("user_name", username);
+            db.and("password", hash);
+            ResultSet rs = db.select();
+            //ResultSet rs = Database.execute("select * from users where user_name = '" + username + "' and password = '" + hash + "'");
+            while (rs.next()) {
+                result = true;
             }
-
         } catch (Exception e) {
             System.out.println("Could not execute query");
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
-        return false;
+        return result;
     }
 }

@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
-import javax.swing.DefaultComboBoxModel;
 
 /**
  * A database wrapping class. Either call the static methods for direct access
@@ -255,10 +253,12 @@ public class Database {
      * @return
      */
     public ResultSet select() throws Exception {
-        String query = "SELECT * FROM " + table + " " + joins + " " + compileConditions();
+        preValues = new ArrayList<Object>();
+        String query = "SELECT * FROM " + table + joins + compileConditions();
+        System.out.println("Query: " + query);
         preStatement = connect().prepareStatement(query);
         compilePreValues();
-        return execute(query);
+        return preStatement.executeQuery();
     }
 
     /**
@@ -269,7 +269,10 @@ public class Database {
         String query;
         preValues = new ArrayList<Object>();
         query = "SELECT " + implode(fields) + " FROM " + table + joins + compileConditions();
-        return execute(query);
+        System.out.println("Query: " + query);
+        preStatement = connect().prepareStatement(query);
+        compilePreValues();
+        return preStatement.executeQuery();
     }
 
     /**

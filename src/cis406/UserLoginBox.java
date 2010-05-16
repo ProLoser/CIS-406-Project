@@ -11,6 +11,7 @@
 
 package cis406;
 
+import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
 /**
@@ -22,19 +23,12 @@ public class UserLoginBox extends javax.swing.JDialog {
     private static Boolean success = false;
     private static String[] userInfo;
 
-    /** Creates new form UserLoginBox */
+    /**
+     * Creates new form UserLoginBox
+     */
     public UserLoginBox(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-    }
-
-    @Action private void attemptLogin() {
-        getInputs();
-        System.out.println(userInfo[0]);
-        System.out.println(userInfo[1]);
-        if (User.tryLogon(userInfo[0], userInfo[1])) {
-            success = true;
-        }       
     }
 
     /** This method is called from within the constructor to
@@ -66,7 +60,7 @@ public class UserLoginBox extends javax.swing.JDialog {
         txtUsername.setName("txtUsername"); // NOI18N
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(UserLoginBox.class, this);
-        jButton1.setAction(actionMap.get("attemptLogin")); // NOI18N
+        jButton1.setAction(actionMap.get("clickLogin")); // NOI18N
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
 
@@ -129,20 +123,29 @@ public class UserLoginBox extends javax.swing.JDialog {
         });
     }
 
+    @Action
+    public void clickLogin() {
+        getInputs();
+        if (User.login(userInfo[0], userInfo[1])) {
+            success = true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Failed to login. Please try again.");
+        }
+    }
+
     /**
      * retrieves and parses user login credentials from view
      * @return
      */
-    private String[] getInputs() {
+    private void getInputs() {
         char[] password = pwdPassword.getPassword();
         String strPassword = "";
         for (int i = 0; i < password.length; i++){
             strPassword += password[i];
         }
-
+        userInfo = new String[2];
         userInfo[0] = txtUsername.getText();
         userInfo[1] = strPassword;
-        return userInfo;
     }
 
     /**
