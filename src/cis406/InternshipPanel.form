@@ -19,23 +19,23 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
-    <Component class="cis406.InternshipReportPanel" name="internshipReportPanel1">
+    <Component class="cis406.InternshipBrowsePanel" name="internshipBrowsePanel1">
       <Properties>
-        <Property name="name" type="java.lang.String" value="internshipReportPanel1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="internshipBrowsePanel1" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="Report"/>
+          <CardConstraints cardName="Browse"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="cis406.InternshipFormPanel" name="internshipFormPanel1">
+    <Component class="cis406.InternshipEditPanel" name="internshipEditPanel1">
       <Properties>
-        <Property name="name" type="java.lang.String" value="internshipFormPanel1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="internshipEditPanel1" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="Form"/>
+          <CardConstraints cardName="Edit"/>
         </Constraint>
       </Constraints>
     </Component>

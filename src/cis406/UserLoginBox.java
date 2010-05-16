@@ -128,6 +128,7 @@ public class UserLoginBox extends javax.swing.JDialog {
         getInputs();
         if (User.login(userInfo[0], userInfo[1])) {
             success = true;
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Failed to login. Please try again.");
         }

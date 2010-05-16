@@ -340,9 +340,11 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
         cboCommMethod.setSelectedIndex(0);
         txaDescription.setText("");
     }
-    public void clickForm() {
+    public void clickCancel() {
     }
-    public void clickReport() {
+    public void clickEditing() {
+    }
+    public void clickBrowsing() {
     }
     public void switchTo(String actionCommand) {
     }

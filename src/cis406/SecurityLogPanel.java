@@ -59,11 +59,15 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
 
     }
 
-    public void clickReport() {
+    public void clickCancel() {
 
     }
 
-    public void clickForm() {
+    public void clickBrowsing() {
+
+    }
+
+    public void clickEditing() {
 
     }
 

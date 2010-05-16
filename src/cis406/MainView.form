@@ -136,7 +136,7 @@
                 <Property name="name" type="java.lang.String" value="jSeparator2" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="formButton">
+            <Component class="javax.swing.JToggleButton" name="editButton">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="cis406.MainView" id="clickForm" methodName="clickForm"/>
@@ -144,17 +144,17 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="activeViewButtonGroup"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="formButton.icon"/>
-                <Property name="text" type="java.lang.String" resourceKey="formButton.text"/>
-                <Property name="actionCommand" type="java.lang.String" resourceKey="formButton.actionCommand"/>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="editButton.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="editButton.text"/>
+                <Property name="actionCommand" type="java.lang.String" resourceKey="editButton.actionCommand"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
-                <Property name="name" type="java.lang.String" value="formButton" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="editButton" noResource="true"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="reportButton">
+            <Component class="javax.swing.JToggleButton" name="browseButton">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="cis406.MainView" id="clickReport" methodName="clickReport"/>
@@ -162,14 +162,14 @@
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="activeViewButtonGroup"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="reportButton.icon"/>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="browseButton.icon"/>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" resourceKey="reportButton.text"/>
-                <Property name="actionCommand" type="java.lang.String" resourceKey="reportButton.actionCommand"/>
+                <Property name="text" type="java.lang.String" resourceKey="browseButton.text"/>
+                <Property name="actionCommand" type="java.lang.String" resourceKey="browseButton.actionCommand"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
-                <Property name="name" type="java.lang.String" value="reportButton" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="browseButton" noResource="true"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
             </Component>

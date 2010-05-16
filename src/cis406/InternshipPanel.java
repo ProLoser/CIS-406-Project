@@ -18,7 +18,7 @@ import java.awt.CardLayout;
  */
 public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
 
-    String activeCard = "Form";
+    String activeCard = "Browse";
 
     /** Creates new form InternshipPanel */
     public InternshipPanel() {
@@ -34,65 +34,68 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        internshipReportPanel1 = new cis406.InternshipReportPanel();
-        internshipFormPanel1 = new cis406.InternshipFormPanel();
+        internshipBrowsePanel1 = new cis406.InternshipBrowsePanel();
+        internshipEditPanel1 = new cis406.InternshipEditPanel();
 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
 
-        internshipReportPanel1.setName("internshipReportPanel1"); // NOI18N
-        add(internshipReportPanel1, "Report");
+        internshipBrowsePanel1.setName("internshipBrowsePanel1"); // NOI18N
+        add(internshipBrowsePanel1, "Browse");
 
-        internshipFormPanel1.setName("internshipFormPanel1"); // NOI18N
-        add(internshipFormPanel1, "Form");
+        internshipEditPanel1.setName("internshipEditPanel1"); // NOI18N
+        add(internshipEditPanel1, "Edit");
     }// </editor-fold>//GEN-END:initComponents
 
     public void clickClear() {
-        internshipFormPanel1.reset();
+        internshipEditPanel1.reset();
     }
 
     public void clickDelete() {
     }
 
+    public void clickCancel() {
+    }
+
     public void clickLoad() {
-        clickForm();
+        clickEditing();
     }
 
     public void clickNew() {
         CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Form");
-        activeCard = "Form";
+        cl.show(this, "Edit");
+        activeCard = "Edit";
     }
 
-    public void clickForm() {
+    public void clickEditing() {
         CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Form");
-        activeCard = "Form";
+        cl.show(this, "Edit");
+        activeCard = "Edit";
     }
 
-    public void clickReport() {
+    public void clickBrowsing() {
         CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Report");
-        activeCard = "Report";
+        cl.show(this, "Browse");
+        activeCard = "Browse";
 
     }
 
     public void clickSave() {
-        internshipFormPanel1.save();
+        internshipEditPanel1.save();
     }
 
     public void switchAway() {
     }
 
     public void switchTo(String actionCommand) {
-        if (actionCommand.equalsIgnoreCase("Form")) {
-            clickForm();
+        if (actionCommand.equalsIgnoreCase("Edit")) {
+            clickEditing();
         } else {
-            clickReport();
+            clickBrowsing();
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cis406.InternshipFormPanel internshipFormPanel1;
-    private cis406.InternshipReportPanel internshipReportPanel1;
+    private cis406.InternshipBrowsePanel internshipBrowsePanel1;
+    private cis406.InternshipEditPanel internshipEditPanel1;
     // End of variables declaration//GEN-END:variables
 }

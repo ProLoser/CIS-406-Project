@@ -154,9 +154,11 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
         txaNotes.setText("");
         cboContact.setSelectedIndex(0);
     }
-    public void clickForm() {
+    public void clickCancel() {
     }
-    public void clickReport() {
+    public void clickEditing() {
+    }
+    public void clickBrowsing() {
     }
     public void switchTo(String actionCommand) {
     }
