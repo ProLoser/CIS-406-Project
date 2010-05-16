@@ -42,7 +42,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="scpNotes" pref="197" max="32767" attributes="0"/>
-                          <Component id="txtDate" alignment="0" pref="197" max="32767" attributes="1"/>
+                          <Component id="txtDate" alignment="0" min="-2" pref="98" max="-2" attributes="1"/>
                       </Group>
                   </Group>
               </Group>
@@ -65,8 +65,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtDate" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDate" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -79,11 +79,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="txtDate">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="txtDate" noResource="true"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblDate">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="lblDate.text"/>
@@ -152,6 +147,13 @@
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="cboContact" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtDate">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" resourceKey="txtDate.text"/>
+        <Property name="name" type="java.lang.String" value="txtDate" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
