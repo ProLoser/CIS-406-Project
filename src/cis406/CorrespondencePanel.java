@@ -55,7 +55,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
         lblContact.setText(resourceMap.getString("lblContact.text")); // NOI18N
         lblContact.setName("lblContact"); // NOI18N
 
-        cboContact.setModel(new CisComboBox("contact_person", "name"));
+        cboContact.setModel(new CisComboBox("contact_person", "last_name, first_name"));
         cboContact.setName("cboContact"); // NOI18N
 
         txtDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);

@@ -22,7 +22,7 @@ public class Contact {
     private int phone_first;
     private int phone_last;
     private int phone_ext;
-    private int phone;
+    private String phone;
     private String position;
     private int comm_method;
     private String description;
@@ -85,7 +85,8 @@ public class Contact {
         this.email = email;
     }
     public void setPhone(int phone_area, int phone_first, int phone_last, int phone_ext) {
-        this.phone = phone_area + phone_first + phone_last + phone_ext;
+        String phoneTemp = Integer.toString(phone_area) + Integer.toString(phone_first) + Integer.toString(phone_last) + Integer.toString(phone_ext);
+        this.phone = phoneTemp;
     }
     public void setPosition(String position) {
         this.position = position;
@@ -106,7 +107,7 @@ public class Contact {
         db.addField("city", city);
         db.addField("state", state);
         db.addField("email", email);
-        db.addField("phone", Integer.toString(phone));
+        db.addField("phone", phone);
         db.addField("position", position);
         db.addField("preferred_contact", Integer.toString(comm_method));
         db.addField("initial_contact_description", description);
