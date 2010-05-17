@@ -7,7 +7,7 @@ package cis406;
 
 /**
  *
- * @author Mark  Lenser
+ * @author Mark Lenser
  */
 public class Industry {
     private String name;

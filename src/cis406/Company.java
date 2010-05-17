@@ -11,6 +11,7 @@ package cis406;
  */
 public class Company {
     private String name;
+    private int industry_id;
 
     public Company(String name) {
         this.name = name;
@@ -21,6 +22,13 @@ public class Company {
     public void setName(String name) {
         this.name = name;
     }
+    public int getIndustryId() {
+        return industry_id;
+    }
+    public void setIndustryId(int industryId) {
+        this.industry_id = industryId;
+    }
+
 
     /**
      * Saves the company and returns the created id
@@ -30,6 +38,7 @@ public class Company {
         int newId = 0;
         Database db = new Database("company");
         db.addField("name", name);
+        db.addField("industry_id", industry_id);
         try {
             newId = db.insert();
         } catch (Exception e) {

@@ -178,7 +178,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblDescription1" min="-2" max="-2" attributes="0"/>
-                  <Component id="scpDescription" pref="120" max="32767" attributes="0"/>
+                  <Component id="scpDescription" pref="23" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -209,12 +209,57 @@
     <Component class="javax.swing.JComboBox" name="cboState">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value=""/>
-            <StringItem index="1" value="CA"/>
-            <StringItem index="2" value="OR"/>
-            <StringItem index="3" value="NV"/>
-            <StringItem index="4" value="etc"/>
+          <StringArray count="50">
+            <StringItem index="0" value="AL"/>
+            <StringItem index="1" value="AK"/>
+            <StringItem index="2" value="AZ"/>
+            <StringItem index="3" value="AR"/>
+            <StringItem index="4" value="CA"/>
+            <StringItem index="5" value="CO"/>
+            <StringItem index="6" value="CT"/>
+            <StringItem index="7" value="DE"/>
+            <StringItem index="8" value="FL"/>
+            <StringItem index="9" value="GA"/>
+            <StringItem index="10" value="HI"/>
+            <StringItem index="11" value="ID"/>
+            <StringItem index="12" value="IL"/>
+            <StringItem index="13" value="IN"/>
+            <StringItem index="14" value="IA"/>
+            <StringItem index="15" value="KS"/>
+            <StringItem index="16" value="KY"/>
+            <StringItem index="17" value="LA"/>
+            <StringItem index="18" value="ME"/>
+            <StringItem index="19" value="MD"/>
+            <StringItem index="20" value="MA"/>
+            <StringItem index="21" value="MI"/>
+            <StringItem index="22" value="MN"/>
+            <StringItem index="23" value="MS"/>
+            <StringItem index="24" value="MO"/>
+            <StringItem index="25" value="MT"/>
+            <StringItem index="26" value="NE"/>
+            <StringItem index="27" value="NV"/>
+            <StringItem index="28" value="NH"/>
+            <StringItem index="29" value="NJ"/>
+            <StringItem index="30" value="NM"/>
+            <StringItem index="31" value="NY"/>
+            <StringItem index="32" value="NC"/>
+            <StringItem index="33" value="ND"/>
+            <StringItem index="34" value="OH"/>
+            <StringItem index="35" value="OK"/>
+            <StringItem index="36" value="OR"/>
+            <StringItem index="37" value="PA"/>
+            <StringItem index="38" value="RI"/>
+            <StringItem index="39" value="SC"/>
+            <StringItem index="40" value="SD"/>
+            <StringItem index="41" value="TN"/>
+            <StringItem index="42" value="TX"/>
+            <StringItem index="43" value="UT"/>
+            <StringItem index="44" value="VT"/>
+            <StringItem index="45" value="VA"/>
+            <StringItem index="46" value="WA"/>
+            <StringItem index="47" value="WV"/>
+            <StringItem index="48" value="WI"/>
+            <StringItem index="49" value="WY"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="cboState" noResource="true"/>
@@ -227,6 +272,7 @@
       <Events>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtZipMouseExited"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtZipActionPerformed"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtZipFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmail">
@@ -375,7 +421,7 @@
       <Properties>
         <Property name="editable" type="boolean" value="true"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new CisComboBox(&quot;career_path&quot;, &quot;name&quot;)" type="code"/>
+          <Connection code="new CisComboBox(&quot;industry&quot;, &quot;industry_name&quot;)" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="cboIndustry" noResource="true"/>
       </Properties>
@@ -384,7 +430,7 @@
       <Properties>
         <Property name="editable" type="boolean" value="true"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new CisComboBox(&quot;career_path&quot;, &quot;name&quot;)" type="code"/>
+          <Connection code="new CisComboBox(&quot;company&quot;, &quot;name&quot;)" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="cboCompany" noResource="true"/>
       </Properties>

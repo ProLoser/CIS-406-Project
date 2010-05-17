@@ -71,7 +71,7 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
 
         txtCity.setName("txtCity"); // NOI18N
 
-        cboState.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "CA", "OR", "NV", "etc" }));
+        cboState.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
         cboState.setName("cboState"); // NOI18N
 
         txtZip.setName("txtZip"); // NOI18N
@@ -83,6 +83,11 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
         txtZip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtZipActionPerformed(evt);
+            }
+        });
+        txtZip.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtZipFocusLost(evt);
             }
         });
 
@@ -151,11 +156,11 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
         lblLName1.setName("lblLName1"); // NOI18N
 
         cboIndustry.setEditable(true);
-        cboIndustry.setModel(new CisComboBox("career_path", "name"));
+        cboIndustry.setModel(new CisComboBox("industry", "industry_name"));
         cboIndustry.setName("cboIndustry"); // NOI18N
 
         cboCompany.setEditable(true);
-        cboCompany.setModel(new CisComboBox("career_path", "name"));
+        cboCompany.setModel(new CisComboBox("company", "name"));
         cboCompany.setName("cboCompany"); // NOI18N
         cboCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,15 +324,15 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDescription1)
-                    .addComponent(scpDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                    .addComponent(scpDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCompanyActionPerformed
-        int company = cboCompany.getSelectedIndex();
+        String company = cboCompany.getSelectedItem().toString();
 
-        if (company == 0) {
+        if (company.equalsIgnoreCase("Cal Poly Pomona") ) {
             lblIndustryDivision.setText("Division:");
         } else {
             lblIndustryDivision.setText("Industry:");
@@ -339,10 +344,17 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     }//GEN-LAST:event_txtZipActionPerformed
 
     private void txtZipMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtZipMouseExited
+
+    }//GEN-LAST:event_txtZipMouseExited
+
+    private void txtZipFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtZipFocusLost
         String city = "";
         String state = "";
+        String zipfield = txtZip.getText();
+        Database db = new Database("Zip");
+        db.and("ZIP", zipfield);
         try {
-            ResultSet rs = Database.execute("select CITY, STATE from Zip WHERE ZIP = 92867");
+            ResultSet rs = db.select();
             while (rs.next()) {
                 city = rs.getString("CITY");
                 state = rs.getString("STATE");
@@ -353,7 +365,7 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
         }
         txtCity.setText(city);
         cboState.setSelectedItem(state);
-    }//GEN-LAST:event_txtZipMouseExited
+    }//GEN-LAST:event_txtZipFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -400,13 +412,6 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     }
     public void clickSave() {
         Contact record = new Contact();
-        // Saves the Company if it's a new entry
-        if (cboCompany.getSelectedIndex() == -1) {
-            Company comp = new Company(cboCompany.getSelectedItem().toString());
-            record.setCompanyId(comp.save());
-        } else {
-            record.setCompanyId(((ComboItem) cboCompany.getSelectedItem()).id);
-        }
         // Saves the Industry if it's a new entry
         if (cboIndustry.getSelectedIndex() == -1) {
             Industry indust = new Industry(cboIndustry.getSelectedItem().toString());
@@ -414,15 +419,21 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
         } else {
             record.setIndustryId(((ComboItem) cboIndustry.getSelectedItem()).id);
         }
+        // Saves the Company if it's a new entry
+        if (cboCompany.getSelectedIndex() == -1) {
+            Company comp = new Company(cboCompany.getSelectedItem().toString());
+            record.setCompanyId(comp.save());
+        } else {
+            record.setCompanyId(((ComboItem) cboCompany.getSelectedItem()).id);
+        }
         record.setFname(txtFName.getText());
         record.setLname(txtLName.getText());
-        record.setCompany_id(cboCompany.getSelectedIndex());
         record.setStreet(txtStreet.getText());
         record.setZip(Integer.parseInt(txtZip.getText()));
         record.setCity(txtCity.getText());
-        record.setState(cboState.getSelectedIndex());
+        record.setState(cboState.getSelectedItem().toString());
         record.setEmail(txtEmail.getText());
-        record.setPhone(Integer.parseInt(txtPhoneArea.getText()), Integer.parseInt(txtPhoneFirst.getText()), Integer.parseInt(txtPhoneLast.getText()));
+        record.setPhone(Integer.parseInt(txtPhoneArea.getText()), Integer.parseInt(txtPhoneFirst.getText()), Integer.parseInt(txtPhoneLast.getText()), Integer.parseInt(txtPhoneExt.getText()));
         record.setPosition(txtPosition.getText());
         record.setComm_method(cboCommMethod.getSelectedIndex());
         record.setDescription(txaDescription.getText());

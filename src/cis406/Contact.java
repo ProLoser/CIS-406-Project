@@ -16,11 +16,12 @@ public class Contact {
     private String street;
     private int zip;
     private String city;
-    private int state;
+    private String state;
     private String email;
     private int phone_area;
     private int phone_first;
     private int phone_last;
+    private int phone_ext;
     private int phone;
     private String position;
     private int comm_method;
@@ -31,7 +32,7 @@ public class Contact {
 
     public Contact() {
     }
-    public Contact(String fname, String lname, int company_id, String street, int zip, String city, int state, String email, int phone_area, int phone_first, int phone_last, String position, int comm_method, String description) {
+    public Contact(String fname, String lname, int company_id, String street, int zip, String city, String state, String email, int phone_area, int phone_first, int phone_last, int phone_ext, String position, int comm_method, String description) {
         setFname(fname);
         setLname(lname);
         setCompany_id(company_id);
@@ -40,7 +41,7 @@ public class Contact {
         setCity(city);
         setState(state);
         setEmail(email);
-        setPhone(phone_area, phone_first, phone_last);
+        setPhone(phone_area, phone_first, phone_last, phone_ext);
         setPosition(position);
         setComm_method(comm_method);
         setDescription(description);
@@ -59,8 +60,6 @@ public class Contact {
     public void setIndustryId(int industryId) {
         this.industryId = industryId;
     }
-
-
     public void setFname(String fname) {
         this.fname = fname;
     }
@@ -79,14 +78,14 @@ public class Contact {
     public void setCity(String city) {
         this.city = city;
     }
-    public void setState(int state) {
+    public void setState(String state) {
         this.state = state;
     }
     public void setEmail(String email) {
         this.email = email;
     }
-    public void setPhone(int phone_area, int phone_first, int phone_last) {
-        this.phone = phone_area + phone_first + phone_last;
+    public void setPhone(int phone_area, int phone_first, int phone_last, int phone_ext) {
+        this.phone = phone_area + phone_first + phone_last + phone_ext;
     }
     public void setPosition(String position) {
         this.position = position;
@@ -97,7 +96,6 @@ public class Contact {
     public void setDescription(String description) {
         this.description = description;
     }
-
     public void save() {
         Database db = new Database("contact_person");
         db.addField("first_name", fname);
@@ -106,7 +104,7 @@ public class Contact {
         db.addField("street", street);
         db.addField("zip", Integer.toString(zip));
         db.addField("city", city);
-        db.addField("state", Integer.toString(state));
+        db.addField("state", state);
         db.addField("email", email);
         db.addField("phone", Integer.toString(phone));
         db.addField("position", position);
