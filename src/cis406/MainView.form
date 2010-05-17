@@ -338,6 +338,23 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="databaseMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="databaseMenu.text"/>
+            <Property name="name" type="java.lang.String" value="databaseMenu" noResource="true"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="backupMenuItem">
+              <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="cis406.MainView" id="backupDatabase" methodName="backupDatabase"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="backupMenuItem.text"/>
+                <Property name="name" type="java.lang.String" value="backupMenuItem" noResource="true"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="statusPanel">
@@ -435,6 +452,16 @@
         </DimensionLayout>
       </Layout>
     </Container>
+    <Component class="javax.swing.JFileChooser" name="jFileChooser1">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jFileChooser1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFileChooser" name="jFileChooser2">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jFileChooser2" noResource="true"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="component" type="javax.swing.JComponent" editor="org.netbeans.modules.form.ComponentChooserEditor">

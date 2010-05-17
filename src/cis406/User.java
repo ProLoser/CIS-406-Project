@@ -5,6 +5,7 @@
 package cis406;
 
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -161,6 +162,10 @@ public class User {
         String hash = "";
         Boolean result = false;
 
+        if (User.getFailedLogins(username) > 2){
+            return false;
+        }
+
         try {
             hash = byteArrayToHexString(computeHash(password));
             Database db = new Database("users");
@@ -170,6 +175,7 @@ public class User {
             //ResultSet rs = Database.execute("select * from users where user_name = '" + username + "' and password = '" + hash + "'");
             while (rs.next()) {
                 result = true;
+                User.resetFailedLogons(username);
             }
         } catch (Exception e) {
             System.out.println("Could not execute query");
@@ -177,5 +183,104 @@ public class User {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static int getSecurityClearance(String username){
+        int clearance = 0;
+
+        try
+        {
+            ResultSet rs = Database.execute("select clearance from users where user_name = '" + username + "'");
+            while (rs.next())
+            {
+                clearance = rs.getInt("clearance");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Could not execute query");
+            System.out.println(e.getMessage());
+        }
+
+        return clearance;
+    }
+
+    public static void failedLogin(String username){
+        int failedLogins = getFailedLogins(username) + 1;
+
+        if (failedLogins < 3){
+        Database.executeWrite("update users set failed_logon_attempts = " + failedLogins + " where user_name = '" + username + "'");
+        JOptionPane.showMessageDialog(null, "You have " + failedLogins + " failed logins, after 3 your account will be disabled");
+        }
+        else {
+            Database.executeWrite("update users set failed_logon_attempts = " + failedLogins + "where user_name = '" + username + "'");
+            User.disableUser(username, 2);
+            JOptionPane.showMessageDialog(null, "You have " + failedLogins + " failed login attempts and your account has been disabled, contact the administrator.");
+        }
+    }
+
+    public static int getFailedLogins(String username){
+        int failedLogonAttempts = 0;
+        try
+        {
+            ResultSet rs = Database.execute("select failed_logon_attempts from users where user_name = '" + username + "'");
+            while (rs.next())
+            {
+                failedLogonAttempts = rs.getInt("failed_logon_attempts");
+                System.out.println(failedLogonAttempts);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Could not execute query");
+            System.out.println(e.getMessage());
+        }
+
+        return failedLogonAttempts;
+    }
+
+    public static void resetFailedLogons(String username) {
+        Database.executeWrite("update users set failed_logon_attempts = 0 where user_name = '" + username + "'");
+    }
+
+    public static boolean exists(String username){
+        boolean userExists = false;
+        try
+        {
+            ResultSet rs = Database.execute("select users_id from users where user_name = '" + username + "'");
+            while (rs.next())
+            {
+                userExists = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Could not execute query");
+            System.out.println(e.getMessage());
+        }
+
+        return userExists;
+    }
+
+    public static void disableUser(String username, int value){
+        Database.executeWrite("update users set status = " + value + " where user_name = '" + username + "'");
+    }
+
+    public static int getStatus(String username) {
+        try
+        {
+            ResultSet rs = Database.execute("select status from users where user_name = '" + username + "'");
+            while (rs.next())
+            {
+                int status = rs.getInt("status");
+                if (status == 2) {
+                    return 2;
+                }
+                else if (status == 1) {
+                    return 1;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Could not execute query");
+            System.out.println(e.getMessage());
+        }
+
+        return 0;
     }
 }
