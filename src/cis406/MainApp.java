@@ -16,9 +16,9 @@ public class MainApp extends SingleFrameApplication {
      */
     @Override
     protected void startup() {
-
-        if (UserLoginBox.login()) {
-            show(new MainView(this, 1, 1));
+        String[] loginResult = UserLoginBox.login();
+        if (Boolean.parseBoolean(loginResult[0])) {
+            show(new MainView(this, loginResult[1], Integer.parseInt(loginResult[2])));
 
             Thread sessionThread = new Thread(new SessionThread(), "thread1");
             sessionThread.start();

@@ -20,7 +20,7 @@ import org.jdesktop.application.Action;
  */
 public class UserLoginBox extends javax.swing.JDialog {
 
-    private static Boolean success = false;
+    private static String[] result = new String[3];
     private static String[] userInfo;
 
     /**
@@ -127,10 +127,17 @@ public class UserLoginBox extends javax.swing.JDialog {
     public void clickLogin() {
         getInputs();
         if (User.login(userInfo[0], userInfo[1])) {
-            success = true;
+            result[0] = "true";
+            result[1] = userInfo[0];
+            result[2] = Integer.toString(User.getSecurityClearance(userInfo[0]));
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Failed to login. Please try again.");
+            if (User.exists(userInfo[0])){
+                User.failedLogin(userInfo[0]);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Failed to login. Please try again.");
+            }
         }
     }
 
@@ -153,13 +160,17 @@ public class UserLoginBox extends javax.swing.JDialog {
      * Renders login box and returns to app success or failure boolean
      * @return
      */
-    public static Boolean login() {
+    public static String[] login() {
 
         UserLoginBox loginDialog = new UserLoginBox(new javax.swing.JFrame(), true);
         loginDialog.setVisible(true);
         //attempt to login
 
-        return success;
+        //get user security clearance for result string array
+
+
+
+        return result;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
