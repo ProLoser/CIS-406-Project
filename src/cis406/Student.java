@@ -243,30 +243,32 @@ public class Student extends Person {
     }
 
     public void save(){
+        java.sql.Date sqlDate;
         Database db = new Database("student");
         db.addField("bronco_id", broncoNum);
-        db.addField("bronco_id", Integer.toString(broncoNum));
         db.addField("last_name", lastName);
         db.addField("first_name", firstName);
         db.addField("email", email);
         db.addField("phone", phone);
         db.addField("class_standing", gradeLevel);
-        db.addField("last_update", updateDate.toString());
+
+        sqlDate = new java.sql.Date(updateDate.getTime());
+        db.addField("last_update", sqlDate);
         db.addField("interest", interests);
         db.addField("major", major);
         db.addField("minor", minor);
         db.addField("expected_graduation_quarter", gradDate);
         db.addField("relocate", relocate);
-        db.addField("missa_club", Integer.toString(clubMissa));
-        db.addField("fast_club", Integer.toString(clubFast));
-        db.addField("iwdsa_club", Integer.toString(clubIwdsa));
-        db.addField("swift_club", Integer.toString(clubSwift));
-        db.addField("other_club", Integer.toString(clubOther));
+        db.addField("missa_club", clubMissa);
+        db.addField("fast_club", clubFast);
+        db.addField("iwdsa_club", clubIwdsa);
+        db.addField("swift_club", clubSwift);
+        db.addField("other_club", clubOther);
         try {
             db.insert();
         } catch (Exception e) {
             System.out.println("Failed to save the student");
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         //String sqlStr = "INSERT INTO student (swift_club, other_club, phone, minor, relocate, missa_club, bronco_id, first_name, last_update, email, interest, last_name, expected_graduation_quarter, iwdsa_club, fast_club, class_standing, major) VALUES (clubSwift, clubOther, phone, minor, relocate, clubMissa, broncoNum, firstName, updateDate, email, interests, lastName, gradDate, clubIwdsa, clubFast, gradeLevel, major)";
         //Database.executeWrite( sqlStr);
