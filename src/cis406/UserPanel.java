@@ -96,7 +96,10 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
         ddlSecurityQuestions.setSelectedIndex(0);
     }
 
-    public void clickReport() {
+    public void clickCancel() {
+    }
+
+    public void clickBrowsing() {
         clickClear();
         String userID = SelectUserDialog.getValue();
 
@@ -123,7 +126,7 @@ public class UserPanel extends javax.swing.JPanel implements CisPanel{
 
     }
 
-    public void clickForm() {
+    public void clickEditing() {
 
     }
 

@@ -11,7 +11,7 @@ import java.util.Calendar;
  *
  * from http://www.rgagnon.com/javadetails/java-0106.html
  */
-public class Timer {
+public class TimerOLD {
 
     public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
 

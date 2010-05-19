@@ -16,8 +16,9 @@ public interface CisPanel {
     void clickLoad();
     void clickDelete();
     void clickClear();
-    void clickForm();
-    void clickReport();
+    void clickCancel();
+    void clickEditing();
+    void clickBrowsing();
     void switchTo(String actionCommand);
     void switchAway();
 

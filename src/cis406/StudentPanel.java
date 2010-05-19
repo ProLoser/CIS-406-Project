@@ -510,11 +510,14 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
 
     public void clickClear() {
     }
-
-    public void clickForm() {
+    
+    public void clickCancel() {
     }
 
-    public void clickReport() {
+    public void clickEditing() {
+    }
+
+    public void clickBrowsing() {
     }
 
     public void switchTo(String actionCommand) {

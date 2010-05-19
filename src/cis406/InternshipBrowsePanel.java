@@ -4,7 +4,7 @@
  */
 
 /*
- * InternshipReportPanel.java
+ * InternshipBrowsePanel.java
  *
  * Created on May 10, 2010, 2:47:41 PM
  */
@@ -15,10 +15,10 @@ package cis406;
  *
  * @author Dean
  */
-public class InternshipReportPanel extends javax.swing.JPanel implements CisPanel {
+public class InternshipBrowsePanel extends javax.swing.JPanel implements CisPanel {
 
-    /** Creates new form InternshipReportPanel */
-    public InternshipReportPanel() {
+    /** Creates new form InternshipBrowsePanel */
+    public InternshipBrowsePanel() {
         initComponents();
     }
 
@@ -63,39 +63,33 @@ public class InternshipReportPanel extends javax.swing.JPanel implements CisPane
     }// </editor-fold>//GEN-END:initComponents
 
     public void clickClear() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public void clickCancel() {
     }
 
     public void clickDelete() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void clickForm() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void clickEditing() {
     }
 
     public void clickLoad() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void clickNew() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void clickReport() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void clickBrowsing() {
     }
 
     public void clickSave() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void switchAway() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void switchTo(String actionCommand) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

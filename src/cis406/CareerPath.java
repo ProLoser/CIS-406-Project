@@ -34,6 +34,10 @@ public class CareerPath {
         this.name = name;
     }
 
+    /**
+     * Saves the career path and returns the created id
+     * @return newId if set to 0, save failed.
+     */
     public int save() {
         int newId = 0;
         Database db = new Database("career_path");

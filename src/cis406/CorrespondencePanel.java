@@ -1,19 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * CorrespondencePanel.java
- *
- * Created on May 4, 2010, 11:57:30 AM
- */
-
 package cis406;
 
 /**
  *
- * @author Mark
+ * @author Mark Lenser
  */
 public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel {
 
@@ -31,7 +20,6 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtDate = new javax.swing.JTextField();
         lblDate = new javax.swing.JLabel();
         lblType = new javax.swing.JLabel();
         cboType = new javax.swing.JComboBox();
@@ -40,10 +28,9 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
         txaNotes = new javax.swing.JTextArea();
         lblContact = new javax.swing.JLabel();
         cboContact = new javax.swing.JComboBox();
+        txtDate = new javax.swing.JFormattedTextField();
 
         setName("Form"); // NOI18N
-
-        txtDate.setName("txtDate"); // NOI18N
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(CorrespondencePanel.class);
         lblDate.setText(resourceMap.getString("lblDate.text")); // NOI18N
@@ -68,8 +55,12 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
         lblContact.setText(resourceMap.getString("lblContact.text")); // NOI18N
         lblContact.setName("lblContact"); // NOI18N
 
-        cboContact.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Joe", "Bob", "Billy", "etc" }));
+        cboContact.setModel(new CisComboBox("contact_person", "last_name, first_name"));
         cboContact.setName("cboContact"); // NOI18N
+
+        txtDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDate.setText(resourceMap.getString("txtDate.text")); // NOI18N
+        txtDate.setName("txtDate"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,7 +86,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                            .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))))
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,8 +102,8 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
                     .addComponent(cboType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDate))
+                    .addComponent(lblDate)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNotes)
@@ -131,7 +122,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
     private javax.swing.JLabel lblType;
     private javax.swing.JScrollPane scpNotes;
     private javax.swing.JTextArea txaNotes;
-    private javax.swing.JTextField txtDate;
+    private javax.swing.JFormattedTextField txtDate;
     // End of variables declaration//GEN-END:variables
 
     public void clickNew() {
@@ -154,9 +145,11 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
         txaNotes.setText("");
         cboContact.setSelectedIndex(0);
     }
-    public void clickForm() {
+    public void clickCancel() {
     }
-    public void clickReport() {
+    public void clickEditing() {
+    }
+    public void clickBrowsing() {
     }
     public void switchTo(String actionCommand) {
     }

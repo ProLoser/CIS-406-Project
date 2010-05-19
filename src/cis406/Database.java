@@ -1,5 +1,6 @@
 package cis406;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,8 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
-import javax.swing.DefaultComboBoxModel;
 
 /**
  * A database wrapping class. Either call the static methods for direct access
@@ -160,7 +159,7 @@ public class Database {
      */
     private void compilePreValues() {
         int i = 0;
-        
+
         try {
             for (i = 0; i < preValues.size(); i++) {
                 //System.out.println(preValues.get(i));
@@ -255,10 +254,12 @@ public class Database {
      * @return
      */
     public ResultSet select() throws Exception {
-        String query = "SELECT * FROM " + table + " " + joins + " " + compileConditions();
+        preValues = new ArrayList<Object>();
+        String query = "SELECT * FROM " + table + joins + compileConditions();
+        System.out.println("Query: " + query);
         preStatement = connect().prepareStatement(query);
         compilePreValues();
-        return execute(query);
+        return preStatement.executeQuery();
     }
 
     /**
@@ -269,7 +270,10 @@ public class Database {
         String query;
         preValues = new ArrayList<Object>();
         query = "SELECT " + implode(fields) + " FROM " + table + joins + compileConditions();
-        return execute(query);
+        System.out.println("Query: " + query);
+        preStatement = connect().prepareStatement(query);
+        compilePreValues();
+        return preStatement.executeQuery();
     }
 
     /**
@@ -505,6 +509,26 @@ public class Database {
             out += ary[i];
         }
         return out;
+    }
+
+    public static void backUpDatabase(Connection conn, String backupFolder) {
+
+        java.text.SimpleDateFormat todaysDate =
+                new java.text.SimpleDateFormat("yyyy-MM-dd");
+
+        String backupdirectory = backupFolder + "\\" + "INTERNSHIP DB BACKUP " +
+                todaysDate.format((java.util.Calendar.getInstance()).getTime());
+
+        try{
+            CallableStatement cs = conn.prepareCall("CALL SYSCS_UTIL.SYSCS_BACKUP_DATABASE(?)");
+            cs.setString(1, backupdirectory);
+            cs.execute();
+            cs.close();
+            System.out.println("backed up database to "+backupdirectory);
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+        }
     }
 
 }

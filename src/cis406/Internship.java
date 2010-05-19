@@ -65,12 +65,14 @@ public class Internship {
         return expiration.toString();
     }
 
-    public void setExpiration(String expiration) {
+    public boolean setExpiration(String expiration) {
         DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         try {
             this.expiration = df.parse(expiration);
+            return true;
         } catch (Exception e) {
             System.out.println("Failed to convert the expiration date");
+            return false;
         }
     }
 
@@ -86,12 +88,14 @@ public class Internship {
         return postDate.toString();
     }
 
-    public void setPostDate(String postDate) {
+    public boolean setPostDate(String postDate) {
         DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         try {
             this.postDate = df.parse(postDate);
+            return true;
         } catch (Exception e) {
             System.out.println("Failed to convert the post date");
+            return false;
         }
     }
 

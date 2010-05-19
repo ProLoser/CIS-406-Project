@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 /**
@@ -21,11 +22,15 @@ import javax.swing.JFrame;
 public class MainView extends FrameView {
 
     private int activeTabIndex;
+    final String[] assistantPanels = {"Users", "Security Log"};
+    final String[] coordinatorPanels = {"Users", "Security Log"};
 
-    public MainView(SingleFrameApplication app) {
+    public MainView(SingleFrameApplication app, String username, int security_level) {
         super(app);
 
         initComponents();
+
+        setupTabs(security_level);
 
         activeTabIndex = mainTabbedPane.getSelectedIndex();
 
@@ -108,6 +113,15 @@ public class MainView extends FrameView {
         MainApp.getApplication().show(settingsBox);
     }
 
+    @Action
+    public void backupDatabase() {
+        jFileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int success = jFileChooser2.showOpenDialog(menuBar);
+        if (success == jFileChooser2.APPROVE_OPTION) {
+            Database.backUpDatabase(Database.connect(), jFileChooser2.getSelectedFile().getAbsolutePath());
+        }
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -126,8 +140,8 @@ public class MainView extends FrameView {
         clearButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
-        formButton = new javax.swing.JToggleButton();
-        reportButton = new javax.swing.JToggleButton();
+        editButton = new javax.swing.JToggleButton();
+        browseButton = new javax.swing.JToggleButton();
         mainTabbedPane = new javax.swing.JTabbedPane();
         internshipPanel1 = new cis406.InternshipPanel();
         contactPanel1 = new cis406.ContactPanel();
@@ -142,6 +156,8 @@ public class MainView extends FrameView {
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
+        databaseMenu = new javax.swing.JMenu();
+        backupMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
         statusMessageLabel = new javax.swing.JLabel();
@@ -149,6 +165,8 @@ public class MainView extends FrameView {
         progressBar = new javax.swing.JProgressBar();
         activeViewButtonGroup = new javax.swing.ButtonGroup();
         jDialog1 = new javax.swing.JDialog();
+        jFileChooser1 = new javax.swing.JFileChooser();
+        jFileChooser2 = new javax.swing.JFileChooser();
 
         mainPanel.setName("mainPanel"); // NOI18N
 
@@ -214,30 +232,30 @@ public class MainView extends FrameView {
         jSeparator2.setName("jSeparator2"); // NOI18N
         mainToolBar.add(jSeparator2);
 
-        formButton.setAction(actionMap.get("clickForm")); // NOI18N
-        activeViewButtonGroup.add(formButton);
-        formButton.setIcon(resourceMap.getIcon("formButton.icon")); // NOI18N
-        formButton.setText(resourceMap.getString("formButton.text")); // NOI18N
-        formButton.setActionCommand(resourceMap.getString("formButton.actionCommand")); // NOI18N
-        formButton.setFocusable(false);
-        formButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        formButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        formButton.setName("formButton"); // NOI18N
-        formButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        mainToolBar.add(formButton);
+        editButton.setAction(actionMap.get("clickForm")); // NOI18N
+        activeViewButtonGroup.add(editButton);
+        editButton.setIcon(resourceMap.getIcon("editButton.icon")); // NOI18N
+        editButton.setText(resourceMap.getString("editButton.text")); // NOI18N
+        editButton.setActionCommand(resourceMap.getString("editButton.actionCommand")); // NOI18N
+        editButton.setFocusable(false);
+        editButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        editButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        editButton.setName("editButton"); // NOI18N
+        editButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mainToolBar.add(editButton);
 
-        reportButton.setAction(actionMap.get("clickReport")); // NOI18N
-        activeViewButtonGroup.add(reportButton);
-        reportButton.setIcon(resourceMap.getIcon("reportButton.icon")); // NOI18N
-        reportButton.setSelected(true);
-        reportButton.setText(resourceMap.getString("reportButton.text")); // NOI18N
-        reportButton.setActionCommand(resourceMap.getString("reportButton.actionCommand")); // NOI18N
-        reportButton.setFocusable(false);
-        reportButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        reportButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        reportButton.setName("reportButton"); // NOI18N
-        reportButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        mainToolBar.add(reportButton);
+        browseButton.setAction(actionMap.get("clickReport")); // NOI18N
+        activeViewButtonGroup.add(browseButton);
+        browseButton.setIcon(resourceMap.getIcon("browseButton.icon")); // NOI18N
+        browseButton.setSelected(true);
+        browseButton.setText(resourceMap.getString("browseButton.text")); // NOI18N
+        browseButton.setActionCommand(resourceMap.getString("browseButton.actionCommand")); // NOI18N
+        browseButton.setFocusable(false);
+        browseButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        browseButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        browseButton.setName("browseButton"); // NOI18N
+        browseButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mainToolBar.add(browseButton);
 
         mainTabbedPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         mainTabbedPane.setName("jTabbedPane"); // NOI18N
@@ -271,7 +289,7 @@ public class MainView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
         );
@@ -280,7 +298,7 @@ public class MainView extends FrameView {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(mainToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -314,6 +332,16 @@ public class MainView extends FrameView {
 
         menuBar.add(helpMenu);
 
+        databaseMenu.setText(resourceMap.getString("databaseMenu.text")); // NOI18N
+        databaseMenu.setName("databaseMenu"); // NOI18N
+
+        backupMenuItem.setAction(actionMap.get("backupDatabase")); // NOI18N
+        backupMenuItem.setText(resourceMap.getString("backupMenuItem.text")); // NOI18N
+        backupMenuItem.setName("backupMenuItem"); // NOI18N
+        databaseMenu.add(backupMenuItem);
+
+        menuBar.add(databaseMenu);
+
         statusPanel.setName("statusPanel"); // NOI18N
 
         statusPanelSeparator.setName("statusPanelSeparator"); // NOI18N
@@ -333,7 +361,7 @@ public class MainView extends FrameView {
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 536, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 562, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -364,6 +392,10 @@ public class MainView extends FrameView {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        jFileChooser1.setName("jFileChooser1"); // NOI18N
+
+        jFileChooser2.setName("jFileChooser2"); // NOI18N
+
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
@@ -379,21 +411,35 @@ public class MainView extends FrameView {
         }
     }//GEN-LAST:event_mainTabbedPaneStateChanged
 
+    private void setupTabs (int security_level){
+        if (security_level == 1){
+            for (int i = 0; i < coordinatorPanels.length; i++){
+                mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(coordinatorPanels[i]));
+            }
+            settingsMenuItem.setEnabled(false);
+            backupMenuItem.setEnabled(false);
+        }
+        else if (security_level == 2){
+            for (int i = 0; i < assistantPanels.length; i++){
+                mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(assistantPanels[i]));
+            }
+            settingsMenuItem.setEnabled(false);
+            backupMenuItem.setEnabled(false);
+        }
+    }
+
     @Action
     public void clickNew() {
-        changeButtons("Form");
         ((CisPanel) mainTabbedPane.getSelectedComponent()).clickNew();
     }
 
     @Action
     public void clickSave() {
-        changeButtons("Report");
         ((CisPanel) mainTabbedPane.getSelectedComponent()).clickSave();
     }
 
     @Action
     public void clickLoad() {
-        changeButtons("Form");
         ((CisPanel) mainTabbedPane.getSelectedComponent()).clickLoad();
     }
 
@@ -409,50 +455,34 @@ public class MainView extends FrameView {
 
     @Action
     public void clickCancel() {
-        changeButtons("Report");
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickCancel();
     }
 
     @Action
     public void clickForm() {
-        changeButtons("Form");
-        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickForm();
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickEditing();
     }
 
     @Action
     public void clickReport() {
-        changeButtons("Report");
-        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickReport();
-    }
-
-
-    public void changeButtons(String mode) {
-        if (mode.equalsIgnoreCase("Form")) {
-            newButton.setEnabled(false);
-            saveButton.setEnabled(true);
-            loadButton.setEnabled(false);
-            deleteButton.setEnabled(false);
-            clearButton.setEnabled(true);
-            cancelButton.setEnabled(true);
-        } else {
-            newButton.setEnabled(true);
-            saveButton.setEnabled(false);
-            loadButton.setEnabled(true);
-            deleteButton.setEnabled(true);
-            clearButton.setEnabled(false);
-            cancelButton.setEnabled(false);
-        }
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickBrowsing();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup activeViewButtonGroup;
+    private javax.swing.JMenuItem backupMenuItem;
+    private javax.swing.JToggleButton browseButton;
     private javax.swing.JButton cancelButton;
     public javax.swing.JButton clearButton;
     private cis406.ContactPanel contactPanel1;
     private cis406.CorrespondencePanel correspondence1;
+    private javax.swing.JMenu databaseMenu;
     public javax.swing.JButton deleteButton;
-    private javax.swing.JToggleButton formButton;
+    private javax.swing.JToggleButton editButton;
     private cis406.InternshipPanel internshipPanel1;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     public javax.swing.JButton loadButton;
@@ -462,7 +492,6 @@ public class MainView extends FrameView {
     private javax.swing.JMenuBar menuBar;
     public javax.swing.JButton newButton;
     private javax.swing.JProgressBar progressBar;
-    private javax.swing.JToggleButton reportButton;
     public javax.swing.JButton saveButton;
     private cis406.SecurityLogPanel securityLogPanel1;
     private javax.swing.JMenuItem settingsMenuItem;
