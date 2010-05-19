@@ -11,8 +11,7 @@
 
 package cis406;
 
-import java.sql.ResultSet;
-import javax.swing.DefaultListModel;
+import java.awt.CardLayout;
 
 /**
  *
@@ -23,7 +22,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
     /** Creates new form SystemSettingsPanel */
     public SecurityLogPanel() {
         initComponents();
-
+        /*
         DefaultListModel model = new DefaultListModel();
         try {
             ResultSet rs = Database.execute("select distinct users_id from user_log");
@@ -36,8 +35,16 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
             System.out.println("Could not execute query");
             System.out.println(e.getMessage());
         }
+          */
+      //  lstUsers.setModel(model);
+    }
 
-        lstUsers.setModel(model);
+    static public CisTable generateTable() {
+        CisTable table = new CisTable("user_log");
+        table.addDisplayField("users_id");
+        table.addDisplayField("date");
+        table.addDisplayField("description");
+        return table.parseData();
     }
 
     public void clickNew() {
@@ -60,11 +67,13 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void clickCancel() {
-
+        
     }
 
     public void clickBrowsing() {
-
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Report");
+        //activeCard = "Report";
     }
 
     public void clickEditing() {
@@ -88,93 +97,15 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstUsers = new javax.swing.JList();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        lstUserLogs = new javax.swing.JList();
-        jLabel6 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtLogDescription = new javax.swing.JTextArea();
-        txtLogID = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtUserID = new javax.swing.JTextField();
-        txtDate = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jTable1 = new javax.swing.JTable();
 
         setName("Form"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        lstUsers.setName("lstUsers"); // NOI18N
-        lstUsers.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lstUsersMouseClicked(evt);
-            }
-        });
-        lstUsers.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstUsersValueChanged(evt);
-            }
-        });
-        lstUsers.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                lstUsersComponentAdded(evt);
-            }
-        });
-        jScrollPane1.setViewportView(lstUsers);
-
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(SecurityLogPanel.class);
-        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
-        jLabel4.setName("jLabel4"); // NOI18N
-
-        jScrollPane3.setName("jScrollPane3"); // NOI18N
-
-        lstUserLogs.setName("lstUserLogs"); // NOI18N
-        lstUserLogs.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lstUserLogsMouseClicked(evt);
-            }
-        });
-        lstUserLogs.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstUserLogsValueChanged(evt);
-            }
-        });
-        jScrollPane3.setViewportView(lstUserLogs);
-
-        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
-        jLabel6.setName("jLabel6"); // NOI18N
-
-        jScrollPane2.setName("jScrollPane2"); // NOI18N
-
-        txtLogDescription.setColumns(20);
-        txtLogDescription.setEditable(false);
-        txtLogDescription.setRows(5);
-        txtLogDescription.setName("txtLogDescription"); // NOI18N
-        jScrollPane2.setViewportView(txtLogDescription);
-
-        txtLogID.setEditable(false);
-        txtLogID.setName("txtLogID"); // NOI18N
-
-        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
-        jLabel5.setName("jLabel5"); // NOI18N
-
-        txtUserID.setEditable(false);
-        txtUserID.setName("txtUserID"); // NOI18N
-
-        txtDate.setEditable(false);
-        txtDate.setName("txtDate"); // NOI18N
-
-        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
-        jLabel7.setName("jLabel7"); // NOI18N
-
-        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
-        jLabel8.setName("jLabel8"); // NOI18N
-
-        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
-        jLabel9.setName("jLabel9"); // NOI18N
+        jTable1.setModel(generateTable());
+        jTable1.setName("jTable1"); // NOI18N
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -182,117 +113,22 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(txtUserID, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(txtLogID, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtLogID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lstUsersValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstUsersValueChanged
-
-}//GEN-LAST:event_lstUsersValueChanged
-
-    private void lstUsersComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_lstUsersComponentAdded
-
-}//GEN-LAST:event_lstUsersComponentAdded
-
-    private void lstUserLogsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstUserLogsValueChanged
-
-}//GEN-LAST:event_lstUserLogsValueChanged
-
-    private void lstUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstUsersMouseClicked
-        DefaultListModel model = new DefaultListModel();
-        try {
-            ResultSet rs = Database.execute("select user_log_id from user_log where users_id = '" + lstUsers.getSelectedValue() + "'");
-            while (rs.next()) {
-                int pos = model.getSize();
-                model.add(pos, rs.getString("user_log_id"));
-            }
-
-        } catch (Exception e) {
-            System.out.println("Could not execute query");
-            System.out.println(e.getMessage());
-        }
-
-        lstUserLogs.setModel(model);
-    }//GEN-LAST:event_lstUsersMouseClicked
-
-    private void lstUserLogsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstUserLogsMouseClicked
-        SecurityLog log = new SecurityLog();
-        String[] logInfo = log.getUserLog(lstUserLogs.getSelectedValue().toString());
-        txtLogID.setText(logInfo[0]);
-        txtUserID.setText(logInfo[3]);
-        txtDate.setText(logInfo[1]);
-        txtLogDescription.setText(logInfo[2]);
-    }//GEN-LAST:event_lstUserLogsMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList lstUserLogs;
-    private javax.swing.JList lstUsers;
-    private javax.swing.JTextField txtDate;
-    private javax.swing.JTextArea txtLogDescription;
-    private javax.swing.JTextField txtLogID;
-    private javax.swing.JTextField txtUserID;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
 }

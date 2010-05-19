@@ -22,6 +22,22 @@ public class User {
     int status;
     int id;
 
+    public User(int securityLevel, String fName, String lName, String email,
+            String password, String username, int status) {
+        this.securityLevel = securityLevel;
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.status = status;
+
+    }
+
+    public User() {
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public String getUsername() {
         return username;
     }
@@ -40,21 +56,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public User(int securityLevel, String fName, String lName, String email,
-            String password, String username, int status) {
-        this.securityLevel = securityLevel;
-        this.fName = fName;
-        this.lName = lName;
-        this.email = email;
-        this.password = password;
-        this.username = username;
-        this.status = status;
-
-    }
-
-    public User() {
     }
 
     public String getEmail() {
@@ -100,42 +101,48 @@ public class User {
     public void setlName(String lName) {
         this.lName = lName;
     }
+    
+    // </editor-fold>
 
-    public void add() {
-        Database db = new Database("users");
-        db.addField("user_id", id);
-        db.addField("username", username);
-        db.addField("password", password);
-        db.addField("first_name", fName);
-        db.addField("last_name", lName);
-        db.addField("clearance", securityLevel);
-        db.addField("email", email);
-        db.addField("status", status);
-
+    /**
+     * Use this method to create a new user in the database
+     * after using the set methods in this class to add user
+     * information
+     */
+    public void addUser() {
         try {
-            db.insert();
+            Database.executeWrite("INSERT INTO users (first_name, user_name, status, email, last_name, clearance, password) VALUES ('" + fName + "', '" + username + "', " + status + ", '" + email + "', '" + lName + "', " + securityLevel + ", '" + byteArrayToHexString(computeHash("P@ssw0rd")) + "')");
         } catch (Exception e) {
             System.out.println("Failed to add the user");
             System.out.println(e.getMessage());
         }
     }
 
-    public static void delete(int userId) {
-        Database.delete("user", userId);
-    }
-
-    public void update() {
+    /**
+     * Update row in the database for the user you just instantiated
+     * after using the set methods in this class to add user
+     * information
+     */
+    public void updateUser() {
         String hash = "";
         try {
             hash = byteArrayToHexString(computeHash(password));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Database.executeWrite("UPDATE user SET password = '"
-                + hash + "', status = '" + status + "', first_name = '" + fName
-                + "', last_name = '" + lName + "', clearance = '" + securityLevel
-                + "', email = '" + email + "', status = '" + status + "', username = '"
-                + username + "' WHERE user_id = '" + id + "'");
+        Database.executeWrite("UPDATE users SET password = '"
+                + hash + "', status = " + status + ", first_name = '" + fName
+                + "', last_name = '" + lName + "', clearance = " + securityLevel
+                + ", email = '" + email + "' WHERE user_name = '" + username + "'");
+    }
+
+    /**
+     * Disable or enable a user (you shouldn't delete a user ever)
+     * @param username The user_name in the users database that you want to change the status of
+     * @param value 0 for disable, 1 for enable, 2 for disabled for too many unsuccessful login attempts
+     */
+    public static void changeStatus(String username, int value){
+        Database.executeWrite("update users set status = " + value + " where user_name = '" + username + "'");
     }
 
     public static byte[] computeHash(String x) throws Exception {
@@ -213,7 +220,7 @@ public class User {
         }
         else {
             Database.executeWrite("update users set failed_logon_attempts = " + failedLogins + "where user_name = '" + username + "'");
-            User.disableUser(username, 2);
+            User.changeStatus(username, 2);
             JOptionPane.showMessageDialog(null, "You have " + failedLogins + " failed login attempts and your account has been disabled, contact the administrator.");
         }
     }
@@ -236,11 +243,19 @@ public class User {
 
         return failedLogonAttempts;
     }
-
+    /**
+     *
+     * @param username
+     */
     public static void resetFailedLogons(String username) {
         Database.executeWrite("update users set failed_logon_attempts = 0 where user_name = '" + username + "'");
     }
 
+    /**
+     * Check if a user_name is present in the users table
+     * @param username The user_name in the users table you want to check for
+     * @return Returns true or false based on whether the user exists
+     */
     public static boolean exists(String username){
         boolean userExists = false;
         try
@@ -258,10 +273,12 @@ public class User {
         return userExists;
     }
 
-    public static void disableUser(String username, int value){
-        Database.executeWrite("update users set status = " + value + " where user_name = '" + username + "'");
-    }
-
+    /**
+     *
+     * @param username The username you want to look up the status for
+     * @return Returns an integer for a users status.  0 for disabled, 1 for
+     * enabled, 2 for disabled because of unsuccessful login attempts
+     */
     public static int getStatus(String username) {
         try
         {
@@ -280,7 +297,6 @@ public class User {
             System.out.println("Could not execute query");
             System.out.println(e.getMessage());
         }
-
         return 0;
     }
 }

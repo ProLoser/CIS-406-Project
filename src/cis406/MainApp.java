@@ -19,7 +19,6 @@ public class MainApp extends SingleFrameApplication {
         String[] loginResult = UserLoginBox.login();
         if (Boolean.parseBoolean(loginResult[0])) {
             show(new MainView(this, loginResult[1], Integer.parseInt(loginResult[2])));
-
             Thread sessionThread = new Thread(new SessionThread(), "thread1");
             sessionThread.start();
         } else {

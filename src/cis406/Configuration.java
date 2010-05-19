@@ -124,12 +124,9 @@ public class Configuration {
             BufferedReader in = new BufferedReader(new FileReader("internapp.config"));
             String str;
             while ((str = in.readLine()) != null) {
-                System.out.println(str);
                 config = str.split(",");
             }
             in.close();
-
-                System.out.println(config[1]);
         } catch (IOException e) {
             System.out.println(e.toString());
         }
