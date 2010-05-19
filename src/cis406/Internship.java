@@ -5,10 +5,11 @@
 package cis406;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -148,8 +149,30 @@ public class Internship {
      * @return
      */
     static public CisTable generateTable() {
-        CisTable table = new CisTable("internship");
-        table.setIdField("internship_id");
-        return table.parseData();
+        Database db = new Database("internship");
+        CisTable table = null;
+        Map<String, String> fields = new HashMap<String, String>();
+
+        // Prepare the database query to be used to populate the table
+        db.innerJoin("company");
+        db.innerJoin("career_path");
+        // Populating a map of my fields so that I can choose which columns to
+        // display and what labels to display them as. Use null to not alias.
+        fields.put("title", null);
+        fields.put("post_date", "posted");
+        fields.put("expiration", "expires");
+        fields.put("quantity", "positions");
+        // Use table.fieldname when querying multiple tables joined together
+        fields.put("career_path.name", "career_path");
+        fields.put("company.name", "company");
+        try {
+            // Generate the table from the query
+            table = new CisTable(db.select(fields));
+            table.parseData();
+        } catch (Exception e) {
+            System.out.println("Failed to load the internship table");
+            System.out.println(e.getMessage());
+        }
+        return table;
     }
 }
