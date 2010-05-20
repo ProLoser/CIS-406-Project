@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,7 @@ public class Internship {
     private Date expiration;
     private int quantity;
     private String attachment;
+    private String message = "";
 
     public Internship() {
     }
@@ -116,30 +118,34 @@ public class Internship {
     }
 
     public void save() {
-        java.sql.Date sqlDate;
-        Database db = new Database("internship");
-        db.addField("title", title);
-        // Add Attachment
-        File attachmentFile = new File(attachment);
-        //db.addField("attachment", attachmentFile);
+        if (validateInternship()) {
+            java.sql.Date sqlDate;
+            Database db = new Database("internship");
+            db.addField("title", title);
+            // Add Attachment
+            File attachmentFile = new File(attachment);
+            //db.addField("attachment", attachmentFile);
 
-        db.addField("company_id", companyId);
-        db.addField("career_path_id", careerPathId);
-        // Add date fields
+            db.addField("company_id", companyId);
+            db.addField("career_path_id", careerPathId);
+            // Add date fields
 
-        sqlDate = new java.sql.Date(postDate.getTime());
-        db.addField("post_date", sqlDate);
-        if (expiration != null) {
-            sqlDate = new java.sql.Date(expiration.getTime());
-            db.addField("expiration", sqlDate);
-        }
-        db.addField("description", description);
-        db.addField("quantity", quantity);
-        try {
-            db.insert();
-        } catch (Exception e) {
-            System.out.println("Failed to add the internship");
-            System.out.println(e.getMessage());
+            sqlDate = new java.sql.Date(postDate.getTime());
+            db.addField("post_date", sqlDate);
+            if (expiration != null) {
+                sqlDate = new java.sql.Date(expiration.getTime());
+                db.addField("expiration", sqlDate);
+            }
+            db.addField("description", description);
+            db.addField("quantity", quantity);
+            try {
+                db.insert();
+            } catch (Exception e) {
+                System.out.println("Failed to add the internship");
+                System.out.println(e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, message);
         }
     }
 
@@ -151,5 +157,28 @@ public class Internship {
         CisTable table = new CisTable("internship");
         table.setIdField("internship_id");
         return table.parseData();
+    }
+
+    /**
+     * Validator method for intenship form fields
+     * @return
+     */
+    public boolean validateInternship() {
+        boolean validForm = true;
+        if (title.isEmpty()) {
+            message = message + "Please enter an Internship Title\n";
+            validForm = false;
+        }
+        if (quantity <= 0) {
+            message = message + "Please ensure that internship positions are 1 or more\n";
+            validForm = false;
+        }
+        if (postDate.after(expiration)) {
+            message = message + "Expiration date must be after post date\n";
+            validForm = false;
+        }
+
+
+        return validForm;
     }
 }
