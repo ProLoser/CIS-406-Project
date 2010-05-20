@@ -75,6 +75,10 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
         jLabel25 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnInternship = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setName("Form"); // NOI18N
 
@@ -228,6 +232,18 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
         btnInternship.setName("btnInternship"); // NOI18N
         btnInternship.setNextFocusableComponent(txtBroncoNum);
 
+        jLabel2.setName("jLabel2"); // NOI18N
+
+        jLabel4.setFont(resourceMap.getFont("jLabel4.font")); // NOI18N
+        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
+        jLabel4.setName("jLabel4"); // NOI18N
+
+        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
+        jLabel5.setName("jLabel5"); // NOI18N
+
+        jCheckBox1.setText(resourceMap.getString("jCheckBox1.text")); // NOI18N
+        jCheckBox1.setName("jCheckBox1"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -261,6 +277,10 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
                 .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnInternship)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -313,7 +333,12 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
                                 .addComponent(chkRelocate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel24))))
-                    .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -388,10 +413,18 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(92, 92, 92)
-                        .addComponent(jLabel1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(jCheckBox1)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel2))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addComponent(btnInternship)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -415,6 +448,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
     private javax.swing.JCheckBox chkOtherClub;
     private javax.swing.JCheckBox chkRelocate;
     private javax.swing.JCheckBox chkSWIFT;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -426,6 +460,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -433,6 +468,8 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -470,7 +507,9 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
     private Boolean chkRelocateTst;
     HashMap fields = new HashMap();
     private String lastUpdate;
-    String[] quarters = {"Fall", "Spring", "Summer", "Winter"};
+    Date now = new Date();
+    String nowTime = now.toString();
+    String[] quarters = {"Fall", "Winter", "Spring", "Summer"};
     String[] term_year = { "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"};
     String[] standing = {"Freshman ( <44 units ) ", "Sophomore ( 45-89 units ) ", "Junior( 90-134 units ) ", "Senior ( 135+ units ) "};
     public void clickNew() {
@@ -484,7 +523,6 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
         newStudent.email = txtEmail.getText();
         newStudent.phone = txtPhone.getText();
         newStudent.gradeLevel = cboStanding.getSelectedItem().toString();
-        Date now = new Date();
         newStudent.updateDate = now;
         newStudent.interests = txaInterests.getText();
         newStudent.major = cboMajor.getSelectedItem().toString();
