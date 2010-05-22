@@ -1,14 +1,14 @@
 package cis406;
-
-import java.sql.ResultSet;
+import java.awt.CardLayout;
 
 /**
  *
- * @author Mark Lenser
+ * @author mark
  */
-public class ContactPanel extends javax.swing.JPanel implements CisPanel {
+public class ContactPanel extends javax.swing.JPanel {
+    String activeCard = "Edit";
 
-    /** Creates new form AddContact */
+    /** Creates new form ContactPanel */
     public ContactPanel() {
         initComponents();
     }
@@ -22,453 +22,45 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtFName = new javax.swing.JTextField();
-        txtLName = new javax.swing.JTextField();
-        txtStreet = new javax.swing.JTextField();
-        txtCity = new javax.swing.JTextField();
-        cboState = new javax.swing.JComboBox();
-        txtZip = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
-        txtPhoneArea = new javax.swing.JTextField();
-        txtPhoneFirst = new javax.swing.JTextField();
-        txtPhoneLast = new javax.swing.JTextField();
-        txtPosition = new javax.swing.JTextField();
-        cboCommMethod = new javax.swing.JComboBox();
-        scpDescription = new javax.swing.JScrollPane();
-        txaDescription = new javax.swing.JTextArea();
-        txtPhoneDash1 = new javax.swing.JLabel();
-        lblPhoneRightParenthesis1 = new javax.swing.JLabel();
-        txtPhoneLeftParenthesis1 = new javax.swing.JLabel();
-        lblCommMethod1 = new javax.swing.JLabel();
-        lblDescription1 = new javax.swing.JLabel();
-        lblPosition1 = new javax.swing.JLabel();
-        lblPhone1 = new javax.swing.JLabel();
-        lblEmail1 = new javax.swing.JLabel();
-        lblState1 = new javax.swing.JLabel();
-        lblCity1 = new javax.swing.JLabel();
-        lblZip1 = new javax.swing.JLabel();
-        lblStreet1 = new javax.swing.JLabel();
-        lblFName = new javax.swing.JLabel();
-        lblLName1 = new javax.swing.JLabel();
-        cboIndustry = new javax.swing.JComboBox();
-        cboCompany = new javax.swing.JComboBox();
-        lblCompany = new javax.swing.JLabel();
-        lblIndustryDivision = new javax.swing.JLabel();
-        lblPhoneExt = new javax.swing.JLabel();
-        txtPhoneExt = new javax.swing.JTextField();
-        lblCompanyTitle = new javax.swing.JLabel();
-        lblCompanyTitle1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        contactBrowsePanel1 = new cis406.ContactBrowsePanel();
+        contactEditPanel1 = new cis406.ContactEditPanel();
 
         setName("Form"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(681, 400));
+        setLayout(new java.awt.CardLayout());
 
-        txtFName.setName("txtFName"); // NOI18N
+        contactBrowsePanel1.setName("contactBrowsePanel1"); // NOI18N
 
-        txtLName.setName("txtLName"); // NOI18N
-
-        txtStreet.setName("txtStreet"); // NOI18N
-
-        txtCity.setName("txtCity"); // NOI18N
-
-        cboState.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
-        cboState.setName("cboState"); // NOI18N
-
-        txtZip.setName("txtZip"); // NOI18N
-        txtZip.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtZipMouseExited(evt);
-            }
-        });
-        txtZip.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtZipActionPerformed(evt);
-            }
-        });
-        txtZip.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtZipFocusLost(evt);
-            }
-        });
-
-        txtEmail.setName("txtEmail"); // NOI18N
-
-        txtPhoneArea.setName("txtPhoneArea"); // NOI18N
-
-        txtPhoneFirst.setMaximumSize(new java.awt.Dimension(3, 3));
-        txtPhoneFirst.setName("txtPhoneFirst"); // NOI18N
-
-        txtPhoneLast.setName("txtPhoneLast"); // NOI18N
-
-        txtPosition.setName("txtPosition"); // NOI18N
-
-        cboCommMethod.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Email", "Phone" }));
-        cboCommMethod.setName("cboCommMethod"); // NOI18N
-
-        scpDescription.setName("scpDescription"); // NOI18N
-
-        txaDescription.setColumns(20);
-        txaDescription.setRows(5);
-        txaDescription.setName("txaDescription"); // NOI18N
-        scpDescription.setViewportView(txaDescription);
-
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(ContactPanel.class);
-        txtPhoneDash1.setText(resourceMap.getString("txtPhoneDash1.text")); // NOI18N
-        txtPhoneDash1.setName("txtPhoneDash1"); // NOI18N
-
-        lblPhoneRightParenthesis1.setText(resourceMap.getString("lblPhoneRightParenthesis1.text")); // NOI18N
-        lblPhoneRightParenthesis1.setName("lblPhoneRightParenthesis1"); // NOI18N
-
-        txtPhoneLeftParenthesis1.setText(resourceMap.getString("txtPhoneLeftParenthesis1.text")); // NOI18N
-        txtPhoneLeftParenthesis1.setName("txtPhoneLeftParenthesis1"); // NOI18N
-
-        lblCommMethod1.setText(resourceMap.getString("lblCommMethod1.text")); // NOI18N
-        lblCommMethod1.setName("lblCommMethod1"); // NOI18N
-
-        lblDescription1.setText(resourceMap.getString("lblDescription1.text")); // NOI18N
-        lblDescription1.setName("lblDescription1"); // NOI18N
-
-        lblPosition1.setText(resourceMap.getString("lblPosition1.text")); // NOI18N
-        lblPosition1.setName("lblPosition1"); // NOI18N
-
-        lblPhone1.setText(resourceMap.getString("lblPhone1.text")); // NOI18N
-        lblPhone1.setName("lblPhone1"); // NOI18N
-
-        lblEmail1.setText(resourceMap.getString("lblEmail1.text")); // NOI18N
-        lblEmail1.setName("lblEmail1"); // NOI18N
-
-        lblState1.setText(resourceMap.getString("lblState1.text")); // NOI18N
-        lblState1.setName("lblState1"); // NOI18N
-
-        lblCity1.setText(resourceMap.getString("lblCity1.text")); // NOI18N
-        lblCity1.setName("lblCity1"); // NOI18N
-
-        lblZip1.setText(resourceMap.getString("lblZip1.text")); // NOI18N
-        lblZip1.setName("lblZip1"); // NOI18N
-
-        lblStreet1.setText(resourceMap.getString("lblStreet1.text")); // NOI18N
-        lblStreet1.setName("lblStreet1"); // NOI18N
-
-        lblFName.setText(resourceMap.getString("lblFName.text")); // NOI18N
-        lblFName.setName("lblFName"); // NOI18N
-
-        lblLName1.setText(resourceMap.getString("lblLName1.text")); // NOI18N
-        lblLName1.setName("lblLName1"); // NOI18N
-
-        cboIndustry.setEditable(true);
-        cboIndustry.setModel(new CisComboBox("industry", "industry_name"));
-        cboIndustry.setName("cboIndustry"); // NOI18N
-
-        cboCompany.setEditable(true);
-        cboCompany.setModel(new CisComboBox("company", "name"));
-        cboCompany.setName("cboCompany"); // NOI18N
-        cboCompany.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboCompanyActionPerformed(evt);
-            }
-        });
-
-        lblCompany.setText(resourceMap.getString("lblCompany.text")); // NOI18N
-        lblCompany.setName("lblCompany"); // NOI18N
-
-        lblIndustryDivision.setText(resourceMap.getString("lblIndustryDivision.text")); // NOI18N
-        lblIndustryDivision.setName("lblIndustryDivision"); // NOI18N
-
-        lblPhoneExt.setText(resourceMap.getString("lblPhoneExt.text")); // NOI18N
-        lblPhoneExt.setName("lblPhoneExt"); // NOI18N
-
-        txtPhoneExt.setName("txtPhoneExt"); // NOI18N
-
-        lblCompanyTitle.setFont(resourceMap.getFont("lblCompanyTitle.font")); // NOI18N
-        lblCompanyTitle.setText(resourceMap.getString("lblCompanyTitle.text")); // NOI18N
-        lblCompanyTitle.setName("lblCompanyTitle"); // NOI18N
-
-        lblCompanyTitle1.setFont(resourceMap.getFont("lblCompanyTitle1.font")); // NOI18N
-        lblCompanyTitle1.setText(resourceMap.getString("lblCompanyTitle1.text")); // NOI18N
-        lblCompanyTitle1.setName("lblCompanyTitle1"); // NOI18N
-
-        jSeparator1.setName("jSeparator1"); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCompanyTitle)
-                        .addContainerGap(605, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCompanyTitle1)
-                        .addContainerGap(617, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCity1)
-                                    .addComponent(lblState1)
-                                    .addComponent(lblPhone1)
-                                    .addComponent(lblStreet1)
-                                    .addComponent(lblZip1)
-                                    .addComponent(lblEmail1)
-                                    .addComponent(lblPhoneExt)
-                                    .addComponent(lblPosition1)
-                                    .addComponent(lblCommMethod1)
-                                    .addComponent(lblDescription1)
-                                    .addComponent(lblFName))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPhoneExt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cboState, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtPhoneLeftParenthesis1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPhoneArea, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblPhoneRightParenthesis1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPhoneFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPhoneDash1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPhoneLast, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(cboCommMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblLName1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(34, 34, 34))
-                                    .addComponent(scpDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lblCompany)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cboCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(46, 46, 46)
-                                    .addComponent(lblIndustryDivision)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cboIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(15, 15, 15))))
+        org.jdesktop.layout.GroupLayout contactBrowsePanel1Layout = new org.jdesktop.layout.GroupLayout(contactBrowsePanel1);
+        contactBrowsePanel1.setLayout(contactBrowsePanel1Layout);
+        contactBrowsePanel1Layout.setHorizontalGroup(
+            contactBrowsePanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 721, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblCompanyTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCompany)
-                    .addComponent(cboCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIndustryDivision)
-                    .addComponent(cboIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblCompanyTitle1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFName)
-                    .addComponent(lblLName1)
-                    .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStreet1)
-                    .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblZip1)
-                    .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCity1)
-                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblState1)
-                    .addComponent(cboState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmail1)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPhoneLeftParenthesis1)
-                    .addComponent(lblPhoneRightParenthesis1)
-                    .addComponent(lblPhone1)
-                    .addComponent(txtPhoneArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPhoneFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPhoneDash1)
-                    .addComponent(txtPhoneLast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPhoneExt)
-                    .addComponent(txtPhoneExt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPosition1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCommMethod1)
-                    .addComponent(cboCommMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDescription1)
-                    .addComponent(scpDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
-                .addContainerGap())
+        contactBrowsePanel1Layout.setVerticalGroup(
+            contactBrowsePanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 453, Short.MAX_VALUE)
         );
+
+        add(contactBrowsePanel1, "Browse");
+
+        contactEditPanel1.setName("contactEditPanel1"); // NOI18N
+        add(contactEditPanel1, "Edit");
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cboCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCompanyActionPerformed
-        String company = cboCompany.getSelectedItem().toString();
-
-        if (company.equalsIgnoreCase("Cal Poly Pomona") ) {
-            lblIndustryDivision.setText("Division:");
-        } else {
-            lblIndustryDivision.setText("Industry:");
-        }
-}//GEN-LAST:event_cboCompanyActionPerformed
-
-    private void txtZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZipActionPerformed
-    
-    }//GEN-LAST:event_txtZipActionPerformed
-
-    private void txtZipMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtZipMouseExited
-
-    }//GEN-LAST:event_txtZipMouseExited
-
-    private void txtZipFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtZipFocusLost
-        String city = "";
-        String state = "";
-        String zipfield = txtZip.getText();
-        Database db = new Database("Zip");
-        db.and("ZIP", zipfield);
-        try {
-            ResultSet rs = db.select();
-            while (rs.next()) {
-                city = rs.getString("CITY");
-                state = rs.getString("STATE");
-            }
-        } catch (Exception e) {
-            System.out.println("Could not execute query");
-            System.out.println(e.getMessage());
-        }
-        txtCity.setText(city);
-        cboState.setSelectedItem(state);
-    }//GEN-LAST:event_txtZipFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cboCommMethod;
-    private javax.swing.JComboBox cboCompany;
-    private javax.swing.JComboBox cboIndustry;
-    private javax.swing.JComboBox cboState;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblCity1;
-    private javax.swing.JLabel lblCommMethod1;
-    private javax.swing.JLabel lblCompany;
-    private javax.swing.JLabel lblCompanyTitle;
-    private javax.swing.JLabel lblCompanyTitle1;
-    private javax.swing.JLabel lblDescription1;
-    private javax.swing.JLabel lblEmail1;
-    private javax.swing.JLabel lblFName;
-    private javax.swing.JLabel lblIndustryDivision;
-    private javax.swing.JLabel lblLName1;
-    private javax.swing.JLabel lblPhone1;
-    private javax.swing.JLabel lblPhoneExt;
-    private javax.swing.JLabel lblPhoneRightParenthesis1;
-    private javax.swing.JLabel lblPosition1;
-    private javax.swing.JLabel lblState1;
-    private javax.swing.JLabel lblStreet1;
-    private javax.swing.JLabel lblZip1;
-    private javax.swing.JScrollPane scpDescription;
-    private javax.swing.JTextArea txaDescription;
-    private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtFName;
-    private javax.swing.JTextField txtLName;
-    private javax.swing.JTextField txtPhoneArea;
-    private javax.swing.JLabel txtPhoneDash1;
-    private javax.swing.JTextField txtPhoneExt;
-    private javax.swing.JTextField txtPhoneFirst;
-    private javax.swing.JTextField txtPhoneLast;
-    private javax.swing.JLabel txtPhoneLeftParenthesis1;
-    private javax.swing.JTextField txtPosition;
-    private javax.swing.JTextField txtStreet;
-    private javax.swing.JTextField txtZip;
+    private cis406.ContactBrowsePanel contactBrowsePanel1;
+    private cis406.ContactEditPanel contactEditPanel1;
     // End of variables declaration//GEN-END:variables
 
-    public void clickNew() {
-    }
-    public void clickSave() {
-        Contact record = new Contact();
-        // Saves the Industry if it's a new entry
-        if (cboIndustry.getSelectedIndex() == -1) {
-            Industry indust = new Industry(cboIndustry.getSelectedItem().toString());
-            record.setIndustryId(indust.save());
-        } else {
-            record.setIndustryId(((ComboItem) cboIndustry.getSelectedItem()).id);
-        }
-        // Saves the Company if it's a new entry
-        if (cboCompany.getSelectedIndex() == -1) {
-            Company comp = new Company(cboCompany.getSelectedItem().toString());
-            record.setCompanyId(comp.save());
-        } else {
-            record.setCompanyId(((ComboItem) cboCompany.getSelectedItem()).id);
-        }
-        record.setFname(txtFName.getText());
-        record.setLname(txtLName.getText());
-        record.setStreet(txtStreet.getText());
-        record.setZip(Integer.parseInt(txtZip.getText()));
-        record.setCity(txtCity.getText());
-        record.setState(cboState.getSelectedItem().toString());
-        record.setEmail(txtEmail.getText());
-        record.setPhone(Integer.parseInt(txtPhoneArea.getText()), Integer.parseInt(txtPhoneFirst.getText()), Integer.parseInt(txtPhoneLast.getText()), Integer.parseInt(txtPhoneExt.getText()));
-        record.setPosition(txtPosition.getText());
-        record.setComm_method(cboCommMethod.getSelectedIndex());
-        record.setDescription(txaDescription.getText());
-        record.save();
-    }
-    public void clickLoad() {
-    }
-    public void clickDelete() {
-    }
-    public void clickClear() {
-        cboCompany.setSelectedIndex(0);
-        cboIndustry.setSelectedIndex(0);
-        txtFName.setText("");
-        txtLName.setText("");
-        txtStreet.setText("");
-        txtZip.setText("");
-        txtCity.setText("");
-        cboState.setSelectedIndex(0);
-        txtEmail.setText("");
-        txtPhoneArea.setText("");
-        txtPhoneFirst.setText("");
-        txtPhoneLast.setText("");
-        txtPhoneExt.setText("");
-        txtPosition.setText("");
-        cboCommMethod.setSelectedIndex(0);
-        txaDescription.setText("");
-    }
-    public void clickCancel() {
-    }
     public void clickEditing() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Edit");
+        activeCard = "Edit";
     }
     public void clickBrowsing() {
-    }
-    public void switchTo(String actionCommand) {
-    }
-    public void switchAway() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Browse");
+        activeCard = "Browse";
     }
 }
