@@ -227,30 +227,6 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="cis406.SecurityLogPanel" name="securityLogPanel1">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="securityLogPanel1" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Security Log">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="securityLogPanel1.TabConstraints.tabTitle"/>
-                  </JTabbedPaneConstraints>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="cis406.UserPanel" name="userPanel1">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="userPanel1" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Users">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="userPanel1.TabConstraints.tabTitle"/>
-                  </JTabbedPaneConstraints>
-                </Constraint>
-              </Constraints>
-            </Component>
             <Component class="cis406.StudentPanel" name="studentPanel1">
               <Properties>
                 <Property name="name" type="java.lang.String" value="studentPanel1" noResource="true"/>
@@ -259,6 +235,18 @@
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Students">
                     <Property name="tabTitle" type="java.lang.String" resourceKey="studentPanel1.TabConstraints.tabTitle"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="cis406.SecurityPanel" name="securityPanel1">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="securityPanel1" noResource="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Security">
+                    <Property name="tabTitle" type="java.lang.String" resourceKey="securityPanel1.TabConstraints.tabTitle"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -286,15 +274,6 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
           </AuxValues>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="settingsMenuItem">
-              <Properties>
-                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="cis406.MainView" id="showSettingsBox" methodName="showSettingsBox"/>
-                </Property>
-                <Property name="text" type="java.lang.String" resourceKey="settingsMenuItem.text"/>
-                <Property name="name" type="java.lang.String" value="settingsMenuItem" noResource="true"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
               <Properties>
                 <Property name="name" type="java.lang.String" value="jSeparator1" noResource="true"/>
@@ -311,6 +290,23 @@
                 <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
               </AuxValues>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="databaseMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="databaseMenu.text"/>
+            <Property name="name" type="java.lang.String" value="databaseMenu" noResource="true"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="backupMenuItem">
+              <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="cis406.MainView" id="backupDatabase" methodName="backupDatabase"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="backupMenuItem.text"/>
+                <Property name="name" type="java.lang.String" value="backupMenuItem" noResource="true"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -335,23 +331,6 @@
                 <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
               </AuxValues>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="databaseMenu">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="databaseMenu.text"/>
-            <Property name="name" type="java.lang.String" value="databaseMenu" noResource="true"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="backupMenuItem">
-              <Properties>
-                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="cis406.MainView" id="backupDatabase" methodName="backupDatabase"/>
-                </Property>
-                <Property name="text" type="java.lang.String" resourceKey="backupMenuItem.text"/>
-                <Property name="name" type="java.lang.String" value="backupMenuItem" noResource="true"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
