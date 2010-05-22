@@ -17,7 +17,7 @@ public class User {
     String fName;
     String lName;
     String email;
-    String password;
+    String password = "";
     String username;
     int status;
     int id;
@@ -86,8 +86,18 @@ public class User {
         this.email = email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(char[] password) {;
+        String strPassword = "";
+        for (int i = 0; i < password.length; i++){
+            strPassword += password[i];
+        }
+        String hash = "";
+        try {
+            hash = byteArrayToHexString(computeHash(strPassword));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.password = hash;
     }
 
     public void setSecurityLevel(int securityLevel) {
@@ -111,7 +121,7 @@ public class User {
      */
     public void addUser() {
         try {
-            Database.executeWrite("INSERT INTO users (first_name, user_name, status, email, last_name, clearance, password) VALUES ('" + fName + "', '" + username + "', " + status + ", '" + email + "', '" + lName + "', " + securityLevel + ", '" + byteArrayToHexString(computeHash("P@ssw0rd")) + "')");
+            Database.executeWrite("INSERT INTO users (first_name, user_name, status, email, last_name, clearance, password) VALUES ('" + fName + "', '" + username + "', " + 1 + ", '" + email + "', '" + lName + "', " + securityLevel + ", '" + byteArrayToHexString(computeHash("P@ssw0rd")) + "')");
         } catch (Exception e) {
             System.out.println("Failed to add the user");
             System.out.println(e.getMessage());
@@ -124,16 +134,17 @@ public class User {
      * information
      */
     public void updateUser() {
-        String hash = "";
-        try {
-            hash = byteArrayToHexString(computeHash(password));
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (!password.isEmpty()) {
+            Database.executeWrite("UPDATE users SET password = '"
+                    + password + "', status = " + status + ", first_name = '" + fName
+                    + "', last_name = '" + lName + "', clearance = " + securityLevel
+                    + ", email = '" + username + "' WHERE user_name = '" + username + "'");
         }
-        Database.executeWrite("UPDATE users SET password = '"
-                + hash + "', status = " + status + ", first_name = '" + fName
-                + "', last_name = '" + lName + "', clearance = " + securityLevel
-                + ", email = '" + email + "' WHERE user_name = '" + username + "'");
+        else {
+            Database.executeWrite("UPDATE users SET status = " + status + ", first_name = '" + fName
+                    + "', last_name = '" + lName + "', clearance = " + securityLevel
+                    + ", email = '" + username + "' WHERE user_name = '" + username + "'");
+        }
     }
 
     /**
@@ -298,5 +309,38 @@ public class User {
             System.out.println(e.getMessage());
         }
         return 0;
+    }
+
+    public static boolean checkPassword(char[] password, String username) {
+        boolean result = false;
+
+        // convert password character array to string
+        String strPassword = "";
+        for (int i = 0; i < password.length; i++){
+            strPassword += password[i];
+        }
+
+
+        // Make sure password meets requirements
+        String lowercase = "((?=.*[a-z]).{8,})";
+        String uppercase = "((?=.*[A-Z]).{8,})";
+        String numbers = "((?=.*\\d).{8,})";
+        String complexchars = "((?=.*[\\s.,?!:;()\\[\\]{}<>/|\\\\+-=*@#$%&_~'^\"]).{8,})";
+        Integer complexityCount = 0;
+
+        if (strPassword.matches(lowercase)) { complexityCount++; }
+        if (strPassword.matches(uppercase)) { complexityCount++; }
+        if (strPassword.matches(numbers)) { complexityCount++; }
+        if (strPassword.matches(complexchars)) { complexityCount++; }
+
+        if (complexityCount < 3)
+        {
+            JOptionPane.showMessageDialog(null, "Change your password, it doesn't meet CSU Pomona's password complexity requirements");
+        }
+        else if (!strPassword.equals(username)) {
+            result = true;
+        }
+
+        return result;
     }
 }

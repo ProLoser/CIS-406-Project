@@ -11,8 +11,6 @@
 
 package cis406;
 
-import java.sql.ResultSet;
-
 /**
  *
  * @author OK Computer
@@ -30,43 +28,15 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void clickSave() {
-//
-//        System.out.println("debug");
-//        String firstPassword = txtPassword1.getText();
-//
-//
-//
-//            // Make sure password meets requirements
-//            String lowercase = "((?=.*[a-z]).{8,})";
-//            String uppercase = "((?=.*[A-Z]).{8,})";
-//            String numbers = "((?=.*\\d).{8,})";
-//            String complexchars = "((?=.*[\\s.,?!:;()\\[\\]{}<>/|\\\\+-=*@#$%&_~'^\"]).{8,})";
-//            Integer complexityCount = 0;
-//
-//            if (txtPassword1.getText().matches(lowercase)) { complexityCount++; }
-//            if (txtPassword1.getText().matches(uppercase)) { complexityCount++; }
-//            if (txtPassword1.getText().matches(numbers)) { complexityCount++; }
-//            if (txtPassword1.getText().matches(complexchars)) { complexityCount++; }
-//
-//            if (complexityCount < 3)
-//            {
-//                    JOptionPane.showMessageDialog(null, "Change your password, it doesn't meet CSU Pomona's password complexity requirements");
-//            }
-//            else{
-//                User user = new User();
-//
-//              //  user.setUserID(Integer.parseInt(txtUserID.getText()));
-//                user.setUsername(cboUsername.getSelectedItem().toString());
-//                user.setfName(txtFirstName.getText());
-//                user.setlName(txtLastName.getText());
-//                user.setPassword(txtPassword1.getText());
-//                user.setSecurityLevel(cboRole.getSelectedIndex());
-//                user.setStatus(ddlStatus.getSelectedIndex());
-//                user.setEmail(txtEmail.getText());
-//
-//                user.add();
-//            }
-        
+        User user = new User();
+
+        user.setUsername(txtUsername.getText());
+        user.setEmail(txtUsername.getText());
+        user.setSecurityLevel(cboRole.getSelectedIndex());
+        user.setfName(txtFirstName.getText());
+        user.setlName((txtLastName.getText()));
+
+        user.addUser();
     }
 
     public void clickLoad() {
@@ -78,12 +48,10 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void clickClear() {
-       // txtUsername.setText("");
-        //ddlStatus.setSelectedIndex(0);
+        txtUsername.setText("");
         txtFirstName.setText("");
         txtLastName.setText("");
-        txtEmail.setText("");
-        //ddlSecurityQuestions.setSelectedIndex(0);
+        cboRole.setSelectedIndex(0);
     }
 
     public void clickCancel() {
@@ -91,29 +59,6 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void clickBrowsing() {
-//        clickClear();
-//        String userID = SelectUserDialog.getValue();
-//
-//        if (Integer.parseInt(userID) > -1) {
-//            try {
-//                ResultSet rs = Database.execute("select * from user where user_id = '" + userID + "'");
-//                while (rs.next()) {
-//
-//                 //   txtUsername.setText(rs.getString("username"));
-//                    txtFirstName.setText(rs.getString("first_name"));
-//                    txtLastName.setText(rs.getString("last_name"));
-//                    txtEmail.setText(rs.getString("email"));
-//                    ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
-//                //    ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
-//                    txtPassword1.setText(rs.getString("password"));
-//
-//                }
-//
-//            } catch (Exception e) {
-//                System.out.println("Could not execute query");
-//                System.out.println(e.getMessage());
-//            }
-//        }
 
     }
 
@@ -139,31 +84,19 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
     private void initComponents() {
 
         jSeparator2 = new javax.swing.JSeparator();
-        ddlStatus = new javax.swing.JComboBox();
-        cboUsername = new javax.swing.JComboBox();
-        txtEmail = new javax.swing.JTextField();
         txtLastName = new javax.swing.JTextField();
         txtFirstName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         cboRole = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
 
         setName("Form"); // NOI18N
 
         jSeparator2.setName("jSeparator2"); // NOI18N
-
-        ddlStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disabled", "Enabled" }));
-        ddlStatus.setName("ddlStatus"); // NOI18N
-
-        cboUsername.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboUsername.setName("cboUsername"); // NOI18N
-
-        txtEmail.setName("txtEmail"); // NOI18N
 
         txtLastName.setName("txtLastName"); // NOI18N
 
@@ -179,20 +112,17 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
 
-        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
-        jLabel5.setName("jLabel5"); // NOI18N
-
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
 
-        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
-        jLabel7.setName("jLabel7"); // NOI18N
-
-        cboRole.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboRole.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrator", "Coordinator", "Assistant" }));
         cboRole.setName("cboRole"); // NOI18N
 
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
         jLabel8.setName("jLabel8"); // NOI18N
+
+        txtUsername.setText(resourceMap.getString("txtUsername.text")); // NOI18N
+        txtUsername.setName("txtUsername"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -200,84 +130,71 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(cboRole, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ddlStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFirstName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(cboRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(11, 11, 11)
+                                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtLastName))))))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ddlStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(27, 27, 27)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cboRole;
-    private javax.swing.JComboBox cboUsername;
-    private javax.swing.JComboBox ddlStatus;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
 }
