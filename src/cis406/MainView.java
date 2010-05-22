@@ -22,14 +22,15 @@ import javax.swing.JFrame;
 public class MainView extends FrameView {
 
     private int activeTabIndex;
-    final String[] assistantPanels = {"Users", "Security Log"};
-    final String[] coordinatorPanels = {"Users", "Security Log"};
+    final String[] assistantPanels = {"Security"};
+    final String[] coordinatorPanels = {"Security"};
 
     public MainView(SingleFrameApplication app, String username, int security_level) {
         super(app);
 
         initComponents();
 
+        // remove tabs based on user security level
         setupTabs(security_level);
 
         activeTabIndex = mainTabbedPane.getSelectedIndex();
@@ -104,21 +105,11 @@ public class MainView extends FrameView {
     }
 
     @Action
-    public void showSettingsBox() {
-        if (settingsBox == null) {
-            JFrame mainFrame = MainApp.getApplication().getMainFrame();
-            settingsBox = new SettingsBox(mainFrame, true);
-            settingsBox.setLocationRelativeTo(mainFrame);
-        }
-        MainApp.getApplication().show(settingsBox);
-    }
-
-    @Action
     public void backupDatabase() {
         jFileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int success = jFileChooser2.showOpenDialog(menuBar);
         if (success == jFileChooser2.APPROVE_OPTION) {
-            Database.backupDatabase(Database.connect(), jFileChooser2.getSelectedFile().getAbsolutePath());
+            Database.backUpDatabase(Database.connect(), jFileChooser2.getSelectedFile().getAbsolutePath());
         }
     }
 
@@ -146,20 +137,16 @@ public class MainView extends FrameView {
         internshipPanel1 = new cis406.InternshipPanel();
         contactPanel1 = new cis406.ContactPanel();
         correspondence1 = new cis406.CorrespondencePanel();
-        securityLogPanel1 = new cis406.SecurityLogPanel();
-        userPanel1 = new cis406.UserPanel();
         studentPanel1 = new cis406.StudentPanel();
+        securityPanel1 = new cis406.SecurityPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
-        settingsMenuItem = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
-        javax.swing.JMenu helpMenu = new javax.swing.JMenu();
-        javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         databaseMenu = new javax.swing.JMenu();
         backupMenuItem = new javax.swing.JMenuItem();
+        javax.swing.JMenu helpMenu = new javax.swing.JMenu();
+        javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
         statusMessageLabel = new javax.swing.JLabel();
@@ -276,14 +263,11 @@ public class MainView extends FrameView {
         correspondence1.setName("correspondence1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("correspondence1.TabConstraints.tabTitle"), correspondence1); // NOI18N
 
-        securityLogPanel1.setName("securityLogPanel1"); // NOI18N
-        mainTabbedPane.addTab(resourceMap.getString("securityLogPanel1.TabConstraints.tabTitle"), securityLogPanel1); // NOI18N
-
-        userPanel1.setName("userPanel1"); // NOI18N
-        mainTabbedPane.addTab(resourceMap.getString("userPanel1.TabConstraints.tabTitle"), userPanel1); // NOI18N
-
         studentPanel1.setName("studentPanel1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("studentPanel1.TabConstraints.tabTitle"), studentPanel1); // NOI18N
+
+        securityPanel1.setName("securityPanel1"); // NOI18N
+        mainTabbedPane.addTab(resourceMap.getString("securityPanel1.TabConstraints.tabTitle"), securityPanel1); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -291,7 +275,7 @@ public class MainView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
         );
@@ -300,7 +284,7 @@ public class MainView extends FrameView {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(mainToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -311,20 +295,6 @@ public class MainView extends FrameView {
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        settingsMenuItem.setAction(actionMap.get("showSettingsBox")); // NOI18N
-        settingsMenuItem.setText(resourceMap.getString("settingsMenuItem.text")); // NOI18N
-        settingsMenuItem.setName("settingsMenuItem"); // NOI18N
-        fileMenu.add(settingsMenuItem);
-
-        jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
-        jMenu1.setName("jMenu1"); // NOI18N
-
-        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
-        jMenuItem1.setName("jMenuItem1"); // NOI18N
-        jMenu1.add(jMenuItem1);
-
-        fileMenu.add(jMenu1);
-
         jSeparator1.setName("jSeparator1"); // NOI18N
         fileMenu.add(jSeparator1);
 
@@ -333,15 +303,6 @@ public class MainView extends FrameView {
         fileMenu.add(exitMenuItem);
 
         menuBar.add(fileMenu);
-
-        helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
-        helpMenu.setName("helpMenu"); // NOI18N
-
-        aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
-        aboutMenuItem.setName("aboutMenuItem"); // NOI18N
-        helpMenu.add(aboutMenuItem);
-
-        menuBar.add(helpMenu);
 
         databaseMenu.setText(resourceMap.getString("databaseMenu.text")); // NOI18N
         databaseMenu.setName("databaseMenu"); // NOI18N
@@ -352,6 +313,15 @@ public class MainView extends FrameView {
         databaseMenu.add(backupMenuItem);
 
         menuBar.add(databaseMenu);
+
+        helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
+        helpMenu.setName("helpMenu"); // NOI18N
+
+        aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
+        aboutMenuItem.setName("aboutMenuItem"); // NOI18N
+        helpMenu.add(aboutMenuItem);
+
+        menuBar.add(helpMenu);
 
         statusPanel.setName("statusPanel"); // NOI18N
 
@@ -372,7 +342,7 @@ public class MainView extends FrameView {
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 536, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 562, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -422,20 +392,22 @@ public class MainView extends FrameView {
         }
     }//GEN-LAST:event_mainTabbedPaneStateChanged
 
+    /**
+     * Removes tabs based on security level
+     * @param security_level Integer representing security level
+     */
     private void setupTabs (int security_level){
         if (security_level == 1){
             for (int i = 0; i < coordinatorPanels.length; i++){
                 mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(coordinatorPanels[i]));
             }
-            settingsMenuItem.setEnabled(false);
-            backupMenuItem.setEnabled(false);
+            databaseMenu.setEnabled(false);
         }
         else if (security_level == 2){
             for (int i = 0; i < assistantPanels.length; i++){
                 mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(assistantPanels[i]));
             }
-            settingsMenuItem.setEnabled(false);
-            backupMenuItem.setEnabled(false);
+            databaseMenu.setEnabled(false);
         }
     }
 
@@ -494,8 +466,6 @@ public class MainView extends FrameView {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JFileChooser jFileChooser2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     public javax.swing.JButton loadButton;
@@ -506,13 +476,11 @@ public class MainView extends FrameView {
     public javax.swing.JButton newButton;
     private javax.swing.JProgressBar progressBar;
     public javax.swing.JButton saveButton;
-    private cis406.SecurityLogPanel securityLogPanel1;
-    private javax.swing.JMenuItem settingsMenuItem;
+    private cis406.SecurityPanel securityPanel1;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     private cis406.StudentPanel studentPanel1;
-    private cis406.UserPanel userPanel1;
     // End of variables declaration//GEN-END:variables
     private final Timer messageTimer;
     private final Timer busyIconTimer;
@@ -520,5 +488,4 @@ public class MainView extends FrameView {
     private final Icon[] busyIcons = new Icon[15];
     private int busyIconIndex = 0;
     private JDialog aboutBox;
-    private JDialog settingsBox;
 }
