@@ -22,7 +22,7 @@ public class CisTable extends DefaultTableModel {
      * Loads the results of an SQL ResultSet into the Table Model
      * @param data
      */
-    CisTable(ResultSet data) {
+    public CisTable(ResultSet data) {
         setData(data);
         displayFields = new Vector<String>();
     }
@@ -31,7 +31,7 @@ public class CisTable extends DefaultTableModel {
      * Loads an SQL table into the Table Model
      * @param table
      */
-    CisTable(String table) {
+    public CisTable(String table) {
         data = Database.read(table);
         displayFields = new Vector<String>();
     }

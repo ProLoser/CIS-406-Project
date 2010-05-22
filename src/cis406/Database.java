@@ -1,5 +1,7 @@
 package cis406;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,9 +47,9 @@ public class Database {
      * Build a custom query object
      */
     public Database() {
-        fields = new HashMap<String, Object>();
-        orConditions = new HashMap<String, Object>();
-        andConditions = new HashMap<String, Object>();
+        fields = new LinkedHashMap<String, Object>();
+        orConditions = new LinkedHashMap<String, Object>();
+        andConditions = new LinkedHashMap<String, Object>();
     }
 
     /**
@@ -56,9 +58,9 @@ public class Database {
      */
     public Database(String table) {
         this.table = table;
-        fields = new HashMap<String, Object>();
-        orConditions = new HashMap<String, Object>();
-        andConditions = new HashMap<String, Object>();
+        fields = new LinkedHashMap<String, Object>();
+        orConditions = new LinkedHashMap<String, Object>();
+        andConditions = new LinkedHashMap<String, Object>();
     }
 
     /**
@@ -162,8 +164,12 @@ public class Database {
 
         try {
             for (i = 0; i < preValues.size(); i++) {
-                //System.out.println(preValues.get(i));
-                preStatement.setObject(i + 1, preValues.get(i));
+                if (preValues.get(i) instanceof File) {
+                    FileInputStream fis = new FileInputStream((File) preValues.get(i));
+                    preStatement.setBinaryStream(i + 1, fis);
+                } else {
+                    preStatement.setObject(i + 1, preValues.get(i));
+                }
             }
         } catch (Exception e) {
             System.out.println("Failed to set slot [" + (i + 1) + "] to \"" + preValues.get(i) + "\"");
@@ -330,13 +336,9 @@ public class Database {
         System.out.println("Query: " + query);
         preStatement = connect().prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
         compilePreValues();
-        System.out.println("Getting keys");
+        preStatement.executeUpdate();
         ResultSet newKeys = preStatement.getGeneratedKeys();
-        if (newKeys == null) {
-            System.out.println("no new keys...?");
-        } else {
-            System.out.println("New ID is: " + newKeys.getInt(1));
-        }
+        newKeys.next();
         return newKeys.getInt(1);
     }
 
