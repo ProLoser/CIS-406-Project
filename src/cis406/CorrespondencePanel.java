@@ -1,5 +1,4 @@
 package cis406;
-
 /**
  *
  * @author Mark Lenser
@@ -9,7 +8,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
     /** Creates new form CorrespondencePanel */
     public CorrespondencePanel() {
         initComponents();
-
+        txtDate.setText(DateUtils.now());
     }
 
     /** This method is called from within the constructor to

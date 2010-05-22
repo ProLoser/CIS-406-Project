@@ -6,7 +6,7 @@ import java.awt.CardLayout;
  *
  * @author Mark Lenser
  */
-public class ContactEditPanel extends javax.swing.JPanel implements CisPanel {
+public class ContactEditPanel extends javax.swing.JPanel {
     
 
     /** Creates new form AddContact */
@@ -408,7 +408,7 @@ public class ContactEditPanel extends javax.swing.JPanel implements CisPanel {
 
     public void clickNew() {
     }
-    public void clickSave() {
+    public void save() {
         Contact record = new Contact();
         // Saves the Industry if it's a new entry
         if (cboIndustry.getSelectedIndex() == -1) {
@@ -441,7 +441,7 @@ public class ContactEditPanel extends javax.swing.JPanel implements CisPanel {
     }
     public void clickDelete() {
     }
-    public void clickClear() {
+    public void reset() {
         cboCompany.setSelectedIndex(0);
         cboIndustry.setSelectedIndex(0);
         txtFName.setText("");

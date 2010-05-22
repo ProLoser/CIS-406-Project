@@ -90,7 +90,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="scpNotes" pref="560" max="32767" attributes="1"/>
+                          <Component id="scpNotes" pref="602" max="32767" attributes="1"/>
                           <Component id="cboCommMethod" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="txtPosition" alignment="0" min="-2" pref="229" max="-2" attributes="0"/>
                       </Group>
@@ -173,7 +173,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblNotes" min="-2" max="-2" attributes="0"/>
-                  <Component id="scpNotes" pref="23" max="32767" attributes="0"/>
+                  <Component id="scpNotes" pref="39" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

@@ -5,7 +5,7 @@ import java.awt.CardLayout;
  *
  * @author mark
  */
-public class ContactPanel extends javax.swing.JPanel {
+public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     String activeCard = "Edit";
 
     /** Creates new form ContactPanel */
@@ -53,6 +53,21 @@ public class ContactPanel extends javax.swing.JPanel {
     private cis406.ContactEditPanel contactEditPanel1;
     // End of variables declaration//GEN-END:variables
 
+
+    public void clickNew() {
+    }
+    public void clickSave() {
+        contactEditPanel1.save();
+    }
+    public void clickLoad() {
+    }
+    public void clickDelete() {
+    }
+    public void clickClear() {
+        contactEditPanel1.reset();
+    }
+    public void clickCancel() {
+    }
     public void clickEditing() {
         CardLayout cl = (CardLayout) (getLayout());
         cl.show(this, "Edit");
@@ -62,5 +77,9 @@ public class ContactPanel extends javax.swing.JPanel {
         CardLayout cl = (CardLayout) (getLayout());
         cl.show(this, "Browse");
         activeCard = "Browse";
+    }
+    public void switchTo(String actionCommand) {
+    }
+    public void switchAway() {
     }
 }
