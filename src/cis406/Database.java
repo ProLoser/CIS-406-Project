@@ -1,5 +1,7 @@
 package cis406;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,9 +47,9 @@ public class Database {
      * Build a custom query object
      */
     public Database() {
-        fields = new HashMap<String, Object>();
-        orConditions = new HashMap<String, Object>();
-        andConditions = new HashMap<String, Object>();
+        fields = new LinkedHashMap<String, Object>();
+        orConditions = new LinkedHashMap<String, Object>();
+        andConditions = new LinkedHashMap<String, Object>();
     }
 
     /**
@@ -56,9 +58,9 @@ public class Database {
      */
     public Database(String table) {
         this.table = table;
-        fields = new HashMap<String, Object>();
-        orConditions = new HashMap<String, Object>();
-        andConditions = new HashMap<String, Object>();
+        fields = new LinkedHashMap<String, Object>();
+        orConditions = new LinkedHashMap<String, Object>();
+        andConditions = new LinkedHashMap<String, Object>();
     }
 
     /**
@@ -162,11 +164,15 @@ public class Database {
 
         try {
             for (i = 0; i < preValues.size(); i++) {
-                //System.out.println(preValues.get(i));
-                preStatement.setObject(i+1, preValues.get(i));
+                if (preValues.get(i) instanceof File) {
+                    FileInputStream fis = new FileInputStream((File) preValues.get(i));
+                    preStatement.setBinaryStream(i + 1, fis);
+                } else {
+                    preStatement.setObject(i + 1, preValues.get(i));
+                }
             }
         } catch (Exception e) {
-            System.out.println("Failed to set slot [" + (i+1) + "] to \"" + preValues.get(i) + "\"");
+            System.out.println("Failed to set slot [" + (i + 1) + "] to \"" + preValues.get(i) + "\"");
             System.out.println(e.getMessage());
         }
     }
@@ -197,9 +203,8 @@ public class Database {
      * @param joinTable
      * @param foreignKey
      */
-    public void inner(String joinTable, String foreignKey) {
-        joins += " INNER JOIN " + joinTable;
-        join(joinTable, foreignKey);
+    public void innerJoin(String joinTable) {
+        joins += " INNER JOIN " + join(joinTable);
     }
 
     /**
@@ -209,9 +214,8 @@ public class Database {
      * @param joinTable
      * @param foreignKey
      */
-    public void left(String joinTable, String foreignKey) {
-        joins += " LEFT JOIN " + joinTable;
-        join(joinTable, foreignKey);
+    public void leftJoin(String joinTable) {
+        joins += " LEFT JOIN " + join(joinTable);
     }
 
     /**
@@ -221,9 +225,8 @@ public class Database {
      * @param joinTable
      * @param foreignKey
      */
-    public void right(String joinTable, String foreignKey) {
-        joins += " RIGHT JOIN " + joinTable;
-        join(joinTable, foreignKey);
+    public void rightJoin(String joinTable) {
+        joins += " RIGHT JOIN " + join(joinTable);
     }
 
     /**
@@ -232,9 +235,8 @@ public class Database {
      * @param joinTable
      * @param foreignKey
      */
-    public void full(String joinTable, String foreignKey) {
-        joins += " FULL JOIN " + joinTable;
-        join(joinTable, foreignKey);
+    public void fullJoin(String joinTable) {
+        joins += " FULL JOIN " + join(joinTable);
     }
 
     /**
@@ -243,9 +245,9 @@ public class Database {
      * @param joinTable
      * @param foreignKey
      */
-    private String join(String joinTable, String foreignKey) {
+    private String join(String joinTable) {
         String query;
-        query = " ON " + table + "." + id(table) + "=" + joinTable + "." + foreignKey;
+        query = " " + joinTable + " ON " + table + "." + id(joinTable) + "=" + joinTable + "." + id(joinTable);
         return query;
     }
 
@@ -263,7 +265,8 @@ public class Database {
     }
 
     /**
-     * The SELECT statement is used to select data from a database.
+     * The SELECT statement is used to select data from a database. The fields argument
+     * is used to select specific columns. 
      * @param fields columns to retrieve
      */
     public ResultSet select(String[] fields) throws Exception {
@@ -277,10 +280,39 @@ public class Database {
     }
 
     /**
+     * The SELECT statement is used to select data from a database. The fields argument
+     * is used to select specific columns. The values in the map will be what the field
+     * is aliased to. If the value is null the field will not be aliased.
+     * @param fields columns to retrieve and their aliases
+     */
+    public ResultSet select(Map<String, String> fields) throws Exception {
+        String query;
+        preValues = new ArrayList<Object>();
+        query = "SELECT ";
+        Boolean first = true;
+        for (Map.Entry<String, String> field : fields.entrySet()) {
+            if (!first) {
+                query += ", ";
+            }
+            if (field.getValue() != null) {
+                query += field.getKey() + " AS " + field.getValue();
+            } else {
+                query += field.getKey();
+            }
+            first = false;
+        }
+        query += " FROM " + table + joins + compileConditions();
+        System.out.println("Query: " + query);
+        preStatement = connect().prepareStatement(query);
+        compilePreValues();
+        return preStatement.executeQuery();
+    }
+
+    /**
      * Compiles and executes an INSERT query.
      *
      * @param fields values to be updated
-     * @return ResultSet of the newly created primary keys
+     * @return int id of the newly created record
      */
     public int insert() throws Exception {
         String query = "INSERT INTO " + table;
@@ -302,12 +334,11 @@ public class Database {
         query += " (" + keys + ") VALUES (" + values + ")";
 
         System.out.println("Query: " + query);
-        preStatement = connect().prepareStatement(query);
+        preStatement = connect().prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
         compilePreValues();
         preStatement.executeUpdate();
-        System.out.println("Getting keys");
         ResultSet newKeys = preStatement.getGeneratedKeys();
-        System.out.println("New ID is: " + newKeys.getInt(1));
+        newKeys.next();
         return newKeys.getInt(1);
     }
 
@@ -511,24 +542,22 @@ public class Database {
         return out;
     }
 
-    public static void backUpDatabase(Connection conn, String backupFolder) {
+    public static void backupDatabase(Connection conn, String backupFolder) {
 
         java.text.SimpleDateFormat todaysDate =
                 new java.text.SimpleDateFormat("yyyy-MM-dd");
 
-        String backupdirectory = backupFolder + "\\" + "INTERNSHIP DB BACKUP " +
-                todaysDate.format((java.util.Calendar.getInstance()).getTime());
+        String backupdirectory = backupFolder + "\\" + "INTERNSHIP DB BACKUP "
+                + todaysDate.format((java.util.Calendar.getInstance()).getTime());
 
-        try{
+        try {
             CallableStatement cs = conn.prepareCall("CALL SYSCS_UTIL.SYSCS_BACKUP_DATABASE(?)");
             cs.setString(1, backupdirectory);
             cs.execute();
             cs.close();
-            System.out.println("backed up database to "+backupdirectory);
-        }
-        catch (Exception e){
+            System.out.println("backed up database to " + backupdirectory);
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
-
 }

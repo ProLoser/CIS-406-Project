@@ -22,7 +22,7 @@ public class CisTable extends DefaultTableModel {
      * Loads the results of an SQL ResultSet into the Table Model
      * @param data
      */
-    CisTable(ResultSet data) {
+    public CisTable(ResultSet data) {
         setData(data);
         displayFields = new Vector<String>();
     }
@@ -31,7 +31,7 @@ public class CisTable extends DefaultTableModel {
      * Loads an SQL table into the Table Model
      * @param table
      */
-    CisTable(String table) {
+    public CisTable(String table) {
         data = Database.read(table);
         displayFields = new Vector<String>();
     }
@@ -52,23 +52,27 @@ public class CisTable extends DefaultTableModel {
         displayFields.add(field);
     }
 
+    /**
+     * Removes a field from the dataset from being displayed in the table. The field is still accessible in the dataset
+     * @param field
+     */
     public void removeDisplayField(String field) {
         displayFields.remove(field);
     }
 
+    /**
+     * Returns a vector of all the fields being displayed
+     * @return Vector<String> list of fields being displayed
+     */
     public Vector<String> getDisplayFields() {
         return displayFields;
-    }
-
-    public String getIdField() {
-        return idField;
     }
 
     /**
      * Optional. Sets which field from the data is the primary key for the ID column
      * @param idField
      */
-    public void setIdField(String idField) {
+    private void setIdField(String idField) {
         this.idField = idField;
     }
 
@@ -87,6 +91,7 @@ public class CisTable extends DefaultTableModel {
     public void addColumns() {
         if (displayFields.isEmpty()) {
             try {
+                setIdField(data.getMetaData().getTableName(1) + "_id");
                 for (int i = 1; i <= data.getMetaData().getColumnCount(); i++) {
                     addColumn(f(data.getMetaData().getColumnName(i)));
                 }
@@ -116,7 +121,7 @@ public class CisTable extends DefaultTableModel {
                     }
                 } else {
                     for (String field : displayFields) {
-                        row.add(data.getObject(field));
+                        row.add(data.getObject(field.toUpperCase()));
                     }
                 }
                 addRow(row);

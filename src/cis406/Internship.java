@@ -5,11 +5,11 @@
 package cis406;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JOptionPane;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -26,7 +26,6 @@ public class Internship {
     private Date expiration;
     private int quantity;
     private String attachment;
-    private String message = "";
 
     public Internship() {
     }
@@ -118,34 +117,30 @@ public class Internship {
     }
 
     public void save() {
-        if (validateInternship()) {
-            java.sql.Date sqlDate;
-            Database db = new Database("internship");
-            db.addField("title", title);
-            // Add Attachment
-            File attachmentFile = new File(attachment);
-            //db.addField("attachment", attachmentFile);
+        java.sql.Date sqlDate;
+        Database db = new Database("internship");
+        db.addField("title", title);
+        // Add Attachment
+        File attachmentFile = new File(attachment);
+        //db.addField("attachment", attachmentFile);
 
-            db.addField("company_id", companyId);
-            db.addField("career_path_id", careerPathId);
-            // Add date fields
+        db.addField("company_id", companyId);
+        db.addField("career_path_id", careerPathId);
+        // Add date fields
 
-            sqlDate = new java.sql.Date(postDate.getTime());
-            db.addField("post_date", sqlDate);
-            if (expiration != null) {
-                sqlDate = new java.sql.Date(expiration.getTime());
-                db.addField("expiration", sqlDate);
-            }
-            db.addField("description", description);
-            db.addField("quantity", quantity);
-            try {
-                db.insert();
-            } catch (Exception e) {
-                System.out.println("Failed to add the internship");
-                System.out.println(e.getMessage());
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, message);
+        sqlDate = new java.sql.Date(postDate.getTime());
+        db.addField("post_date", sqlDate);
+        if (expiration != null) {
+            sqlDate = new java.sql.Date(expiration.getTime());
+            db.addField("expiration", sqlDate);
+        }
+        db.addField("description", description);
+        db.addField("quantity", quantity);
+        try {
+            db.insert();
+        } catch (Exception e) {
+            System.out.println("Failed to add the internship");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -154,31 +149,30 @@ public class Internship {
      * @return
      */
     static public CisTable generateTable() {
-        CisTable table = new CisTable("internship");
-        table.setIdField("internship_id");
-        return table.parseData();
-    }
+        Database db = new Database("internship");
+        CisTable table = null;
+        Map<String, String> fields = new HashMap<String, String>();
 
-    /**
-     * Validator method for intenship form fields
-     * @return
-     */
-    public boolean validateInternship() {
-        boolean validForm = true;
-        if (title.isEmpty()) {
-            message = message + "Please enter an Internship Title\n";
-            validForm = false;
+        // Prepare the database query to be used to populate the table
+        db.innerJoin("company");
+        db.innerJoin("career_path");
+        // Populating a map of my fields so that I can choose which columns to
+        // display and what labels to display them as. Use null to not alias.
+        fields.put("title", null);
+        fields.put("post_date", "posted");
+        fields.put("expiration", "expires");
+        fields.put("quantity", "positions");
+        // Use table.fieldname when querying multiple tables joined together
+        fields.put("career_path.name", "career_path");
+        fields.put("company.name", "company");
+        try {
+            // Generate the table from the query
+            table = new CisTable(db.select(fields));
+            table.parseData();
+        } catch (Exception e) {
+            System.out.println("Failed to load the internship table");
+            System.out.println(e.getMessage());
         }
-        if (quantity <= 0) {
-            message = message + "Please ensure that internship positions are 1 or more\n";
-            validForm = false;
-        }
-        if (postDate.after(expiration)) {
-            message = message + "Expiration date must be after post date\n";
-            validForm = false;
-        }
-
-
-        return validForm;
+        return table;
     }
 }

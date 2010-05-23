@@ -39,10 +39,10 @@ public class InternshipBrowsePanel extends javax.swing.JPanel implements CisPane
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
         reportTable.setModel(Internship.generateTable());
-        reportTable.setColumnSelectionAllowed(true);
+        reportTable.setCellSelectionEnabled(false);
         reportTable.setName("reportTable"); // NOI18N
         jScrollPane1.setViewportView(reportTable);
-        reportTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        reportTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);

@@ -51,6 +51,8 @@ public class InternshipEditPanel extends javax.swing.JPanel {
         careerComboBox = new javax.swing.JComboBox();
         careerLabel = new javax.swing.JLabel();
         expiresCheckBox = new javax.swing.JCheckBox();
+        postedCalButton = new org.sourceforge.jcalendarbutton.JCalendarButton();
+        expiresCalButton = new org.sourceforge.jcalendarbutton.JCalendarButton();
 
         jFileChooser1.setName("jFileChooser1"); // NOI18N
 
@@ -124,6 +126,12 @@ public class InternshipEditPanel extends javax.swing.JPanel {
         expiresCheckBox.setText(resourceMap.getString("expiresCheckBox.text")); // NOI18N
         expiresCheckBox.setName("expiresCheckBox"); // NOI18N
 
+        postedCalButton.setLabel(resourceMap.getString("postedCalButton.label")); // NOI18N
+        postedCalButton.setName("postedCalButton"); // NOI18N
+
+        expiresCalButton.setEnabled(false);
+        expiresCalButton.setName("expiresCalButton"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,7 +142,7 @@ public class InternshipEditPanel extends javax.swing.JPanel {
                         .addGap(19, 19, 19)
                         .addComponent(titleLabel)
                         .addGap(6, 6, 6)
-                        .addComponent(titleField, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
+                        .addComponent(titleField, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -143,13 +151,10 @@ public class InternshipEditPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(attachmentLabel)
                                         .addGap(6, 6, 6))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(companyLabel)
-                                            .addComponent(postedLabel)
-                                            .addComponent(careerLabel)
-                                            .addComponent(descriptionLabel))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                                    .addComponent(companyLabel)
+                                    .addComponent(postedLabel)
+                                    .addComponent(careerLabel)
+                                    .addComponent(descriptionLabel)))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,20 +162,23 @@ public class InternshipEditPanel extends javax.swing.JPanel {
                                     .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(attachmentField, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                                .addComponent(attachmentField, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1))
-                            .addComponent(companyComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 303, Short.MAX_VALUE)
-                            .addComponent(careerComboBox, 0, 303, Short.MAX_VALUE)
+                            .addComponent(companyComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 543, Short.MAX_VALUE)
+                            .addComponent(careerComboBox, 0, 543, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(postedField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(postedCalButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(expiresCheckBox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(expiresField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(expiresField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(expiresCalButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -186,12 +194,17 @@ public class InternshipEditPanel extends javax.swing.JPanel {
                     .addComponent(attachmentLabel)
                     .addComponent(attachmentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(postedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(postedLabel)
-                    .addComponent(expiresField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(expiresCheckBox))
-                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(postedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(postedLabel))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(expiresField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(expiresCheckBox)))
+                    .addComponent(postedCalButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(expiresCalButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(companyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(companyLabel))
@@ -203,11 +216,11 @@ public class InternshipEditPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(descriptionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
                         .addComponent(quantityLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -228,11 +241,13 @@ public class InternshipEditPanel extends javax.swing.JPanel {
     private javax.swing.JLabel companyLabel;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextArea descriptionTextarea;
+    private org.sourceforge.jcalendarbutton.JCalendarButton expiresCalButton;
     private javax.swing.JCheckBox expiresCheckBox;
     private javax.swing.JFormattedTextField expiresField;
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane1;
+    private org.sourceforge.jcalendarbutton.JCalendarButton postedCalButton;
     private javax.swing.JFormattedTextField postedField;
     private javax.swing.JLabel postedLabel;
     private javax.swing.JFormattedTextField quantityField;
@@ -275,6 +290,7 @@ public class InternshipEditPanel extends javax.swing.JPanel {
         expiresCheckBox.setSelected(false);
         expiresField.setText("mm-dd-yyyy");
         expiresField.setEnabled(false);
+        expiresCalButton.setEnabled(false);
         quantityField.setText("1");
         attachmentField.setText("");
     }
@@ -282,5 +298,6 @@ public class InternshipEditPanel extends javax.swing.JPanel {
     @Action
     public void toggleExpires() {
         expiresField.setEnabled(expiresCheckBox.isSelected());
+        expiresCalButton.setEnabled(expiresCheckBox.isSelected());
     }
 }

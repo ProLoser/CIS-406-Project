@@ -98,7 +98,7 @@ public class Contact {
         this.description = description;
     }
     public void save() {
-        Database db = new Database("contact_person");
+        Database db = new Database("contact");
         db.addField("first_name", fname);
         db.addField("last_name", lname);
         db.addField("company_id", company_id);

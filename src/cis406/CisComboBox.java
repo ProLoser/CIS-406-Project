@@ -134,26 +134,3 @@ public class CisComboBox extends DefaultComboBoxModel {
         }
     }
 }
-
-/**
- * Custom combo item object used for populating droplists
- * @author Dean
- */
-class ComboItem {
-
-    public String field;
-    public int id;
-
-    public ComboItem() {
-    }
-
-    public ComboItem(String field, int id) {
-        this.field = field;
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return field;
-    }
-}

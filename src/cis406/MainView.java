@@ -109,7 +109,7 @@ public class MainView extends FrameView {
         jFileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int success = jFileChooser2.showOpenDialog(menuBar);
         if (success == jFileChooser2.APPROVE_OPTION) {
-            Database.backUpDatabase(Database.connect(), jFileChooser2.getSelectedFile().getAbsolutePath());
+            Database.backupDatabase(Database.connect(), jFileChooser2.getSelectedFile().getAbsolutePath());
         }
     }
 
