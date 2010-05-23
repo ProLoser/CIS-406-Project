@@ -6,6 +6,7 @@
 package cis406;
 
 import java.sql.ResultSet;
+import java.sql.*;
 import javax.swing.DefaultListModel;
 
 /**
@@ -20,6 +21,14 @@ public class SecurityLog {
 
     public SecurityLog()
     {
+    }
+
+    public static void addEntry(String username, String message) {
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+
+        System.out.println(now);
+        
+        Database.executeWrite("insert into user_log (date, description, users_id) values ('" + now + "', 'test', 1)");
     }
 
     public DefaultListModel getModel()
