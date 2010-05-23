@@ -16,18 +16,16 @@ public class User {
     int securityLevel;
     String fName;
     String lName;
-    String email;
     String password = "";
     String username;
     int status;
     int id;
 
-    public User(int securityLevel, String fName, String lName, String email,
+    public User(int securityLevel, String fName, String lName,
             String password, String username, int status) {
         this.securityLevel = securityLevel;
         this.fName = fName;
         this.lName = lName;
-        this.email = email;
         this.password = password;
         this.username = username;
         this.status = status;
@@ -58,10 +56,6 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public int getStatus() {
         return status;
     }
@@ -80,10 +74,6 @@ public class User {
 
     public String getlName() {
         return lName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public void setPassword(char[] password) {;
@@ -121,7 +111,7 @@ public class User {
      */
     public void addUser() {
         try {
-            Database.executeWrite("INSERT INTO users (first_name, user_name, status, email, last_name, clearance, password) VALUES ('" + fName + "', '" + username + "', " + 1 + ", '" + email + "', '" + lName + "', " + securityLevel + ", '" + byteArrayToHexString(computeHash("P@ssw0rd")) + "')");
+            Database.executeWrite("INSERT INTO users (first_name, user_name, status, last_name, clearance, password) VALUES ('" + fName + "', '" + username + "', " + 1 + ", '" + lName + "', " + securityLevel + ", '" + byteArrayToHexString(computeHash("P@ssw0rd")) + "')");
         } catch (Exception e) {
             System.out.println("Failed to add the user");
             System.out.println(e.getMessage());
@@ -138,12 +128,12 @@ public class User {
             Database.executeWrite("UPDATE users SET password = '"
                     + password + "', status = " + status + ", first_name = '" + fName
                     + "', last_name = '" + lName + "', clearance = " + securityLevel
-                    + ", email = '" + username + "' WHERE user_name = '" + username + "'");
+                    + " WHERE user_name = '" + username + "'");
         }
         else {
             Database.executeWrite("UPDATE users SET status = " + status + ", first_name = '" + fName
                     + "', last_name = '" + lName + "', clearance = " + securityLevel
-                    + ", email = '" + username + "' WHERE user_name = '" + username + "'");
+                    + " WHERE user_name = '" + username + "'");
         }
     }
 

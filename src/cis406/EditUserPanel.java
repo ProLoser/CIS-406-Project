@@ -52,7 +52,6 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                     user.setPassword(txtPassword1.getPassword());
                     user.setfName(txtFirstName.getText());
                     user.setlName(txtLastName.getText());
-                    user.setEmail(cboUsername.getSelectedItem().toString());
 
                     user.updateUser();
                 }
@@ -69,7 +68,6 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
             user.setSecurityLevel(ddlSecurityLevel.getSelectedIndex());
             user.setfName(txtFirstName.getText());
             user.setlName(txtLastName.getText());
-            user.setEmail(cboUsername.getSelectedItem().toString());
 
             user.updateUser();
         }

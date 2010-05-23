@@ -31,7 +31,6 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
         User user = new User();
 
         user.setUsername(txtUsername.getText());
-        user.setEmail(txtUsername.getText());
         user.setSecurityLevel(cboRole.getSelectedIndex());
         user.setfName(txtFirstName.getText());
         user.setlName((txtLastName.getText()));
