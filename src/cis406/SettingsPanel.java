@@ -20,7 +20,7 @@ public class SettingsPanel extends javax.swing.JPanel implements CisPanel {
     /** Creates new form SettingsPanel */
     public SettingsPanel() {
         initComponents();
-        clickLoad();
+        //clickLoad();
     }
  public void clickNew() {
         clickClear();
