@@ -146,6 +146,9 @@ public class MainView extends FrameView {
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
+        reportMenu = new javax.swing.JMenu();
+        internshipSummaryMenuItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         databaseMenu = new javax.swing.JMenu();
         backupMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
@@ -278,16 +281,16 @@ public class MainView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 712, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+            .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(mainToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -306,6 +309,19 @@ public class MainView extends FrameView {
         fileMenu.add(exitMenuItem);
 
         menuBar.add(fileMenu);
+
+        reportMenu.setText(resourceMap.getString("reportMenu.text")); // NOI18N
+        reportMenu.setName("reportMenu"); // NOI18N
+
+        internshipSummaryMenuItem.setText(resourceMap.getString("internshipSummaryMenuItem.text")); // NOI18N
+        internshipSummaryMenuItem.setName("internshipSummaryMenuItem"); // NOI18N
+        reportMenu.add(internshipSummaryMenuItem);
+
+        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
+        jMenuItem1.setName("jMenuItem1"); // NOI18N
+        reportMenu.add(jMenuItem1);
+
+        menuBar.add(reportMenu);
 
         databaseMenu.setText(resourceMap.getString("databaseMenu.text")); // NOI18N
         databaseMenu.setName("databaseMenu"); // NOI18N
@@ -341,11 +357,11 @@ public class MainView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 562, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 542, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -466,9 +482,11 @@ public class MainView extends FrameView {
     public javax.swing.JButton deleteButton;
     private javax.swing.JToggleButton editButton;
     private cis406.internship.MainPanel internshipPanel1;
+    private javax.swing.JMenuItem internshipSummaryMenuItem;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JFileChooser jFileChooser2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     public javax.swing.JButton loadButton;
@@ -478,6 +496,7 @@ public class MainView extends FrameView {
     private javax.swing.JMenuBar menuBar;
     public javax.swing.JButton newButton;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JMenu reportMenu;
     public javax.swing.JButton saveButton;
     private cis406.SecurityPanel securityPanel1;
     private javax.swing.JLabel statusAnimationLabel;
