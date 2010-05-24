@@ -29,7 +29,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtUsername" pref="166" max="32767" attributes="1"/>
+                          <Component id="txtUsername" min="-2" pref="165" max="-2" attributes="1"/>
                           <Component id="cboRole" alignment="0" min="-2" max="-2" attributes="1"/>
                       </Group>
                   </Group>
@@ -55,7 +55,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
