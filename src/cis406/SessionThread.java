@@ -17,7 +17,7 @@ class SessionThread implements Runnable {
             runner.start();
 	}
 	public void run() {
-            String[] config = Configuration.load();
+            String[] config = Settings.load();
 
             try {
                 while (true) {

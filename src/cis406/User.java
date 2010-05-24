@@ -112,6 +112,7 @@ public class User {
     public void addUser() {
         try {
             Database.executeWrite("INSERT INTO users (first_name, user_name, status, last_name, clearance, password) VALUES ('" + fName + "', '" + username + "', " + 1 + ", '" + lName + "', " + securityLevel + ", '" + byteArrayToHexString(computeHash("P@ssw0rd")) + "')");
+            SecurityLog.addEntry("User created: " + username + ".");
         } catch (Exception e) {
             System.out.println("Failed to add the user");
             System.out.println(e.getMessage());
@@ -129,11 +130,13 @@ public class User {
                     + password + "', status = " + status + ", first_name = '" + fName
                     + "', last_name = '" + lName + "', clearance = " + securityLevel
                     + " WHERE user_name = '" + username + "'");
+            SecurityLog.addEntry("Password and user information updated for " + username + ".");
         }
         else {
             Database.executeWrite("UPDATE users SET status = " + status + ", first_name = '" + fName
                     + "', last_name = '" + lName + "', clearance = " + securityLevel
                     + " WHERE user_name = '" + username + "'");
+            SecurityLog.addEntry("User information updated for " + username + ".");
         }
     }
 
@@ -170,7 +173,7 @@ public class User {
         String hash = "";
         Boolean result = false;
 
-        if (User.getFailedLogins(username) > 2){
+        if (User.getFailedLogins(username) > Integer.parseInt(Settings.load()[0]) - 1){
             return false;
         }
 
@@ -214,14 +217,20 @@ public class User {
 
     public static void failedLogin(String username){
         int failedLogins = getFailedLogins(username) + 1;
+        int allowedAttempts = Integer.parseInt(Settings.load()[0]);
 
-        if (failedLogins < 3){
+        if (failedLogins < allowedAttempts){
         Database.executeWrite("update users set failed_logon_attempts = " + failedLogins + " where user_name = '" + username + "'");
-        JOptionPane.showMessageDialog(null, "You have " + failedLogins + " failed logins, after 3 your account will be disabled");
+        JOptionPane.showMessageDialog(null, "You have " + failedLogins + " failed logins, after " + allowedAttempts + " your account will be disabled");
         }
         else {
             Database.executeWrite("update users set failed_logon_attempts = " + failedLogins + "where user_name = '" + username + "'");
             User.changeStatus(username, 2);
+
+            if (failedLogins == allowedAttempts){
+                SecurityLog.addEntry("User (" + username + ") disabled for failed logon attempts (" + failedLogins + ").");
+            }
+            
             JOptionPane.showMessageDialog(null, "You have " + failedLogins + " failed login attempts and your account has been disabled, contact the administrator.");
         }
     }
@@ -303,6 +312,7 @@ public class User {
 
     public static boolean checkPassword(char[] password, String username) {
         boolean result = false;
+        int requiredLength = Integer.parseInt(Settings.load()[3]);
 
         // convert password character array to string
         String strPassword = "";
@@ -312,10 +322,10 @@ public class User {
 
 
         // Make sure password meets requirements
-        String lowercase = "((?=.*[a-z]).{8,})";
-        String uppercase = "((?=.*[A-Z]).{8,})";
-        String numbers = "((?=.*\\d).{8,})";
-        String complexchars = "((?=.*[\\s.,?!:;()\\[\\]{}<>/|\\\\+-=*@#$%&_~'^\"]).{8,})";
+        String lowercase = "((?=.*[a-z]).{" + requiredLength + ",})";
+        String uppercase = "((?=.*[A-Z]).{" + requiredLength + ",})";
+        String numbers = "((?=.*\\d).{" + requiredLength + ",})";
+        String complexchars = "((?=.*[\\s.,?!:;()\\[\\]{}<>/|\\\\+-=*@#$%&_~'^\"]).{" + requiredLength + ",})";
         Integer complexityCount = 0;
 
         if (strPassword.matches(lowercase)) { complexityCount++; }

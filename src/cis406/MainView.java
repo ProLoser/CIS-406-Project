@@ -33,6 +33,9 @@ public class MainView extends FrameView {
         // remove tabs based on user security level
         setupTabs(security_level);
 
+        // add security log entry for login
+        SecurityLog.addEntry("User logged in.");
+
         activeTabIndex = mainTabbedPane.getSelectedIndex();
 
         // status bar initialization - message timeout, idle icon and busy animation, etc
