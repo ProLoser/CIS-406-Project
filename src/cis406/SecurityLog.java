@@ -28,7 +28,7 @@ public class SecurityLog {
 
         System.out.println(now);
         
-        Database.executeWrite("insert into user_log (date, description, users_id) values ('" + now + "', 'test', 1)");
+        Database.executeWrite("insert into user_log (date, time, description, users_id) values ('" + now + "', '" + now + "', 'test', 1)");
     }
 
     public DefaultListModel getModel()
