@@ -4,24 +4,25 @@
  */
 
 /*
- * InternshipPanel.java
+ * MainPanel.java
  *
  * Created on May 10, 2010, 5:43:34 PM
  */
-package cis406;
+package cis406.internship;
 
+import cis406.CisPanel;
 import java.awt.CardLayout;
 
 /**
  *
  * @author Dean
  */
-public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
+public class MainPanel extends javax.swing.JPanel implements CisPanel {
 
     String activeCard = "Browse";
 
-    /** Creates new form InternshipPanel */
-    public InternshipPanel() {
+    /** Creates new form MainPanel */
+    public MainPanel() {
         initComponents();
     }
 
@@ -34,8 +35,8 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        internshipBrowsePanel1 = new cis406.InternshipBrowsePanel();
-        internshipEditPanel1 = new cis406.InternshipEditPanel();
+        internshipBrowsePanel1 = new cis406.internship.BrowsePanel();
+        internshipEditPanel1 = new cis406.internship.EditPanel();
 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
@@ -95,7 +96,7 @@ public class InternshipPanel extends javax.swing.JPanel implements CisPanel {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cis406.InternshipBrowsePanel internshipBrowsePanel1;
-    private cis406.InternshipEditPanel internshipEditPanel1;
+    private cis406.internship.BrowsePanel internshipBrowsePanel1;
+    private cis406.internship.EditPanel internshipEditPanel1;
     // End of variables declaration//GEN-END:variables
 }

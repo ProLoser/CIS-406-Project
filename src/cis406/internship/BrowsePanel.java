@@ -4,21 +4,23 @@
  */
 
 /*
- * InternshipBrowsePanel.java
+ * BrowsePanel.java
  *
  * Created on May 10, 2010, 2:47:41 PM
  */
 
-package cis406;
+package cis406.internship;
+
+import cis406.CisPanel;
 
 /**
  *
  * @author Dean
  */
-public class InternshipBrowsePanel extends javax.swing.JPanel implements CisPanel {
+public class BrowsePanel extends javax.swing.JPanel implements CisPanel {
 
-    /** Creates new form InternshipBrowsePanel */
-    public InternshipBrowsePanel() {
+    /** Creates new form BrowsePanel */
+    public BrowsePanel() {
         initComponents();
     }
 

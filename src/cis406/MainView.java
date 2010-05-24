@@ -137,7 +137,7 @@ public class MainView extends FrameView {
         editButton = new javax.swing.JToggleButton();
         browseButton = new javax.swing.JToggleButton();
         mainTabbedPane = new javax.swing.JTabbedPane();
-        internshipPanel1 = new cis406.InternshipPanel();
+        internshipPanel1 = new cis406.internship.MainPanel();
         contactPanel1 = new cis406.ContactPanel();
         correspondence1 = new cis406.CorrespondencePanel();
         studentPanel1 = new cis406.StudentPanel();
@@ -465,7 +465,7 @@ public class MainView extends FrameView {
     private javax.swing.JMenu databaseMenu;
     public javax.swing.JButton deleteButton;
     private javax.swing.JToggleButton editButton;
-    private cis406.InternshipPanel internshipPanel1;
+    private cis406.internship.MainPanel internshipPanel1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JFileChooser jFileChooser2;
