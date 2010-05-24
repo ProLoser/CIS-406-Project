@@ -46,7 +46,7 @@ public class EditPanel extends javax.swing.JPanel {
         descriptionLabel = new javax.swing.JLabel();
         attachmentLabel = new javax.swing.JLabel();
         postedLabel = new javax.swing.JLabel();
-        quantityLabel = new javax.swing.JLabel();
+        quantity1Label = new javax.swing.JLabel();
         companyComboBox = new javax.swing.JComboBox();
         companyLabel = new javax.swing.JLabel();
         quantityField = new javax.swing.JFormattedTextField();
@@ -55,6 +55,7 @@ public class EditPanel extends javax.swing.JPanel {
         expiresCheckBox = new javax.swing.JCheckBox();
         postedCalButton = new org.sourceforge.jcalendarbutton.JCalendarButton();
         expiresCalButton = new org.sourceforge.jcalendarbutton.JCalendarButton();
+        quantity2Label = new javax.swing.JLabel();
 
         jFileChooser1.setName("jFileChooser1"); // NOI18N
 
@@ -103,8 +104,9 @@ public class EditPanel extends javax.swing.JPanel {
         postedLabel.setText(resourceMap.getString("postedLabel.text")); // NOI18N
         postedLabel.setName("postedLabel"); // NOI18N
 
-        quantityLabel.setText(resourceMap.getString("quantityLabel.text")); // NOI18N
-        quantityLabel.setName("quantityLabel"); // NOI18N
+        quantity1Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        quantity1Label.setText(resourceMap.getString("quantity1Label.text")); // NOI18N
+        quantity1Label.setName("quantity1Label"); // NOI18N
 
         companyComboBox.setModel(new CisComboBox("company", "name"));
         companyComboBox.setName("companyComboBox"); // NOI18N
@@ -134,6 +136,10 @@ public class EditPanel extends javax.swing.JPanel {
         expiresCalButton.setEnabled(false);
         expiresCalButton.setName("expiresCalButton"); // NOI18N
 
+        quantity2Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        quantity2Label.setText(resourceMap.getString("quantity2Label.text")); // NOI18N
+        quantity2Label.setName("quantity2Label"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,33 +150,39 @@ public class EditPanel extends javax.swing.JPanel {
                         .addGap(19, 19, 19)
                         .addComponent(titleLabel)
                         .addGap(6, 6, 6)
-                        .addComponent(titleField, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE))
+                        .addComponent(titleField, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(attachmentLabel)
-                                        .addGap(6, 6, 6))
-                                    .addComponent(companyLabel)
-                                    .addComponent(postedLabel)
-                                    .addComponent(careerLabel)
-                                    .addComponent(descriptionLabel)))
+                                        .addGap(23, 23, 23)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(attachmentLabel)
+                                                .addGap(6, 6, 6))
+                                            .addComponent(companyLabel)
+                                            .addComponent(postedLabel)
+                                            .addComponent(careerLabel)
+                                            .addComponent(descriptionLabel)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(quantityField)))
+                                .addGap(4, 4, 4))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(quantityLabel)
-                                    .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(4, 4, 4)
+                                    .addComponent(quantity1Label, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                                    .addComponent(quantity2Label, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(attachmentField, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                                .addComponent(attachmentField, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1))
-                            .addComponent(companyComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 543, Short.MAX_VALUE)
-                            .addComponent(careerComboBox, 0, 543, Short.MAX_VALUE)
+                            .addComponent(companyComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 375, Short.MAX_VALUE)
+                            .addComponent(careerComboBox, 0, 375, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(postedField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -218,13 +230,17 @@ public class EditPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(descriptionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
-                        .addComponent(quantityLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(quantity1Label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(quantity2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        quantity1Label.getAccessibleContext().setAccessibleName(resourceMap.getString("quantityLabel.AccessibleContext.accessibleName")); // NOI18N
     }// </editor-fold>//GEN-END:initComponents
 
     @Action
@@ -252,14 +268,16 @@ public class EditPanel extends javax.swing.JPanel {
     private org.sourceforge.jcalendarbutton.JCalendarButton postedCalButton;
     private javax.swing.JFormattedTextField postedField;
     private javax.swing.JLabel postedLabel;
+    private javax.swing.JLabel quantity1Label;
+    private javax.swing.JLabel quantity2Label;
     private javax.swing.JFormattedTextField quantityField;
-    private javax.swing.JLabel quantityLabel;
     private javax.swing.JTextField titleField;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
-    public void save() {
+    public Boolean save() {
         Internship record = new Internship();
+        Boolean success = false;
 
         // Saves the career path if it's a new entry
         if (careerComboBox.getSelectedIndex() == -1) {
@@ -281,6 +299,7 @@ public class EditPanel extends javax.swing.JPanel {
         record.setDescription(descriptionTextarea.getText());
         record.setQuantity(Integer.parseInt(quantityField.getText()));
         record.save();
+        return success;
     }
 
     public void reset() {
