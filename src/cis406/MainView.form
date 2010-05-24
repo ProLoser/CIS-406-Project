@@ -191,7 +191,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
-            <Component class="cis406.InternshipPanel" name="internshipPanel1">
+            <Component class="cis406.internship.MainPanel" name="internshipPanel1">
               <Properties>
                 <Property name="name" type="java.lang.String" value="internshipPanel1" noResource="true"/>
               </Properties>

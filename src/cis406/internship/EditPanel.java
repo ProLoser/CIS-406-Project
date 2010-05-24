@@ -4,22 +4,24 @@
  */
 
 /*
- * InternshipEditPanel.java
+ * EditPanel.java
  *
  * Created on Apr 22, 2010, 6:03:34 AM
  */
-package cis406;
+package cis406.internship;
 
+import cis406.CisComboBox;
+import cis406.ComboItem;
 import org.jdesktop.application.Action;
 
 /**
  *
  * @author Dean Sofer
  */
-public class InternshipEditPanel extends javax.swing.JPanel {
+public class EditPanel extends javax.swing.JPanel {
 
-    /** Creates new form InternshipEditPanel */
-    public InternshipEditPanel() {
+    /** Creates new form EditPanel */
+    public EditPanel() {
         initComponents();
     }
 
@@ -58,7 +60,7 @@ public class InternshipEditPanel extends javax.swing.JPanel {
 
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(InternshipEditPanel.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(EditPanel.class);
         titleLabel.setText(resourceMap.getString("titleLabel.text")); // NOI18N
         titleLabel.setName("titleLabel"); // NOI18N
 
@@ -80,7 +82,7 @@ public class InternshipEditPanel extends javax.swing.JPanel {
         expiresField.setEnabled(false);
         expiresField.setName("expiresFTextField"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(InternshipEditPanel.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(EditPanel.class, this);
         jButton1.setAction(actionMap.get("browse")); // NOI18N
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
