@@ -1,5 +1,0 @@
-Mon May 17 02:11:03 PDT 2010:Backup started for database located at D:\Docs\CIS 406\CIS-406-Project\internshipsdb to C:\Users\qwerty\Documents\INTERNSHIP DB BACKUP 2010-05-17\internshipsdb.
-Mon May 17 02:11:10 PDT 2010:Backup of data segment to C:\Users\qwerty\Documents\INTERNSHIP DB BACKUP 2010-05-17\internshipsdb\seg0 completed. 
-Mon May 17 02:11:10 PDT 2010:copied log directory from D:\Docs\CIS 406\CIS-406-Project\internshipsdb\log to C:\Users\qwerty\Documents\INTERNSHIP DB BACKUP 2010-05-17\internshipsdb\log
-Mon May 17 02:11:10 PDT 2010:Backup completed, log instant at (2,19660) 
-
