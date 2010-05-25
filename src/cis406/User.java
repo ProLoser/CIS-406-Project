@@ -113,6 +113,7 @@ public class User {
         try {
             Database.executeWrite("INSERT INTO users (first_name, user_name, status, last_name, clearance, password) VALUES ('" + fName + "', '" + username + "', " + 1 + ", '" + lName + "', " + securityLevel + ", '" + byteArrayToHexString(computeHash("P@ssw0rd")) + "')");
             SecurityLog.addEntry("User created: " + username + ".");
+            JOptionPane.showMessageDialog(null, "User created successfully.");
         } catch (Exception e) {
             System.out.println("Failed to add the user");
             System.out.println(e.getMessage());
