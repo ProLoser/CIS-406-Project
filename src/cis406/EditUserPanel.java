@@ -115,8 +115,8 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
         cboUsername.setModel(new CisComboBox("users", "user_name"));
     }
 
-    public void switchAway() {
-
+    public Boolean switchAway() {
+        return true;
     }
     /** This method is called from within the constructor to
      * initialize the form.

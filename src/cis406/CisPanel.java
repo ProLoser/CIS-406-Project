@@ -20,6 +20,6 @@ public interface CisPanel {
     void clickEditing();
     void clickBrowsing();
     void switchTo(String actionCommand);
-    void switchAway();
+    Boolean switchAway();
 
 }

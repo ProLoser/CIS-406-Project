@@ -12,6 +12,7 @@ package cis406.internship;
 
 import cis406.CisPanel;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -78,11 +79,14 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void clickBrowsing() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Browse");
-        activeCard = "Browse";
-        browsePanel.loadTable();
-
+        if (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
+            editPanel.save();
+        } else {
+            CardLayout cl = (CardLayout) (getLayout());
+            cl.show(this, "Browse");
+            activeCard = "Browse";
+            browsePanel.loadTable();
+        }
     }
 
     public void clickSave() {
@@ -91,7 +95,14 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
         }
     }
 
-    public void switchAway() {
+    public Boolean switchAway() {
+        if (activeCard.equals("Edit")) {
+            if (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
+                editPanel.save();
+                return false;
+            }
+        }
+        return true;
     }
 
     public void switchTo(String actionCommand) {

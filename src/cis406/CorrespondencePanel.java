@@ -153,6 +153,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
     public void switchTo(String actionCommand) {
         cboContact.setModel(new CisComboBox("contact", "last_name"));
     }
-    public void switchAway() {
+    public Boolean switchAway() {
+        return true;
     }
 }

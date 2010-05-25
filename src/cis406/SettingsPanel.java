@@ -68,7 +68,8 @@ public class SettingsPanel extends javax.swing.JPanel implements CisPanel {
         clickLoad();
     }
 
-    public void switchAway() {
+    public Boolean switchAway() {
+        return true;
     }
     /** This method is called from within the constructor to
      * initialize the form.

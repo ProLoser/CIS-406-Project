@@ -90,7 +90,8 @@ String activeCard = "Browse";
             editPanel.save();
     }
 
-    public void switchAway() {
+    public Boolean switchAway() {
+        return true;
     }
 
     public void switchTo(String actionCommand) {

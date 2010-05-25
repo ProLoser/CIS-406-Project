@@ -8,7 +8,6 @@
  *
  * Created on May 6, 2010, 7:40:42 PM
  */
-
 package cis406;
 
 import java.awt.CardLayout;
@@ -17,7 +16,7 @@ import java.awt.CardLayout;
  *
  * @author qwerty
  */
-public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
+public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel {
 
     /** Creates new form SystemSettingsPanel */
     public SecurityLogPanel() {
@@ -34,26 +33,21 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void clickNew() {
-
     }
 
     public void clickSave() {
-
     }
 
     public void clickLoad() {
     }
 
     public void clickDelete() {
-
     }
 
     public void clickReset() {
-
     }
 
     public void clickCancel() {
-        
     }
 
     public void clickBrowsing() {
@@ -63,7 +57,6 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void clickEditing() {
-
     }
 
     public void switchTo(String actionCommand) {
@@ -73,9 +66,11 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
         tca.adjustColumns();
     }
 
-    public void switchAway() {
+    public Boolean switchAway() {
+        return true;
 
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -113,11 +108,8 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable logTable;
     // End of variables declaration//GEN-END:variables
-
 }

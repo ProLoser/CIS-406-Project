@@ -52,8 +52,11 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
     }
     public void switchTo(String actionCommand) {
     }
-    public void switchAway() {
+
+    public Boolean switchAway() {
+    
         ((CisPanel)securityTabs.getSelectedComponent()).switchAway();
+            return true;
     }
 
     /** This method is called from within the constructor to

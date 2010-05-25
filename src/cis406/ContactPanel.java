@@ -80,6 +80,7 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     }
     public void switchTo(String actionCommand) {
     }
-    public void switchAway() {
+    public Boolean switchAway() {
+        return true;
     }
 }
