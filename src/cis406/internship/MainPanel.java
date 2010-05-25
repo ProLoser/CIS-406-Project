@@ -35,27 +35,32 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        internshipBrowsePanel1 = new cis406.internship.BrowsePanel();
-        internshipEditPanel1 = new cis406.internship.EditPanel();
+        browsePanel = new cis406.internship.BrowsePanel();
+        editPanel = new cis406.internship.EditPanel();
 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
 
-        internshipBrowsePanel1.setName("internshipBrowsePanel1"); // NOI18N
-        add(internshipBrowsePanel1, "Browse");
+        browsePanel.setName("browsePanel"); // NOI18N
+        add(browsePanel, "Browse");
 
-        internshipEditPanel1.setName("internshipEditPanel1"); // NOI18N
-        add(internshipEditPanel1, "Edit");
+        editPanel.setName("editPanel"); // NOI18N
+        add(editPanel, "Edit");
     }// </editor-fold>//GEN-END:initComponents
 
     public void clickClear() {
-        internshipEditPanel1.reset();
+        if (activeCard.equals("Edit")) {
+            editPanel.reset();
+        } else {
+            browsePanel.loadTable();
+        }
     }
 
     public void clickDelete() {
     }
 
     public void clickCancel() {
+        clickBrowsing();
     }
 
     public void clickLoad() {
@@ -63,9 +68,7 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void clickNew() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Edit");
-        activeCard = "Edit";
+        clickEditing();
     }
 
     public void clickEditing() {
@@ -78,11 +81,14 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
         CardLayout cl = (CardLayout) (getLayout());
         cl.show(this, "Browse");
         activeCard = "Browse";
+        browsePanel.loadTable();
 
     }
 
     public void clickSave() {
-        internshipEditPanel1.save();
+        if (editPanel.save()) {
+            clickBrowsing();
+        }
     }
 
     public void switchAway() {
@@ -96,7 +102,7 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cis406.internship.BrowsePanel internshipBrowsePanel1;
-    private cis406.internship.EditPanel internshipEditPanel1;
+    private cis406.internship.BrowsePanel browsePanel;
+    private cis406.internship.EditPanel editPanel;
     // End of variables declaration//GEN-END:variables
 }

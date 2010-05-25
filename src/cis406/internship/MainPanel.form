@@ -19,9 +19,9 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
-    <Component class="cis406.internship.BrowsePanel" name="internshipBrowsePanel1">
+    <Component class="cis406.internship.BrowsePanel" name="browsePanel">
       <Properties>
-        <Property name="name" type="java.lang.String" value="internshipBrowsePanel1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="browsePanel" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
@@ -29,9 +29,9 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="cis406.internship.EditPanel" name="internshipEditPanel1">
+    <Component class="cis406.internship.EditPanel" name="editPanel">
       <Properties>
-        <Property name="name" type="java.lang.String" value="internshipEditPanel1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="editPanel" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">

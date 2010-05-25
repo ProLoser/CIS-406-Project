@@ -11,13 +11,11 @@
 
 package cis406.internship;
 
-import cis406.CisPanel;
-
 /**
  *
  * @author Dean
  */
-public class BrowsePanel extends javax.swing.JPanel implements CisPanel {
+public class BrowsePanel extends javax.swing.JPanel {
 
     /** Creates new form BrowsePanel */
     public BrowsePanel() {
@@ -50,8 +48,9 @@ public class BrowsePanel extends javax.swing.JPanel implements CisPanel {
         ));
         reportTable.setColumnSelectionAllowed(true);
         reportTable.setName("reportTable"); // NOI18N
+        reportTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(reportTable);
-        reportTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        reportTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -71,41 +70,14 @@ public class BrowsePanel extends javax.swing.JPanel implements CisPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void clickClear() {
-    }
-    
-    public void clickCancel() {
-    }
-
-    public void clickDelete() {
-    }
-
-    public void clickEditing() {
-    }
-
-    public void clickLoad() {
-    }
-
-    public void clickNew() {
-    }
-
-    public void clickBrowsing() {
-    }
-
-    public void clickSave() {
-    }
-
-    public void switchAway() {
-    }
-
-    public void switchTo(String actionCommand) {
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable reportTable;
     // End of variables declaration//GEN-END:variables
 
-
+    public void loadTable() {
+        reportTable.setModel(Internship.generateTable());
+    }
 
 }

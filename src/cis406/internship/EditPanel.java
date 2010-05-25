@@ -12,6 +12,7 @@ package cis406.internship;
 
 import cis406.CisComboBox;
 import cis406.ComboItem;
+import cis406.DateUtils;
 import org.jdesktop.application.Action;
 
 /**
@@ -23,6 +24,7 @@ public class EditPanel extends javax.swing.JPanel {
     /** Creates new form EditPanel */
     public EditPanel() {
         initComponents();
+        postedField.setText(DateUtils.now());
     }
 
     /** This method is called from within the constructor to
