@@ -131,7 +131,7 @@ public class MainView extends FrameView {
         saveButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        clearButton = new javax.swing.JButton();
+        resetButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         editButton = new javax.swing.JToggleButton();
@@ -206,14 +206,14 @@ public class MainView extends FrameView {
         deleteButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(deleteButton);
 
-        clearButton.setAction(actionMap.get("clickClear")); // NOI18N
-        clearButton.setIcon(resourceMap.getIcon("ClearButton.icon")); // NOI18N
-        clearButton.setText(resourceMap.getString("ClearButton.text")); // NOI18N
-        clearButton.setFocusable(false);
-        clearButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        clearButton.setName("ClearButton"); // NOI18N
-        clearButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        mainToolBar.add(clearButton);
+        resetButton.setAction(actionMap.get("clickClear")); // NOI18N
+        resetButton.setIcon(resourceMap.getIcon("ClearButton.icon")); // NOI18N
+        resetButton.setText(resourceMap.getString("ClearButton.text")); // NOI18N
+        resetButton.setFocusable(false);
+        resetButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        resetButton.setName("ClearButton"); // NOI18N
+        resetButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mainToolBar.add(resetButton);
 
         cancelButton.setAction(actionMap.get("clickCancel")); // NOI18N
         cancelButton.setIcon(resourceMap.getIcon("cancelButton.icon")); // NOI18N
@@ -452,7 +452,7 @@ public class MainView extends FrameView {
 
     @Action
     public void clickClear() {
-        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickClear();
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickReset();
     }
 
     @Action
@@ -475,7 +475,6 @@ public class MainView extends FrameView {
     private javax.swing.JMenuItem backupMenuItem;
     private javax.swing.JToggleButton browseButton;
     private javax.swing.JButton cancelButton;
-    public javax.swing.JButton clearButton;
     private cis406.ContactPanel contactPanel1;
     private cis406.CorrespondencePanel correspondence1;
     private javax.swing.JMenu databaseMenu;
@@ -497,6 +496,7 @@ public class MainView extends FrameView {
     public javax.swing.JButton newButton;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JMenu reportMenu;
+    public javax.swing.JButton resetButton;
     public javax.swing.JButton saveButton;
     private cis406.SecurityPanel securityPanel1;
     private javax.swing.JLabel statusAnimationLabel;

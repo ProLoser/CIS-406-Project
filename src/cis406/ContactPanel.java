@@ -63,7 +63,7 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     }
     public void clickDelete() {
     }
-    public void clickClear() {
+    public void clickReset() {
         contactEditPanel1.reset();
     }
     public void clickCancel() {

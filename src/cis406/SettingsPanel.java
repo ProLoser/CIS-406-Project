@@ -23,7 +23,7 @@ public class SettingsPanel extends javax.swing.JPanel implements CisPanel {
         //clickLoad();
     }
  public void clickNew() {
-        clickClear();
+        clickReset();
     }
 
     public void clickSave() {
@@ -47,7 +47,7 @@ public class SettingsPanel extends javax.swing.JPanel implements CisPanel {
 
     }
 
-    public void clickClear() {
+    public void clickReset() {
 
     }
 

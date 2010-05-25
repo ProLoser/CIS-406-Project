@@ -24,7 +24,7 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void clickNew() {
-        clickClear();
+        clickReset();
     }
 
     public void clickSave() {
@@ -46,7 +46,7 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
 
     }
 
-    public void clickClear() {
+    public void clickReset() {
         txtUsername.setText("");
         txtFirstName.setText("");
         txtLastName.setText("");

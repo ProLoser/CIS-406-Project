@@ -48,7 +48,7 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
         add(editPanel, "Edit");
     }// </editor-fold>//GEN-END:initComponents
 
-    public void clickClear() {
+    public void clickReset() {
         if (activeCard.equals("Edit")) {
             editPanel.reset();
         } else {

@@ -27,7 +27,7 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
 
     }
  public void clickNew() {
-        clickClear();
+        clickReset();
     }
 
     public void clickSave() {
@@ -82,7 +82,7 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
       
     }
 
-    public void clickClear() {
+    public void clickReset() {
         cboUsername.setSelectedIndex(-1);
         txtPassword1.setText("");
         txtPassword2.setText("");

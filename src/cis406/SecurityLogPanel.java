@@ -48,7 +48,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
 
     }
 
-    public void clickClear() {
+    public void clickReset() {
 
     }
 

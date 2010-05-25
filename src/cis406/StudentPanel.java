@@ -546,7 +546,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
     public void clickDelete() {
     }
 
-    public void clickClear() {
+    public void clickReset() {
     }
     
     public void clickCancel() {

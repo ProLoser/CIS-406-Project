@@ -38,8 +38,8 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
     public void clickDelete() {
         ((CisPanel)securityTabs.getSelectedComponent()).clickDelete();
     }
-    public void clickClear() {
-        ((CisPanel)securityTabs.getSelectedComponent()).clickClear();
+    public void clickReset() {
+        ((CisPanel)securityTabs.getSelectedComponent()).clickReset();
     }
     public void clickCancel() {
         ((CisPanel)securityTabs.getSelectedComponent()).clickCancel();

@@ -138,7 +138,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
     }
     public void clickDelete() {
     }
-    public void clickClear() {
+    public void clickReset() {
         txtDate.setText("mm/dd/yy");
         cboType.setSelectedIndex(0);
         txaNotes.setText("");
