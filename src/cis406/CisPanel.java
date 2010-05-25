@@ -15,7 +15,7 @@ public interface CisPanel {
     void clickSave();
     void clickLoad();
     void clickDelete();
-    void clickClear();
+    void clickReset();
     void clickCancel();
     void clickEditing();
     void clickBrowsing();

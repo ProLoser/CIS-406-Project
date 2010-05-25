@@ -5,21 +5,35 @@
 
 package cis406;
 
-import java.sql.ResultSet;
+import java.sql.*;
 import javax.swing.DefaultListModel;
 
 /**
- *
+ * So far adds log entries for:
+     * logins
+     * password changed
+     * system settings changed
+     * new user created
+     * user disabled for login attempts
+     * user updated info
  * @author qwerty
  */
 public class SecurityLog {
-    private String[] security_log;
     private ResultSet rs;
     private DefaultListModel security_log_model;
+    // disable security log entries by default to prevent database problems during development
+    private static boolean disableUserLogEntries = true;
 
 
     public SecurityLog()
     {
+    }
+
+    public static void addEntry(String message) {
+        if (!disableUserLogEntries) {
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+            Database.executeWrite("insert into user_log (date, time, description, user_name) values ('" + now + "', '" + now + "', '" + message + "', '" + MainApp.loginResult[1] + "')");
+        }
     }
 
     public DefaultListModel getModel()
@@ -62,6 +76,14 @@ public class SecurityLog {
         }
 
         return log;
+    }
+
+    public static void setEnabled(boolean mode) {
+        disableUserLogEntries = mode;
+    }
+
+    public static boolean getEnabled() {
+        return disableUserLogEntries;
     }
 }
 

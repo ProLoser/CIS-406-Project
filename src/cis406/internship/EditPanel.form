@@ -32,41 +32,50 @@
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Component id="titleLabel" min="-2" max="-2" attributes="1"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="titleField" pref="552" max="32767" attributes="0"/>
+                      <Component id="titleField" pref="373" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="attachmentLabel" min="-2" max="-2" attributes="1"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="attachmentLabel" min="-2" max="-2" attributes="1"/>
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="companyLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                                          <Component id="postedLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                                          <Component id="careerLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                                          <Component id="descriptionLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                                      </Group>
                                   </Group>
-                                  <Component id="companyLabel" alignment="1" min="-2" max="-2" attributes="1"/>
-                                  <Component id="postedLabel" alignment="1" min="-2" max="-2" attributes="1"/>
-                                  <Component id="careerLabel" alignment="1" min="-2" max="-2" attributes="1"/>
-                                  <Component id="descriptionLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                                  <Group type="102" alignment="0" attributes="1">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="quantityField" max="32767" attributes="1"/>
+                                  </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="quantityLabel" alignment="0" min="-2" max="-2" attributes="1"/>
-                                  <Component id="quantityField" alignment="0" min="-2" pref="67" max="-2" attributes="1"/>
+                                  <Component id="quantity1Label" alignment="0" pref="76" max="32767" attributes="1"/>
+                                  <Component id="quantity2Label" alignment="0" pref="76" max="32767" attributes="1"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="543" max="32767" attributes="1"/>
+                          <Component id="jScrollPane1" alignment="0" pref="375" max="32767" attributes="1"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="attachmentField" pref="446" max="32767" attributes="0"/>
+                              <Component id="attachmentField" pref="278" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="companyComboBox" alignment="1" pref="543" max="32767" attributes="0"/>
-                          <Component id="careerComboBox" alignment="0" pref="543" max="32767" attributes="0"/>
+                          <Component id="companyComboBox" alignment="1" pref="375" max="32767" attributes="0"/>
+                          <Component id="careerComboBox" alignment="0" pref="375" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="postedField" min="-2" pref="98" max="-2" attributes="1"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -128,12 +137,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="239" max="32767" attributes="0"/>
-                      <Component id="quantityLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="quantity1Label" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="quantity2Label" min="-2" pref="16" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="quantityField" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" pref="307" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="100" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -227,11 +238,15 @@
         <Property name="name" type="java.lang.String" value="postedLabel" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="quantityLabel">
+    <Component class="javax.swing.JLabel" name="quantity1Label">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="quantityLabel.text"/>
-        <Property name="name" type="java.lang.String" value="quantityLabel" noResource="true"/>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" resourceKey="quantity1Label.text"/>
+        <Property name="name" type="java.lang.String" value="quantity1Label" noResource="true"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" resourceKey="quantityLabel.AccessibleContext.accessibleName"/>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JComboBox" name="companyComboBox">
       <Properties>
@@ -291,6 +306,13 @@
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="expiresCalButton" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="quantity2Label">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" resourceKey="quantity2Label.text"/>
+        <Property name="name" type="java.lang.String" value="quantity2Label" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

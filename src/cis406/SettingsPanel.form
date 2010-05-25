@@ -28,10 +28,10 @@
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jSeparator1" alignment="0" min="-2" pref="306" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="0" min="-2" pref="55" max="-2" attributes="1"/>
-                  <Component id="jTextField5" alignment="0" min="-2" pref="56" max="-2" attributes="1"/>
-                  <Component id="jTextField3" alignment="0" min="-2" pref="55" max="-2" attributes="1"/>
-                  <Component id="jTextField1" alignment="0" min="-2" pref="55" max="-2" attributes="1"/>
+                  <Component id="txtPasswordInterval" alignment="0" min="-2" pref="55" max="-2" attributes="1"/>
+                  <Component id="txtPasswordLength" alignment="0" min="-2" pref="56" max="-2" attributes="1"/>
+                  <Component id="txtLoginAttempts" alignment="0" min="-2" pref="55" max="-2" attributes="1"/>
+                  <Component id="txtTimeout" alignment="0" min="-2" pref="55" max="-2" attributes="1"/>
               </Group>
               <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
           </Group>
@@ -47,19 +47,19 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
+              <Component id="txtLoginAttempts" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+              <Component id="txtTimeout" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
+              <Component id="txtPasswordInterval" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField5" min="-2" max="-2" attributes="0"/>
+              <Component id="txtPasswordLength" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="63" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -84,22 +84,22 @@
         <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtTimeout">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jTextField1.text"/>
-        <Property name="name" type="java.lang.String" value="jTextField1" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="txtTimeout.text"/>
+        <Property name="name" type="java.lang.String" value="txtTimeout" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="txtPasswordInterval">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jTextField2.text"/>
-        <Property name="name" type="java.lang.String" value="jTextField2" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="txtPasswordInterval.text"/>
+        <Property name="name" type="java.lang.String" value="txtPasswordInterval" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="txtLoginAttempts">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jTextField3.text"/>
-        <Property name="name" type="java.lang.String" value="jTextField3" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="txtLoginAttempts.text"/>
+        <Property name="name" type="java.lang.String" value="txtLoginAttempts" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -108,10 +108,10 @@
         <Property name="name" type="java.lang.String" value="jLabel5" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="txtPasswordLength">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jTextField5.text"/>
-        <Property name="name" type="java.lang.String" value="jTextField5" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="txtPasswordLength.text"/>
+        <Property name="name" type="java.lang.String" value="txtPasswordLength" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">

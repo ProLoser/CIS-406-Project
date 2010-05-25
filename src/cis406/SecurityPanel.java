@@ -38,8 +38,8 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
     public void clickDelete() {
         ((CisPanel)securityTabs.getSelectedComponent()).clickDelete();
     }
-    public void clickClear() {
-        ((CisPanel)securityTabs.getSelectedComponent()).clickClear();
+    public void clickReset() {
+        ((CisPanel)securityTabs.getSelectedComponent()).clickReset();
     }
     public void clickCancel() {
         ((CisPanel)securityTabs.getSelectedComponent()).clickCancel();
@@ -106,7 +106,7 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(securityTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addComponent(securityTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 425, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

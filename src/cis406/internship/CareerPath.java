@@ -3,7 +3,9 @@
  * and open the template in the editor.
  */
 
-package cis406;
+package cis406.internship;
+
+import cis406.Database;
 
 /**
  *

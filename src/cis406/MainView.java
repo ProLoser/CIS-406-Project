@@ -33,6 +33,9 @@ public class MainView extends FrameView {
         // remove tabs based on user security level
         setupTabs(security_level);
 
+        // add security log entry for login
+        SecurityLog.addEntry("User logged in.");
+
         activeTabIndex = mainTabbedPane.getSelectedIndex();
 
         // status bar initialization - message timeout, idle icon and busy animation, etc
@@ -128,13 +131,13 @@ public class MainView extends FrameView {
         saveButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        clearButton = new javax.swing.JButton();
+        resetButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         editButton = new javax.swing.JToggleButton();
         browseButton = new javax.swing.JToggleButton();
         mainTabbedPane = new javax.swing.JTabbedPane();
-        internshipPanel1 = new cis406.InternshipPanel();
+        internshipPanel1 = new cis406.internship.MainPanel();
         contactPanel1 = new cis406.ContactPanel();
         correspondence1 = new cis406.CorrespondencePanel();
         studentPanel1 = new cis406.StudentPanel();
@@ -143,6 +146,9 @@ public class MainView extends FrameView {
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
+        reportMenu = new javax.swing.JMenu();
+        internshipSummaryMenuItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         databaseMenu = new javax.swing.JMenu();
         backupMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
@@ -200,14 +206,14 @@ public class MainView extends FrameView {
         deleteButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(deleteButton);
 
-        clearButton.setAction(actionMap.get("clickClear")); // NOI18N
-        clearButton.setIcon(resourceMap.getIcon("ClearButton.icon")); // NOI18N
-        clearButton.setText(resourceMap.getString("ClearButton.text")); // NOI18N
-        clearButton.setFocusable(false);
-        clearButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        clearButton.setName("ClearButton"); // NOI18N
-        clearButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        mainToolBar.add(clearButton);
+        resetButton.setAction(actionMap.get("clickClear")); // NOI18N
+        resetButton.setIcon(resourceMap.getIcon("ClearButton.icon")); // NOI18N
+        resetButton.setText(resourceMap.getString("ClearButton.text")); // NOI18N
+        resetButton.setFocusable(false);
+        resetButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        resetButton.setName("ClearButton"); // NOI18N
+        resetButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mainToolBar.add(resetButton);
 
         cancelButton.setAction(actionMap.get("clickCancel")); // NOI18N
         cancelButton.setIcon(resourceMap.getIcon("cancelButton.icon")); // NOI18N
@@ -275,16 +281,16 @@ public class MainView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 712, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+            .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(mainToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -303,6 +309,19 @@ public class MainView extends FrameView {
         fileMenu.add(exitMenuItem);
 
         menuBar.add(fileMenu);
+
+        reportMenu.setText(resourceMap.getString("reportMenu.text")); // NOI18N
+        reportMenu.setName("reportMenu"); // NOI18N
+
+        internshipSummaryMenuItem.setText(resourceMap.getString("internshipSummaryMenuItem.text")); // NOI18N
+        internshipSummaryMenuItem.setName("internshipSummaryMenuItem"); // NOI18N
+        reportMenu.add(internshipSummaryMenuItem);
+
+        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
+        jMenuItem1.setName("jMenuItem1"); // NOI18N
+        reportMenu.add(jMenuItem1);
+
+        menuBar.add(reportMenu);
 
         databaseMenu.setText(resourceMap.getString("databaseMenu.text")); // NOI18N
         databaseMenu.setName("databaseMenu"); // NOI18N
@@ -338,11 +357,11 @@ public class MainView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 562, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 542, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -433,7 +452,7 @@ public class MainView extends FrameView {
 
     @Action
     public void clickClear() {
-        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickClear();
+        ((CisPanel) mainTabbedPane.getSelectedComponent()).clickReset();
     }
 
     @Action
@@ -456,16 +475,17 @@ public class MainView extends FrameView {
     private javax.swing.JMenuItem backupMenuItem;
     private javax.swing.JToggleButton browseButton;
     private javax.swing.JButton cancelButton;
-    public javax.swing.JButton clearButton;
     private cis406.ContactPanel contactPanel1;
     private cis406.CorrespondencePanel correspondence1;
     private javax.swing.JMenu databaseMenu;
     public javax.swing.JButton deleteButton;
     private javax.swing.JToggleButton editButton;
-    private cis406.InternshipPanel internshipPanel1;
+    private cis406.internship.MainPanel internshipPanel1;
+    private javax.swing.JMenuItem internshipSummaryMenuItem;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JFileChooser jFileChooser2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     public javax.swing.JButton loadButton;
@@ -475,6 +495,8 @@ public class MainView extends FrameView {
     private javax.swing.JMenuBar menuBar;
     public javax.swing.JButton newButton;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JMenu reportMenu;
+    public javax.swing.JButton resetButton;
     public javax.swing.JButton saveButton;
     private cis406.SecurityPanel securityPanel1;
     private javax.swing.JLabel statusAnimationLabel;

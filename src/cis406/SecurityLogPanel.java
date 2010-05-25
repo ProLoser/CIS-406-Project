@@ -22,27 +22,13 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
     /** Creates new form SystemSettingsPanel */
     public SecurityLogPanel() {
         initComponents();
-        /*
-        DefaultListModel model = new DefaultListModel();
-        try {
-            ResultSet rs = Database.execute("select distinct users_id from user_log");
-            while (rs.next()) {
-                int pos = model.getSize();
-                model.add(pos, rs.getString("users_id"));
-            }
-
-        } catch (Exception e) {
-            System.out.println("Could not execute query");
-            System.out.println(e.getMessage());
-        }
-          */
-      //  lstUsers.setModel(model);
     }
 
     static public CisTable generateTable() {
         CisTable table = new CisTable("user_log");
-        table.addDisplayField("users_id");
+        table.addDisplayField("user_name");
         table.addDisplayField("date");
+        table.addDisplayField("time");
         table.addDisplayField("description");
         return table.parseData();
     }
@@ -62,7 +48,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
 
     }
 
-    public void clickClear() {
+    public void clickReset() {
 
     }
 
@@ -81,7 +67,10 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
     }
 
     public void switchTo(String actionCommand) {
+        logTable.setModel(generateTable());
 
+        TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
+        tca.adjustColumns();
     }
 
     public void switchAway() {
@@ -97,15 +86,15 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        logTable = new javax.swing.JTable();
 
         setName("Form"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jTable1.setModel(generateTable());
-        jTable1.setName("jTable1"); // NOI18N
-        jScrollPane1.setViewportView(jTable1);
+        logTable.setModel(generateTable());
+        logTable.setName("logTable"); // NOI18N
+        jScrollPane1.setViewportView(logTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -113,22 +102,22 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable logTable;
     // End of variables declaration//GEN-END:variables
 
 }

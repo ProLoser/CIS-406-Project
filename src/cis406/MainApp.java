@@ -11,12 +11,13 @@ import org.jdesktop.application.SingleFrameApplication;
  */
 public class MainApp extends SingleFrameApplication {
 
+    static String[] loginResult = new String[3];
     /**
      * At startup create and show the main frame of the application.
      */
     @Override
     protected void startup() {
-        String[] loginResult = UserLoginBox.login();
+        loginResult = UserLoginBox.login();
         if (Boolean.parseBoolean(loginResult[0])) {
             show(new MainView(this, loginResult[1], Integer.parseInt(loginResult[2])));
             Thread sessionThread = new Thread(new SessionThread(), "thread1");

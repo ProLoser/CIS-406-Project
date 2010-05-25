@@ -15,7 +15,7 @@
                   <Component id="mainTabbedPane" pref="712" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Component id="mainToolBar" alignment="0" pref="732" max="32767" attributes="0"/>
+              <Component id="mainToolBar" alignment="0" pref="738" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -23,7 +23,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="mainToolBar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="mainTabbedPane" pref="709" max="32767" attributes="0"/>
+                  <Component id="mainTabbedPane" pref="694" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -102,7 +102,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="clearButton">
+            <Component class="javax.swing.JButton" name="resetButton">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="cis406.MainView" id="clickClear" methodName="clickClear"/>
@@ -191,7 +191,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
-            <Component class="cis406.InternshipPanel" name="internshipPanel1">
+            <Component class="cis406.internship.MainPanel" name="internshipPanel1">
               <Properties>
                 <Property name="name" type="java.lang.String" value="internshipPanel1" noResource="true"/>
               </Properties>
@@ -293,6 +293,26 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="reportMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="reportMenu.text"/>
+            <Property name="name" type="java.lang.String" value="reportMenu" noResource="true"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="internshipSummaryMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="internshipSummaryMenuItem.text"/>
+                <Property name="name" type="java.lang.String" value="internshipSummaryMenuItem" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem1.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem1" noResource="true"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="databaseMenu">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="databaseMenu.text"/>
@@ -344,11 +364,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="statusPanelSeparator" alignment="0" pref="732" max="32767" attributes="0"/>
+              <Component id="statusPanelSeparator" alignment="0" pref="738" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="562" max="32767" attributes="0"/>
+                  <EmptySpace pref="542" max="32767" attributes="0"/>
                   <Component id="progressBar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
@@ -463,6 +483,6 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,29,0,0,2,-36"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,29,0,0,2,-30"/>
   </AuxValues>
 </Form>
