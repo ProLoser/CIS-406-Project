@@ -22,7 +22,6 @@
     </Container>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
   </Properties>
   <SyntheticProperties>
@@ -72,7 +71,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jButton1" linkSize="1" min="-2" max="-2" attributes="1"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButton2" linkSize="1" min="-2" pref="96" max="-2" attributes="0"/>
+                                  <Component id="btnCancel" linkSize="1" min="-2" pref="96" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" alignment="1" min="-2" pref="607" max="-2" attributes="0"/>
                           </Group>
@@ -107,7 +106,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton2" linkSize="2" max="32767" attributes="1"/>
+                  <Component id="btnCancel" linkSize="2" max="32767" attributes="1"/>
                   <Component id="jButton1" linkSize="2" alignment="0" min="-2" pref="31" max="-2" attributes="1"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -239,13 +238,13 @@
         <Property name="name" type="java.lang.String" value="jLabel8" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnCancel">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jButton2.text"/>
-        <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="btnCancel.text"/>
+        <Property name="name" type="java.lang.String" value="btnCancel" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

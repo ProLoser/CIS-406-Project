@@ -18,10 +18,10 @@ import org.jdesktop.application.Action;
  *
  * @author Oscar Munoz
  */
-public class StudentPanel extends javax.swing.JPanel implements CisPanel {
-
+public class StudentEditPanel extends javax.swing.JPanel  {
+String activeCard = "Browse";
     /** Creates new form StudentPanel */
-    public StudentPanel() {
+    public StudentEditPanel() {
         initComponents();
     }
 
@@ -92,11 +92,6 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
         txtLName.setName("txtLName"); // NOI18N
         txtLName.setNextFocusableComponent(txtPhone);
 
-        try {
-            txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ### - ####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
         txtPhone.setName("txtPhone"); // NOI18N
         txtPhone.setNextFocusableComponent(txtEmail);
 
@@ -108,11 +103,11 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
             }
         });
 
-        cboMajor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None", "CIS", "Accounting", "FRL", "IBM", "MHR", "TOM" }));
+        cboMajor.setModel(new CisComboBox("major", "major_name"));
         cboMajor.setName("cboMajor"); // NOI18N
         cboMajor.setNextFocusableComponent(cboMinor);
 
-        cboMinor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None", "CIS", "Accounting", "FRL", "IBM", "MHR", "TOM" }));
+        cboMinor.setModel(new CisComboBox("minor", "minor_name"));
         cboMinor.setName("cboMinor"); // NOI18N
         cboMinor.setNextFocusableComponent(txtLastCis);
 
@@ -158,7 +153,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
         txaInterests.setNextFocusableComponent(cboMajor);
         jScrollPane1.setViewportView(txaInterests);
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(StudentPanel.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(StudentEditPanel.class);
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
@@ -226,7 +221,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(StudentPanel.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(StudentEditPanel.class, this);
         btnInternship.setAction(actionMap.get("launchInternshipAssign")); // NOI18N
         btnInternship.setText(resourceMap.getString("btnInternship.text")); // NOI18N
         btnInternship.setName("btnInternship"); // NOI18N
@@ -288,7 +283,7 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cboMinor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboMajor, 0, 58, Short.MAX_VALUE)))
+                            .addComponent(cboMajor, 0, 222, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
@@ -491,8 +486,8 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
     private String lastCIS;
     private String interests;
     private String relocate;
-    private String major;
-    private String minor;
+    private int major;
+    private int minor;
     private String gradDate;
     private String clubMissa;
     private String clubSwift;
@@ -512,10 +507,9 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
     String[] quarters = {"Fall", "Winter", "Spring", "Summer"};
     String[] term_year = { "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"};
     String[] standing = {"Freshman ( <44 units ) ", "Sophomore ( 45-89 units ) ", "Junior( 90-134 units ) ", "Senior ( 135+ units ) "};
-    public void clickNew() {
-    }
 
-    public void clickSave() {
+
+    public void save() {
         Student newStudent = new Student();
         newStudent.broncoNum = Integer.parseInt(txtBroncoNum.getText());
         newStudent.lastName = txtLName.getText();
@@ -525,8 +519,8 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
         newStudent.gradeLevel = cboStanding.getSelectedItem().toString();
         newStudent.updateDate = now;
         newStudent.interests = txaInterests.getText();
-        newStudent.major = cboMajor.getSelectedItem().toString();
-        newStudent.minor = cboMinor.getSelectedItem().toString();
+        newStudent.major = cboMajor.getSelectedIndex();
+        newStudent.minor = cboMinor.getSelectedIndex();
         newStudent.gradDate = cboQuarter.getSelectedItem().toString();
         newStudent.lastCISCourse = txtLastCis.getText();
         newStudent.setRelocate(chkRelocate.isSelected());
@@ -540,30 +534,10 @@ public class StudentPanel extends javax.swing.JPanel implements CisPanel {
 
     }
 
-    public void clickLoad() {
-    }
 
-    public void clickDelete() {
+    public void reset() {
+        
     }
-
-    public void clickClear() {
-    }
-    
-    public void clickCancel() {
-    }
-
-    public void clickEditing() {
-    }
-
-    public void clickBrowsing() {
-    }
-
-    public void switchTo(String actionCommand) {
-    }
-
-    public void switchAway() {
-    }
-
     @Action
     public void launchInternshipAssign() {
      JFrame frame = new AssignStudentToInternship();

@@ -3,6 +3,7 @@ package cis406;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import cis406.*;
 
 public class Student extends Person {
 //attributes
@@ -17,8 +18,8 @@ public class Student extends Person {
     int clubIwdsa;
     int clubSwift;
     int clubOther;
-    String major;
-    String minor;
+    int major;
+    int minor;
     String gradDate;
     String lastCISCourse;
 
@@ -36,8 +37,8 @@ public class Student extends Person {
         clubIwdsa = 0;
         clubSwift = 0;
         clubOther = 0;
-        major = "";
-        minor = "";
+        major = 0;
+        minor = 0;
         gradDate = "";
         lastCISCourse = "";
     }
@@ -64,7 +65,7 @@ public class Student extends Person {
      * @param lastCISCourse
      *
      */
-    public Student(int broncoNum, String firstName, String lastName, String middleInitial, String email, String phone, String gradeLevel, int relocate, Date updateDate, String interests, int clubMissa, int clubFast, int clubIwdsa, int clubSwift, int clubOther, String major, String minor, String gradDate, String lastCISCourse) {
+    public Student(int broncoNum, String firstName, String lastName, String middleInitial, String email, String phone, String gradeLevel, int relocate, Date updateDate, String interests, int clubMissa, int clubFast, int clubIwdsa, int clubSwift, int clubOther, int major, int minor, String gradDate, String lastCISCourse) {
         super(firstName, lastName, middleInitial, email, phone);
         //this.studID = studID;
         this.broncoNum = broncoNum;
@@ -174,11 +175,11 @@ public class Student extends Person {
         this.gradeLevel = gradeLevel;
     }
 
-    public String getMajor() {
+    public int getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
+    public void setMajor(int major) {
         this.major = major;
     }
 
@@ -218,11 +219,11 @@ public class Student extends Person {
         this.interests = interests;
     }
 
-    public String getMinor() {
+    public int getMinor() {
         return minor;
     }
 
-    public void setMinor(String minor) {
+    public void setMinor(int minor) {
         this.minor = minor;
     }
 
@@ -255,8 +256,8 @@ public class Student extends Person {
         sqlDate = new java.sql.Date(updateDate.getTime());
         db.addField("last_update", sqlDate);
         db.addField("interest", interests);
-        db.addField("major", major);
-        db.addField("minor", minor);
+        db.addField("major_id", major);
+        db.addField("minor_id", minor);
         db.addField("expected_graduation_quarter", gradDate);
         db.addField("relocate", relocate);
         db.addField("missa_club", clubMissa);
