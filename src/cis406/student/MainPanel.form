@@ -19,7 +19,7 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
-    <Component class="cis406.StudentEditPanel" name="editPanel">
+    <Component class="cis406.student.EditPanel" name="editPanel">
       <Properties>
         <Property name="name" type="java.lang.String" value="editPanel" noResource="true"/>
       </Properties>
@@ -29,7 +29,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="cis406.StudentBrowsePanel" name="browsePanel">
+    <Component class="cis406.student.BrowsePanel" name="browsePanel">
       <Properties>
         <Property name="name" type="java.lang.String" value="browsePanel" noResource="true"/>
       </Properties>

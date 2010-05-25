@@ -1,9 +1,11 @@
-package cis406;
+package cis406.student;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import cis406.*;
+import cis406.Database;
+import cis406.Person;
 
 public class Student extends Person {
 //attributes

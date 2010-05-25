@@ -10,11 +10,11 @@ package cis406;
  */
 public class Person {
 
-    String firstName;
-    String lastName;
-    String middleInitial;
-    String email;
-    String phone;
+    public String firstName;
+    public String lastName;
+    public String middleInitial;
+    public String email;
+    public String phone;
 
     public Person() {
         this.firstName = "";

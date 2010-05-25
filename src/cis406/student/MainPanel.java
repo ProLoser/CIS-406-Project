@@ -9,9 +9,10 @@
  * Created on May 24, 2010, 6:20:48 PM
  */
 
-package cis406;
+package cis406.student;
 
 import cis406.*;
+import cis406.CisPanel;
 import java.awt.CardLayout;
 
 /**
@@ -34,8 +35,8 @@ String activeCard = "Browse";
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        editPanel = new cis406.StudentEditPanel();
-        browsePanel = new cis406.StudentBrowsePanel();
+        editPanel = new cis406.student.EditPanel();
+        browsePanel = new cis406.student.BrowsePanel();
 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
@@ -49,8 +50,8 @@ String activeCard = "Browse";
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cis406.StudentBrowsePanel browsePanel;
-    private cis406.StudentEditPanel editPanel;
+    private cis406.student.BrowsePanel browsePanel;
+    private cis406.student.EditPanel editPanel;
     // End of variables declaration//GEN-END:variables
 
     public void clickBrowsing() {
@@ -62,7 +63,7 @@ String activeCard = "Browse";
     public void clickCancel() {
     }
 
-    public void clickClear() {
+    public void clickReset() {
         editPanel.reset();
     }
 

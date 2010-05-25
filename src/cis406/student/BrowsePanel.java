@@ -9,16 +9,18 @@
  * Created on May 24, 2010, 5:24:37 PM
  */
 
-package cis406;
+package cis406.student;
+
+import cis406.CisTable;
 
 /**
  *
  * @author Owner
  */
-public class StudentBrowsePanel extends javax.swing.JPanel implements CisPanel{
+public class BrowsePanel extends javax.swing.JPanel {
 
     /** Creates new form StudentBrowsePanel */
-    public StudentBrowsePanel() {
+    public BrowsePanel() {
         initComponents();
     }
 
@@ -60,45 +62,7 @@ public class StudentBrowsePanel extends javax.swing.JPanel implements CisPanel{
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void clickNew() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
-    public void clickSave() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void clickLoad() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void clickDelete() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void clickClear() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void clickCancel() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void clickEditing() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void clickBrowsing() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void switchTo(String actionCommand) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void switchAway() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -299,7 +299,7 @@
     <Component class="javax.swing.JComboBox" name="cboMajor">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new CisComboBox(&quot;major&quot;, &quot;major_name&quot;)" type="code"/>
+          <Connection code="new cis406.CisComboBox(&quot;major&quot;, &quot;major_name&quot;)" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="cboMajor" noResource="true"/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
@@ -310,7 +310,7 @@
     <Component class="javax.swing.JComboBox" name="cboMinor">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new CisComboBox(&quot;minor&quot;, &quot;minor_name&quot;)" type="code"/>
+          <Connection code="new cis406.CisComboBox(&quot;minor&quot;, &quot;minor_name&quot;)" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="cboMinor" noResource="true"/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">

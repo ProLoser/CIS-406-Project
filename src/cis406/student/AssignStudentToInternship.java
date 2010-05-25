@@ -9,7 +9,7 @@
  * Created on May 15, 2010, 4:18:35 PM
  */
 
-package cis406;
+package cis406.student;
 
 /**
  *
