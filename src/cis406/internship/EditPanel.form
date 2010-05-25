@@ -27,68 +27,40 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="titleLabel" alignment="0" max="32767" attributes="1"/>
+                  <Component id="attachmentLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                  <Component id="postedLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                  <Component id="companyLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                  <Component id="careerLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                  <Component id="descriptionLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                  <Component id="quantity2Label" alignment="0" max="32767" attributes="1"/>
+                  <Component id="quantity1Label" alignment="0" pref="83" max="32767" attributes="1"/>
+                  <Component id="quantityField" alignment="0" max="32767" attributes="1"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Component id="titleLabel" min="-2" max="-2" attributes="1"/>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="titleField" pref="373" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jScrollPane1" pref="375" max="32767" attributes="1"/>
+                  <Component id="careerComboBox" alignment="1" pref="375" max="32767" attributes="0"/>
+                  <Component id="companyComboBox" alignment="0" pref="375" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="attachmentLabel" min="-2" max="-2" attributes="1"/>
-                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="companyLabel" alignment="1" min="-2" max="-2" attributes="1"/>
-                                          <Component id="postedLabel" alignment="1" min="-2" max="-2" attributes="1"/>
-                                          <Component id="careerLabel" alignment="1" min="-2" max="-2" attributes="1"/>
-                                          <Component id="descriptionLabel" alignment="1" min="-2" max="-2" attributes="1"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="1">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="quantityField" max="32767" attributes="1"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="quantity1Label" alignment="0" pref="76" max="32767" attributes="1"/>
-                                  <Component id="quantity2Label" alignment="0" pref="76" max="32767" attributes="1"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="375" max="32767" attributes="1"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="attachmentField" pref="278" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="companyComboBox" alignment="1" pref="375" max="32767" attributes="0"/>
-                          <Component id="careerComboBox" alignment="0" pref="375" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="postedField" min="-2" pref="98" max="-2" attributes="1"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="postedCalButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="expiresCheckBox" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="expiresField" min="-2" pref="104" max="-2" attributes="1"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="expiresCalButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="postedField" min="-2" pref="98" max="-2" attributes="1"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="postedCalButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="expiresCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="expiresField" min="-2" pref="104" max="-2" attributes="1"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="expiresCalButton" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="attachmentField" pref="278" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="titleField" alignment="1" pref="375" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -96,7 +68,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="titleField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -105,30 +77,28 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="attachmentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="attachmentField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="attachmentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="postedField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="postedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="expiresField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="expiresCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="expiresField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="expiresCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="postedCalButton" min="-2" max="-2" attributes="0"/>
                   <Component id="expiresCalButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="postedField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="postedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="companyComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="companyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="careerComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="careerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -137,14 +107,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="42" max="32767" attributes="0"/>
                       <Component id="quantity1Label" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="quantity2Label" min="-2" pref="16" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="quantityField" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" pref="100" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="134" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
