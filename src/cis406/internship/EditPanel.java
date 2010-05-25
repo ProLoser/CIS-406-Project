@@ -13,6 +13,8 @@ package cis406.internship;
 import cis406.CisComboBox;
 import cis406.ComboItem;
 import cis406.DateUtils;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
 /**
@@ -230,7 +232,7 @@ public class EditPanel extends javax.swing.JPanel {
     @Action
     public void browse() {
         int success = jFileChooser1.showOpenDialog(this);
-        if (success == jFileChooser1.APPROVE_OPTION) {
+        if (success == javax.swing.JFileChooser.APPROVE_OPTION) {
             attachmentField.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
         }
     }
@@ -261,7 +263,7 @@ public class EditPanel extends javax.swing.JPanel {
 
     public Boolean save() {
         Internship record = new Internship();
-        Boolean success = false;
+        Boolean success = true;
 
         // Saves the career path if it's a new entry
         if (careerComboBox.getSelectedIndex() == -1) {
@@ -276,13 +278,33 @@ public class EditPanel extends javax.swing.JPanel {
         // The selected item must be cast into a ComboItem object so you can access it's attributes
         record.setCompanyId(((ComboItem) companyComboBox.getSelectedItem()).id);
         record.setAttachment(attachmentField.getText());
-        record.setPostDate(postedField.getText());
-        if (expiresCheckBox.isSelected()) {
-            record.setExpiration(expiresField.getText());
+        if (!record.setPostDate(postedField.getText())) {
+            postedLabel.setForeground(Color.RED);
+            success = false;
+        } else {
+            postedLabel.setForeground(Color.BLACK);
+        }
+        if (expiresCheckBox.isSelected() & !record.setExpiration(expiresField.getText())) {
+            expiresCheckBox.setForeground(Color.RED);
+            success = false;
+        } else {
+            expiresCheckBox.setForeground(Color.BLACK);
         }
         record.setDescription(descriptionTextarea.getText());
-        record.setQuantity(Integer.parseInt(quantityField.getText()));
-        record.save();
+        if (!record.setQuantity(quantityField.getText())) {
+            quantity1Label.setForeground(Color.RED);
+            quantity2Label.setForeground(Color.RED);
+            success = false;
+        } else {
+            quantity1Label.setForeground(Color.BLACK);
+            quantity2Label.setForeground(Color.BLACK);
+        }
+        if (success & !record.save()) {
+            success = false;
+        }
+        if (!success) {
+            JOptionPane.showMessageDialog(null, "Please check the data for errors");
+        }
         return success;
     }
 

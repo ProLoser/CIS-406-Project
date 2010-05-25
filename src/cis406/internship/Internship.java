@@ -106,8 +106,13 @@ public class Internship {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public Boolean setQuantity(String quantity) {
+        try {
+            this.quantity = Integer.parseInt(quantity);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public String getTitle() {
@@ -118,7 +123,7 @@ public class Internship {
         this.title = title;
     }
 
-    public void save() {
+    public Boolean save() {
         java.sql.Date sqlDate;
         Database db = new Database("internship");
         db.addField("title", title);
@@ -140,9 +145,11 @@ public class Internship {
         db.addField("quantity", quantity);
         try {
             db.insert();
+            return true;
         } catch (Exception e) {
             System.out.println("Failed to add the internship");
             System.out.println(e.getMessage());
+            return false;
         }
     }
 
