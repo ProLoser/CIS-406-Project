@@ -96,12 +96,12 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public Boolean switchAway() {
-        if (activeCard.equals("Edit")) {
+        /*if (activeCard.equals("Edit")) {
             if (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
                 editPanel.save();
                 return false;
             }
-        }
+        }*/
         return true;
     }
 

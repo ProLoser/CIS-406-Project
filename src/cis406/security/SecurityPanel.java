@@ -25,7 +25,7 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
     public SecurityPanel() {
         initComponents();
 
-        if (Integer.parseInt(cis406.MainApp.loginResult[2]) == 1) {
+        if (false) {
             securityTabs.removeTabAt(securityTabs.indexOfTab("System Settings"));
         }
 
