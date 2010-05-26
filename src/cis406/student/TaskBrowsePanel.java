@@ -15,10 +15,10 @@ package cis406;
  *
  * @author David
  */
-public class TaskReportPanel extends javax.swing.JPanel {
+public class TaskBrowsePanel extends javax.swing.JPanel {
 
     /** Creates new form TaskReportPanel */
-    public TaskReportPanel() {
+    public TaskBrowsePanel() {
         initComponents();
     }
 
