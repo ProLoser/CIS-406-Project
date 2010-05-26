@@ -9,8 +9,11 @@
  * Created on May 12, 2010, 2:46:18 PM
  */
 
-package cis406;
+package cis406.security;
 
+import cis406.CisComboBox;
+import cis406.CisPanel;
+import cis406.Database;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
@@ -24,7 +27,44 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
     public EditUserPanel() {
         initComponents();
 
+        if (!(cboUsername.getItemCount() < 1)){
+            try {
+                ResultSet rs = Database.execute("select * from users where user_name = '" + cboUsername.getSelectedItem().toString()+ "'");
+                while (rs.next()) {
+                    txtFirstName.setText(rs.getString("first_name"));
+                    txtLastName.setText(rs.getString("last_name"));
+                    ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
+                    ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
+                    if (ddlSecurityLevel.getSelectedIndex() == 0) {
+                        ddlStatus.setEnabled(false);
+                        ddlSecurityLevel.setEnabled(false);
 
+                        if (Integer.parseInt(cis406.MainApp.loginResult[2]) > 0) {
+                            txtPassword1.setEnabled(false);
+                            txtPassword2.setEnabled(false);
+                            txtFirstName.setEnabled(false);
+                            txtLastName.setEnabled(false);
+                            ddlSecurityQuestions.setEnabled(false);
+                            txtAnswer.setEnabled(false);
+                        }
+                    }
+                    else {
+                        ddlStatus.setEnabled(true);
+                        ddlSecurityLevel.setEnabled(true);
+                        txtPassword1.setEnabled(true);
+                        txtPassword2.setEnabled(true);
+                        txtFirstName.setEnabled(true);
+                        txtLastName.setEnabled(true);
+                        ddlSecurityQuestions.setEnabled(true);
+                        txtAnswer.setEnabled(true);
+                    }
+                }
+
+            } catch (Exception e) {
+                System.out.println("Could not execute query");
+                System.out.println(e.getMessage());
+            }
+        }
     }
  public void clickNew() {
         clickReset();
@@ -113,6 +153,8 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
 
     public void switchTo(String actionCommand) {
         cboUsername.setModel(new CisComboBox("users", "user_name"));
+
+
     }
 
     public Boolean switchAway() {
@@ -347,6 +389,29 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                 txtLastName.setText(rs.getString("last_name"));
                 ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
                 ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
+                if (ddlSecurityLevel.getSelectedIndex() == 0) {
+                    ddlStatus.setEnabled(false);
+                    ddlSecurityLevel.setEnabled(false);
+
+                    if (Integer.parseInt(cis406.MainApp.loginResult[2]) > 0) {
+                        txtPassword1.setEnabled(false);
+                        txtPassword2.setEnabled(false);
+                        txtFirstName.setEnabled(false);
+                        txtLastName.setEnabled(false);
+                        ddlSecurityQuestions.setEnabled(false);
+                        txtAnswer.setEnabled(false);
+                    }
+                }
+                else {
+                    ddlStatus.setEnabled(true);
+                    ddlSecurityLevel.setEnabled(true);
+                    txtPassword1.setEnabled(true);
+                    txtPassword2.setEnabled(true);
+                    txtFirstName.setEnabled(true);
+                    txtLastName.setEnabled(true);
+                    ddlSecurityQuestions.setEnabled(true);
+                    txtAnswer.setEnabled(true);
+                }
             }
 
         } catch (Exception e) {

@@ -8,8 +8,11 @@
  *
  * Created on May 6, 2010, 7:40:42 PM
  */
-package cis406;
+package cis406.security;
 
+import cis406.CisPanel;
+import cis406.CisTable;
+import cis406.TableColumnAdjuster;
 import java.awt.CardLayout;
 
 /**
@@ -97,7 +100,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

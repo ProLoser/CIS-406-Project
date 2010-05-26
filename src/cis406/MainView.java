@@ -3,6 +3,7 @@
  */
 package cis406;
 
+import cis406.security.SecurityLog;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -22,8 +23,10 @@ import javax.swing.JFrame;
 public class MainView extends FrameView {
 
     private int activeTabIndex;
+
+    // panels to remove based on security level of logged in user
     final String[] assistantPanels = {"Security"};
-    final String[] coordinatorPanels = {"Security"};
+    final String[] coordinatorPanels = {"My Account"};
 
     public MainView(SingleFrameApplication app, String username, int security_level) {
         super(app);
@@ -140,8 +143,9 @@ public class MainView extends FrameView {
         internshipPanel1 = new cis406.internship.MainPanel();
         contactPanel1 = new cis406.ContactPanel();
         correspondence1 = new cis406.CorrespondencePanel();
-        securityPanel1 = new cis406.SecurityPanel();
+        securityPanel1 = new cis406.security.SecurityPanel();
         mainPanel1 = new cis406.student.MainPanel();
+        myAccountPanel1 = new cis406.security.MyAccountPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -274,6 +278,9 @@ public class MainView extends FrameView {
 
         mainPanel1.setName("mainPanel1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("mainPanel1.TabConstraints.tabTitle"), mainPanel1); // NOI18N
+
+        myAccountPanel1.setName("myAccountPanel1"); // NOI18N
+        mainTabbedPane.addTab(resourceMap.getString("myAccountPanel1.TabConstraints.tabTitle"), myAccountPanel1); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -494,12 +501,13 @@ public class MainView extends FrameView {
     private javax.swing.JTabbedPane mainTabbedPane;
     private javax.swing.JToolBar mainToolBar;
     private javax.swing.JMenuBar menuBar;
+    private cis406.security.MyAccountPanel myAccountPanel1;
     public javax.swing.JButton newButton;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JMenu reportMenu;
     public javax.swing.JButton resetButton;
     public javax.swing.JButton saveButton;
-    private cis406.SecurityPanel securityPanel1;
+    private cis406.security.SecurityPanel securityPanel1;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;

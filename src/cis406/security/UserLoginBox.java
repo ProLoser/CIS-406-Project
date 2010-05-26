@@ -9,7 +9,7 @@
  * Created on May 13, 2010, 1:56:19 PM
  */
 
-package cis406;
+package cis406.security;
 
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;

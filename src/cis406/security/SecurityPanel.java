@@ -9,7 +9,9 @@
  * Created on May 17, 2010, 2:55:45 PM
  */
 
-package cis406;
+package cis406.security;
+
+import cis406.CisPanel;
 
 /**
  *
@@ -22,6 +24,10 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
     /** Creates new form SecurityPanel */
     public SecurityPanel() {
         initComponents();
+
+        if (Integer.parseInt(cis406.MainApp.loginResult[2]) == 1) {
+            securityTabs.removeTabAt(securityTabs.indexOfTab("System Settings"));
+        }
 
         activeTabIndex = securityTabs.getSelectedIndex();
     }
@@ -69,10 +75,10 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
     private void initComponents() {
 
         securityTabs = new javax.swing.JTabbedPane();
-        editUserPanel1 = new cis406.EditUserPanel();
-        newUserPanel1 = new cis406.NewUserPanel();
-        securityLogPanel1 = new cis406.SecurityLogPanel();
-        settingsPanel1 = new cis406.SettingsPanel();
+        editUserPanel1 = new cis406.security.EditUserPanel();
+        newUserPanel1 = new cis406.security.NewUserPanel();
+        securityLogPanel1 = new cis406.security.SecurityLogPanel();
+        settingsPanel1 = new cis406.security.SettingsPanel();
 
         setName("Form"); // NOI18N
 
@@ -126,11 +132,11 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cis406.EditUserPanel editUserPanel1;
-    private cis406.NewUserPanel newUserPanel1;
-    private cis406.SecurityLogPanel securityLogPanel1;
+    private cis406.security.EditUserPanel editUserPanel1;
+    private cis406.security.NewUserPanel newUserPanel1;
+    private cis406.security.SecurityLogPanel securityLogPanel1;
     private javax.swing.JTabbedPane securityTabs;
-    private cis406.SettingsPanel settingsPanel1;
+    private cis406.security.SettingsPanel settingsPanel1;
     // End of variables declaration//GEN-END:variables
 
 }

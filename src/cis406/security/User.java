@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cis406;
+package cis406.security;
 
+import cis406.Database;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
@@ -110,13 +111,18 @@ public class User {
      * information
      */
     public void addUser() {
-        try {
-            Database.executeWrite("INSERT INTO users (first_name, user_name, status, last_name, clearance, password) VALUES ('" + fName + "', '" + username + "', " + 1 + ", '" + lName + "', " + securityLevel + ", '" + byteArrayToHexString(computeHash("P@ssw0rd")) + "')");
-            SecurityLog.addEntry("User created: " + username + ".");
-            JOptionPane.showMessageDialog(null, "User created successfully.");
-        } catch (Exception e) {
-            System.out.println("Failed to add the user");
-            System.out.println(e.getMessage());
+        if (!exists(username)) {
+            try {
+                Database.executeWrite("INSERT INTO users (first_name, user_name, status, last_name, clearance, password) VALUES ('" + fName + "', '" + username + "', " + 1 + ", '" + lName + "', " + securityLevel + ", '" + byteArrayToHexString(computeHash("P@ssw0rd")) + "')");
+                SecurityLog.addEntry("User created: " + username + ".");
+                JOptionPane.showMessageDialog(null, "User created successfully.");
+            } catch (Exception e) {
+                System.out.println("Failed to add the user");
+                System.out.println(e.getMessage());
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Username already exists.");
         }
     }
 
