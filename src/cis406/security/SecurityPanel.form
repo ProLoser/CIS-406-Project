@@ -47,7 +47,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Component class="cis406.EditUserPanel" name="editUserPanel1">
+        <Component class="cis406.security.EditUserPanel" name="editUserPanel1">
           <Properties>
             <Property name="name" type="java.lang.String" value="editUserPanel1" noResource="true"/>
           </Properties>
@@ -59,7 +59,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="cis406.NewUserPanel" name="newUserPanel1">
+        <Component class="cis406.security.NewUserPanel" name="newUserPanel1">
           <Properties>
             <Property name="name" type="java.lang.String" value="newUserPanel1" noResource="true"/>
           </Properties>
@@ -71,7 +71,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="cis406.SecurityLogPanel" name="securityLogPanel1">
+        <Component class="cis406.security.SecurityLogPanel" name="securityLogPanel1">
           <Properties>
             <Property name="name" type="java.lang.String" value="securityLogPanel1" noResource="true"/>
           </Properties>
@@ -83,7 +83,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="cis406.SettingsPanel" name="settingsPanel1">
+        <Component class="cis406.security.SettingsPanel" name="settingsPanel1">
           <Properties>
             <Property name="name" type="java.lang.String" value="settingsPanel1" noResource="true"/>
           </Properties>

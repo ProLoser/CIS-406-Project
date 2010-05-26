@@ -9,7 +9,9 @@
  * Created on May 3, 2010, 3:15:24 PM
  */
 
-package cis406;
+package cis406.security;
+
+import cis406.CisPanel;
 
 /**
  *

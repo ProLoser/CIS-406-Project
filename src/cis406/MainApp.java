@@ -3,6 +3,8 @@
  */
 package cis406;
 
+import cis406.security.SessionThread;
+import cis406.security.UserLoginBox;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -11,7 +13,7 @@ import org.jdesktop.application.SingleFrameApplication;
  */
 public class MainApp extends SingleFrameApplication {
 
-    static String[] loginResult = new String[3];
+    public static String[] loginResult = new String[3];
     /**
      * At startup create and show the main frame of the application.
      */

@@ -3,8 +3,10 @@
  * and open the template in the editor.
  */
 
-package cis406;
+package cis406.security;
 
+import cis406.Database;
+import cis406.MainApp;
 import java.sql.*;
 import javax.swing.DefaultListModel;
 

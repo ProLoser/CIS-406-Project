@@ -3,11 +3,11 @@
  * and open the template in the editor.
  */
 
-package cis406;
+package cis406.security;
 
 import javax.swing.JOptionPane;
 
-class SessionThread implements Runnable {
+public class SessionThread implements Runnable {
 
 	Thread runner;
 	public SessionThread() {

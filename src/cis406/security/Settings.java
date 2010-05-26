@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cis406;
+package cis406.security;
 
 import java.io.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,7 +67,7 @@ public class Settings {
                                 + password_interval + ","
                                 + password_length);
                 output.close();
-                System.out.println("Your file has been written");
+                JOptionPane.showMessageDialog(null, "Settings have been saved.");
         } catch (IOException e) {
             System.out.println(e.toString());
         }
