@@ -5,3 +5,4 @@ sample/*
 internshipsdb/log/*
 db.lck
 derby.log
+*.log
