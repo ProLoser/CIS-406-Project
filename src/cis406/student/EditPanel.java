@@ -10,6 +10,7 @@
  */
 package cis406.student;
 
+import cis406.DateUtils;
 import java.util.*;
 import javax.swing.JFrame;
 import org.jdesktop.application.Action;
@@ -23,6 +24,7 @@ public class EditPanel extends javax.swing.JPanel  {
     /** Creates new form StudentPanel */
     public EditPanel() {
         initComponents();
+        lblPostedDate.setText(DateUtils.now());
     }
 
     /** This method is called from within the constructor to
@@ -76,7 +78,7 @@ public class EditPanel extends javax.swing.JPanel  {
         jLabel1 = new javax.swing.JLabel();
         btnInternship = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblPostedDate = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
 
@@ -229,9 +231,9 @@ public class EditPanel extends javax.swing.JPanel  {
 
         jLabel2.setName("jLabel2"); // NOI18N
 
-        jLabel4.setFont(resourceMap.getFont("jLabel4.font")); // NOI18N
-        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
-        jLabel4.setName("jLabel4"); // NOI18N
+        lblPostedDate.setFont(resourceMap.getFont("lblPostedDate.font")); // NOI18N
+        lblPostedDate.setText(resourceMap.getString("lblPostedDate.text")); // NOI18N
+        lblPostedDate.setName("lblPostedDate"); // NOI18N
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
@@ -275,7 +277,7 @@ public class EditPanel extends javax.swing.JPanel  {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4))
+                        .addComponent(lblPostedDate))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -416,7 +418,7 @@ public class EditPanel extends javax.swing.JPanel  {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel4))
+                    .addComponent(lblPostedDate))
                 .addGap(18, 18, 18)
                 .addComponent(btnInternship)
                 .addContainerGap(136, Short.MAX_VALUE))
@@ -463,12 +465,12 @@ public class EditPanel extends javax.swing.JPanel  {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblPostedDate;
     private javax.swing.JTextArea txaInterests;
     private javax.swing.JTextField txtBroncoNum;
     private javax.swing.JTextField txtEmail;
