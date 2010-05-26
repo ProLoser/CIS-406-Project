@@ -25,9 +25,7 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
     public SecurityPanel() {
         initComponents();
 
-        if (Integer.parseInt(cis406.MainApp.loginResult[2]) == 1) {
-            securityTabs.removeTabAt(securityTabs.indexOfTab("System Settings"));
-        }
+        // removeTabs();
 
         activeTabIndex = securityTabs.getSelectedIndex();
     }
@@ -63,6 +61,12 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
     
         ((CisPanel)securityTabs.getSelectedComponent()).switchAway();
             return true;
+    }
+
+    public void removeTabs() {
+        if (Integer.parseInt(cis406.MainApp.loginResult[2]) == 1) {
+            securityTabs.removeTabAt(securityTabs.indexOfTab("System Settings"));
+        }
     }
 
     /** This method is called from within the constructor to

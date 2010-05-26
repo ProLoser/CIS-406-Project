@@ -11,15 +11,66 @@
 
 package cis406.security;
 
+import cis406.CisPanel;
+
 /**
  *
  * @author qwerty
  */
-public class MyAccountPanel extends javax.swing.JPanel {
+public class MyAccountPanel extends javax.swing.JPanel implements CisPanel {
 
     /** Creates new form MyAccountPanel */
     public MyAccountPanel() {
         initComponents();
+    }
+    public void clickNew() {
+        clickReset();
+    }
+
+    public void clickSave() {
+        User user = new User();
+
+        user.setfName(txtFirstName.getText());
+        user.setlName((txtLastName.getText()));
+
+        if (txtPassword1.getPassword().length > 0) {
+            
+        }
+
+        user.addUser();
+    }
+
+    public void clickLoad() {
+
+    }
+
+    public void clickDelete() {
+
+    }
+
+    public void clickReset() {
+        txtFirstName.setText("");
+        txtLastName.setText("");
+    }
+
+    public void clickCancel() {
+
+    }
+
+    public void clickBrowsing() {
+
+    }
+
+    public void clickEditing() {
+
+    }
+
+    public void switchTo(String actionCommand) {
+
+    }
+
+    public Boolean switchAway() {
+        return true;
     }
 
     /** This method is called from within the constructor to
