@@ -29,7 +29,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtAnswer" pref="239" max="32767" attributes="1"/>
+                          <Component id="txtAnswer" min="-2" pref="231" max="-2" attributes="1"/>
                           <Component id="ddlSecurityQuestions" alignment="0" min="-2" max="-2" attributes="1"/>
                       </Group>
                   </Group>

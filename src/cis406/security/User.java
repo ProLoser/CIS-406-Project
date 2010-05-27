@@ -20,7 +20,7 @@ public class User {
     String password = "";
     String username;
     String security_answer = "";
-    String security_question = "";
+    int question_id;
     int status;
     int id;
 
@@ -92,7 +92,18 @@ public class User {
     }
 
     public void setSecurityQuestion(String question) {
-        this.security_question = question;
+        int id = 0;
+        try {
+            ResultSet rs = Database.execute("select question_key_id from question_key where question = '" + question + "'");
+
+            while (rs.next()) {
+                id = rs.getInt("question_key_id");
+            }
+        } catch (Exception e) {
+            System.out.println("Could not execute query");
+            System.out.println(e.getMessage());
+        }
+        this.question_id = id;
     }
 
     public void setPassword(char[] password) {;
@@ -150,18 +161,6 @@ public class User {
      * information
      */
     public void updateUser() {
-        int question_id = 0;
-        try {
-            ResultSet rs = Database.execute("select question_key_id from question_key where question = '" + security_question + "'");
-
-            while (rs.next()) {
-                question_id = rs.getInt("question_key_id");
-            }
-        } catch (Exception e) {
-            System.out.println("Could not execute query");
-            System.out.println(e.getMessage());
-        }
-        
         if (!password.isEmpty()) {
             Database.executeWrite("UPDATE users SET password = '"
                     + password + "', status = " + status + ", first_name = '" + fName
@@ -175,6 +174,37 @@ public class User {
                     + ", question_key_id = " + question_id + ", answer = '" + security_answer + "' WHERE user_name = '" + username + "'");
             SecurityLog.addEntry("User information updated for " + username + ".");
         }
+    }
+
+    public void newUserUpdate(String user_name, String answer) {
+        Database.executeWrite("UPDATE users SET password = '" + password
+                + "', question_key_id = " + question_id + ", answer = '"
+                + answer + "', has_logged_on = 1 WHERE user_name = '" + user_name + "'");
+    }
+
+    /**
+     * Checks if a user has every logged on
+     * @param username Username to check
+     * @return Boolean that represents whether they have ever logged on
+     */
+    public static boolean firstLogon(String username) {
+        boolean firstLogon = false;
+
+        if (exists(username)) {
+            try {
+                ResultSet rs = Database.execute("select has_logged_on from users where user_name = '" + username + "'");
+
+                while (rs.next()) {
+                    if (rs.getInt("has_logged_on") == 0) {
+                        firstLogon = true;
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Failed to add the user");
+                System.out.println(e.getMessage());
+            }
+        }
+        return firstLogon;
     }
 
     /**
