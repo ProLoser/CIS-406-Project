@@ -15,6 +15,7 @@ import cis406.CisComboBox;
 import cis406.CisPanel;
 import cis406.Database;
 import java.sql.ResultSet;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,8 +34,27 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                 while (rs.next()) {
                     txtFirstName.setText(rs.getString("first_name"));
                     txtLastName.setText(rs.getString("last_name"));
+                    txtAnswer.setText(rs.getString("answer"));
                     ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
                     ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
+
+                    // find user's security question and select it from the combo box
+                    ResultSet rsSecurityQuestion = Database.execute("select question from question_key where question_key_id = " + rs.getInt("question_key_id"));
+                    while (rsSecurityQuestion.next()) {
+                        HashMap questions = new HashMap();
+
+                        for (int i = 0; i < ddlSecurityQuestions.getItemCount(); i++) {
+                            questions.put(i, ddlSecurityQuestions.getItemAt(i).toString());
+                        }
+
+                        for (int i = 0; i < questions.size(); i++) {
+                            if (questions.get(i).equals(rsSecurityQuestion.getString("question"))) {
+                                ddlSecurityQuestions.setSelectedIndex(i);
+                            }
+                        }
+                    }
+
+                    
                     if (ddlSecurityLevel.getSelectedIndex() == 0) {
                         ddlStatus.setEnabled(false);
                         ddlSecurityLevel.setEnabled(false);
@@ -92,6 +112,8 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                     user.setPassword(txtPassword1.getPassword());
                     user.setfName(txtFirstName.getText());
                     user.setlName(txtLastName.getText());
+                    user.setSecurityAnswer(txtAnswer.getText());
+                    user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
 
                     user.updateUser();
                 }
@@ -108,6 +130,8 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
             user.setSecurityLevel(ddlSecurityLevel.getSelectedIndex());
             user.setfName(txtFirstName.getText());
             user.setlName(txtLastName.getText());
+            user.setSecurityAnswer(txtAnswer.getText());
+            user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
 
             user.updateUser();
         }
@@ -387,8 +411,26 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
             while (rs.next()) {
                 txtFirstName.setText(rs.getString("first_name"));
                 txtLastName.setText(rs.getString("last_name"));
+                txtAnswer.setText(rs.getString("answer"));
                 ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
                 ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
+
+                // find user's security question and select it from the combo box
+                ResultSet rsSecurityQuestion = Database.execute("select question from question_key where question_key_id = " + rs.getInt("question_key_id"));
+                while (rsSecurityQuestion.next()) {
+                    HashMap questions = new HashMap();
+
+                    for (int i = 0; i < ddlSecurityQuestions.getItemCount(); i++) {
+                        questions.put(i, ddlSecurityQuestions.getItemAt(i).toString());
+                    }
+
+                    for (int i = 0; i < questions.size(); i++) {
+                        if (questions.get(i).equals(rsSecurityQuestion.getString("question"))) {
+                            ddlSecurityQuestions.setSelectedIndex(i);
+                        }
+                    }
+                }
+                
                 if (ddlSecurityLevel.getSelectedIndex() == 0) {
                     ddlStatus.setEnabled(false);
                     ddlSecurityLevel.setEnabled(false);
