@@ -214,7 +214,7 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
         usernameLabel.setText(resourceMap.getString("usernameLabel.text")); // NOI18N
         usernameLabel.setName("usernameLabel"); // NOI18N
 
-        ddlSecurityQuestions.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "What city were you born in?", "What year did you graduate high school?" }));
+        ddlSecurityQuestions.setModel(new CisComboBox("question_key", "question"));
         ddlSecurityQuestions.setName("ddlSecurityQuestions"); // NOI18N
 
         lblFirstName.setText(resourceMap.getString("lblFirstName.text")); // NOI18N
@@ -276,9 +276,9 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                             .addComponent(jLabel10)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtAnswer, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ddlSecurityQuestions, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                            .addComponent(ddlSecurityQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,7 +324,7 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(ddlSecurityLevel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ddlStatus, 0, 178, Short.MAX_VALUE)))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
