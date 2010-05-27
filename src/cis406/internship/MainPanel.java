@@ -79,7 +79,7 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void clickBrowsing() {
-        if (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
+        if (false) { // (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
             editPanel.save();
         } else {
             CardLayout cl = (CardLayout) (getLayout());
