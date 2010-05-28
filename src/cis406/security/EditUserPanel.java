@@ -15,6 +15,7 @@ import cis406.CisComboBox;
 import cis406.CisPanel;
 import cis406.Database;
 import java.sql.ResultSet;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,8 +34,27 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                 while (rs.next()) {
                     txtFirstName.setText(rs.getString("first_name"));
                     txtLastName.setText(rs.getString("last_name"));
+                    txtAnswer.setText(rs.getString("answer"));
                     ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
                     ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
+
+                    // find user's security question and select it from the combo box
+                    ResultSet rsSecurityQuestion = Database.execute("select question from question_key where question_key_id = " + rs.getInt("question_key_id"));
+                    while (rsSecurityQuestion.next()) {
+                        HashMap questions = new HashMap();
+
+                        for (int i = 0; i < ddlSecurityQuestions.getItemCount(); i++) {
+                            questions.put(i, ddlSecurityQuestions.getItemAt(i).toString());
+                        }
+
+                        for (int i = 0; i < questions.size(); i++) {
+                            if (questions.get(i).equals(rsSecurityQuestion.getString("question"))) {
+                                ddlSecurityQuestions.setSelectedIndex(i);
+                            }
+                        }
+                    }
+
+                    
                     if (ddlSecurityLevel.getSelectedIndex() == 0) {
                         ddlStatus.setEnabled(false);
                         ddlSecurityLevel.setEnabled(false);
@@ -92,6 +112,8 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                     user.setPassword(txtPassword1.getPassword());
                     user.setfName(txtFirstName.getText());
                     user.setlName(txtLastName.getText());
+                    user.setSecurityAnswer(txtAnswer.getText());
+                    user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
 
                     user.updateUser();
                 }
@@ -108,6 +130,8 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
             user.setSecurityLevel(ddlSecurityLevel.getSelectedIndex());
             user.setfName(txtFirstName.getText());
             user.setlName(txtLastName.getText());
+            user.setSecurityAnswer(txtAnswer.getText());
+            user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
 
             user.updateUser();
         }
@@ -214,7 +238,7 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
         usernameLabel.setText(resourceMap.getString("usernameLabel.text")); // NOI18N
         usernameLabel.setName("usernameLabel"); // NOI18N
 
-        ddlSecurityQuestions.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "What city were you born in?", "What year did you graduate high school?" }));
+        ddlSecurityQuestions.setModel(new CisComboBox("question_key", "question"));
         ddlSecurityQuestions.setName("ddlSecurityQuestions"); // NOI18N
 
         lblFirstName.setText(resourceMap.getString("lblFirstName.text")); // NOI18N
@@ -276,9 +300,9 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                             .addComponent(jLabel10)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtAnswer, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ddlSecurityQuestions, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ddlSecurityQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,7 +348,7 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(ddlSecurityLevel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ddlStatus, 0, 178, Short.MAX_VALUE)))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,8 +411,26 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
             while (rs.next()) {
                 txtFirstName.setText(rs.getString("first_name"));
                 txtLastName.setText(rs.getString("last_name"));
+                txtAnswer.setText(rs.getString("answer"));
                 ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
                 ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
+
+                // find user's security question and select it from the combo box
+                ResultSet rsSecurityQuestion = Database.execute("select question from question_key where question_key_id = " + rs.getInt("question_key_id"));
+                while (rsSecurityQuestion.next()) {
+                    HashMap questions = new HashMap();
+
+                    for (int i = 0; i < ddlSecurityQuestions.getItemCount(); i++) {
+                        questions.put(i, ddlSecurityQuestions.getItemAt(i).toString());
+                    }
+
+                    for (int i = 0; i < questions.size(); i++) {
+                        if (questions.get(i).equals(rsSecurityQuestion.getString("question"))) {
+                            ddlSecurityQuestions.setSelectedIndex(i);
+                        }
+                    }
+                }
+                
                 if (ddlSecurityLevel.getSelectedIndex() == 0) {
                     ddlStatus.setEnabled(false);
                     ddlSecurityLevel.setEnabled(false);

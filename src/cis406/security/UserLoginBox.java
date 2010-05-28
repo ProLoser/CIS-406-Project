@@ -130,6 +130,10 @@ public class UserLoginBox extends javax.swing.JDialog {
     public void clickLogin() {
         getInputs();
         if (User.login(userInfo[0], userInfo[1])) {
+            if (User.firstLogon(userInfo[0])) {
+                FirstTimeUserBox.updateNewUser(userInfo[0]);
+            }
+
             result[0] = "true";
             result[1] = userInfo[0];
             result[2] = Integer.toString(User.getSecurityClearance(userInfo[0]));

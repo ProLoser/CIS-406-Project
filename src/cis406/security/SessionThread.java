@@ -17,11 +17,11 @@ public class SessionThread implements Runnable {
             runner.start();
 	}
 	public void run() {
-            String[] config = Settings.load();
+            Settings settings = new Settings();
 
             try {
                 while (true) {
-                    if (Win32IdleTime.getIdleTimeMillisWin32() > Integer.parseInt(config[1]) * 60 * 1000) {
+                    if (Win32IdleTime.getIdleTimeMillisWin32() > settings.getSession_timeout() * 60 * 1000) {
                         JOptionPane.showMessageDialog(null, "You have been automatically logged out due to inactivity!");
                         System.exit(0);
                     }

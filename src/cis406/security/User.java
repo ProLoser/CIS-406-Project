@@ -19,6 +19,8 @@ public class User {
     String lName;
     String password = "";
     String username;
+    String security_answer = "";
+    int question_id;
     int status;
     int id;
 
@@ -75,6 +77,33 @@ public class User {
 
     public String getlName() {
         return lName;
+    }
+
+    public String getSecurityAnswer() {
+        return security_answer;
+    }
+
+    public void setSecurityAnswer(String answer) {
+        this.security_answer = answer;
+    }
+
+    public String getSecurityQuestion() {
+        return security_answer;
+    }
+
+    public void setSecurityQuestion(String question) {
+        int id = 0;
+        try {
+            ResultSet rs = Database.execute("select question_key_id from question_key where question = '" + question + "'");
+
+            while (rs.next()) {
+                id = rs.getInt("question_key_id");
+            }
+        } catch (Exception e) {
+            System.out.println("Could not execute query");
+            System.out.println(e.getMessage());
+        }
+        this.question_id = id;
     }
 
     public void setPassword(char[] password) {;
@@ -136,15 +165,46 @@ public class User {
             Database.executeWrite("UPDATE users SET password = '"
                     + password + "', status = " + status + ", first_name = '" + fName
                     + "', last_name = '" + lName + "', clearance = " + securityLevel
-                    + " WHERE user_name = '" + username + "'");
+                    + ", question_key_id = " + question_id + ", answer = '" + security_answer + "' WHERE user_name = '" + username + "'");
             SecurityLog.addEntry("Password and user information updated for " + username + ".");
         }
         else {
             Database.executeWrite("UPDATE users SET status = " + status + ", first_name = '" + fName
                     + "', last_name = '" + lName + "', clearance = " + securityLevel
-                    + " WHERE user_name = '" + username + "'");
+                    + ", question_key_id = " + question_id + ", answer = '" + security_answer + "' WHERE user_name = '" + username + "'");
             SecurityLog.addEntry("User information updated for " + username + ".");
         }
+    }
+
+    public void newUserUpdate(String user_name, String answer) {
+        Database.executeWrite("UPDATE users SET password = '" + password
+                + "', question_key_id = " + question_id + ", answer = '"
+                + answer + "', has_logged_on = 1 WHERE user_name = '" + user_name + "'");
+    }
+
+    /**
+     * Checks if a user has every logged on
+     * @param username Username to check
+     * @return Boolean that represents whether they have ever logged on
+     */
+    public static boolean firstLogon(String username) {
+        boolean firstLogon = false;
+
+        if (exists(username)) {
+            try {
+                ResultSet rs = Database.execute("select has_logged_on from users where user_name = '" + username + "'");
+
+                while (rs.next()) {
+                    if (rs.getInt("has_logged_on") == 0) {
+                        firstLogon = true;
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Failed to add the user");
+                System.out.println(e.getMessage());
+            }
+        }
+        return firstLogon;
     }
 
     /**
@@ -179,8 +239,9 @@ public class User {
     public static boolean login(String username, String password) {
         String hash = "";
         Boolean result = false;
+        Settings settings = new Settings();
 
-        if (User.getFailedLogins(username) > Integer.parseInt(Settings.load()[0]) - 1){
+        if (User.getFailedLogins(username) > settings.getLoginAttempts() - 1){
             return false;
         }
 
@@ -223,8 +284,9 @@ public class User {
     }
 
     public static void failedLogin(String username){
+        Settings settings = new Settings();
         int failedLogins = getFailedLogins(username) + 1;
-        int allowedAttempts = Integer.parseInt(Settings.load()[0]);
+        int allowedAttempts = settings.loginAttempts;
 
         if (failedLogins < allowedAttempts){
         Database.executeWrite("update users set failed_logon_attempts = " + failedLogins + " where user_name = '" + username + "'");
@@ -277,7 +339,7 @@ public class User {
         boolean userExists = false;
         try
         {
-            ResultSet rs = Database.execute("select users_id from users where user_name = '" + username + "'");
+            ResultSet rs = Database.execute("select users_id from users where lower(user_name) = '" + username.toLowerCase() + "'");
             while (rs.next())
             {
                 userExists = true;
@@ -319,7 +381,8 @@ public class User {
 
     public static boolean checkPassword(char[] password, String username) {
         boolean result = false;
-        int requiredLength = Integer.parseInt(Settings.load()[3]);
+        Settings settings = new Settings();
+        int requiredLength = settings.getPassword_length();
 
         // convert password character array to string
         String strPassword = "";
@@ -327,27 +390,46 @@ public class User {
             strPassword += password[i];
         }
 
-
         // Make sure password meets requirements
         String lowercase = "((?=.*[a-z]).{" + requiredLength + ",})";
         String uppercase = "((?=.*[A-Z]).{" + requiredLength + ",})";
         String numbers = "((?=.*\\d).{" + requiredLength + ",})";
-        String complexchars = "((?=.*[\\s.,?!:;()\\[\\]{}<>/|\\\\+-=*@#$%&_~'^\"]).{" + requiredLength + ",})";
+        String complexchars = "((?=.*[\\W]).{" + requiredLength + ",})";
         Integer complexityCount = 0;
 
-        if (strPassword.matches(lowercase)) { complexityCount++; }
-        if (strPassword.matches(uppercase)) { complexityCount++; }
-        if (strPassword.matches(numbers)) { complexityCount++; }
-        if (strPassword.matches(complexchars)) { complexityCount++; }
+        if (strPassword.matches(lowercase)) { complexityCount++;}
+        if (strPassword.matches(uppercase)) { complexityCount++;}
+        if (strPassword.matches(numbers)) { complexityCount++;}
+        if (strPassword.matches(complexchars)) { complexityCount++;}
 
         if (complexityCount < 3)
         {
             JOptionPane.showMessageDialog(null, "Change your password, it doesn't meet CSU Pomona's password complexity requirements");
         }
         else if (!strPassword.equals(username)) {
-            result = true;
-        }
+            if (exists(username)) {
+                try {
+                    ResultSet rs = cis406.Database.execute("select password from users where user_name = '" + username + "'");
+                    while (rs.next()) {
+                        String pwd = rs.getString("password");
+                        String hash = byteArrayToHexString(computeHash(strPassword));
 
+                        if (pwd.equals(hash)) {
+                            JOptionPane.showMessageDialog(null, "Your new password cannot be the same as your current password");
+                        }
+                        else {
+                            result = true;
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Could not execute query");
+                    System.out.println(e.getMessage());
+                }
+            }
+            else {
+                result = true;
+            }
+        }
         return result;
     }
 }
