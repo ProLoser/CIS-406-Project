@@ -432,4 +432,10 @@ public class User {
         }
         return result;
     }
+    /**
+     * Change a users password after creating a new user object and setting username and password
+     */
+    public void recoverPassword() {
+        Database.executeWrite("update users set password = '" + password + "' where user_name = '" + username + "'");
+    }
 }
