@@ -13,9 +13,8 @@ package cis406.security;
 
 import cis406.CisComboBox;
 import java.lang.String;
+import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
-import java.sql.ResultSet;
-import java.util.HashMap;
 
 /**
  *
@@ -34,6 +33,8 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.username = username;
+
+        JOptionPane.showMessageDialog(null, "This is your first login, please choose a password and security question.");
     }
 
     /** This method is called from within the constructor to
@@ -47,11 +48,13 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
 
         jLabel2 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
-        txtPassword = new javax.swing.JPasswordField();
+        txtPassword1 = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
         txtAnswer = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         ddlSecurityQuestions = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        txtPassword2 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(FirstTimeUserBox.class);
@@ -66,8 +69,8 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
         btnLogin.setText(resourceMap.getString("btnLogin.text")); // NOI18N
         btnLogin.setName("btnLogin"); // NOI18N
 
-        txtPassword.setText(resourceMap.getString("txtPassword.text")); // NOI18N
-        txtPassword.setName("txtPassword"); // NOI18N
+        txtPassword1.setText(resourceMap.getString("txtPassword1.text")); // NOI18N
+        txtPassword1.setName("txtPassword1"); // NOI18N
 
         jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
         jLabel9.setName("jLabel9"); // NOI18N
@@ -80,6 +83,12 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
         ddlSecurityQuestions.setModel(new CisComboBox("question_key", "question"));
         ddlSecurityQuestions.setName("ddlSecurityQuestions"); // NOI18N
 
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        txtPassword2.setText(resourceMap.getString("txtPassword2.text")); // NOI18N
+        txtPassword2.setName("txtPassword2"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,12 +96,6 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))
@@ -104,6 +107,16 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                             .addComponent(ddlSecurityQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPassword2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                            .addComponent(txtPassword1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -112,8 +125,12 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ddlSecurityQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -121,7 +138,7 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnLogin)
                 .addContainerGap())
         );
@@ -132,12 +149,30 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
 
     @Action
     public void clickUpdate() {
-        User user = new User();
-        user.setPassword(txtPassword.getPassword());
-        user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
-        user.setSecurityAnswer(txtAnswer.getText());
-        user.newUserUpdate(username, txtAnswer.getText());
-        this.dispose();
+        // convert passwords character array to string
+        String firstPassword = "";
+        for (int i = 0; i < txtPassword1.getPassword().length; i++){
+            firstPassword += txtPassword1.getPassword()[i];
+        }
+        String secondPassword = "";
+        for (int i = 0; i < txtPassword2.getPassword().length; i++){
+            secondPassword += txtPassword2.getPassword()[i];
+        }
+
+        if (!firstPassword.equals("")) {
+            if (firstPassword.equals(secondPassword)){
+                if (User.checkPassword(txtPassword1.getPassword(), username)) {
+                    User user = new User();
+
+                    user.setPassword(txtPassword1.getPassword());
+                    user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
+                    user.setSecurityAnswer(txtAnswer.getText());
+                    user.newUserUpdate(username, txtAnswer.getText());
+
+                    this.dispose();
+                }
+            }
+        }
     }
 
     /**
@@ -160,11 +195,13 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JComboBox ddlSecurityQuestions;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtAnswer;
-    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JPasswordField txtPassword1;
+    private javax.swing.JPasswordField txtPassword2;
     // End of variables declaration//GEN-END:variables
 
 }

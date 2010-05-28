@@ -4,8 +4,7 @@
  */
 package cis406.security;
 
-import java.io.*;
-import javax.swing.JOptionPane;
+import java.sql.ResultSet;
 
 /**
  *
@@ -18,13 +17,22 @@ public class Settings {
     int password_interval;
     int loginAttempts;
 
-    public Settings(int password_length, int session_timeout, int password_interval, int attempts) {
-        this.password_length = password_length;
-        this.session_timeout = session_timeout;
-        this.password_interval = password_interval;
-        this.loginAttempts = attempts;
+    public Settings() {
+        try {
+            ResultSet rs = cis406.Database.execute("select * from configuration");
+            while (rs.next()) {
+                this.password_length = rs.getInt("min_password_length");
+                this.session_timeout = rs.getInt("session_timeout");
+                this.password_interval = rs.getInt("change_password_interval");
+                this.loginAttempts = rs.getInt("logon_attempts");
+            }
+        } catch (Exception e) {
+            System.out.println("Could not execute query");
+            System.out.println(e.getMessage());
+        }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Getters and Setters">
     public void setSession_timeout(int session_timeout) {
         this.session_timeout = session_timeout;
     }
@@ -56,35 +64,17 @@ public class Settings {
     public int getLoginAttempts() {
         return loginAttempts;
     }
+    // </editor-fold>
 
     public void save() {
-        Writer output = null;
-        File file = new File("internapp.config");
         try {
-                output = new BufferedWriter(new FileWriter(file));
-                output.write(loginAttempts + ","
-                                + session_timeout + ","
-                                + password_interval + ","
-                                + password_length);
-                output.close();
-                JOptionPane.showMessageDialog(null, "Settings have been saved.");
-        } catch (IOException e) {
-            System.out.println(e.toString());
+            cis406.Database.executeWrite("update configuration set min_password_length = "
+                                + password_length + ", session_timeout = " + session_timeout
+                                + ", change_password_interval = " + password_interval
+                                + ", logon_attempts = " + loginAttempts);
+        } catch (Exception e) {
+            System.out.println("Could not execute query");
+            System.out.println(e.getMessage());
         }
-    }
-
-    public static String[] load() {
-        String[] config = null;
-        try {
-            BufferedReader in = new BufferedReader(new FileReader("internapp.config"));
-            String str;
-            while ((str = in.readLine()) != null) {
-                config = str.split(",");
-            }
-            in.close();
-        } catch (IOException e) {
-            System.out.println(e.toString());
-        }
-        return config;
     }
 }

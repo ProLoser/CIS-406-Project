@@ -28,20 +28,25 @@ public class SettingsPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void clickSave() {
-        Settings settings = new Settings(Integer.parseInt(txtPasswordLength.getText()), Integer.parseInt(txtTimeout.getText()),
-                                            Integer.parseInt(txtPasswordInterval.getText()), Integer.parseInt(txtLoginAttempts.getText()));
+        Settings settings = new Settings();
+        
+        settings.setPassword_length(Integer.parseInt(txtPasswordLength.getText()));
+        settings.setSession_timeout(Integer.parseInt(txtTimeout.getText()));
+        settings.setPassword_interval(Integer.parseInt(txtPasswordInterval.getText()));
+        settings.setLoginAttempts(Integer.parseInt(txtLoginAttempts.getText()));
+
         settings.save();
         SecurityLog.addEntry("System settings changed.");
 
     }
 
     public void clickLoad() {
-        String[] settings = Settings.load();
+        Settings settings = new Settings();
 
-        txtLoginAttempts.setText(settings[0]);
-        txtTimeout.setText(settings[1]);
-        txtPasswordInterval.setText(settings[2]);
-        txtPasswordLength.setText(settings[3]);
+        txtLoginAttempts.setText(Integer.toString(settings.getLoginAttempts()));
+        txtTimeout.setText(Integer.toString(settings.getSession_timeout()));
+        txtPasswordInterval.setText(Integer.toString(settings.getPassword_interval()));
+        txtPasswordLength.setText(Integer.toString(settings.getPassword_length()));
     }
 
     public void clickDelete() {

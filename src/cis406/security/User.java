@@ -239,8 +239,9 @@ public class User {
     public static boolean login(String username, String password) {
         String hash = "";
         Boolean result = false;
+        Settings settings = new Settings();
 
-        if (User.getFailedLogins(username) > Integer.parseInt(Settings.load()[0]) - 1){
+        if (User.getFailedLogins(username) > settings.getLoginAttempts() - 1){
             return false;
         }
 
@@ -283,8 +284,9 @@ public class User {
     }
 
     public static void failedLogin(String username){
+        Settings settings = new Settings();
         int failedLogins = getFailedLogins(username) + 1;
-        int allowedAttempts = Integer.parseInt(Settings.load()[0]);
+        int allowedAttempts = settings.loginAttempts;
 
         if (failedLogins < allowedAttempts){
         Database.executeWrite("update users set failed_logon_attempts = " + failedLogins + " where user_name = '" + username + "'");
@@ -337,7 +339,7 @@ public class User {
         boolean userExists = false;
         try
         {
-            ResultSet rs = Database.execute("select users_id from users where user_name = '" + username + "'");
+            ResultSet rs = Database.execute("select users_id from users where lower(user_name) = '" + username.toLowerCase() + "'");
             while (rs.next())
             {
                 userExists = true;
@@ -379,7 +381,8 @@ public class User {
 
     public static boolean checkPassword(char[] password, String username) {
         boolean result = false;
-        int requiredLength = Integer.parseInt(Settings.load()[3]);
+        Settings settings = new Settings();
+        int requiredLength = settings.getPassword_length();
 
         // convert password character array to string
         String strPassword = "";
@@ -387,27 +390,46 @@ public class User {
             strPassword += password[i];
         }
 
-
         // Make sure password meets requirements
         String lowercase = "((?=.*[a-z]).{" + requiredLength + ",})";
         String uppercase = "((?=.*[A-Z]).{" + requiredLength + ",})";
         String numbers = "((?=.*\\d).{" + requiredLength + ",})";
-        String complexchars = "((?=.*[\\s.,?!:;()\\[\\]{}<>/|\\\\+-=*@#$%&_~'^\"]).{" + requiredLength + ",})";
+        String complexchars = "((?=.*[\\W]).{" + requiredLength + ",})";
         Integer complexityCount = 0;
 
-        if (strPassword.matches(lowercase)) { complexityCount++; }
-        if (strPassword.matches(uppercase)) { complexityCount++; }
-        if (strPassword.matches(numbers)) { complexityCount++; }
-        if (strPassword.matches(complexchars)) { complexityCount++; }
+        if (strPassword.matches(lowercase)) { complexityCount++;}
+        if (strPassword.matches(uppercase)) { complexityCount++;}
+        if (strPassword.matches(numbers)) { complexityCount++;}
+        if (strPassword.matches(complexchars)) { complexityCount++;}
 
         if (complexityCount < 3)
         {
             JOptionPane.showMessageDialog(null, "Change your password, it doesn't meet CSU Pomona's password complexity requirements");
         }
         else if (!strPassword.equals(username)) {
-            result = true;
-        }
+            if (exists(username)) {
+                try {
+                    ResultSet rs = cis406.Database.execute("select password from users where user_name = '" + username + "'");
+                    while (rs.next()) {
+                        String pwd = rs.getString("password");
+                        String hash = byteArrayToHexString(computeHash(strPassword));
 
+                        if (pwd.equals(hash)) {
+                            JOptionPane.showMessageDialog(null, "Your new password cannot be the same as your current password");
+                        }
+                        else {
+                            result = true;
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Could not execute query");
+                    System.out.println(e.getMessage());
+                }
+            }
+            else {
+                result = true;
+            }
+        }
         return result;
     }
 }
