@@ -13,6 +13,7 @@ package cis406.student;
 import cis406.DateUtils;
 import java.util.*;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
 /**
@@ -502,6 +503,7 @@ public class EditPanel extends javax.swing.JPanel  {
     private Boolean chkIwdsa;
     private Boolean chkOther;
     private Boolean chkRelocateTst;
+    Student newStudent = new Student();
     HashMap fields = new HashMap();
     private String lastUpdate;
     Date now = new Date();
@@ -509,10 +511,10 @@ public class EditPanel extends javax.swing.JPanel  {
     String[] quarters = {"Fall", "Winter", "Spring", "Summer"};
     String[] term_year = { "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"};
     String[] standing = {"Freshman ( <44 units ) ", "Sophomore ( 45-89 units ) ", "Junior( 90-134 units ) ", "Senior ( 135+ units ) "};
-    
+    int checkInt = -1;
 
     public void save() {
-        Student newStudent = new Student();
+        
         newStudent.broncoNum = Integer.parseInt(txtBroncoNum.getText());
         newStudent.lastName = txtLName.getText();
         newStudent.firstName = txtFName.getText();
@@ -532,19 +534,44 @@ public class EditPanel extends javax.swing.JPanel  {
         newStudent.setClubSwift(chkSWIFT.isSelected());
         newStudent.setClubOther(chkOtherClub.isSelected());
         newStudent.save();
-
+        this. reset();
 
     }
 
     public void reset() {
-        
+        txtBroncoNum.setText("");
+        txtLName.setText("");
+        txtFName.setText("");
+        txtEmail.setText("");
+        txtPhone.setText("");
+        cboStanding.setSelectedIndex(0);
+        newStudent.updateDate = now;
+        txaInterests.getText();
+        cboMajor.setSelectedIndex(0);
+        cboMinor.setSelectedIndex(0);
+        cboQuarter.setSelectedIndex(0);
+        txtLastCis.getText();
+        chkRelocate.setSelected(false);
+        chkMISSA.setSelected(false);
+        chkFAST.setSelected(false);
+        chkIWDSA.setSelected(false);
+        chkSWIFT.setSelected(false);
+        chkOtherClub.setSelected(false);
     }
 
 
 
     @Action
     public void launchInternshipAssign() {
-     JFrame frame = new AssignStudentToInternship();
+        String message;
+        AssignStudentToInternship frame = new AssignStudentToInternship();
+        if (checkInt == -1){
+     message = "Please enter Student data.";
+     JOptionPane.showMessageDialog(frame, message);
+
+     frame.loadStudent(newStudent);
      frame.setVisible(true);
+
+     }
     }
 }

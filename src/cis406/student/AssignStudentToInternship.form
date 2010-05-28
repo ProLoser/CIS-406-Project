@@ -54,7 +54,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblFullName" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblBroncoNum" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -63,7 +63,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -95,9 +95,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblBroncoNum" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -193,11 +193,11 @@
         <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="lblBroncoNum">
       <Properties>
-        <Property name="font" type="java.awt.Font" resourceKey="jLabel3.font"/>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel3.text"/>
-        <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
+        <Property name="font" type="java.awt.Font" resourceKey="lblBroncoNum.font"/>
+        <Property name="text" type="java.lang.String" resourceKey="lblBroncoNum.text"/>
+        <Property name="name" type="java.lang.String" value="lblBroncoNum" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -231,11 +231,11 @@
         <Property name="name" type="java.lang.String" value="jLabel7" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="lblEmail">
       <Properties>
-        <Property name="font" type="java.awt.Font" resourceKey="jLabel8.font"/>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel8.text"/>
-        <Property name="name" type="java.lang.String" value="jLabel8" noResource="true"/>
+        <Property name="font" type="java.awt.Font" resourceKey="lblEmail.font"/>
+        <Property name="text" type="java.lang.String" resourceKey="lblEmail.text"/>
+        <Property name="name" type="java.lang.String" value="lblEmail" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnCancel">
