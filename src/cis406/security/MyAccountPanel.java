@@ -76,11 +76,11 @@ public class MyAccountPanel extends javax.swing.JPanel implements CisPanel {
                     user.setUsername(cis406.MainApp.loginResult[1]);
                     user.setPassword(txtPassword1.getPassword());
                     if (!user.setfName(txtFirstName.getText())) {
-                        JOptionPane.showMessageDialog(null, "Incorrect first name format.");
+                        JOptionPane.showMessageDialog(null, "Incorrect first name format.  Bad: 'bob' Good: 'Bob'");
                         return;
                     }
                     if (!user.setlName(txtLastName.getText())) {
-                        JOptionPane.showMessageDialog(null, "Incorrect last name format.");
+                        JOptionPane.showMessageDialog(null, "Incorrect last name format..  Bad: 'jones' Good: 'Jones'");
                         return;
                     }
                     user.setSecurityAnswer(txtAnswer.getText());

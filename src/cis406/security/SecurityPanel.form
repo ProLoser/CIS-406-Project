@@ -96,6 +96,18 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="cis406.security.UserReportPanel" name="userReportPanel1">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="userReportPanel1" noResource="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="User Report">
+                <Property name="tabTitle" type="java.lang.String" resourceKey="userReportPanel1.TabConstraints.tabTitle"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

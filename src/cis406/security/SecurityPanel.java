@@ -86,6 +86,7 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
         newUserPanel1 = new cis406.security.NewUserPanel();
         securityLogPanel1 = new cis406.security.SecurityLogPanel();
         settingsPanel1 = new cis406.security.SettingsPanel();
+        userReportPanel1 = new cis406.security.UserReportPanel();
 
         setName("Form"); // NOI18N
 
@@ -113,6 +114,9 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
 
         settingsPanel1.setName("settingsPanel1"); // NOI18N
         securityTabs.addTab(resourceMap.getString("settingsPanel1.TabConstraints.tabTitle"), settingsPanel1); // NOI18N
+
+        userReportPanel1.setName("userReportPanel1"); // NOI18N
+        securityTabs.addTab(resourceMap.getString("userReportPanel1.TabConstraints.tabTitle"), userReportPanel1); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -153,6 +157,7 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
     private cis406.security.SecurityLogPanel securityLogPanel1;
     private javax.swing.JTabbedPane securityTabs;
     private cis406.security.SettingsPanel settingsPanel1;
+    private cis406.security.UserReportPanel userReportPanel1;
     // End of variables declaration//GEN-END:variables
 
 }

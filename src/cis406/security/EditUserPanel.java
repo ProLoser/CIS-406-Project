@@ -111,11 +111,11 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                     user.setSecurityLevel(ddlSecurityLevel.getSelectedIndex());
                     user.setPassword(txtPassword1.getPassword());
                     if (!user.setfName(txtFirstName.getText())) {
-                        JOptionPane.showMessageDialog(null, "Incorrect first name format.");
+                        JOptionPane.showMessageDialog(null, "Incorrect first name format.  Bad: 'bob' Good: 'Bob'");
                         return;
                     }
                     if (!user.setlName(txtLastName.getText())) {
-                        JOptionPane.showMessageDialog(null, "Incorrect last name format.");
+                        JOptionPane.showMessageDialog(null, "Incorrect last name format..  Bad: 'jones' Good: 'Jones'");
                         return;
                     }
                     user.setSecurityAnswer(txtAnswer.getText());

@@ -105,7 +105,6 @@ public class User {
 
             while (rs.next()) {
                 int q_id = rs.getInt("question_key_id");
-                System.out.println(id);
                 this.question_id = q_id;
             }
         } catch (Exception e) {
@@ -417,14 +416,16 @@ public class User {
         String complexchars = "((?=.*[\\W]).{" + requiredLength + ",})";
         Integer complexityCount = 0;
 
-        if (strPassword.matches(lowercase)) { complexityCount++; System.out.println("1");}
-        if (strPassword.matches(uppercase)) { complexityCount++;System.out.println("2");}
-        if (strPassword.matches(numbers)) { complexityCount++;System.out.println("3");}
-        if (strPassword.matches(complexchars)) { complexityCount++;System.out.println("4");}
+        if (strPassword.matches(lowercase)) { complexityCount++; }
+        if (strPassword.matches(uppercase)) { complexityCount++; }
+        if (strPassword.matches(numbers)) { complexityCount++; }
+        if (strPassword.matches(complexchars)) { complexityCount++; }
 
         if (complexityCount < 3)
         {
-            JOptionPane.showMessageDialog(null, "Change your password, it doesn't meet CSU Pomona's password complexity requirements");
+            JOptionPane.showMessageDialog(null, "Change your password, it doesn't meet CSU Pomona's password complexity requirements:\n\n" +
+                                                "Your password should contain 3 of the following: a lowercase letter, uppercase letter, number, or special character (@#$ etc).\n" +
+                                                "Your password should be at least " + settings.getPassword_length() + " characters long.");
         }
         else if (!strPassword.equals(username)) {
             if (exists(username)) {

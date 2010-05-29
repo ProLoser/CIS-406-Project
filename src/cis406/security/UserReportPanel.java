@@ -34,7 +34,7 @@ public class UserReportPanel extends javax.swing.JPanel implements CisPanel, Pri
     /** Creates new form SystemSettingsPanel */
     public UserReportPanel() {
         initComponents();
-        TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
+        TableColumnAdjuster tca = new TableColumnAdjuster(userTable);
         tca.adjustColumns();
     }
 
@@ -57,19 +57,19 @@ public class UserReportPanel extends javax.swing.JPanel implements CisPanel, Pri
         //leave room for page number
         double pageHeight = pageFormat.getImageableHeight() - fontHeight;
         double pageWidth = pageFormat.getImageableWidth();
-        double tableWidth = (double) logTable.getColumnModel().getTotalColumnWidth();
+        double tableWidth = (double) userTable.getColumnModel().getTotalColumnWidth();
         double scale = 1;
         if (tableWidth >= pageWidth) {
             scale = pageWidth / tableWidth;
         }
 
-        double headerHeightOnPage =  logTable.getTableHeader().getHeight() * scale;
+        double headerHeightOnPage =  userTable.getTableHeader().getHeight() * scale;
         double tableWidthOnPage = tableWidth * scale;
 
-        double oneRowHeight = (logTable.getRowHeight()  + logTable.getRowMargin()) * scale;
+        double oneRowHeight = (userTable.getRowHeight()  + userTable.getRowMargin()) * scale;
         int numRowsOnAPage =  (int) ((pageHeight - headerHeightOnPage) / oneRowHeight);
         double pageHeightForTable = oneRowHeight * numRowsOnAPage;
-        int totalNumPages = (int) Math.ceil(((double) logTable.getRowCount()) / numRowsOnAPage);
+        int totalNumPages = (int) Math.ceil(((double) userTable.getRowCount()) / numRowsOnAPage);
         if (pageIndex >= totalNumPages) {
             return Printable.NO_SUCH_PAGE;
         }
@@ -86,7 +86,7 @@ public class UserReportPanel extends javax.swing.JPanel implements CisPanel, Pri
         //clip to the appropriate bounds.
         if (pageIndex + 1 == totalNumPages) {
             int lastRowPrinted = numRowsOnAPage * pageIndex;
-            int numRowsLeft = logTable.getRowCount() - lastRowPrinted;
+            int numRowsLeft = userTable.getRowCount() - lastRowPrinted;
             g2.setClip(0, (int) (pageHeightForTable * pageIndex), (int) Math.ceil(tableWidthOnPage), (int) Math.ceil(oneRowHeight * numRowsLeft));
         } //else clip to the entire area available.
         else {
@@ -94,24 +94,26 @@ public class UserReportPanel extends javax.swing.JPanel implements CisPanel, Pri
         }
 
         g2.scale(scale, scale);
-        logTable.paint(g2);
+        userTable.paint(g2);
         g2.scale(1 / scale, 1 / scale);
         g2.translate(0f, pageIndex * pageHeightForTable);
         g2.translate(0f, -headerHeightOnPage);
         g2.setClip(0, 0, (int) Math.ceil(tableWidthOnPage), (int) Math.ceil(headerHeightOnPage));
         g2.scale(scale, scale);
-        logTable.getTableHeader().paint(g2);
+        userTable.getTableHeader().paint(g2);
         //paint header at top
 
         return Printable.PAGE_EXISTS;
     }
 
     static public CisTable generateTable() {
-        CisTable table = new CisTable("users");
+        CisTable table = new CisTable(cis406.Database.execute("select * from users"));
         table.addDisplayField("user_name");
-        table.addDisplayField("date");
-        table.addDisplayField("time");
-        table.addDisplayField("description");
+        table.addDisplayField("first_name");
+        table.addDisplayField("last_name");
+        table.addDisplayField("status");
+        table.addDisplayField("clearance");
+        table.addDisplayField("failed_logon_attempts");
         return table.parseData();
     }
 
@@ -143,9 +145,9 @@ public class UserReportPanel extends javax.swing.JPanel implements CisPanel, Pri
     }
 
     public void switchTo(String actionCommand) {
-        logTable.setModel(generateTable());
+        userTable.setModel(generateTable());
 
-        TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
+        TableColumnAdjuster tca = new TableColumnAdjuster(userTable);
         tca.adjustColumns();
     }
 
@@ -166,7 +168,7 @@ public class UserReportPanel extends javax.swing.JPanel implements CisPanel, Pri
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        logTable = new javax.swing.JTable();
+        userTable = new javax.swing.JTable();
 
         setName("Form"); // NOI18N
 
@@ -180,9 +182,9 @@ public class UserReportPanel extends javax.swing.JPanel implements CisPanel, Pri
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        logTable.setModel(generateTable());
-        logTable.setName("logTable"); // NOI18N
-        jScrollPane1.setViewportView(logTable);
+        userTable.setModel(generateTable());
+        userTable.setName("userTable"); // NOI18N
+        jScrollPane1.setViewportView(userTable);
 
         jScrollPane2.setViewportView(jScrollPane1);
 
@@ -212,6 +214,6 @@ public class UserReportPanel extends javax.swing.JPanel implements CisPanel, Pri
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable logTable;
+    private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
 }
