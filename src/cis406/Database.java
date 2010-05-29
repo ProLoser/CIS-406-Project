@@ -566,7 +566,7 @@ public class Database {
 
         try{
             Connection conn = DriverManager.getConnection(dbURL);
-            conn.close();
+            DriverManager.getConnection("jdbc:derby:internshipsdb");
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());

@@ -29,18 +29,11 @@ import org.jdesktop.application.Action;
  *
  * @author qwerty
  */
-public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Printable {
+public class UserReportPanel extends javax.swing.JPanel implements CisPanel, Printable {
 
     /** Creates new form SystemSettingsPanel */
-    public SecurityLogPanel() {
+    public UserReportPanel() {
         initComponents();
-        TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
-        tca.adjustColumns();
-    }
-    
-    @Action
-    public void showAllUsers() {
-        logTable.setModel(generateTable());
         TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
         tca.adjustColumns();
     }
@@ -114,17 +107,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Pr
     }
 
     static public CisTable generateTable() {
-        CisTable table = new CisTable("user_log");
-        table.addDisplayField("user_name");
-        table.addDisplayField("date");
-        table.addDisplayField("time");
-        table.addDisplayField("description");
-        return table.parseData();
-    }
-
-    public CisTable generateTableForUser(String username) {
-        ResultSet rs = cis406.Database.execute("select * from user_log where user_name = '" + ddlUsers.getSelectedItem().toString() + "'");
-        CisTable table = new CisTable(rs);
+        CisTable table = new CisTable("users");
         table.addDisplayField("user_name");
         table.addDisplayField("date");
         table.addDisplayField("time");
@@ -180,41 +163,28 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Pr
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ddlUsers = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
-        btnViewAllUsers = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         logTable = new javax.swing.JTable();
 
         setName("Form"); // NOI18N
 
-        ddlUsers.setModel(new CisComboBox("users", "user_name"));
-        ddlUsers.setName("ddlUsers"); // NOI18N
-        ddlUsers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ddlUsersActionPerformed(evt);
-            }
-        });
-
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(SecurityLogPanel.class);
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
-
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(SecurityLogPanel.class, this);
-        btnViewAllUsers.setAction(actionMap.get("showAllUsers")); // NOI18N
-        btnViewAllUsers.setText(resourceMap.getString("btnViewAllUsers.text")); // NOI18N
-        btnViewAllUsers.setName("btnViewAllUsers"); // NOI18N
-
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(UserReportPanel.class, this);
         jButton1.setAction(actionMap.get("printTable")); // NOI18N
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(UserReportPanel.class);
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
+
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
         logTable.setModel(generateTable());
         logTable.setName("logTable"); // NOI18N
         jScrollPane1.setViewportView(logTable);
+
+        jScrollPane2.setViewportView(jScrollPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -223,44 +193,25 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Pr
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(btnViewAllUsers)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ddlUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
                     .addComponent(jButton1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewAllUsers)
-                    .addComponent(ddlUsers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ddlUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ddlUsersActionPerformed
-        logTable.setModel(generateTableForUser(cis406.MainApp.loginResult[1]));
-        TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
-        tca.adjustColumns();
-    }//GEN-LAST:event_ddlUsersActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnViewAllUsers;
-    private javax.swing.JComboBox ddlUsers;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable logTable;
     // End of variables declaration//GEN-END:variables
 }

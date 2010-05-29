@@ -189,7 +189,6 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
     public void switchTo(String actionCommand) {
         cboUsername.setModel(new CisComboBox("users", "user_name"));
 
-
     }
 
     public Boolean switchAway() {

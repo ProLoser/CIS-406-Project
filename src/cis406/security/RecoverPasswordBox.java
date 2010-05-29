@@ -124,7 +124,7 @@ public class RecoverPasswordBox extends javax.swing.JDialog {
                                     .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(txtAnswer)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
+                        .addGap(80, 80, 80)
                         .addComponent(btnLogin)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
@@ -147,9 +147,9 @@ public class RecoverPasswordBox extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(47, 47, 47)
                 .addComponent(btnLogin)
-                .addGap(27, 27, 27))
+                .addGap(29, 29, 29))
         );
 
         pack();

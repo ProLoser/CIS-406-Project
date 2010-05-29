@@ -11,11 +11,13 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.DriverManager;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * The application's main frame.
@@ -122,11 +124,23 @@ public class MainView extends FrameView {
 
     @Action
     public void restoreDatabase() {
-//        jFileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-//        int success = jFileChooser2.showOpenDialog(null);
-//        if (success == JFileChooser.APPROVE_OPTION) {
-//            Database.restoreDatabase(jFileChooser2.getSelectedFile().getAbsolutePath());
-//        }
+        int response = JOptionPane.showConfirmDialog(null, "Restoring the database will force this application to restart.  Continue?");
+        System.out.println(response);
+        if (response == 0) {
+            JOptionPane.showMessageDialog(null, "Find and select the internshipdb folder.  It should be inside of the 'INTERNSHIP DB BACKUP' folder created during backup.");
+            jFileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            int success = jFileChooser2.showOpenDialog(null);
+            if (success == JFileChooser.APPROVE_OPTION) {
+                try{
+                    DriverManager.getConnection("jdbc:derby:internshipsdb;shutdown=true");
+                }catch (Exception ex) { System.out.println(ex.getMessage()); }
+                Database.restoreDatabase(jFileChooser2.getSelectedFile().getAbsolutePath());
+
+                JOptionPane.showMessageDialog(null, "Application is shutting down for database restore, please re-open it.");
+                System.exit(0);
+            }
+        }
+
     }
 
     /** This method is called from within the constructor to
