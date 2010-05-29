@@ -42,7 +42,7 @@ public class Internship {
         ResultSet data = Database.read("internship", id);
         try {
             data.next();
-            title =data.getString("title");
+            title = data.getString("title");
             careerPathId = data.getInt("career_path_id");
             companyId = data.getInt("company_id");
             description = data.getString("description");
@@ -88,8 +88,9 @@ public class Internship {
     }
 
     public String getExpiration() {
-        if (expiration == null)
+        if (expiration == null) {
             return null;
+        }
         return expiration.toString();
     }
 
@@ -113,8 +114,9 @@ public class Internship {
     }
 
     public String getPostDate() {
-        if (postDate == null)
+        if (postDate == null) {
             return null;
+        }
         return postDate.toString();
     }
 
@@ -235,5 +237,21 @@ public class Internship {
             System.out.println(e.getMessage());
         }
         return table;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean match = false;
+        Internship compare = (Internship) obj;
+        if (companyId == compare.companyId
+                || careerPathId == compare.careerPathId
+                || title.equals(compare.title)
+                || description.equals(compare.description)
+                || postDate == compare.postDate
+                || expiration == compare.expiration
+                || attachment.equals(compare.attachment)) {
+            match = true;
+        }
+        return match;
     }
 }
