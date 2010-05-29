@@ -10,9 +10,9 @@
  */
 package cis406.security;
 
-import cis406.CisPanel;
-import cis406.CisTable;
-import cis406.CisComboBox;
+import cis406.PanelInterface;
+import cis406.TableModel;
+import cis406.ComboBox;
 import cis406.TableColumnAdjuster;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -29,7 +29,7 @@ import org.jdesktop.application.Action;
  *
  * @author qwerty
  */
-public class UserReportPanel extends javax.swing.JPanel implements CisPanel, Printable {
+public class UserReportPanel extends javax.swing.JPanel implements PanelInterface, Printable {
 
     /** Creates new form SystemSettingsPanel */
     public UserReportPanel() {
@@ -106,8 +106,8 @@ public class UserReportPanel extends javax.swing.JPanel implements CisPanel, Pri
         return Printable.PAGE_EXISTS;
     }
 
-    static public CisTable generateTable() {
-        CisTable table = new CisTable(cis406.Database.execute("select * from users"));
+    static public TableModel generateTable() {
+        TableModel table = new TableModel(cis406.Database.execute("select * from users"));
         table.addDisplayField("user_name");
         table.addDisplayField("first_name");
         table.addDisplayField("last_name");
