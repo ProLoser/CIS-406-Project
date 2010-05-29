@@ -6,6 +6,7 @@ import cis406.Database;
 import cis406.Person;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
 public class Student extends Person {
 //attributes
@@ -285,20 +286,20 @@ public class Student extends Person {
      static public CisTable generateTable() {
         Database db = new Database("student");
         CisTable table = null;
-        Map<String, String> fields = new HashMap<String, String>();
+        Vector<String> fields = new Vector<String>();
 
         // Prepare the database query to be used to populate the table
         db.innerJoin("major");
         db.innerJoin("minor");
         // Populating a map of my fields so that I can choose which columns to
         // display and what labels to display them as. Use null to not alias.
-        fields.put("bronco_id", "Bronco Number");
-        fields.put("first_name","First Name");
-        fields.put("last_name","Last Name");
-        fields.put("last_update","updated");
+        fields.add("bronco_id AS BroncoNumber");
+        fields.add("last_name AS LastName");
+        fields.add("first_name as FirstName");
+        fields.add("last_update AS updated");
         // Use table.fieldname when querying multiple tables joined together
-        fields.put("major.major_name", "major");
-        fields.put("minor.minor_name", "minor");
+        fields.add("major.major_name AS major");
+        fields.add("minor.minor_name AS minor");
         //fields.put("graduated","graduated");
         try {
             // Generate the table from the query

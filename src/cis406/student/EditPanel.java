@@ -504,7 +504,7 @@ public class EditPanel extends javax.swing.JPanel {
     private Boolean chkIwdsa;
     private Boolean chkOther;
     private Boolean chkRelocateTst;
-    Student newStudent = new Student();
+    Student newStudent;
     HashMap fields = new HashMap();
     private String lastUpdate;
     Date now = new Date();
@@ -515,6 +515,7 @@ public class EditPanel extends javax.swing.JPanel {
     
 
     public void save() {
+        newStudent = new Student();
         Boolean success=true;
         if(!newStudent.setBroncoNum(txtBroncoNum.getText())){
             lblBronco.setForeground(Color.red);
