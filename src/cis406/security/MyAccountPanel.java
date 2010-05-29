@@ -11,7 +11,7 @@
 
 package cis406.security;
 
-import cis406.CisPanel;
+import cis406.PanelInterface;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  *
  * @author qwerty
  */
-public class MyAccountPanel extends javax.swing.JPanel implements CisPanel {
+public class MyAccountPanel extends javax.swing.JPanel implements PanelInterface {
 
     /** Creates new form MyAccountPanel */
     public MyAccountPanel() {
@@ -219,7 +219,7 @@ public class MyAccountPanel extends javax.swing.JPanel implements CisPanel {
         jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
         jLabel9.setName("jLabel9"); // NOI18N
 
-        ddlSecurityQuestions.setModel(new cis406.CisComboBox("question_key", "question"));
+        ddlSecurityQuestions.setModel(new cis406.ComboBox("question_key", "question"));
         ddlSecurityQuestions.setName("ddlSecurityQuestions"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

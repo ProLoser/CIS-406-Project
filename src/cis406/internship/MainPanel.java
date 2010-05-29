@@ -10,7 +10,7 @@
  */
 package cis406.internship;
 
-import cis406.CisPanel;
+import cis406.PanelInterface;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 
@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author Dean
  */
-public class MainPanel extends javax.swing.JPanel implements CisPanel {
+public class MainPanel extends javax.swing.JPanel implements PanelInterface {
 
     String activeCard = "Browse";
 
@@ -61,7 +61,6 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
         if (activeCard.equals("Browse")) {
             browsePanel.delete();
         } else {
-            
         }
     }
 
@@ -70,7 +69,13 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void clickLoad() {
-        clickEditing();
+        if (activeCard.equals("Browse")) {
+            int record = browsePanel.getSelectedRow();
+            if (record != 0) {
+                clickEditing();
+                editPanel.load(record);
+            }
+        }
     }
 
     public void clickNew() {

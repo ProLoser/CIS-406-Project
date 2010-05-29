@@ -10,9 +10,9 @@
  */
 package cis406.security;
 
-import cis406.CisPanel;
-import cis406.CisTable;
-import cis406.CisComboBox;
+import cis406.PanelInterface;
+import cis406.TableModel;
+import cis406.ComboBox;
 import cis406.TableColumnAdjuster;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -29,7 +29,7 @@ import org.jdesktop.application.Action;
  *
  * @author qwerty
  */
-public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Printable {
+public class SecurityLogPanel extends javax.swing.JPanel implements PanelInterface, Printable {
 
     /** Creates new form SystemSettingsPanel */
     public SecurityLogPanel() {
@@ -37,7 +37,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Pr
         TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
         tca.adjustColumns();
     }
-    
+
     @Action
     public void showAllUsers() {
         logTable.setModel(generateTable());
@@ -47,12 +47,14 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Pr
 
     @Action
     public void printTable() {
-        PrinterJob pj=PrinterJob.getPrinterJob();
+        PrinterJob pj = PrinterJob.getPrinterJob();
         pj.setPrintable(this);
         pj.printDialog();
-        try{ 
+        try {
             pj.print();
-        }catch (Exception PrintException) { System.out.println(PrintException.getMessage()); }
+        } catch (Exception PrintException) {
+            System.out.println(PrintException.getMessage());
+        }
     }
 
     public int print(Graphics g, PageFormat pageFormat, int pageIndex) throws PrinterException {
@@ -137,8 +139,8 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Pr
         return Printable.PAGE_EXISTS;
     }
 
-    static public CisTable generateTable() {
-        CisTable table = new CisTable("user_log");
+    static public TableModel generateTable() {
+        TableModel table = new TableModel("user_log");
         table.addDisplayField("user_name");
         table.addDisplayField("date");
         table.addDisplayField("time");
@@ -146,9 +148,9 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Pr
         return table.parseData();
     }
 
-    public CisTable generateTableForUser(String username) {
+    public TableModel generateTableForUser(String username) {
         ResultSet rs = cis406.Database.execute("select * from user_log where user_name = '" + ddlUsers.getSelectedItem().toString() + "'");
-        CisTable table = new CisTable(rs);
+        TableModel table = new TableModel(rs);
         table.addDisplayField("user_name");
         table.addDisplayField("date");
         table.addDisplayField("time");
@@ -214,7 +216,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Pr
 
         setName("Form"); // NOI18N
 
-        ddlUsers.setModel(new CisComboBox("users", "user_name"));
+        ddlUsers.setModel(new ComboBox("users", "user_name"));
         ddlUsers.setName("ddlUsers"); // NOI18N
         ddlUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,7 +289,6 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Pr
         TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
         tca.adjustColumns();
     }//GEN-LAST:event_ddlUsersActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnViewAllUsers;
     private javax.swing.JComboBox ddlUsers;

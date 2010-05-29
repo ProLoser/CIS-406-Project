@@ -1,5 +1,9 @@
-package cis406;
+package cis406.contact;
 
+import cis406.ComboBox;
+import cis406.ComboItem;
+import cis406.Database;
+import cis406.contact.Contact;
 import java.sql.ResultSet;
 import java.awt.CardLayout;
 /**
@@ -73,7 +77,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
         lblCompany.setName("lblCompany"); // NOI18N
 
         cboCompany.setEditable(true);
-        cboCompany.setModel(new CisComboBox("company", "name"));
+        cboCompany.setModel(new cis406.ComboBox("company", "name"));
         cboCompany.setName("cboCompany"); // NOI18N
         cboCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +89,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
         lblIndustryDivision.setName("lblIndustryDivision"); // NOI18N
 
         cboIndustry.setEditable(true);
-        cboIndustry.setModel(new CisComboBox("industry", "industry_name"));
+        cboIndustry.setModel(new cis406.ComboBox("industry", "industry_name"));
         cboIndustry.setName("cboIndustry"); // NOI18N
 
         jSeparator.setName("jSeparator"); // NOI18N
@@ -254,7 +258,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
                             .addComponent(lblNotes))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                            .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
                             .addComponent(cboCommMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
@@ -466,8 +470,8 @@ public class ContactEditPanel extends javax.swing.JPanel {
     public void clickBrowsing() {
     }
     public void switchTo(String actionCommand) {
-        cboCompany.setModel(new CisComboBox("company", "name"));
-        cboIndustry.setModel(new CisComboBox("industry", "industry_name"));
+        cboCompany.setModel(new ComboBox("company", "name"));
+        cboIndustry.setModel(new ComboBox("industry", "industry_name"));
     }
     public void switchAway() {
     }

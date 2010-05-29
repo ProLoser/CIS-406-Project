@@ -10,7 +10,7 @@
  */
 package cis406.internship;
 
-import cis406.CisComboBox;
+import cis406.ComboBox;
 import cis406.ComboItem;
 import cis406.DateUtils;
 import java.awt.Color;
@@ -22,6 +22,8 @@ import org.jdesktop.application.Action;
  * @author Dean Sofer
  */
 public class EditPanel extends javax.swing.JPanel {
+
+    Internship record = null;
 
     /** Creates new form EditPanel */
     public EditPanel() {
@@ -112,7 +114,7 @@ public class EditPanel extends javax.swing.JPanel {
         quantity1Label.setText(resourceMap.getString("quantity1Label.text")); // NOI18N
         quantity1Label.setName("quantity1Label"); // NOI18N
 
-        companyComboBox.setModel(new CisComboBox("company", "name"));
+        companyComboBox.setModel(new ComboBox("company", "name"));
         companyComboBox.setName("companyComboBox"); // NOI18N
 
         companyLabel.setText(resourceMap.getString("companyLabel.text")); // NOI18N
@@ -124,7 +126,7 @@ public class EditPanel extends javax.swing.JPanel {
         quantityField.setName("quantityField"); // NOI18N
 
         careerComboBox.setEditable(true);
-        careerComboBox.setModel(new CisComboBox("career_path", "name"));
+        careerComboBox.setModel(new ComboBox("career_path", "name"));
         careerComboBox.setName("careerComboBox"); // NOI18N
 
         careerLabel.setText(resourceMap.getString("careerLabel.text")); // NOI18N
@@ -262,7 +264,11 @@ public class EditPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public Boolean save() {
-        Internship record = new Internship();
+        // Checks to see if we were editing an existing record first
+        if (record == null) {
+            record = new Internship();
+        }
+
         Boolean success = true;
 
         // Saves the career path if it's a new entry
@@ -306,6 +312,28 @@ public class EditPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please check the data for errors");
         }
         return success;
+    }
+
+    public void load(int id) {
+        Internship data = new Internship(id);
+        companyComboBox.setSelectedIndex(data.getCompanyId());
+        careerComboBox.setSelectedIndex(data.getCareerPathId());
+        titleField.setText(data.getTitle());
+        descriptionTextarea.setText(data.getDescription());
+        postedField.setText(data.getPostDate());
+        if (data.getExpiration() != null) {
+            expiresCheckBox.setSelected(true);
+            expiresField.setText(data.getExpiration());
+            expiresField.setEnabled(true);
+            expiresCalButton.setEnabled(true);
+        } else {
+            expiresCheckBox.setSelected(false);
+            expiresField.setText("mm-dd-yyyy");
+            expiresField.setEnabled(false);
+            expiresCalButton.setEnabled(false);
+        }
+        quantityField.setText(Integer.toString(data.getQuantity()));
+        //attachmentField.setText(data.getAttachment());
     }
 
     public void reset() {

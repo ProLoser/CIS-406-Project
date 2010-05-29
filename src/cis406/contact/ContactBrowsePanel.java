@@ -1,4 +1,4 @@
-package cis406;
+package cis406.contact;
 
 /**
  *

@@ -107,11 +107,11 @@ public class EditPanel extends javax.swing.JPanel {
             }
         });
 
-        cboMajor.setModel(new cis406.CisComboBox("major", "major_name"));
+        cboMajor.setModel(new cis406.ComboBox("major", "major_name"));
         cboMajor.setName("cboMajor"); // NOI18N
         cboMajor.setNextFocusableComponent(cboMinor);
 
-        cboMinor.setModel(new cis406.CisComboBox("minor", "minor_name"));
+        cboMinor.setModel(new cis406.ComboBox("minor", "minor_name"));
         cboMinor.setName("cboMinor"); // NOI18N
         cboMinor.setNextFocusableComponent(txtLastCis);
 

@@ -267,21 +267,6 @@ public class Database {
 
     /**
      * The SELECT statement is used to select data from a database. The fields argument
-     * is used to select specific columns. 
-     * @param fields columns to retrieve
-     */
-    public ResultSet select(String[] fields) throws Exception {
-        String query;
-        preValues = new ArrayList<Object>();
-        query = "SELECT " + implode(fields) + " FROM " + table + joins + compileConditions();
-        System.out.println("Query: " + query);
-        preStatement = connect().prepareStatement(query);
-        compilePreValues();
-        return preStatement.executeQuery();
-    }
-
-    /**
-     * The SELECT statement is used to select data from a database. The fields argument
      * is used to select specific columns. The values in the map will be what the field
      * is aliased to. If the value is null the field will not be aliased.
      * @param fields columns to retrieve and their aliases
@@ -289,14 +274,10 @@ public class Database {
     public ResultSet select(Vector<String> fields) throws Exception {
         String query;
         preValues = new ArrayList<Object>();
-        query = "SELECT ";
-        Boolean first = true;
+        query = "SELECT " + id(table);
+
         for (String field : fields) {
-            if (!first) {
-                query += ", ";
-            }
-            query += field;
-            first = false;
+            query += ", " + field;
         }
         query += " FROM " + table + joins + compileConditions();
         System.out.println("Query: " + query);
@@ -362,6 +343,20 @@ public class Database {
         preStatement = connect().prepareStatement(query);
         compilePreValues();
         return preStatement.executeUpdate();
+    }
+
+
+
+    /**
+     * Compiles and executes an UPDATE query and adds a condition for the passed
+     * record id. Returns the number of records affected
+     *
+     * @param fields values to be updated
+     * @return recordsAffected int
+     */
+    public int update(int id) throws Exception {
+        and(id(table), id);
+        return update();
     }
 
     /**
@@ -561,11 +556,10 @@ public class Database {
     public static void restoreDatabase(String restoreFolder) {
         String dbURL = "jdbc:derby:internshipsdb;restoreFrom=" + restoreFolder;
 
-        try{
+        try {
             Connection conn = DriverManager.getConnection(dbURL);
             conn.close();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }

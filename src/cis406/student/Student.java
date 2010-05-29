@@ -283,9 +283,9 @@ public class Student extends Person {
         //Database.executeWrite( sqlStr);
     }
 
-     static public CisTable generateTable() {
+     static public TableModel generateTable() {
         Database db = new Database("student");
-        CisTable table = null;
+        TableModel table = null;
         Vector<String> fields = new Vector<String>();
 
         // Prepare the database query to be used to populate the table
@@ -303,7 +303,7 @@ public class Student extends Person {
         //fields.put("graduated","graduated");
         try {
             // Generate the table from the query
-            table = new CisTable(db.select(fields));
+            table = new TableModel(db.select(fields));
             table.parseData();
         } catch (Exception e) {
             System.out.println("Failed to load the student table");

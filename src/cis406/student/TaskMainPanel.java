@@ -11,14 +11,14 @@
 
 package cis406.student;
 
-import cis406.CisPanel;
+import cis406.PanelInterface;
 import java.awt.CardLayout;
 
 /**
  *
  * @author Owner
  */
-public class TaskMainPanel extends javax.swing.JPanel implements CisPanel {
+public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface {
 String activeCard = "Browse";
     /** Creates new form NewJPanel */
     public TaskMainPanel() {

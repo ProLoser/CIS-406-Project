@@ -64,7 +64,7 @@
     <Component class="javax.swing.JComboBox" name="ddlUsers">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new CisComboBox(&quot;users&quot;, &quot;user_name&quot;)" type="code"/>
+          <Connection code="new cis406.ComboBox(&quot;users&quot;, &quot;user_name&quot;)" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="ddlUsers" noResource="true"/>
       </Properties>

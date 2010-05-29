@@ -8,9 +8,9 @@
  *
  * Created on May 10, 2010, 2:47:41 PM
  */
-
 package cis406.internship;
 
+import cis406.TableModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -70,8 +70,6 @@ public class BrowsePanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable reportTable;
@@ -82,12 +80,26 @@ public class BrowsePanel extends javax.swing.JPanel {
     }
 
     public void delete() {
-        int row = reportTable.getSelectedRow();
-        if (row != -1) {
-
+        int rowId = getSelectedRow();
+        if (Internship.delete(rowId)) {
+            JOptionPane.showMessageDialog(null, "Internship #" + rowId + " was deleted");
+            loadTable();
         } else {
-            JOptionPane.showMessageDialog(null, "Please select a row first");
+            JOptionPane.showMessageDialog(null, "Internship #" + rowId + " could not be found");
         }
     }
 
+    /**
+     * Returns 0 if no SQL row found
+     * @return
+     */
+    public int getSelectedRow() {
+        int row = reportTable.getSelectedRow();
+        if (row != -1) {
+            return ((TableModel) reportTable.getModel()).getRowId(row);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row first");
+            return 0;
+        }
+    }
 }

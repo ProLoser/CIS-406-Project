@@ -11,7 +11,7 @@ import javax.swing.DefaultComboBoxModel;
  *
  * @author Dean
  */
-public class CisComboBox extends DefaultComboBoxModel {
+public class ComboBox extends DefaultComboBoxModel {
 
     private ResultSet data;
     private String table;
@@ -21,21 +21,21 @@ public class CisComboBox extends DefaultComboBoxModel {
     private String field2;
     private String separator = ", ";
 
-    public CisComboBox(String table, String displayField) {
+    public ComboBox(String table, String displayField) {
         this.table = table;
         this.displayField = displayField;
         query(" ORDER BY " + displayField + " ASC");
         addFields();
     }
 
-    public CisComboBox(String table, String displayField, String conditions) {
+    public ComboBox(String table, String displayField, String conditions) {
         this.table = table;
         this.displayField = displayField;
         query(conditions);
         addFields();
     }
 
-    public CisComboBox(String displayField, ResultSet data) {
+    public ComboBox(String displayField, ResultSet data) {
         this.data = data;
         this.displayField = displayField;
         try {

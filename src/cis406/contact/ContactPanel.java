@@ -1,11 +1,12 @@
-package cis406;
+package cis406.contact;
+import cis406.PanelInterface;
 import java.awt.CardLayout;
 
 /**
  *
  * @author mark
  */
-public class ContactPanel extends javax.swing.JPanel implements CisPanel {
+public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
     String activeCard = "Edit";
 
     /** Creates new form ContactPanel */
@@ -22,8 +23,8 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contactBrowsePanel1 = new cis406.ContactBrowsePanel();
-        contactEditPanel1 = new cis406.ContactEditPanel();
+        contactBrowsePanel1 = new cis406.contact.ContactBrowsePanel();
+        contactEditPanel1 = new cis406.contact.ContactEditPanel();
 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
@@ -49,8 +50,8 @@ public class ContactPanel extends javax.swing.JPanel implements CisPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cis406.ContactBrowsePanel contactBrowsePanel1;
-    private cis406.ContactEditPanel contactEditPanel1;
+    private cis406.contact.ContactBrowsePanel contactBrowsePanel1;
+    private cis406.contact.ContactEditPanel contactEditPanel1;
     // End of variables declaration//GEN-END:variables
 
 

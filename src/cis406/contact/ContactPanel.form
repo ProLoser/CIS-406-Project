@@ -19,7 +19,7 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
-    <Container class="cis406.ContactBrowsePanel" name="contactBrowsePanel1">
+    <Container class="cis406.contact.ContactBrowsePanel" name="contactBrowsePanel1">
       <Properties>
         <Property name="name" type="java.lang.String" value="contactBrowsePanel1" noResource="true"/>
       </Properties>
@@ -42,7 +42,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Component class="cis406.ContactEditPanel" name="contactEditPanel1">
+    <Component class="cis406.contact.ContactEditPanel" name="contactEditPanel1">
       <Properties>
         <Property name="name" type="java.lang.String" value="contactEditPanel1" noResource="true"/>
       </Properties>

@@ -11,7 +11,7 @@
 
 package cis406.student;
 
-import cis406.CisTable;
+import cis406.TableModel;
 
 /**
  *
@@ -40,7 +40,14 @@ public class BrowsePanel extends javax.swing.JPanel {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        reportTable.setModel(Student.generateTable());
+        reportTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         reportTable.setColumnSelectionAllowed(true);
         reportTable.setName("reportTable"); // NOI18N
         reportTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);

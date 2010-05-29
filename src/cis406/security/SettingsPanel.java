@@ -11,13 +11,13 @@
 
 package cis406.security;
 
-import cis406.CisPanel;
+import cis406.PanelInterface;
 
 /**
  *
  * @author Raf
  */
-public class SettingsPanel extends javax.swing.JPanel implements CisPanel {
+public class SettingsPanel extends javax.swing.JPanel implements PanelInterface {
 
     /** Creates new form SettingsPanel */
     public SettingsPanel() {
