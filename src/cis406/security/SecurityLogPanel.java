@@ -153,9 +153,6 @@ public class SecurityLogPanel extends javax.swing.JPanel implements PanelInterfa
     }
 
     public void clickBrowsing() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Report");
-        //activeCard = "Report";
     }
 
     public void clickEditing() {

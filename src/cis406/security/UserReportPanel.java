@@ -136,9 +136,6 @@ public class UserReportPanel extends javax.swing.JPanel implements PanelInterfac
     }
 
     public void clickBrowsing() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Report");
-        //activeCard = "Report";
     }
 
     public void clickEditing() {
