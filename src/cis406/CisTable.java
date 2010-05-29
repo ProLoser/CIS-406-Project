@@ -36,6 +36,21 @@ public class CisTable extends DefaultTableModel {
         displayFields = new Vector<String>();
     }
 
+    /**
+     * Don't Edit! Called automatically by Java
+     * 
+     * Disables the editing of individual cells in the table. If you want to make
+     * cells editable, either on a specific row or column, perform checks with the
+     * passed arguments to check for the row/column and return true.
+     * 
+     * @param row
+     * @param column
+     * @return
+     */
+    public boolean isCellEditable(int row, int column) {
+        return false;
+    }
+
     public ResultSet getData() {
         return data;
     }

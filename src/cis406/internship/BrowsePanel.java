@@ -46,7 +46,6 @@ public class BrowsePanel extends javax.swing.JPanel {
 
             }
         ));
-        reportTable.setColumnSelectionAllowed(true);
         reportTable.setName("reportTable"); // NOI18N
         reportTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(reportTable);
