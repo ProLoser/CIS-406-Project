@@ -114,20 +114,20 @@ public class TableModel extends DefaultTableModel {
      * Iterates through the data adding the columns to the current object
      */
     public void addColumns() {
-        if (displayFields.isEmpty()) {
-            try {
-                setIdField(Database.id(data.getMetaData().getTableName(1)));
+        try {
+            setIdField(Database.id(data.getMetaData().getTableName(1)));
+            if (displayFields.isEmpty()) {
                 for (int i = 1; i <= data.getMetaData().getColumnCount(); i++) {
                     addColumn(f(data.getMetaData().getColumnName(i)));
                 }
-            } catch (Exception e) {
-                System.out.println("Failed to add columns to the table");
-                System.out.println(e.getMessage());
+            } else {
+                for (String field : displayFields) {
+                    addColumn(f(field));
+                }
             }
-        } else {
-            for (String field : displayFields) {
-                addColumn(f(field));
-            }
+        } catch (Exception e) {
+            System.out.println("Failed to add columns to the table");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -137,7 +137,7 @@ public class TableModel extends DefaultTableModel {
     public void addRows() {
         Vector<Object> row;
         rowIds = new Vector<Integer>();
-        
+
         try {
             while (data.next()) {
                 row = new Vector<Object>();
@@ -158,7 +158,6 @@ public class TableModel extends DefaultTableModel {
             System.out.println(e.getMessage());
         }
     }
-
 
     /**
      * Formats an SQL column fieldname to be human-readable
