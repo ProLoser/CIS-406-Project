@@ -76,7 +76,7 @@
     <Component class="javax.swing.JComboBox" name="cboContact">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new CisComboBox(&quot;contact&quot;, &quot;last_name&quot;)" type="code"/>
+          <Connection code="new cis406.ComboBox(&quot;contact&quot;, &quot;last_name&quot;)" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="cboContact" noResource="true"/>
       </Properties>

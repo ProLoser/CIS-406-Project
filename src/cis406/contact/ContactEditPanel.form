@@ -198,7 +198,7 @@
       <Properties>
         <Property name="editable" type="boolean" value="true"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new CisComboBox(&quot;company&quot;, &quot;name&quot;)" type="code"/>
+          <Connection code="new cis406.ComboBox(&quot;company&quot;, &quot;name&quot;)" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="cboCompany" noResource="true"/>
       </Properties>
@@ -216,7 +216,7 @@
       <Properties>
         <Property name="editable" type="boolean" value="true"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new CisComboBox(&quot;industry&quot;, &quot;industry_name&quot;)" type="code"/>
+          <Connection code="new cis406.ComboBox(&quot;industry&quot;, &quot;industry_name&quot;)" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="cboIndustry" noResource="true"/>
       </Properties>

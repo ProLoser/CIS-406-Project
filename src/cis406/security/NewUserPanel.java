@@ -11,14 +11,14 @@
 
 package cis406.security;
 
-import cis406.CisPanel;
+import cis406.PanelInterface;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author OK Computer
  */
-public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
+public class NewUserPanel extends javax.swing.JPanel implements PanelInterface{
 
     /** Creates new form UserTab */
     public NewUserPanel() {

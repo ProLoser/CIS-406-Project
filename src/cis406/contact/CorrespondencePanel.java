@@ -1,9 +1,15 @@
-package cis406;
+package cis406.contact;
+
+import cis406.ComboBox;
+import cis406.DateUtils;
+import cis406.PanelInterface;
+import cis406.contact.Correspondence;
+
 /**
  *
  * @author Mark Lenser
  */
-public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel {
+public class CorrespondencePanel extends javax.swing.JPanel implements PanelInterface {
 
     /** Creates new form CorrespondencePanel */
     public CorrespondencePanel() {
@@ -36,7 +42,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
         lblContact.setText(resourceMap.getString("lblContact.text")); // NOI18N
         lblContact.setName("lblContact"); // NOI18N
 
-        cboContact.setModel(new CisComboBox("contact", "last_name"));
+        cboContact.setModel(new cis406.ComboBox("contact", "last_name"));
         cboContact.setName("cboContact"); // NOI18N
 
         lblType.setText(resourceMap.getString("lblType.text")); // NOI18N
@@ -67,19 +73,12 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblContact))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblType))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblDate))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblNotes)))
+                    .addComponent(lblContact)
+                    .addComponent(lblType)
+                    .addComponent(lblDate)
+                    .addComponent(lblNotes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,7 +150,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements CisPanel 
     public void clickBrowsing() {
     }
     public void switchTo(String actionCommand) {
-        cboContact.setModel(new CisComboBox("contact", "last_name"));
+        cboContact.setModel(new ComboBox("contact", "last_name"));
     }
     public Boolean switchAway() {
         return true;

@@ -205,7 +205,7 @@
     <Component class="javax.swing.JComboBox" name="ddlSecurityQuestions">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new CisComboBox(&quot;question_key&quot;, &quot;question&quot;)" type="code"/>
+          <Connection code="new cis406.ComboBox(&quot;question_key&quot;, &quot;question&quot;)" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="ddlSecurityQuestions" noResource="true"/>
       </Properties>
@@ -230,7 +230,7 @@
     <Component class="javax.swing.JComboBox" name="cboUsername">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new CisComboBox(&quot;users&quot;, &quot;user_name&quot;)" type="code"/>
+          <Connection code="new cis406.ComboBox(&quot;users&quot;, &quot;user_name&quot;)" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="cboUsername" noResource="true"/>
       </Properties>

@@ -11,13 +11,13 @@
 
 package cis406.security;
 
-import cis406.CisPanel;
+import cis406.PanelInterface;
 
 /**
  *
  * @author Raf
  */
-public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
+public class SecurityPanel extends javax.swing.JPanel implements PanelInterface {
 
     private int activeTabIndex;
 
@@ -31,28 +31,28 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void clickNew() {
-        ((CisPanel)securityTabs.getSelectedComponent()).clickNew();
+        ((PanelInterface)securityTabs.getSelectedComponent()).clickNew();
     }
     public void clickSave() {
-        ((CisPanel)securityTabs.getSelectedComponent()).clickSave();
+        ((PanelInterface)securityTabs.getSelectedComponent()).clickSave();
     }
     public void clickLoad() {
-        ((CisPanel)securityTabs.getSelectedComponent()).clickLoad();
+        ((PanelInterface)securityTabs.getSelectedComponent()).clickLoad();
     }
     public void clickDelete() {
-        ((CisPanel)securityTabs.getSelectedComponent()).clickDelete();
+        ((PanelInterface)securityTabs.getSelectedComponent()).clickDelete();
     }
     public void clickReset() {
-        ((CisPanel)securityTabs.getSelectedComponent()).clickReset();
+        ((PanelInterface)securityTabs.getSelectedComponent()).clickReset();
     }
     public void clickCancel() {
-        ((CisPanel)securityTabs.getSelectedComponent()).clickCancel();
+        ((PanelInterface)securityTabs.getSelectedComponent()).clickCancel();
     }
     public void clickEditing() {
-        ((CisPanel)securityTabs.getSelectedComponent()).clickEditing();
+        ((PanelInterface)securityTabs.getSelectedComponent()).clickEditing();
     }
     public void clickBrowsing() {
-        ((CisPanel)securityTabs.getSelectedComponent()).clickBrowsing();
+        ((PanelInterface)securityTabs.getSelectedComponent()).clickBrowsing();
     }
     public void switchTo(String actionCommand) {
         removeTabs();
@@ -60,7 +60,7 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
 
     public Boolean switchAway() {
     
-        ((CisPanel)securityTabs.getSelectedComponent()).switchAway();
+        ((PanelInterface)securityTabs.getSelectedComponent()).switchAway();
             return true;
     }
 
@@ -138,10 +138,10 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
 
     private void securityTabsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_securityTabsStateChanged
         if (activeTabIndex != securityTabs.getSelectedIndex()) {
-            ((CisPanel) securityTabs.getComponentAt(activeTabIndex)).switchAway();
+            ((PanelInterface) securityTabs.getComponentAt(activeTabIndex)).switchAway();
             activeTabIndex = securityTabs.getSelectedIndex();
             String actionCommand = "wonked";
-            ((CisPanel) securityTabs.getSelectedComponent()).switchTo(actionCommand);
+            ((PanelInterface) securityTabs.getSelectedComponent()).switchTo(actionCommand);
 
         }
     }//GEN-LAST:event_securityTabsStateChanged

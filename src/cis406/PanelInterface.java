@@ -9,7 +9,7 @@ package cis406;
  *
  * @author Dean Sofer
  */
-public interface CisPanel {
+public interface PanelInterface {
 
     void clickNew();
     void clickSave();

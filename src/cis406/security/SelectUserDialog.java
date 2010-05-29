@@ -9,8 +9,9 @@
  * Created on May 6, 2010, 6:37:43 PM
  */
 
-package cis406;
+package cis406.security;
 
+import cis406.Database;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.application.Action;

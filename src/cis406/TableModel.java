@@ -12,17 +12,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Dean
  */
-public class CisTable extends DefaultTableModel {
+public class TableModel extends DefaultTableModel {
 
     private ResultSet data;
     private Vector<String> displayFields;
+    private Vector<Integer> rowIds;
     private String idField;
 
     /**
      * Loads the results of an SQL ResultSet into the Table Model
      * @param data
      */
-    public CisTable(ResultSet data) {
+    public TableModel(ResultSet data) {
         setData(data);
         displayFields = new Vector<String>();
     }
@@ -31,7 +32,7 @@ public class CisTable extends DefaultTableModel {
      * Loads an SQL table into the Table Model
      * @param table
      */
-    public CisTable(String table) {
+    public TableModel(String table) {
         data = Database.read(table);
         displayFields = new Vector<String>();
     }
@@ -49,6 +50,15 @@ public class CisTable extends DefaultTableModel {
      */
     public boolean isCellEditable(int row, int column) {
         return false;
+    }
+
+    /**
+     * Returns the SQL Id of the row at the passed position
+     * @param row
+     * @return
+     */
+    public int getRowId(int row) {
+        return rowIds.get(row);
     }
 
     public ResultSet getData() {
@@ -94,7 +104,7 @@ public class CisTable extends DefaultTableModel {
     /**
      * Adds the columns and rows of the ResultSet data to the object
      */
-    public CisTable parseData() {
+    public TableModel parseData() {
         addColumns();
         addRows();
         return this;
@@ -106,7 +116,7 @@ public class CisTable extends DefaultTableModel {
     public void addColumns() {
         if (displayFields.isEmpty()) {
             try {
-                setIdField(data.getMetaData().getTableName(1) + "_id");
+                setIdField(Database.id(data.getMetaData().getTableName(1)));
                 for (int i = 1; i <= data.getMetaData().getColumnCount(); i++) {
                     addColumn(f(data.getMetaData().getColumnName(i)));
                 }
@@ -126,7 +136,8 @@ public class CisTable extends DefaultTableModel {
      */
     public void addRows() {
         Vector<Object> row;
-
+        rowIds = new Vector<Integer>();
+        
         try {
             while (data.next()) {
                 row = new Vector<Object>();
@@ -139,6 +150,7 @@ public class CisTable extends DefaultTableModel {
                         row.add(data.getObject(field.toUpperCase()));
                     }
                 }
+                rowIds.add(data.getInt(idField));
                 addRow(row);
             }
         } catch (Exception e) {
@@ -146,6 +158,7 @@ public class CisTable extends DefaultTableModel {
             System.out.println(e.getMessage());
         }
     }
+
 
     /**
      * Formats an SQL column fieldname to be human-readable

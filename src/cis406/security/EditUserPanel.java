@@ -11,8 +11,8 @@
 
 package cis406.security;
 
-import cis406.CisComboBox;
-import cis406.CisPanel;
+import cis406.ComboBox;
+import cis406.PanelInterface;
 import cis406.Database;
 import java.sql.ResultSet;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  *
  * @author Raf
  */
-public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
+public class EditUserPanel extends javax.swing.JPanel implements PanelInterface {
 
     /** Creates new form EditUserPanel */
     public EditUserPanel() {
@@ -187,7 +187,7 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void switchTo(String actionCommand) {
-        cboUsername.setModel(new CisComboBox("users", "user_name"));
+        cboUsername.setModel(new ComboBox("users", "user_name"));
 
     }
 
@@ -248,7 +248,7 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
         usernameLabel.setText(resourceMap.getString("usernameLabel.text")); // NOI18N
         usernameLabel.setName("usernameLabel"); // NOI18N
 
-        ddlSecurityQuestions.setModel(new CisComboBox("question_key", "question"));
+        ddlSecurityQuestions.setModel(new ComboBox("question_key", "question"));
         ddlSecurityQuestions.setName("ddlSecurityQuestions"); // NOI18N
 
         lblFirstName.setText(resourceMap.getString("lblFirstName.text")); // NOI18N
@@ -259,7 +259,7 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
 
         txtLastName.setName("txtLastName"); // NOI18N
 
-        cboUsername.setModel(new CisComboBox("users", "user_name"));
+        cboUsername.setModel(new ComboBox("users", "user_name"));
         cboUsername.setName("cboUsername"); // NOI18N
         cboUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

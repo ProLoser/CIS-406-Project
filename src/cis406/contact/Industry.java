@@ -3,17 +3,18 @@
  * and open the template in the editor.
  */
 
-package cis406;
+package cis406.contact;
+
+import cis406.Database;
 
 /**
  *
  * @author Mark Lenser
  */
-public class Company {
+public class Industry {
     private String name;
-    private int industry_id;
 
-    public Company(String name) {
+    public Industry(String name) {
         this.name = name;
     }
     public String getName() {
@@ -22,27 +23,19 @@ public class Company {
     public void setName(String name) {
         this.name = name;
     }
-    public int getIndustryId() {
-        return industry_id;
-    }
-    public void setIndustryId(int industryId) {
-        this.industry_id = industryId;
-    }
-
 
     /**
-     * Saves the company and returns the created id
+     * Saves the Industry and returns the created id
      * @return newId if set to 0, save failed.
      */
     public int save() {
         int newId = 0;
-        Database db = new Database("company");
-        db.addField("name", name);
-        db.addField("industry_id", industry_id);
+        Database db = new Database("industry");
+        db.addField("industry_name", name);
         try {
             newId = db.insert();
         } catch (Exception e) {
-            System.out.println("Failed to add the company");
+            System.out.println("Failed to add the industry");
             System.out.println(e.getMessage());
         }
         return newId;
