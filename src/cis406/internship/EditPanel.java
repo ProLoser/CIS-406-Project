@@ -263,21 +263,13 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
+    public void newInternship() {
+        record = new Internship();
+    }
+
     public Boolean save() {
-        // Checks to see if we were editing an existing record first
-        if (record == null) {
-            record = new Internship();
-        }
 
         Boolean success = true;
-
-        // Saves the career path if it's a new entry
-        if (careerComboBox.getSelectedIndex() == -1) {
-            CareerPath cp = new CareerPath(careerComboBox.getSelectedItem().toString());
-            record.setCareerPathId(cp.save());
-        } else {
-            record.setCareerPathId(((ComboItem) careerComboBox.getSelectedItem()).id);
-        }
 
         // Saves the rest of the internship record
         record.setTitle(titleField.getText());
@@ -305,6 +297,19 @@ public class EditPanel extends javax.swing.JPanel {
             quantity1Label.setForeground(Color.BLACK);
             quantity2Label.setForeground(Color.BLACK);
         }
+
+
+        if (success) {
+            // Saves the career path if it's a new entry
+            if (careerComboBox.getSelectedIndex() == -1) {
+                CareerPath cp = new CareerPath(careerComboBox.getSelectedItem().toString());
+                record.setCareerPathId(cp.save());
+            } else {
+                record.setCareerPathId(((ComboItem) careerComboBox.getSelectedItem()).id);
+            }
+        }
+
+
         if (success & !record.save()) {
             success = false;
         }
@@ -349,6 +354,14 @@ public class EditPanel extends javax.swing.JPanel {
         quantityField.setText("1");
         attachmentField.setText("");
     }
+
+    /*public Boolean cancel() {
+        Internship currentData = new Internship();
+        currentData.setAttachment
+
+        if (record.equals()) {
+        }
+    }*/
 
     @Action
     public void toggleExpires() {

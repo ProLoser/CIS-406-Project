@@ -12,7 +12,6 @@ package cis406.internship;
 
 import cis406.PanelInterface;
 import java.awt.CardLayout;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -65,44 +64,50 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
     }
 
     public void clickCancel() {
-        clickBrowsing();
+        browsing();
     }
 
     public void clickLoad() {
         if (activeCard.equals("Browse")) {
             int record = browsePanel.getSelectedRow();
             if (record != 0) {
-                clickEditing();
+                editing();
                 editPanel.load(record);
             }
         }
     }
 
     public void clickNew() {
-        clickEditing();
+        editPanel.newInternship();
+        editing();
     }
 
     public void clickEditing() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Edit");
-        activeCard = "Edit";
     }
 
     public void clickBrowsing() {
         if (false) { // (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
             editPanel.save();
-        } else {
-            CardLayout cl = (CardLayout) (getLayout());
-            cl.show(this, "Browse");
-            activeCard = "Browse";
-            browsePanel.loadTable();
         }
     }
 
     public void clickSave() {
-        if (editPanel.save()) {
-            clickBrowsing();
+        if (activeCard.equals("Edit") && editPanel.save()) {
+            browsing();
         }
+    }
+
+    public void editing() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Edit");
+        activeCard = "Edit";
+    }
+
+    public void browsing() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Browse");
+        activeCard = "Browse";
+        browsePanel.loadTable();
     }
 
     public Boolean switchAway() {
@@ -116,11 +121,7 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
     }
 
     public void switchTo(String actionCommand) {
-        if (actionCommand.equalsIgnoreCase("Edit")) {
-            clickEditing();
-        } else {
-            clickBrowsing();
-        }
+        browsing();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cis406.internship.BrowsePanel browsePanel;
