@@ -263,11 +263,11 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
+    public void newInternship() {
+        record = new Internship();
+    }
+
     public Boolean save() {
-        // Checks to see if we were editing an existing record first
-        if (record == null) {
-            record = new Internship();
-        }
 
         Boolean success = true;
 
