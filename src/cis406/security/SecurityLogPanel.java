@@ -15,6 +15,13 @@ import cis406.CisTable;
 import cis406.CisComboBox;
 import cis406.TableColumnAdjuster;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.ResultSet;
 import org.jdesktop.application.Action;
 
@@ -22,16 +29,112 @@ import org.jdesktop.application.Action;
  *
  * @author qwerty
  */
-public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel {
+public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel, Printable {
 
     /** Creates new form SystemSettingsPanel */
     public SecurityLogPanel() {
         initComponents();
+        TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
+        tca.adjustColumns();
     }
     
     @Action
     public void showAllUsers() {
         logTable.setModel(generateTable());
+        TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
+        tca.adjustColumns();
+    }
+
+    @Action
+    public void printTable() {
+        PrinterJob pj=PrinterJob.getPrinterJob();
+        pj.setPrintable(this);
+        pj.printDialog();
+        try{ 
+            pj.print();
+        }catch (Exception PrintException) { System.out.println(PrintException.getMessage()); }
+    }
+
+    public int print(Graphics g, PageFormat pageFormat, int pageIndex) throws PrinterException {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.black);
+        int fontHeight = g2.getFontMetrics().getHeight();
+        int fontDesent = g2.getFontMetrics().getDescent();
+
+        //leave room for page number
+        double pageHeight =
+                pageFormat.getImageableHeight() - fontHeight;
+        double pageWidth =
+                pageFormat.getImageableWidth();
+        double tableWidth = (double) logTable.getColumnModel().getTotalColumnWidth();
+        double scale = 1;
+        if (tableWidth >= pageWidth) {
+            scale = pageWidth / tableWidth;
+        }
+
+        double headerHeightOnPage =
+                logTable.getTableHeader().getHeight() * scale;
+        double tableWidthOnPage = tableWidth * scale;
+
+        double oneRowHeight = (logTable.getRowHeight()
+                + logTable.getRowMargin()) * scale;
+        int numRowsOnAPage =
+                (int) ((pageHeight - headerHeightOnPage)
+                / oneRowHeight);
+        double pageHeightForTable = oneRowHeight
+                * numRowsOnAPage;
+        int totalNumPages =
+                (int) Math.ceil(((double) logTable.getRowCount())
+                / numRowsOnAPage);
+        if (pageIndex >= totalNumPages) {
+            return Printable.NO_SUCH_PAGE;
+        }
+
+        g2.translate(pageFormat.getImageableX(),
+                pageFormat.getImageableY());
+        //bottom center
+        g2.drawString("Page: " + (pageIndex + 1),
+                (int) pageWidth / 2 - 35, (int) (pageHeight
+                + fontHeight - fontDesent));
+
+        g2.translate(0f, headerHeightOnPage);
+        g2.translate(0f, -pageIndex * pageHeightForTable);
+
+        //If this piece of the table is smaller
+        //than the size available,
+        //clip to the appropriate bounds.
+        if (pageIndex + 1 == totalNumPages) {
+            int lastRowPrinted =
+                    numRowsOnAPage * pageIndex;
+            int numRowsLeft =
+                    logTable.getRowCount()
+                    - lastRowPrinted;
+            g2.setClip(0,
+                    (int) (pageHeightForTable * pageIndex),
+                    (int) Math.ceil(tableWidthOnPage),
+                    (int) Math.ceil(oneRowHeight
+                    * numRowsLeft));
+        } //else clip to the entire area available.
+        else {
+            g2.setClip(0,
+                    (int) (pageHeightForTable * pageIndex),
+                    (int) Math.ceil(tableWidthOnPage),
+                    (int) Math.ceil(pageHeightForTable));
+        }
+
+        g2.scale(scale, scale);
+        logTable.paint(g2);
+        g2.scale(1 / scale, 1 / scale);
+        g2.translate(0f, pageIndex * pageHeightForTable);
+        g2.translate(0f, -headerHeightOnPage);
+        g2.setClip(0, 0,
+                (int) Math.ceil(tableWidthOnPage),
+                (int) Math.ceil(headerHeightOnPage));
+        g2.scale(scale, scale);
+        logTable.getTableHeader().paint(g2);
+        //paint header at top
+
+        return Printable.PAGE_EXISTS;
     }
 
     static public CisTable generateTable() {
@@ -101,20 +204,15 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        logTable = new javax.swing.JTable();
         ddlUsers = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         btnViewAllUsers = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        logTable = new javax.swing.JTable();
 
         setName("Form"); // NOI18N
-
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
-
-        logTable.setModel(generateTable());
-        logTable.setName("logTable"); // NOI18N
-        jScrollPane1.setViewportView(logTable);
 
         ddlUsers.setModel(new CisComboBox("users", "user_name"));
         ddlUsers.setName("ddlUsers"); // NOI18N
@@ -133,25 +231,40 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel {
         btnViewAllUsers.setText(resourceMap.getString("btnViewAllUsers.text")); // NOI18N
         btnViewAllUsers.setName("btnViewAllUsers"); // NOI18N
 
+        jButton1.setAction(actionMap.get("printTable")); // NOI18N
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
+
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        logTable.setModel(generateTable());
+        logTable.setName("logTable"); // NOI18N
+        jScrollPane1.setViewportView(logTable);
+
+        jScrollPane2.setViewportView(jScrollPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnViewAllUsers)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ddlUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
-                .addContainerGap())
+                        .addComponent(ddlUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +275,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel {
                     .addComponent(jLabel1)
                     .addComponent(btnViewAllUsers))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -171,6 +284,8 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel {
 
     private void ddlUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ddlUsersActionPerformed
         logTable.setModel(generateTableForUser(cis406.MainApp.loginResult[1]));
+        TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
+        tca.adjustColumns();
     }//GEN-LAST:event_ddlUsersActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -179,6 +294,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable logTable;
     // End of variables declaration//GEN-END:variables
 }

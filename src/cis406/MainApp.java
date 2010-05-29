@@ -12,7 +12,9 @@ import org.jdesktop.application.SingleFrameApplication;
  * The main class of the application.
  */
 public class MainApp extends SingleFrameApplication {
-
+    /**
+     * Returns an integer, 0 for admin, 1 for coordinator, 2 for assistant
+     */
     public static String[] loginResult = new String[3];
     /**
      * At startup create and show the main frame of the application.

@@ -340,6 +340,15 @@
                 <Property name="name" type="java.lang.String" value="backupMenuItem" noResource="true"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="restoreMenuItem">
+              <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="cis406.MainView" id="restoreDatabase" methodName="restoreDatabase"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="restoreMenuItem.text"/>
+                <Property name="name" type="java.lang.String" value="restoreMenuItem" noResource="true"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="helpMenu">
