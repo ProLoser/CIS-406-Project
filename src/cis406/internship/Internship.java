@@ -10,8 +10,7 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Vector;
 
 /**
  *
@@ -160,20 +159,20 @@ public class Internship {
     static public CisTable generateTable() {
         Database db = new Database("internship");
         CisTable table = null;
-        Map<String, String> fields = new HashMap<String, String>();
+        Vector<String> fields = new Vector<String>();
 
         // Prepare the database query to be used to populate the table
         db.innerJoin("company");
         db.innerJoin("career_path");
         // Populating a map of my fields so that I can choose which columns to
-        // display and what labels to display them as. Use null to not alias.
-        fields.put("title", null);
-        fields.put("post_date", "posted");
-        fields.put("expiration", "expires");
-        fields.put("quantity", "positions");
+        // display and what labels to display them as.
+        fields.add("title");
+        fields.add("post_date AS posted");
+        fields.add("expiration AS expires");
+        fields.add("quantity AS positions");
         // Use table.fieldname when querying multiple tables joined together
-        fields.put("career_path.name", "career_path");
-        fields.put("company.name", "company");
+        fields.add("career_path.name AS career_path");
+        fields.add("company.name AS company");
         try {
             // Generate the table from the query
             table = new CisTable(db.select(fields));
