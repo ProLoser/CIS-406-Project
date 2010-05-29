@@ -11,6 +11,8 @@
 
 package cis406.student;
 
+import cis406.internship.Internship;
+
 /**
  *
  * @author F-91
@@ -19,7 +21,7 @@ public class AssignStudentToInternship extends javax.swing.JFrame {
 
     /** Creates new form AssignStudentToInternship */
     public AssignStudentToInternship() {
-        initComponents();
+    initComponents();
     }
 
     /** This method is called from within the constructor to
@@ -37,13 +39,13 @@ public class AssignStudentToInternship extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblFullName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblBroncoNum = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
 
         jDialog1.setName("jDialog1"); // NOI18N
@@ -88,9 +90,9 @@ public class AssignStudentToInternship extends javax.swing.JFrame {
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
-        jLabel3.setFont(resourceMap.getFont("jLabel3.font")); // NOI18N
-        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
-        jLabel3.setName("jLabel3"); // NOI18N
+        lblBroncoNum.setFont(resourceMap.getFont("lblBroncoNum.font")); // NOI18N
+        lblBroncoNum.setText(resourceMap.getString("lblBroncoNum.text")); // NOI18N
+        lblBroncoNum.setName("lblBroncoNum"); // NOI18N
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
@@ -108,9 +110,9 @@ public class AssignStudentToInternship extends javax.swing.JFrame {
         jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
         jLabel7.setName("jLabel7"); // NOI18N
 
-        jLabel8.setFont(resourceMap.getFont("jLabel8.font")); // NOI18N
-        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
-        jLabel8.setName("jLabel8"); // NOI18N
+        lblEmail.setFont(resourceMap.getFont("lblEmail.font")); // NOI18N
+        lblEmail.setText(resourceMap.getString("lblEmail.text")); // NOI18N
+        lblEmail.setName("lblEmail"); // NOI18N
 
         btnCancel.setText(resourceMap.getString("btnCancel.text")); // NOI18N
         btnCancel.setName("btnCancel"); // NOI18N
@@ -136,14 +138,14 @@ public class AssignStudentToInternship extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
+                                    .addComponent(lblBroncoNum))
                                 .addGap(87, 87, 87)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
+                                    .addComponent(lblEmail)
                                     .addComponent(jLabel6)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
@@ -168,9 +170,9 @@ public class AssignStudentToInternship extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3)
+                    .addComponent(lblBroncoNum)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(lblEmail))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -202,15 +204,46 @@ public class AssignStudentToInternship extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblBroncoNum;
+    private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFullName;
     // End of variables declaration//GEN-END:variables
+    StudentInternshipMgr studIntMgr = new StudentInternshipMgr();
+    Student aS = new Student();
+    Internship aI = new Internship();
+
+    public void loadStudent(Student student) {
+       aS = student;
+       lblFullName.setText(aS.getFullName());
+       lblBroncoNum.setText(Integer.toString(aS.getBroncoNum()));
+       lblEmail.setText(aS.getEmail());
+    }
+
+    public void setaInternship(Internship aI) {
+        this.aI = aI;
+    }
+
+    public Student getaStudent() {
+        return aS;
+    }
+
+    public void setaStudent(Student aS) {
+        this.aS = aS;
+    }
+
+   
+    public StudentInternshipMgr getStudIntMgr() {
+        return studIntMgr;
+    }
+
+    public void setStudIntMgr(StudentInternshipMgr studIntMgr) {
+        this.studIntMgr = studIntMgr;
+    }
 
 }
