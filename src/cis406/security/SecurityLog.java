@@ -24,7 +24,7 @@ public class SecurityLog {
     private ResultSet rs;
     private DefaultListModel security_log_model;
     // disable security log entries by default to prevent database problems during development
-    private static boolean disableUserLogEntries = true;
+    private static boolean disableUserLogEntries = false;
 
 
     public SecurityLog()

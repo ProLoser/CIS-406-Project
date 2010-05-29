@@ -86,7 +86,7 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
             }
         }
     }
- public void clickNew() {
+    public void clickNew() {
         clickReset();
     }
 
@@ -101,7 +101,7 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
             secondPassword += txtPassword2.getPassword()[i];
         }
 
-        if (!firstPassword.equals("")) {
+        if (!firstPassword.isEmpty()) {
             if (firstPassword.equals(secondPassword)){
                 if (User.checkPassword(txtPassword1.getPassword(), cboUsername.getSelectedItem().toString())) {
                     User user = new User();
@@ -110,8 +110,14 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                     user.setStatus(ddlStatus.getSelectedIndex());
                     user.setSecurityLevel(ddlSecurityLevel.getSelectedIndex());
                     user.setPassword(txtPassword1.getPassword());
-                    user.setfName(txtFirstName.getText());
-                    user.setlName(txtLastName.getText());
+                    if (!user.setfName(txtFirstName.getText())) {
+                        JOptionPane.showMessageDialog(null, "Incorrect first name format.");
+                        return;
+                    }
+                    if (!user.setlName(txtLastName.getText())) {
+                        JOptionPane.showMessageDialog(null, "Incorrect last name format.");
+                        return;
+                    }
                     user.setSecurityAnswer(txtAnswer.getText());
                     user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
 
@@ -128,14 +134,19 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
             user.setUsername(cboUsername.getSelectedItem().toString());
             user.setStatus(ddlStatus.getSelectedIndex());
             user.setSecurityLevel(ddlSecurityLevel.getSelectedIndex());
-            user.setfName(txtFirstName.getText());
-            user.setlName(txtLastName.getText());
+            if (!user.setfName(txtFirstName.getText())) {
+                JOptionPane.showMessageDialog(null, "Incorrect first name format.  Bad: 'bob' Good: 'Bob'");
+                return;
+            }
+            if (!user.setlName(txtLastName.getText())) {
+                JOptionPane.showMessageDialog(null, "Incorrect last name format..  Bad: 'jones' Good: 'Jones'");
+                return;
+            }
             user.setSecurityAnswer(txtAnswer.getText());
             user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
 
             user.updateUser();
         }
-
     }
 
     public void clickLoad() {
@@ -345,9 +356,9 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                                 .addComponent(jLabel8)
                                 .addComponent(jLabel3))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ddlSecurityLevel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ddlStatus, 0, 178, Short.MAX_VALUE)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ddlStatus, 0, 178, Short.MAX_VALUE)
+                                .addComponent(ddlSecurityLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
@@ -357,11 +368,11 @@ public class EditUserPanel extends javax.swing.JPanel implements CisPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usernameLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(ddlStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(ddlSecurityLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

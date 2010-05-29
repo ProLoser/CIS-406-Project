@@ -12,6 +12,9 @@
 package cis406.security;
 
 import cis406.CisPanel;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,22 +25,93 @@ public class MyAccountPanel extends javax.swing.JPanel implements CisPanel {
     /** Creates new form MyAccountPanel */
     public MyAccountPanel() {
         initComponents();
+        try {
+            ResultSet rs = cis406.Database.execute("select * from users where user_name = '" + cis406.MainApp.loginResult[1] + "'");
+            while (rs.next()) {
+                txtFirstName.setText(rs.getString("first_name"));
+                txtLastName.setText(rs.getString("last_name"));
+                txtAnswer.setText(rs.getString("answer"));
+
+                // find user's security question and select it from the combo box
+                ResultSet rsSecurityQuestion = cis406.Database.execute("select question from question_key where question_key_id = " + rs.getInt("question_key_id"));
+                while (rsSecurityQuestion.next()) {
+                    HashMap questions = new HashMap();
+
+                    for (int i = 0; i < ddlSecurityQuestions.getItemCount(); i++) {
+                        questions.put(i, ddlSecurityQuestions.getItemAt(i).toString());
+                    }
+
+                    for (int i = 0; i < questions.size(); i++) {
+                        if (questions.get(i).equals(rsSecurityQuestion.getString("question"))) {
+                            ddlSecurityQuestions.setSelectedIndex(i);
+                        }
+                    }
+                }
+            }
+
+            } catch (Exception e) {
+                System.out.println("Could not execute query");
+                System.out.println(e.getMessage());
+            }
     }
     public void clickNew() {
         clickReset();
     }
 
     public void clickSave() {
-        User user = new User();
-
-        user.setfName(txtFirstName.getText());
-        user.setlName((txtLastName.getText()));
-
-        if (txtPassword1.getPassword().length > 0) {
-            
+        String firstPassword = "";
+        for (int i = 0; i < txtPassword1.getPassword().length; i++){
+            firstPassword += txtPassword1.getPassword()[i];
+        }
+        String secondPassword = "";
+        for (int i = 0; i < txtPassword2.getPassword().length; i++){
+            secondPassword += txtPassword2.getPassword()[i];
         }
 
-        user.addUser();
+        if (!firstPassword.isEmpty()) {
+            if (firstPassword.equals(secondPassword)){
+                if (User.checkPassword(txtPassword1.getPassword(), cis406.MainApp.loginResult[1])) {
+                    User user = new User();
+
+                    user.setUsername(cis406.MainApp.loginResult[1]);
+                    user.setPassword(txtPassword1.getPassword());
+                    if (!user.setfName(txtFirstName.getText())) {
+                        JOptionPane.showMessageDialog(null, "Incorrect first name format.");
+                        return;
+                    }
+                    if (!user.setlName(txtLastName.getText())) {
+                        JOptionPane.showMessageDialog(null, "Incorrect last name format.");
+                        return;
+                    }
+                    user.setSecurityAnswer(txtAnswer.getText());
+                    user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
+
+                    user.assistantUpdate();
+                    txtPassword1.setText("");
+                    txtPassword2.setText("");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "The passwords you entered do not match.");
+            }
+        }
+        else {
+            User user = new User();
+
+            user.setUsername(cis406.MainApp.loginResult[1]);
+            if (!user.setfName(txtFirstName.getText())) {
+                JOptionPane.showMessageDialog(null, "Incorrect first name format.  Bad: 'bob' Good: 'Bob'");
+                return;
+            }
+            if (!user.setlName(txtLastName.getText())) {
+                JOptionPane.showMessageDialog(null, "Incorrect last name format..  Bad: 'jones' Good: 'Jones'");
+                return;
+            }
+            user.setSecurityAnswer(txtAnswer.getText());
+            user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
+
+            user.assistantUpdate();
+        }
     }
 
     public void clickLoad() {
@@ -93,10 +167,10 @@ public class MyAccountPanel extends javax.swing.JPanel implements CisPanel {
         txtPassword1 = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
         lblFirstName = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         lblConfPass = new javax.swing.JLabel();
         txtAnswer = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         ddlSecurityQuestions = new javax.swing.JComboBox();
 
         setName("Form"); // NOI18N
@@ -134,9 +208,6 @@ public class MyAccountPanel extends javax.swing.JPanel implements CisPanel {
         lblFirstName.setText(resourceMap.getString("lblFirstName.text")); // NOI18N
         lblFirstName.setName("lblFirstName"); // NOI18N
 
-        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
-        jLabel9.setName("jLabel9"); // NOI18N
-
         lblPassword.setText(resourceMap.getString("lblPassword.text")); // NOI18N
         lblPassword.setName("lblPassword"); // NOI18N
 
@@ -145,7 +216,10 @@ public class MyAccountPanel extends javax.swing.JPanel implements CisPanel {
 
         txtAnswer.setName("txtAnswer"); // NOI18N
 
-        ddlSecurityQuestions.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "What city were you born in?", "What year did you graduate high school?" }));
+        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
+        jLabel9.setName("jLabel9"); // NOI18N
+
+        ddlSecurityQuestions.setModel(new cis406.CisComboBox("question_key", "question"));
         ddlSecurityQuestions.setName("ddlSecurityQuestions"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -156,13 +230,10 @@ public class MyAccountPanel extends javax.swing.JPanel implements CisPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel9))
+                        .addGap(49, 49, 49)
+                        .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtAnswer, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ddlSecurityQuestions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,8 +258,12 @@ public class MyAccountPanel extends javax.swing.JPanel implements CisPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ddlSecurityQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

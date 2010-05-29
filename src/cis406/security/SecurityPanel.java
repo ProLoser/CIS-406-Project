@@ -55,6 +55,7 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
         ((CisPanel)securityTabs.getSelectedComponent()).clickBrowsing();
     }
     public void switchTo(String actionCommand) {
+        removeTabs();
     }
 
     public Boolean switchAway() {
@@ -65,7 +66,9 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
 
     public void removeTabs() {
         if (Integer.parseInt(cis406.MainApp.loginResult[2]) == 1) {
-            securityTabs.removeTabAt(securityTabs.indexOfTab("System Settings"));
+            if (!(securityTabs.indexOfTab("System Settings") == -1)) {
+                securityTabs.removeTabAt(securityTabs.indexOfTab("System Settings"));
+            }
         }
     }
 
@@ -90,6 +93,11 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
         securityTabs.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 securityTabsStateChanged(evt);
+            }
+        });
+        securityTabs.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                securityTabsComponentAdded(evt);
             }
         });
 
@@ -133,6 +141,10 @@ public class SecurityPanel extends javax.swing.JPanel implements CisPanel {
 
         }
     }//GEN-LAST:event_securityTabsStateChanged
+
+    private void securityTabsComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_securityTabsComponentAdded
+        
+    }//GEN-LAST:event_securityTabsComponentAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

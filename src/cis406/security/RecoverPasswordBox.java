@@ -35,13 +35,12 @@ public class RecoverPasswordBox extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.username = username;
         
-        Database database = new Database();
-        database.setTable("users");
-        database.innerJoin("question_key");
+
         try{
-            ResultSet rs = database.select();
+            ResultSet rs = Database.execute("SELECT * FROM users INNER JOIN  question_key ON users.question_key_id=question_key.question_key_id WHERE 1=1  AND lower(user_name) = '" + username.toLowerCase() + "'");
             
             while (rs.next()){
+                System.out.println(rs.getString("question"));
                 lblQuestion.setText(rs.getString("question"));
             }
         } catch (Exception ex) {
@@ -183,6 +182,7 @@ public class RecoverPasswordBox extends javax.swing.JDialog {
                                 user.setPassword(txtPassword1.getPassword());
                                 user.setUsername(username);
                                 user.recoverPassword();
+                                User.resetFailedLogons(username);
                                 result = true;
 
                                 this.dispose();
@@ -194,9 +194,6 @@ public class RecoverPasswordBox extends javax.swing.JDialog {
                     } catch (Exception ex) {
                         System.out.println(ex.getMessage());
                     }
-                }
-                else {
-                    JOptionPane.showMessageDialog(null, "Change your password, it doesn't meet CSU Pomona's password complexity requirements");
                 }
             }
             else {

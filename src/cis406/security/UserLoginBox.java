@@ -140,7 +140,9 @@ public class UserLoginBox extends javax.swing.JDialog {
         getInputs();
         if (User.login(userInfo[0], userInfo[1])) {
             if (User.firstLogon(userInfo[0])) {
-                FirstTimeUserBox.updateNewUser(userInfo[0]);
+                if (!(FirstTimeUserBox.updateNewUser(userInfo[0]))) {
+                    return;
+                }
             }
 
             result[0] = "true";
@@ -159,7 +161,7 @@ public class UserLoginBox extends javax.swing.JDialog {
 
     @Action
     public void clickRecoverPassword() {
-        String username = txtUsername.getText();
+        String username = txtUsername.getText().toLowerCase();
 
         if (!username.isEmpty()) {
             if (User.exists(username)) {
@@ -170,6 +172,7 @@ public class UserLoginBox extends javax.swing.JDialog {
                         pwdPassword.setText("");
                     }
                 }
+                else {JOptionPane.showMessageDialog(null, "You can't recover your password if you haven't logged in before.  The default password is P@ssw0rd.");}
             }
         }
         else {
@@ -188,7 +191,7 @@ public class UserLoginBox extends javax.swing.JDialog {
             strPassword += password[i];
         }
         userInfo = new String[2];
-        userInfo[0] = txtUsername.getText();
+        userInfo[0] = txtUsername.getText().toLowerCase();
         userInfo[1] = strPassword;
     }
 

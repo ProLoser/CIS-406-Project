@@ -27,6 +27,7 @@ public class MainView extends FrameView {
     // panels to remove based on security level of logged in user
     final String[] assistantPanels = {"Security"};
     final String[] coordinatorPanels = {"My Account"};
+    final String[] adminPanels = {"My Account"};
 
     public MainView(SingleFrameApplication app, String username, int security_level) {
         super(app);
@@ -114,7 +115,7 @@ public class MainView extends FrameView {
     public void backupDatabase() {
         jFileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int success = jFileChooser2.showOpenDialog(menuBar);
-        if (success == jFileChooser2.APPROVE_OPTION) {
+        if (success == JFileChooser.APPROVE_OPTION) {
             Database.backupDatabase(Database.connect(), jFileChooser2.getSelectedFile().getAbsolutePath());
         }
     }
@@ -434,6 +435,12 @@ public class MainView extends FrameView {
                 mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(assistantPanels[i]));
             }
             databaseMenu.setEnabled(false);
+        }
+        else if (security_level == 0){
+            for (int i = 0; i < adminPanels.length; i++){
+                mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(adminPanels[i]));
+            }
+            databaseMenu.setEnabled(true);
         }
     }
 

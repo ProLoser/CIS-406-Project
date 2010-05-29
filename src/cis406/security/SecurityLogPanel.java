@@ -12,8 +12,11 @@ package cis406.security;
 
 import cis406.CisPanel;
 import cis406.CisTable;
+import cis406.CisComboBox;
 import cis406.TableColumnAdjuster;
 import java.awt.CardLayout;
+import java.sql.ResultSet;
+import org.jdesktop.application.Action;
 
 /**
  *
@@ -25,9 +28,24 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel {
     public SecurityLogPanel() {
         initComponents();
     }
+    
+    @Action
+    public void showAllUsers() {
+        logTable.setModel(generateTable());
+    }
 
     static public CisTable generateTable() {
         CisTable table = new CisTable("user_log");
+        table.addDisplayField("user_name");
+        table.addDisplayField("date");
+        table.addDisplayField("time");
+        table.addDisplayField("description");
+        return table.parseData();
+    }
+
+    public CisTable generateTableForUser(String username) {
+        ResultSet rs = cis406.Database.execute("select * from user_log where user_name = '" + ddlUsers.getSelectedItem().toString() + "'");
+        CisTable table = new CisTable(rs);
         table.addDisplayField("user_name");
         table.addDisplayField("date");
         table.addDisplayField("time");
@@ -85,6 +103,10 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         logTable = new javax.swing.JTable();
+        ddlUsers = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        btnViewAllUsers = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setName("Form"); // NOI18N
 
@@ -94,24 +116,68 @@ public class SecurityLogPanel extends javax.swing.JPanel implements CisPanel {
         logTable.setName("logTable"); // NOI18N
         jScrollPane1.setViewportView(logTable);
 
+        ddlUsers.setModel(new CisComboBox("users", "user_name"));
+        ddlUsers.setName("ddlUsers"); // NOI18N
+        ddlUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ddlUsersActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(SecurityLogPanel.class);
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(SecurityLogPanel.class, this);
+        btnViewAllUsers.setAction(actionMap.get("showAllUsers")); // NOI18N
+        btnViewAllUsers.setText(resourceMap.getString("btnViewAllUsers.text")); // NOI18N
+        btnViewAllUsers.setName("btnViewAllUsers"); // NOI18N
+
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnViewAllUsers)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ddlUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ddlUsers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnViewAllUsers))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ddlUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ddlUsersActionPerformed
+        logTable.setModel(generateTableForUser(cis406.MainApp.loginResult[1]));
+    }//GEN-LAST:event_ddlUsersActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnViewAllUsers;
+    private javax.swing.JComboBox ddlUsers;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable logTable;
     // End of variables declaration//GEN-END:variables

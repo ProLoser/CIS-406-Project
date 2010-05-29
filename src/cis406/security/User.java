@@ -7,6 +7,7 @@ package cis406.security;
 import cis406.Database;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import java.util.regex.*;
 
 /**
  *
@@ -55,8 +56,15 @@ public class User {
         this.status = status;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public boolean setUsername(String username) {
+        String email = ".+@.+\\.[a-z]+";
+        if (username.matches(email)) {
+            this.username = username;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public int getStatus() {
@@ -92,18 +100,18 @@ public class User {
     }
 
     public void setSecurityQuestion(String question) {
-        int id = 0;
         try {
             ResultSet rs = Database.execute("select question_key_id from question_key where question = '" + question + "'");
 
             while (rs.next()) {
-                id = rs.getInt("question_key_id");
+                int q_id = rs.getInt("question_key_id");
+                System.out.println(id);
+                this.question_id = q_id;
             }
         } catch (Exception e) {
             System.out.println("Could not execute query");
             System.out.println(e.getMessage());
         }
-        this.question_id = id;
     }
 
     public void setPassword(char[] password) {;
@@ -124,12 +132,28 @@ public class User {
         this.securityLevel = securityLevel;
     }
 
-    public void setfName(String fName) {
-        this.fName = fName;
+    public boolean setfName(String fName) {
+        String firstName = "[A-Z][a-zA-Z]*";
+
+        if (fName.matches(firstName)) {
+            this.fName = fName;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
-    public void setlName(String lName) {
-        this.lName = lName;
+    public boolean setlName(String lName) {
+        String lastName = "[A-Z][a-zA-Z]*";
+
+        if (lName.matches(lastName)) {
+            this.lName = lName;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     
     // </editor-fold>
@@ -176,6 +200,22 @@ public class User {
         }
     }
 
+    public void assistantUpdate() {
+        if (!password.isEmpty()) {
+            Database.executeWrite("UPDATE users SET password = '"
+                    + password + "', first_name = '" + fName
+                    + "', last_name = '" + lName + "', question_key_id = " + question_id
+                    + ", answer = '" + security_answer + "' WHERE user_name = '" + username + "'");
+            SecurityLog.addEntry("Password and user information updated for " + username + ".");
+        }
+        else {
+            Database.executeWrite("UPDATE users SET first_name = '" + fName
+                    + "', last_name = '" + lName + "', question_key_id = " + question_id
+                    + ", answer = '" + security_answer + "' WHERE user_name = '" + username + "'");
+            SecurityLog.addEntry("User information updated for " + username + ".");
+        }
+    }
+
     public void newUserUpdate(String user_name, String answer) {
         Database.executeWrite("UPDATE users SET password = '" + password
                 + "', question_key_id = " + question_id + ", answer = '"
@@ -214,26 +254,6 @@ public class User {
      */
     public static void changeStatus(String username, int value){
         Database.executeWrite("update users set status = " + value + " where user_name = '" + username + "'");
-    }
-
-    public static byte[] computeHash(String x) throws Exception {
-        java.security.MessageDigest d = null;
-        d = java.security.MessageDigest.getInstance("SHA-1");
-        d.reset();
-        d.update(x.getBytes());
-        return d.digest();
-    }
-
-    public static String byteArrayToHexString(byte[] b) {
-        StringBuffer sb = new StringBuffer(b.length * 2);
-        for (int i = 0; i < b.length; i++) {
-            int v = b[i] & 0xff;
-            if (v < 16) {
-                sb.append('0');
-            }
-            sb.append(Integer.toHexString(v));
-        }
-        return sb.toString().toUpperCase();
     }
 
     public static boolean login(String username, String password) {
@@ -300,7 +320,7 @@ public class User {
                 SecurityLog.addEntry("User (" + username + ") disabled for failed logon attempts (" + failedLogins + ").");
             }
             
-            JOptionPane.showMessageDialog(null, "You have " + failedLogins + " failed login attempts and your account has been disabled, contact the administrator.");
+            JOptionPane.showMessageDialog(null, "You have " + failedLogins + " failed login attempts and your account has been disabled, use the 'RECOVER PASSWORD' button on the login screen.");
         }
     }
 
@@ -397,10 +417,10 @@ public class User {
         String complexchars = "((?=.*[\\W]).{" + requiredLength + ",})";
         Integer complexityCount = 0;
 
-        if (strPassword.matches(lowercase)) { complexityCount++;}
-        if (strPassword.matches(uppercase)) { complexityCount++;}
-        if (strPassword.matches(numbers)) { complexityCount++;}
-        if (strPassword.matches(complexchars)) { complexityCount++;}
+        if (strPassword.matches(lowercase)) { complexityCount++; System.out.println("1");}
+        if (strPassword.matches(uppercase)) { complexityCount++;System.out.println("2");}
+        if (strPassword.matches(numbers)) { complexityCount++;System.out.println("3");}
+        if (strPassword.matches(complexchars)) { complexityCount++;System.out.println("4");}
 
         if (complexityCount < 3)
         {
@@ -432,10 +452,31 @@ public class User {
         }
         return result;
     }
+
     /**
      * Change a users password after creating a new user object and setting username and password
      */
     public void recoverPassword() {
         Database.executeWrite("update users set password = '" + password + "' where user_name = '" + username + "'");
+    }
+
+    public static byte[] computeHash(String x) throws Exception {
+        java.security.MessageDigest d = null;
+        d = java.security.MessageDigest.getInstance("SHA-1");
+        d.reset();
+        d.update(x.getBytes());
+        return d.digest();
+    }
+
+    public static String byteArrayToHexString(byte[] b) {
+        StringBuffer sb = new StringBuffer(b.length * 2);
+        for (int i = 0; i < b.length; i++) {
+            int v = b[i] & 0xff;
+            if (v < 16) {
+                sb.append('0');
+            }
+            sb.append(Integer.toHexString(v));
+        }
+        return sb.toString().toUpperCase();
     }
 }
