@@ -11,12 +11,15 @@
 
 package cis406.student;
 
+import cis406.CisPanel;
+import java.awt.CardLayout;
+
 /**
  *
  * @author Owner
  */
-public class TaskMainPanel extends javax.swing.JPanel {
-
+public class TaskMainPanel extends javax.swing.JPanel implements CisPanel {
+String activeCard = "Browse";
     /** Creates new form NewJPanel */
     public TaskMainPanel() {
         initComponents();
@@ -31,34 +34,85 @@ public class TaskMainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        taskEditPanel1 = new cis406.student.TaskEditPanel();
-        taskBrowsePanel1 = new cis406.student.TaskBrowsePanel();
-
-        taskEditPanel1.setName("taskEditPanel1"); // NOI18N
+        browsePanel = new cis406.student.TaskBrowsePanel();
+        editPanel = new cis406.student.TaskEditPanel();
 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
 
-        taskBrowsePanel1.setName("taskBrowsePanel1"); // NOI18N
+        browsePanel.setName("taskBrowse"); // NOI18N
 
-        javax.swing.GroupLayout taskBrowsePanel1Layout = new javax.swing.GroupLayout(taskBrowsePanel1);
-        taskBrowsePanel1.setLayout(taskBrowsePanel1Layout);
-        taskBrowsePanel1Layout.setHorizontalGroup(
-            taskBrowsePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        javax.swing.GroupLayout browsePanelLayout = new javax.swing.GroupLayout(browsePanel);
+        browsePanel.setLayout(browsePanelLayout);
+        browsePanelLayout.setHorizontalGroup(
+            browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
-        taskBrowsePanel1Layout.setVerticalGroup(
-            taskBrowsePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        browsePanelLayout.setVerticalGroup(
+            browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 333, Short.MAX_VALUE)
         );
 
-        add(taskBrowsePanel1, "card2");
+        add(browsePanel, "Browse");
+
+        editPanel.setName("editPanel"); // NOI18N
+        add(editPanel, "Edit");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cis406.student.TaskBrowsePanel taskBrowsePanel1;
-    private cis406.student.TaskEditPanel taskEditPanel1;
+    private cis406.student.TaskBrowsePanel browsePanel;
+    private cis406.student.TaskEditPanel editPanel;
     // End of variables declaration//GEN-END:variables
+
+    public void clickNew() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Edit");
+        activeCard = "Edit";
+    }
+
+    public void clickSave() {
+          editPanel.save();
+    }
+
+    public void clickLoad() {
+        clickEditing();
+    }
+
+    public void clickDelete() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void clickReset() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void clickCancel() {
+
+    }
+
+    public void clickEditing() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Edit");
+        activeCard = "Edit";
+    }
+
+    public void clickBrowsing() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Browse");
+        activeCard = "Browse";
+    }
+
+    public void switchTo(String actionCommand) {
+      if (actionCommand.equalsIgnoreCase("Edit")) {
+            clickEditing();
+        } else {
+            clickBrowsing();
+        }
+    }
+
+    public Boolean switchAway() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
 }

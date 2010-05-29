@@ -239,18 +239,6 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="cis406.student.MainPanel" name="mainPanel1">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="mainPanel1" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Students">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="mainPanel1.TabConstraints.tabTitle"/>
-                  </JTabbedPaneConstraints>
-                </Constraint>
-              </Constraints>
-            </Component>
             <Component class="cis406.security.MyAccountPanel" name="myAccountPanel1">
               <Properties>
                 <Property name="name" type="java.lang.String" value="myAccountPanel1" noResource="true"/>
@@ -259,6 +247,18 @@
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="My Account">
                     <Property name="tabTitle" type="java.lang.String" resourceKey="myAccountPanel1.TabConstraints.tabTitle"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="cis406.student.TaskMainPanel" name="taskMainPanel1">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="taskMainPanel1" noResource="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Tasks">
+                    <Property name="tabTitle" type="java.lang.String" resourceKey="taskMainPanel1.TabConstraints.tabTitle"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>

@@ -154,8 +154,8 @@ public class MainView extends FrameView {
         contactPanel1 = new cis406.ContactPanel();
         correspondence1 = new cis406.CorrespondencePanel();
         securityPanel1 = new cis406.security.SecurityPanel();
-        mainPanel1 = new cis406.student.MainPanel();
         myAccountPanel1 = new cis406.security.MyAccountPanel();
+        taskMainPanel1 = new cis406.student.TaskMainPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -287,11 +287,11 @@ public class MainView extends FrameView {
         securityPanel1.setName("securityPanel1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("securityPanel1.TabConstraints.tabTitle"), securityPanel1); // NOI18N
 
-        mainPanel1.setName("mainPanel1"); // NOI18N
-        mainTabbedPane.addTab(resourceMap.getString("mainPanel1.TabConstraints.tabTitle"), mainPanel1); // NOI18N
-
         myAccountPanel1.setName("myAccountPanel1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("myAccountPanel1.TabConstraints.tabTitle"), myAccountPanel1); // NOI18N
+
+        taskMainPanel1.setName("taskMainPanel1"); // NOI18N
+        mainTabbedPane.addTab(resourceMap.getString("taskMainPanel1.TabConstraints.tabTitle"), taskMainPanel1); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -519,7 +519,6 @@ public class MainView extends FrameView {
     private javax.swing.JToolBar.Separator jSeparator2;
     public javax.swing.JButton loadButton;
     private javax.swing.JPanel mainPanel;
-    private cis406.student.MainPanel mainPanel1;
     private javax.swing.JTabbedPane mainTabbedPane;
     private javax.swing.JToolBar mainToolBar;
     private javax.swing.JMenuBar menuBar;
@@ -534,6 +533,7 @@ public class MainView extends FrameView {
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
+    private cis406.student.TaskMainPanel taskMainPanel1;
     // End of variables declaration//GEN-END:variables
     private final Timer messageTimer;
     private final Timer busyIconTimer;
