@@ -28,6 +28,8 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnRecoverPassword" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnLogin" min="-2" pref="71" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -61,7 +63,10 @@
                   <Component id="pwdPassword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnLogin" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRecoverPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -99,6 +104,15 @@
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="pwdPassword.text"/>
         <Property name="name" type="java.lang.String" value="pwdPassword" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnRecoverPassword">
+      <Properties>
+        <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+          <action class="cis406.security.UserLoginBox" id="clickRecoverPassword" methodName="clickRecoverPassword"/>
+        </Property>
+        <Property name="text" type="java.lang.String" resourceKey="btnRecoverPassword.text"/>
+        <Property name="name" type="java.lang.String" value="btnRecoverPassword" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

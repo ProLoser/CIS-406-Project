@@ -12,6 +12,7 @@
 package cis406.security;
 
 import cis406.CisPanel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,10 +33,20 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
     public void clickSave() {
         User user = new User();
 
-        user.setUsername(txtUsername.getText());
+        if (!user.setUsername(txtUsername.getText())) {
+            JOptionPane.showMessageDialog(null, "Your username must be an email address.");
+            return;
+        }
         user.setSecurityLevel(cboRole.getSelectedIndex());
-        user.setfName(txtFirstName.getText());
-        user.setlName((txtLastName.getText()));
+        if (!user.setfName(txtFirstName.getText())) {
+            JOptionPane.showMessageDialog(null, "Incorrect first name format.");
+            return;
+        }
+
+        if (!user.setlName(txtLastName.getText())) {
+            JOptionPane.showMessageDialog(null, "Incorrect last name format.");
+            return;
+        }
 
         user.addUser();
     }
@@ -94,6 +105,7 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
         cboRole = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setName("Form"); // NOI18N
 
@@ -117,6 +129,7 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
         jLabel6.setName("jLabel6"); // NOI18N
 
         cboRole.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrator", "Coordinator", "Assistant" }));
+        cboRole.setSelectedItem("Assistant");
         cboRole.setName("cboRole"); // NOI18N
 
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
@@ -124,6 +137,10 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
 
         txtUsername.setText(resourceMap.getString("txtUsername.text")); // NOI18N
         txtUsername.setName("txtUsername"); // NOI18N
+
+        jLabel1.setForeground(resourceMap.getColor("jLabel1.foreground")); // NOI18N
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -140,6 +157,7 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +173,7 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
                                 .addGroup(layout.createSequentialGroup()
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(txtLastName))))))
-                .addGap(28, 28, 28))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +186,9 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,13 +200,14 @@ public class NewUserPanel extends javax.swing.JPanel implements CisPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cboRole;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

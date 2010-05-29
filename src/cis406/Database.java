@@ -560,4 +560,16 @@ public class Database {
             System.out.println(e.toString());
         }
     }
+
+    public static void restoreDatabase(String restoreFolder) {
+        String dbURL = "jdbc:derby:internshipsdb;restoreFrom=" + restoreFolder;
+
+        try{
+            Connection conn = DriverManager.getConnection(dbURL);
+            conn.close();
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

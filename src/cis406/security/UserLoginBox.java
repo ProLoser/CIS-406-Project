@@ -47,6 +47,7 @@ public class UserLoginBox extends javax.swing.JDialog {
         txtUsername = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         pwdPassword = new javax.swing.JPasswordField();
+        btnRecoverPassword = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(UserLoginBox.class);
@@ -70,6 +71,10 @@ public class UserLoginBox extends javax.swing.JDialog {
         pwdPassword.setText(resourceMap.getString("pwdPassword.text")); // NOI18N
         pwdPassword.setName("pwdPassword"); // NOI18N
 
+        btnRecoverPassword.setAction(actionMap.get("clickRecoverPassword")); // NOI18N
+        btnRecoverPassword.setText(resourceMap.getString("btnRecoverPassword.text")); // NOI18N
+        btnRecoverPassword.setName("btnRecoverPassword"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,6 +83,8 @@ public class UserLoginBox extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(btnRecoverPassword)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(23, 23, 23)
@@ -102,7 +109,9 @@ public class UserLoginBox extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnLogin)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLogin)
+                    .addComponent(btnRecoverPassword))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -131,7 +140,9 @@ public class UserLoginBox extends javax.swing.JDialog {
         getInputs();
         if (User.login(userInfo[0], userInfo[1])) {
             if (User.firstLogon(userInfo[0])) {
-                FirstTimeUserBox.updateNewUser(userInfo[0]);
+                if (!(FirstTimeUserBox.updateNewUser(userInfo[0]))) {
+                    return;
+                }
             }
 
             result[0] = "true";
@@ -148,6 +159,27 @@ public class UserLoginBox extends javax.swing.JDialog {
         }
     }
 
+    @Action
+    public void clickRecoverPassword() {
+        String username = txtUsername.getText().toLowerCase();
+
+        if (!username.isEmpty()) {
+            if (User.exists(username)) {
+                if (!User.firstLogon(username)) {
+                    if (RecoverPasswordBox.recoverPassword(username)) {
+                        JOptionPane.showMessageDialog(null, "Your password has been changed successfully.");
+
+                        pwdPassword.setText("");
+                    }
+                }
+                else {JOptionPane.showMessageDialog(null, "You can't recover your password if you haven't logged in before.  The default password is P@ssw0rd.");}
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "You must enter your username to recover your password");
+        }
+    }
+
     /**
      * retrieves and parses user login credentials from view
      * @return
@@ -159,7 +191,7 @@ public class UserLoginBox extends javax.swing.JDialog {
             strPassword += password[i];
         }
         userInfo = new String[2];
-        userInfo[0] = txtUsername.getText();
+        userInfo[0] = txtUsername.getText().toLowerCase();
         userInfo[1] = strPassword;
     }
 
@@ -182,6 +214,7 @@ public class UserLoginBox extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnRecoverPassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField pwdPassword;

@@ -27,6 +27,7 @@ public class MainView extends FrameView {
     // panels to remove based on security level of logged in user
     final String[] assistantPanels = {"Security"};
     final String[] coordinatorPanels = {"My Account"};
+    final String[] adminPanels = {"My Account"};
 
     public MainView(SingleFrameApplication app, String username, int security_level) {
         super(app);
@@ -113,10 +114,19 @@ public class MainView extends FrameView {
     @Action
     public void backupDatabase() {
         jFileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int success = jFileChooser2.showOpenDialog(menuBar);
-        if (success == jFileChooser2.APPROVE_OPTION) {
+        int success = jFileChooser2.showOpenDialog(null);
+        if (success == JFileChooser.APPROVE_OPTION) {
             Database.backupDatabase(Database.connect(), jFileChooser2.getSelectedFile().getAbsolutePath());
         }
+    }
+
+    @Action
+    public void restoreDatabase() {
+//        jFileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//        int success = jFileChooser2.showOpenDialog(null);
+//        if (success == JFileChooser.APPROVE_OPTION) {
+//            Database.restoreDatabase(jFileChooser2.getSelectedFile().getAbsolutePath());
+//        }
     }
 
     /** This method is called from within the constructor to
@@ -155,6 +165,7 @@ public class MainView extends FrameView {
         jMenuItem1 = new javax.swing.JMenuItem();
         databaseMenu = new javax.swing.JMenu();
         backupMenuItem = new javax.swing.JMenuItem();
+        restoreMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
@@ -338,6 +349,11 @@ public class MainView extends FrameView {
         backupMenuItem.setName("backupMenuItem"); // NOI18N
         databaseMenu.add(backupMenuItem);
 
+        restoreMenuItem.setAction(actionMap.get("restoreDatabase")); // NOI18N
+        restoreMenuItem.setText(resourceMap.getString("restoreMenuItem.text")); // NOI18N
+        restoreMenuItem.setName("restoreMenuItem"); // NOI18N
+        databaseMenu.add(restoreMenuItem);
+
         menuBar.add(databaseMenu);
 
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
@@ -435,6 +451,12 @@ public class MainView extends FrameView {
             }
             databaseMenu.setEnabled(false);
         }
+        else if (security_level == 0){
+            for (int i = 0; i < adminPanels.length; i++){
+                mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(adminPanels[i]));
+            }
+            databaseMenu.setEnabled(true);
+        }
     }
 
     @Action
@@ -506,6 +528,7 @@ public class MainView extends FrameView {
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JMenu reportMenu;
     public javax.swing.JButton resetButton;
+    private javax.swing.JMenuItem restoreMenuItem;
     public javax.swing.JButton saveButton;
     private cis406.security.SecurityPanel securityPanel1;
     private javax.swing.JLabel statusAnimationLabel;
