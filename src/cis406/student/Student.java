@@ -4,6 +4,9 @@ import java.util.Date;
 import cis406.*;
 import cis406.Database;
 import cis406.Person;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
 public class Student extends Person {
 //attributes
@@ -95,8 +98,13 @@ public class Student extends Person {
         return broncoNum;
     }
 
-    public void setBroncoNum(int broncoNum) {
-        this.broncoNum = broncoNum;
+    public Boolean setBroncoNum(String broncoNum) {
+        try{
+        this.broncoNum = Integer.parseInt(broncoNum);
+        return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     public String getEmail() {
@@ -273,6 +281,35 @@ public class Student extends Person {
         }
         //String sqlStr = "INSERT INTO student (swift_club, other_club, phone, minor, relocate, missa_club, bronco_id, first_name, last_update, email, interest, last_name, expected_graduation_quarter, iwdsa_club, fast_club, class_standing, major) VALUES (clubSwift, clubOther, phone, minor, relocate, clubMissa, broncoNum, firstName, updateDate, email, interests, lastName, gradDate, clubIwdsa, clubFast, gradeLevel, major)";
         //Database.executeWrite( sqlStr);
+    }
+
+     static public CisTable generateTable() {
+        Database db = new Database("student");
+        CisTable table = null;
+        Vector<String> fields = new Vector<String>();
+
+        // Prepare the database query to be used to populate the table
+        db.innerJoin("major");
+        db.innerJoin("minor");
+        // Populating a map of my fields so that I can choose which columns to
+        // display and what labels to display them as. Use null to not alias.
+        fields.add("bronco_id AS BroncoNumber");
+        fields.add("last_name AS LastName");
+        fields.add("first_name as FirstName");
+        fields.add("last_update AS updated");
+        // Use table.fieldname when querying multiple tables joined together
+        fields.add("major.major_name AS major");
+        fields.add("minor.minor_name AS minor");
+        //fields.put("graduated","graduated");
+        try {
+            // Generate the table from the query
+            table = new CisTable(db.select(fields));
+            table.parseData();
+        } catch (Exception e) {
+            System.out.println("Failed to load the student table");
+            System.out.println(e.getMessage());
+        }
+        return table;
     }
 
     @Override

@@ -58,6 +58,11 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
     }
 
     public void clickDelete() {
+        if (activeCard.equals("Browse")) {
+            browsePanel.delete();
+        } else {
+            
+        }
     }
 
     public void clickCancel() {
@@ -97,10 +102,10 @@ public class MainPanel extends javax.swing.JPanel implements CisPanel {
 
     public Boolean switchAway() {
         /*if (activeCard.equals("Edit")) {
-            if (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
-                editPanel.save();
-                return false;
-            }
+        if (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
+        editPanel.save();
+        return false;
+        }
         }*/
         return true;
     }

@@ -34,15 +34,18 @@ public class BrowsePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        reportTable = new javax.swing.JTable();
 
         setName("Form"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jTable1.setModel(new CisTable("student") );
-        jTable1.setName("jTable1"); // NOI18N
-        jScrollPane1.setViewportView(jTable1);
+        reportTable.setModel(Student.generateTable());
+        reportTable.setColumnSelectionAllowed(true);
+        reportTable.setName("reportTable"); // NOI18N
+        reportTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(reportTable);
+        reportTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -67,7 +70,10 @@ public class BrowsePanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable reportTable;
     // End of variables declaration//GEN-END:variables
 
+        public void loadTable() {
+        reportTable.setModel(Student.generateTable());
+    }
 }

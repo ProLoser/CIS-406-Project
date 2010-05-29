@@ -11,6 +11,8 @@
 
 package cis406.internship;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dean
@@ -46,7 +48,6 @@ public class BrowsePanel extends javax.swing.JPanel {
 
             }
         ));
-        reportTable.setColumnSelectionAllowed(true);
         reportTable.setName("reportTable"); // NOI18N
         reportTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(reportTable);
@@ -78,6 +79,15 @@ public class BrowsePanel extends javax.swing.JPanel {
 
     public void loadTable() {
         reportTable.setModel(Internship.generateTable());
+    }
+
+    public void delete() {
+        int row = reportTable.getSelectedRow();
+        if (row != -1) {
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row first");
+        }
     }
 
 }

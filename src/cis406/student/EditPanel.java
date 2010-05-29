@@ -11,15 +11,17 @@
 package cis406.student;
 
 import cis406.DateUtils;
+import java.awt.Color;
 import java.util.*;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
 /**
  *
  * @author Oscar Munoz
  */
-public class EditPanel extends javax.swing.JPanel  {
+public class EditPanel extends javax.swing.JPanel {
 
     /** Creates new form StudentPanel */
     public EditPanel() {
@@ -55,13 +57,13 @@ public class EditPanel extends javax.swing.JPanel  {
         chkIWDSA = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaInterests = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblBronco = new javax.swing.JLabel();
+        lblFName = new javax.swing.JLabel();
+        lblPhone = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lblLName = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -156,14 +158,14 @@ public class EditPanel extends javax.swing.JPanel  {
         jScrollPane1.setViewportView(txaInterests);
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(EditPanel.class);
-        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
-        jLabel3.setName("jLabel3"); // NOI18N
+        lblBronco.setText(resourceMap.getString("lblBronco.text")); // NOI18N
+        lblBronco.setName("lblBronco"); // NOI18N
 
-        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
-        jLabel7.setName("jLabel7"); // NOI18N
+        lblFName.setText(resourceMap.getString("lblFName.text")); // NOI18N
+        lblFName.setName("lblFName"); // NOI18N
 
-        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
-        jLabel8.setName("jLabel8"); // NOI18N
+        lblPhone.setText(resourceMap.getString("lblPhone.text")); // NOI18N
+        lblPhone.setName("lblPhone"); // NOI18N
 
         jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
         jLabel9.setName("jLabel9"); // NOI18N
@@ -171,11 +173,11 @@ public class EditPanel extends javax.swing.JPanel  {
         jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
         jLabel10.setName("jLabel10"); // NOI18N
 
-        jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
-        jLabel11.setName("jLabel11"); // NOI18N
+        lblLName.setText(resourceMap.getString("lblLName.text")); // NOI18N
+        lblLName.setName("lblLName"); // NOI18N
 
-        jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
-        jLabel12.setName("jLabel12"); // NOI18N
+        lblEmail.setText(resourceMap.getString("lblEmail.text")); // NOI18N
+        lblEmail.setName("lblEmail"); // NOI18N
 
         jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
         jLabel13.setName("jLabel13"); // NOI18N
@@ -250,9 +252,9 @@ public class EditPanel extends javax.swing.JPanel  {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel7))
+                            .addComponent(lblBronco)
+                            .addComponent(lblLName)
+                            .addComponent(lblFName))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtLName)
@@ -260,8 +262,8 @@ public class EditPanel extends javax.swing.JPanel  {
                             .addComponent(txtBroncoNum, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel12)
+                            .addComponent(lblPhone)
+                            .addComponent(lblEmail)
                             .addComponent(jLabel14))
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -343,7 +345,7 @@ public class EditPanel extends javax.swing.JPanel  {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblBronco, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBroncoNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboMajor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -352,18 +354,18 @@ public class EditPanel extends javax.swing.JPanel  {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblFName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblLName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -448,8 +450,6 @@ public class EditPanel extends javax.swing.JPanel  {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -464,12 +464,14 @@ public class EditPanel extends javax.swing.JPanel  {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblBronco;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFName;
+    private javax.swing.JLabel lblLName;
+    private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblPostedDate;
     private javax.swing.JTextArea txaInterests;
     private javax.swing.JTextField txtBroncoNum;
@@ -502,27 +504,34 @@ public class EditPanel extends javax.swing.JPanel  {
     private Boolean chkIwdsa;
     private Boolean chkOther;
     private Boolean chkRelocateTst;
+    Student newStudent;
     HashMap fields = new HashMap();
     private String lastUpdate;
     Date now = new Date();
     String nowTime = now.toString();
     String[] quarters = {"Fall", "Winter", "Spring", "Summer"};
-    String[] term_year = { "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"};
+    String[] term_year = {"2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"};
     String[] standing = {"Freshman ( <44 units ) ", "Sophomore ( 45-89 units ) ", "Junior( 90-134 units ) ", "Senior ( 135+ units ) "};
     
 
     public void save() {
-        Student newStudent = new Student();
-        newStudent.broncoNum = Integer.parseInt(txtBroncoNum.getText());
-        newStudent.lastName = txtLName.getText();
+        newStudent = new Student();
+        Boolean success=true;
+        if(!newStudent.setBroncoNum(txtBroncoNum.getText())){
+            lblBronco.setForeground(Color.red);
+            success = false;
+        }else{
+            lblBronco.setForeground(Color.black);
+        }
+        newStudent.lastName =(txtLName.getText());
         newStudent.firstName = txtFName.getText();
         newStudent.email = txtEmail.getText();
         newStudent.phone = txtPhone.getText();
         newStudent.gradeLevel = cboStanding.getSelectedItem().toString();
         newStudent.updateDate = now;
         newStudent.interests = txaInterests.getText();
-        newStudent.major = ((cis406.ComboItem)cboMajor.getSelectedItem()).id;
-        newStudent.minor = ((cis406.ComboItem)cboMinor.getSelectedItem()).id;
+        newStudent.major = ((cis406.ComboItem) cboMajor.getSelectedItem()).id;
+        newStudent.minor = ((cis406.ComboItem) cboMinor.getSelectedItem()).id;
         newStudent.gradDate = cboQuarter.getSelectedItem().toString();
         newStudent.lastCISCourse = txtLastCis.getText();
         newStudent.setRelocate(chkRelocate.isSelected());
@@ -531,20 +540,47 @@ public class EditPanel extends javax.swing.JPanel  {
         newStudent.setClubIwdsa(chkIWDSA.isSelected());
         newStudent.setClubSwift(chkSWIFT.isSelected());
         newStudent.setClubOther(chkOtherClub.isSelected());
-        newStudent.save();
 
+        if (!success) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid Bronco Number");
+        }else newStudent.save();
+        
 
     }
 
     public void reset() {
-        
+        txtBroncoNum.setText("");
+        txtLName.setText("");
+        txtFName.setText("");
+        txtEmail.setText("");
+        txtPhone.setText("");
+        cboStanding.setSelectedIndex(0);
+        newStudent.updateDate = now;
+        txaInterests.getText();
+        cboMajor.setSelectedIndex(0);
+        cboMinor.setSelectedIndex(0);
+        cboQuarter.setSelectedIndex(0);
+        txtLastCis.getText();
+        chkRelocate.setSelected(false);
+        chkMISSA.setSelected(false);
+        chkFAST.setSelected(false);
+        chkIWDSA.setSelected(false);
+        chkSWIFT.setSelected(false);
+        chkOtherClub.setSelected(false);
     }
-
-
 
     @Action
     public void launchInternshipAssign() {
-     JFrame frame = new AssignStudentToInternship();
-     frame.setVisible(true);
+        String message;
+        AssignStudentToInternship frame = new AssignStudentToInternship();
+        if (newStudent == null) {
+            message = "Please enter Student data and Save";
+            JOptionPane.showMessageDialog(frame, message);
+        } else {
+            frame.loadStudent(newStudent);
+            frame.setVisible(true);
+        }
+
+
     }
 }

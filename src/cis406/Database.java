@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 /**
  * A database wrapping class. Either call the static methods for direct access
@@ -285,20 +286,16 @@ public class Database {
      * is aliased to. If the value is null the field will not be aliased.
      * @param fields columns to retrieve and their aliases
      */
-    public ResultSet select(Map<String, String> fields) throws Exception {
+    public ResultSet select(Vector<String> fields) throws Exception {
         String query;
         preValues = new ArrayList<Object>();
         query = "SELECT ";
         Boolean first = true;
-        for (Map.Entry<String, String> field : fields.entrySet()) {
+        for (String field : fields) {
             if (!first) {
                 query += ", ";
             }
-            if (field.getValue() != null) {
-                query += field.getKey() + " AS " + field.getValue();
-            } else {
-                query += field.getKey();
-            }
+            query += field;
             first = false;
         }
         query += " FROM " + table + joins + compileConditions();
