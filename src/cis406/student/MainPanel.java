@@ -66,12 +66,6 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
         activeCard = "Edit";
     }
 
-    public void clickBrowsing() {
-       if (false) { // (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
-            editPanel.save();
-        }
-    }
-
     public void clickCancel() {
         browsing();
     }
@@ -89,12 +83,6 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
             browsePanel.delete();
         } else {
         }
-    }
-
-    public void clickEditing() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Edit");
-        activeCard = "Edit";
     }
 
     public void clickLoad() {

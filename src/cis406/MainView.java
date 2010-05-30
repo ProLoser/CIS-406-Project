@@ -511,12 +511,12 @@ public class MainView extends FrameView {
 
     @Action
     public void clickForm() {
-        ((PanelInterface) mainTabbedPane.getSelectedComponent()).clickEditing();
+        
     }
 
     @Action
     public void clickReport() {
-        ((PanelInterface) mainTabbedPane.getSelectedComponent()).clickBrowsing();
+        
     }
 
     @Action

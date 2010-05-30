@@ -17,8 +17,6 @@ public interface PanelInterface {
     void clickDelete();
     void clickReset();
     void clickCancel();
-    void clickEditing();
-    void clickBrowsing();
     void switchTo(String actionCommand);
     Boolean switchAway();
 

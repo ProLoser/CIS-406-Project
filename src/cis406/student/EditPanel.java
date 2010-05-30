@@ -565,13 +565,13 @@ public class EditPanel extends javax.swing.JPanel {
         txtFName.setText(data.getFirstName());
         txtEmail.setText(data.getEmail());
         txtPhone.setText(data.getPhone());
-        ((ComboBoxModel)cboStanding.getModel()).setSelectedId(data.getGradeLevel());
+        cboStanding.setSelectedItem(data.getGradeLevel());
         lblPostedDate.setText(data.getUpdateDate());
         txaInterests.setText(data.interests);
         ((ComboBoxModel)cboMajor.getModel()).setSelectedId(data.getMajor());
         ((ComboBoxModel)cboMinor.getModel()).setSelectedId(data.getMinor());
-        ((ComboBoxModel)cboQuarter.getModel()).setSelectedId(data.getGradQtr());
-        ((ComboBoxModel)cboGradYr.getModel()).setSelectedId(data.getGradYr());
+        cboQuarter.setSelectedItem(data.getGradQtr());
+        cboGradYr.setSelectedItem(data.getGradYr());
         txtLastCis.setText(data.getLastCISCourse());
 
         if (data.getRelocate() ==1){
