@@ -362,8 +362,21 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="cboGradYr">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel(term_year)" type="code"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="12">
+            <StringItem index="0" value="2010"/>
+            <StringItem index="1" value="2011"/>
+            <StringItem index="2" value="2012"/>
+            <StringItem index="3" value="2013"/>
+            <StringItem index="4" value="2014"/>
+            <StringItem index="5" value="2015"/>
+            <StringItem index="6" value="2016"/>
+            <StringItem index="7" value="2017"/>
+            <StringItem index="8" value="2018"/>
+            <StringItem index="9" value="2019"/>
+            <StringItem index="10" value="2020"/>
+            <StringItem index="11" value="2021"/>
+          </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="cboGradYr" noResource="true"/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">

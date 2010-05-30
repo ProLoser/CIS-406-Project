@@ -10,6 +10,7 @@
  */
 package cis406.student;
 
+import cis406.ComboBoxModel;
 import cis406.DateUtils;
 import java.awt.Color;
 import java.util.*;
@@ -126,7 +127,7 @@ public class EditPanel extends javax.swing.JPanel {
         cboQuarter.setName("cboQuarter"); // NOI18N
         cboQuarter.setNextFocusableComponent(cboGradYr);
 
-        cboGradYr.setModel(new javax.swing.DefaultComboBoxModel(term_year));
+        cboGradYr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021" }));
         cboGradYr.setName("cboGradYr"); // NOI18N
         cboGradYr.setNextFocusableComponent(chkRelocate);
 
@@ -564,22 +565,56 @@ public class EditPanel extends javax.swing.JPanel {
         txtFName.setText(data.getFirstName());
         txtEmail.setText(data.getEmail());
         txtPhone.setText(data.getPhone());
-        cboStanding.setSelectedIndex(data.getGradeLevel());
+        ((ComboBoxModel)cboStanding.getModel()).setSelectedId(data.getGradeLevel());
         lblPostedDate.setText(data.getUpdateDate());
         txaInterests.setText(data.interests);
-        cboMajor.setSelectedIndex(data.getMajor());
-        cboMinor.setSelectedIndex(data.getMinor());
-        cboQuarter.setSelectedIndex(data.getGradQtr());
-        cboGradYr.setSelectedIndex(data.getGradYr());
+        ((ComboBoxModel)cboMajor.getModel()).setSelectedId(data.getMajor());
+        ((ComboBoxModel)cboMinor.getModel()).setSelectedId(data.getMinor());
+        ((ComboBoxModel)cboQuarter.getModel()).setSelectedId(data.getGradQtr());
+        ((ComboBoxModel)cboGradYr.getModel()).setSelectedId(data.getGradYr());
         txtLastCis.setText(data.getLastCISCourse());
-        chkRelocate.setSelected(false);
-        chkMISSA.setSelected(false);
-        chkFAST.setSelected(false);
-        chkIWDSA.setSelected(false);
-        chkSWIFT.setSelected(false);
-        chkOtherClub.setSelected(false);
-        chkGraduated.setSelected(false);
 
+        if (data.getRelocate() ==1){
+            chkRelocate.setSelected(true);
+        }else{
+            chkRelocate.setSelected(false);
+        }
+
+        if (data.getClubMissa() ==1){
+            chkMISSA.setSelected(true);
+        }else{
+            chkMISSA.setSelected(false);
+        }
+
+        if (data.getClubFast() ==1){
+            chkFAST.setSelected(true);
+        }else{
+            chkFAST.setSelected(false);
+        }
+
+        if (data.getClubIwdsa() ==1){
+            chkIWDSA.setSelected(true);
+        }else{
+            chkIWDSA.setSelected(false);
+        }
+
+        if (data.getClubSwift() ==1){
+            chkSWIFT.setSelected(false);
+        }else{
+            chkSWIFT.setSelected(false);
+        }
+
+        if (data.getClubOther() ==1){
+            chkOtherClub.setSelected(false);
+        }else{
+            chkOtherClub.setSelected(false);
+        }
+
+        if (data.getGraduated() ==1){
+            chkGraduated.setSelected(false);
+        }else{
+            chkGraduated.setSelected(false);
+        }
     }
 
     public void reset() {
