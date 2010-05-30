@@ -363,6 +363,11 @@ public class EditPanel extends javax.swing.JPanel {
         }
     }*/
 
+    public void reloadComboBoxes() {
+        companyComboBox.setModel(new ComboBoxModel("company", "name"));
+        careerComboBox.setModel(new ComboBoxModel("career_path", "name"));
+    }
+
     @Action
     public void toggleExpires() {
         expiresField.setEnabled(expiresCheckBox.isSelected());
