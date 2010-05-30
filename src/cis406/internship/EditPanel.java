@@ -78,12 +78,12 @@ public class EditPanel extends javax.swing.JPanel {
         descriptionTextarea.setName("descriptionTextArea"); // NOI18N
         jScrollPane1.setViewportView(descriptionTextarea);
 
-        postedField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM-dd-yyyy"))));
+        postedField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-d-yyyy"))));
         postedField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         postedField.setText(resourceMap.getString("postedFTextField.text")); // NOI18N
         postedField.setName("postedFTextField"); // NOI18N
 
-        expiresField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM-dd-yyyy"))));
+        expiresField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-d-yyyy"))));
         expiresField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         expiresField.setText(resourceMap.getString("expiresFTextField.text")); // NOI18N
         expiresField.setEnabled(false);
@@ -114,7 +114,7 @@ public class EditPanel extends javax.swing.JPanel {
         quantity1Label.setText(resourceMap.getString("quantity1Label.text")); // NOI18N
         quantity1Label.setName("quantity1Label"); // NOI18N
 
-        companyComboBox.setModel(new ComboBoxModel("company", "name"));
+        companyComboBox.setModel(new cis406.ComboBoxModel("company", "name"));
         companyComboBox.setName("companyComboBox"); // NOI18N
 
         companyLabel.setText(resourceMap.getString("companyLabel.text")); // NOI18N
@@ -126,7 +126,7 @@ public class EditPanel extends javax.swing.JPanel {
         quantityField.setName("quantityField"); // NOI18N
 
         careerComboBox.setEditable(true);
-        careerComboBox.setModel(new ComboBoxModel("career_path", "name"));
+        careerComboBox.setModel(new cis406.ComboBoxModel("career_path", "name"));
         careerComboBox.setName("careerComboBox"); // NOI18N
 
         careerLabel.setText(resourceMap.getString("careerLabel.text")); // NOI18N

@@ -195,6 +195,7 @@ public class MainView extends FrameView {
 
         mainPanel.setName("mainPanel"); // NOI18N
 
+        mainToolBar.setFloatable(false);
         mainToolBar.setRollover(true);
         mainToolBar.setName("mainToolBar"); // NOI18N
 
@@ -349,6 +350,7 @@ public class MainView extends FrameView {
         reportMenu.setText(resourceMap.getString("reportMenu.text")); // NOI18N
         reportMenu.setName("reportMenu"); // NOI18N
 
+        internshipSummaryMenuItem.setAction(actionMap.get("printInternshipSummaryReport")); // NOI18N
         internshipSummaryMenuItem.setText(resourceMap.getString("internshipSummaryMenuItem.text")); // NOI18N
         internshipSummaryMenuItem.setName("internshipSummaryMenuItem"); // NOI18N
         reportMenu.add(internshipSummaryMenuItem);
@@ -515,6 +517,11 @@ public class MainView extends FrameView {
     @Action
     public void clickReport() {
         ((PanelInterface) mainTabbedPane.getSelectedComponent()).clickBrowsing();
+    }
+
+    @Action
+    public void printInternshipSummaryReport() {
+        cis406.internship.ReportDialog.load();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

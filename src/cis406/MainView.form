@@ -32,6 +32,7 @@
       <SubComponents>
         <Container class="javax.swing.JToolBar" name="mainToolBar">
           <Properties>
+            <Property name="floatable" type="boolean" value="false"/>
             <Property name="rollover" type="boolean" value="true"/>
             <Property name="name" type="java.lang.String" value="mainToolBar" noResource="true"/>
           </Properties>
@@ -325,6 +326,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="internshipSummaryMenuItem">
               <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="cis406.MainView" id="printInternshipSummaryReport" methodName="printInternshipSummaryReport"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="internshipSummaryMenuItem.text"/>
                 <Property name="name" type="java.lang.String" value="internshipSummaryMenuItem" noResource="true"/>
               </Properties>
