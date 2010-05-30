@@ -27,49 +27,6 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblCompanyTitle" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblContactTitle" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblCity" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblState" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPhone" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblStreet" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblZip" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblFName" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtZip" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="txtCity" min="-2" pref="131" max="-2" attributes="1"/>
-                          <Component id="cboState" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="txtEmail" alignment="0" min="-2" pref="302" max="-2" attributes="1"/>
-                          <Component id="txtStreet" alignment="0" min="-2" pref="260" max="-2" attributes="1"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtPhoneLeftParenthesis" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtPhoneArea" min="-2" pref="45" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblPhoneRightParenthesis" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtPhoneFirst" min="-2" pref="42" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtPhoneDash" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtPhoneLast" min="-2" pref="49" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblPhoneExt" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtPhoneExt" min="-2" pref="63" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtFName" min="-2" pref="121" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblLName" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtLName" min="-2" pref="174" max="-2" attributes="1"/>
-                          </Group>
-                      </Group>
-                  </Group>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Component id="jSeparator" alignment="0" max="32767" attributes="1"/>
                       <Group type="102" alignment="0" attributes="0">
@@ -84,15 +41,58 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblCity" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblState" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblStreet" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblZip" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFName" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPosition" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCommMethod" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblNotes" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="cboCommMethod" min="-2" max="-2" attributes="0"/>
+                          <Component id="cboState" min="-2" pref="69" max="-2" attributes="0"/>
                           <Component id="scpNotes" pref="602" max="32767" attributes="1"/>
-                          <Component id="cboCommMethod" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtPosition" alignment="0" min="-2" pref="229" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtFName" min="-2" pref="121" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblLName" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtLName" min="-2" pref="130" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtZip" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <Component id="txtCity" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="1">
+                                          <Component id="txtPhoneLeftParenthesis" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtPhoneArea" min="-2" pref="39" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblPhoneRightParenthesis" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtPhoneFirst" min="-2" pref="41" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtPhoneDash" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtPhoneLast" min="-2" pref="58" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblPhoneExt" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtPhoneExt" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="txtEmail" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="txtStreet" alignment="0" min="-2" pref="256" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtPosition" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -119,9 +119,9 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblFName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtFName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtLName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -151,9 +151,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtPhoneLeftParenthesis" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPhoneRightParenthesis" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPhoneArea" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPhoneRightParenthesis" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPhoneFirst" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPhoneDash" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPhoneLast" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -162,8 +162,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtPosition" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPosition" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPosition" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -239,8 +239,9 @@
         <Property name="name" type="java.lang.String" value="lblFName" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtFName">
+    <Component class="javax.swing.JFormattedTextField" name="txtFName">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtFName.text"/>
         <Property name="name" type="java.lang.String" value="txtFName" noResource="true"/>
       </Properties>
     </Component>
@@ -250,8 +251,9 @@
         <Property name="name" type="java.lang.String" value="lblLName" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtLName">
+    <Component class="javax.swing.JFormattedTextField" name="txtLName">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtLName.text"/>
         <Property name="name" type="java.lang.String" value="txtLName" noResource="true"/>
       </Properties>
     </Component>
@@ -261,8 +263,9 @@
         <Property name="name" type="java.lang.String" value="lblStreet" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtStreet">
+    <Component class="javax.swing.JFormattedTextField" name="txtStreet">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtStreet.text"/>
         <Property name="name" type="java.lang.String" value="txtStreet" noResource="true"/>
       </Properties>
     </Component>
@@ -272,15 +275,11 @@
         <Property name="name" type="java.lang.String" value="lblZip" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtZip">
+    <Component class="javax.swing.JFormattedTextField" name="txtZip">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtZip.text"/>
         <Property name="name" type="java.lang.String" value="txtZip" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtZipMouseExited"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtZipActionPerformed"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtZipFocusLost"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCity">
       <Properties>
@@ -288,8 +287,9 @@
         <Property name="name" type="java.lang.String" value="lblCity" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCity">
+    <Component class="javax.swing.JFormattedTextField" name="txtCity">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtCity.text"/>
         <Property name="name" type="java.lang.String" value="txtCity" noResource="true"/>
       </Properties>
     </Component>
@@ -364,8 +364,9 @@
         <Property name="name" type="java.lang.String" value="lblEmail" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtEmail">
+    <Component class="javax.swing.JFormattedTextField" name="txtEmail">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtEmail.text"/>
         <Property name="name" type="java.lang.String" value="txtEmail" noResource="true"/>
       </Properties>
     </Component>
@@ -381,8 +382,9 @@
         <Property name="name" type="java.lang.String" value="txtPhoneLeftParenthesis" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPhoneArea">
+    <Component class="javax.swing.JFormattedTextField" name="txtPhoneArea">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtPhoneArea.text"/>
         <Property name="name" type="java.lang.String" value="txtPhoneArea" noResource="true"/>
       </Properties>
     </Component>
@@ -392,11 +394,9 @@
         <Property name="name" type="java.lang.String" value="lblPhoneRightParenthesis" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPhoneFirst">
+    <Component class="javax.swing.JFormattedTextField" name="txtPhoneFirst">
       <Properties>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[3, 3]"/>
-        </Property>
+        <Property name="text" type="java.lang.String" resourceKey="txtPhoneFirst.text"/>
         <Property name="name" type="java.lang.String" value="txtPhoneFirst" noResource="true"/>
       </Properties>
     </Component>
@@ -406,8 +406,9 @@
         <Property name="name" type="java.lang.String" value="txtPhoneDash" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPhoneLast">
+    <Component class="javax.swing.JFormattedTextField" name="txtPhoneLast">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtPhoneLast.text"/>
         <Property name="name" type="java.lang.String" value="txtPhoneLast" noResource="true"/>
       </Properties>
     </Component>
@@ -417,8 +418,9 @@
         <Property name="name" type="java.lang.String" value="lblPhoneExt" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPhoneExt">
+    <Component class="javax.swing.JFormattedTextField" name="txtPhoneExt">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtPhoneExt.text"/>
         <Property name="name" type="java.lang.String" value="txtPhoneExt" noResource="true"/>
       </Properties>
     </Component>
@@ -428,8 +430,9 @@
         <Property name="name" type="java.lang.String" value="lblPosition" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPosition">
+    <Component class="javax.swing.JFormattedTextField" name="txtPosition">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtPosition.text"/>
         <Property name="name" type="java.lang.String" value="txtPosition" noResource="true"/>
       </Properties>
     </Component>
