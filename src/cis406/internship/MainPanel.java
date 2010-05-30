@@ -101,6 +101,7 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
         CardLayout cl = (CardLayout) (getLayout());
         cl.show(this, "Edit");
         activeCard = "Edit";
+        editPanel.reloadComboBoxes();
     }
 
     public void browsing() {

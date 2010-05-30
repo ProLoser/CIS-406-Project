@@ -48,12 +48,6 @@ public class SecurityPanel extends javax.swing.JPanel implements PanelInterface 
     public void clickCancel() {
         ((PanelInterface)securityTabs.getSelectedComponent()).clickCancel();
     }
-    public void clickEditing() {
-        ((PanelInterface)securityTabs.getSelectedComponent()).clickEditing();
-    }
-    public void clickBrowsing() {
-        ((PanelInterface)securityTabs.getSelectedComponent()).clickBrowsing();
-    }
     public void switchTo(String actionCommand) {
         removeTabs();
     }
