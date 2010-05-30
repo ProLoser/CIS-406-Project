@@ -4,10 +4,10 @@ import java.awt.CardLayout;
 
 /**
  *
- * @author mark
+ * @author Mark Lenser
  */
 public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
-    String activeCard = "Edit";
+    String activeCard = "Browse";
 
     /** Creates new form ContactPanel */
     public ContactPanel() {
@@ -43,31 +43,69 @@ public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
     // End of variables declaration//GEN-END:variables
 
 
-    public void clickNew() {
-    }
-    public void clickSave() {
-        contactEditPanel1.save();
-    }
-    public void clickLoad() {
-    }
-    public void clickDelete() {
-    }
     public void clickReset() {
-        contactEditPanel1.reset();
+        if (activeCard.equals("Edit")) {
+            contactEditPanel1.reset();
+        } else {
+            contactBrowsePanel1.loadTable();
+        }
     }
+
+    public void clickDelete() {
+        if (activeCard.equals("Browse")) {
+            contactBrowsePanel1.delete();
+        } else {
+        }
+    }
+
     public void clickCancel() {
+        browsing();
     }
+
+    public void clickLoad() {
+        if (activeCard.equals("Browse")) {
+            int record = contactBrowsePanel1.getSelectedRow();
+            if (record != 0) {
+                editing();
+                contactEditPanel1.load(record);
+            }
+        }
+    }
+
+    public void clickNew() {
+        contactEditPanel1.newContact();
+        editing();
+    }
+
     public void clickEditing() {
+    }
+
+    public void clickBrowsing() {
+        if (false) { // (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
+            contactEditPanel1.save();
+        }
+    }
+
+    public void clickSave() {
+        if (activeCard.equals("Edit") && contactEditPanel1.save()) {
+            browsing();
+        }
+    }
+
+    public void editing() {
         CardLayout cl = (CardLayout) (getLayout());
         cl.show(this, "Edit");
         activeCard = "Edit";
     }
-    public void clickBrowsing() {
+
+    public void browsing() {
         CardLayout cl = (CardLayout) (getLayout());
         cl.show(this, "Browse");
         activeCard = "Browse";
+        contactBrowsePanel1.loadTable();
     }
     public void switchTo(String actionCommand) {
+        browsing();
     }
     public Boolean switchAway() {
         return true;

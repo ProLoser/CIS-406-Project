@@ -28,11 +28,15 @@
                   <Component id="lblNotes" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="txtDate" alignment="0" min="-2" pref="98" max="-2" attributes="1"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="cboContact" alignment="0" pref="260" max="32767" attributes="0"/>
                   <Component id="cboType" alignment="0" pref="260" max="32767" attributes="1"/>
                   <Component id="scpNotes" alignment="1" pref="260" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="txtDate" min="-2" pref="98" max="-2" attributes="1"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="postedCalButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -52,9 +56,12 @@
                   <Component id="lblType" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblDate" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="lblDate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="postedCalButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -112,9 +119,11 @@
         <Property name="text" type="java.lang.String" resourceKey="txtDate.text"/>
         <Property name="name" type="java.lang.String" value="txtDate" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtDateFocusLost"/>
-      </Events>
+    </Component>
+    <Component class="org.sourceforge.jcalendarbutton.JCalendarButton" name="postedCalButton">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="postedCalButton" noResource="true"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNotes">
       <Properties>

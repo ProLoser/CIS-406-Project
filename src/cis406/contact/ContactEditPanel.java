@@ -1,21 +1,24 @@
 package cis406.contact;
 
+import cis406.ComboItem;
 import cis406.ComboBoxModel;
 import cis406.ComboItem;
-import cis406.Database;
-import cis406.contact.Contact;
-import java.sql.ResultSet;
-import java.awt.CardLayout;
+import cis406.DateUtils;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import org.jdesktop.application.Action;
 /**
  *
  * @author Mark Lenser
  */
 public class ContactEditPanel extends javax.swing.JPanel {
-    
+
+    Contact record = null;
 
     /** Creates new form AddContact */
     public ContactEditPanel() {
         initComponents();
+        division();
     }
 
     /** This method is called from within the constructor to
@@ -327,6 +330,10 @@ public class ContactEditPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCompanyActionPerformed
+        division();
+}//GEN-LAST:event_cboCompanyActionPerformed
+
+    public void division() {
         String company = cboCompany.getSelectedItem().toString();
 
         if (company.equalsIgnoreCase("Cal Poly Pomona") ) {
@@ -334,8 +341,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
         } else {
             lblIndustryDivision.setText("Industry:");
         }
-}//GEN-LAST:event_cboCompanyActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cboCommMethod;
@@ -377,9 +383,12 @@ public class ContactEditPanel extends javax.swing.JPanel {
     private javax.swing.JFormattedTextField txtZip;
     // End of variables declaration//GEN-END:variables
 
-    public void clickNew() {
+    public void newContact() {
+        record = new Contact();
     }
-    public void save() {
+    public boolean save() {
+        Boolean success = true;
+
         Contact record = new Contact();
         // Saves the Industry if it's a new entry
         if (cboIndustry.getSelectedIndex() == -1) {
@@ -411,8 +420,23 @@ public class ContactEditPanel extends javax.swing.JPanel {
         cboCompany.setModel(new cis406.ComboBoxModel("company", "name"));
         cboIndustry.setModel(new cis406.ComboBoxModel("industry", "industry_name"));
         //CorrespondencePanel.rePopulate();
+        return success;
     }
-    public void clickLoad() {
+    public void load(int id) {
+        Contact data = new Contact(id);
+        ((ComboBoxModel)cboCompany.getModel()).setSelectedId(data.getCompanyId());
+        ((ComboBoxModel)cboIndustry.getModel()).setSelectedId(data.getIndustryId());
+        txtFName.setText(data.getFname());
+        txtLName.setText(data.getLname());
+        txtStreet.setText(data.getStreet());
+        txtZip.setText(Integer.toString(data.getZip()));
+        txtCity.setText(data.getCity());
+        cboState.setSelectedItem(data.getState());
+        txtEmail.setText(data.getEmail());
+        txtPhoneArea.setText(data.getPhone());
+        txtPosition.setText(data.getPosition());
+        txaNotes.setText(data.getDescription());
+        //attachmentField.setText(data.getAttachment());
     }
     public void clickDelete() {
     }
@@ -441,8 +465,6 @@ public class ContactEditPanel extends javax.swing.JPanel {
     public void clickBrowsing() {
     }
     public void switchTo(String actionCommand) {
-        cboCompany.setModel(new ComboBoxModel("company", "name"));
-        cboIndustry.setModel(new ComboBoxModel("industry", "industry_name"));
     }
     public void switchAway() {
     }
