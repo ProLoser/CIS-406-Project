@@ -321,9 +321,8 @@ public class EditPanel extends javax.swing.JPanel {
 
     public void load(int id) {
         Internship data = new Internship(id);
-        companyComboBox.setSelectedItem(new ComboItem("",data.getCompanyId()));
-        companyComboBox.getModel()..setSelectedIndex(data.getCompanyId());
-        careerComboBox.setse.setSelectedIndex(data.getCareerPathId());
+        ((ComboBoxModel)companyComboBox.getModel()).setSelectedId(data.getCompanyId());
+        ((ComboBoxModel)careerComboBox.getModel()).setSelectedId(data.getCareerPathId());
         titleField.setText(data.getTitle());
         descriptionTextarea.setText(data.getDescription());
         postedField.setText(data.getPostDate());

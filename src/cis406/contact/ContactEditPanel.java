@@ -1,6 +1,6 @@
 package cis406.contact;
 
-import cis406.ComboBox;
+import cis406.ComboBoxModel;
 import cis406.ComboItem;
 import cis406.Database;
 import cis406.contact.Contact;
@@ -77,7 +77,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
         lblCompany.setName("lblCompany"); // NOI18N
 
         cboCompany.setEditable(true);
-        cboCompany.setModel(new cis406.ComboBox("company", "name"));
+        cboCompany.setModel(new cis406.ComboBoxModel("company", "name"));
         cboCompany.setName("cboCompany"); // NOI18N
         cboCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +89,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
         lblIndustryDivision.setName("lblIndustryDivision"); // NOI18N
 
         cboIndustry.setEditable(true);
-        cboIndustry.setModel(new cis406.ComboBox("industry", "industry_name"));
+        cboIndustry.setModel(new cis406.ComboBoxModel("industry", "industry_name"));
         cboIndustry.setName("cboIndustry"); // NOI18N
 
         jSeparator.setName("jSeparator"); // NOI18N
@@ -470,8 +470,8 @@ public class ContactEditPanel extends javax.swing.JPanel {
     public void clickBrowsing() {
     }
     public void switchTo(String actionCommand) {
-        cboCompany.setModel(new ComboBox("company", "name"));
-        cboIndustry.setModel(new ComboBox("industry", "industry_name"));
+        cboCompany.setModel(new ComboBoxModel("company", "name"));
+        cboIndustry.setModel(new ComboBoxModel("industry", "industry_name"));
     }
     public void switchAway() {
     }

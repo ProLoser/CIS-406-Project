@@ -121,7 +121,7 @@ public class ComboBoxModel extends DefaultComboBoxModel {
             while (data.next()) {
                 row = new ComboItem(data.getString(displayField), data.getInt(Database.id(table)));
                 addElement(row);
-                rows.put(data.getInt(Database.id(table), row);
+                rows.put(data.getInt(Database.id(table)), row);
             }
         } catch (Exception e) {
             System.out.println("Failed to add the fields from the data");
