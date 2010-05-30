@@ -12,6 +12,7 @@
 package cis406.student;
 
 import cis406.TableModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,7 @@ public class BrowsePanel extends javax.swing.JPanel {
     /** Creates new form StudentBrowsePanel */
     public BrowsePanel() {
         initComponents();
+         loadTable();
     }
 
     /** This method is called from within the constructor to
@@ -83,4 +85,22 @@ public class BrowsePanel extends javax.swing.JPanel {
         public void loadTable() {
         reportTable.setModel(Student.generateTable());
     }
+        public void delete() {
+        int rowId = getSelectedRow();
+        if (Student.delete(rowId)) {
+            JOptionPane.showMessageDialog(null, "Internship #" + rowId + " was deleted");
+            loadTable();
+        } else {
+            JOptionPane.showMessageDialog(null, "Internship #" + rowId + " could not be found");
+        }
+    }
+       public int getSelectedRow() {
+        int row = reportTable.getSelectedRow();
+        if (row != -1) {
+            return ((TableModel) reportTable.getModel()).getRowId(row);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row first");
+            return 0;
+        }
+}
 }
