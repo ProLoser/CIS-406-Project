@@ -408,8 +408,8 @@ public class ContactEditPanel extends javax.swing.JPanel {
         record.setDescription(txaNotes.getText());
         record.save();
         
-        cboCompany.setModel(new cis406.ComboBox("company", "name"));
-        cboIndustry.setModel(new cis406.ComboBox("industry", "industry_name"));
+        cboCompany.setModel(new cis406.ComboBoxModel("company", "name"));
+        cboIndustry.setModel(new cis406.ComboBoxModel("industry", "industry_name"));
         //CorrespondencePanel.rePopulate();
     }
     public void clickLoad() {

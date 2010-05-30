@@ -1,6 +1,6 @@
 package cis406.contact;
 
-import cis406.ComboBox;
+import cis406.ComboBoxModel;
 import cis406.DateUtils;
 import cis406.PanelInterface;
 import cis406.contact.Correspondence;
@@ -42,7 +42,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
         lblContact.setText(resourceMap.getString("lblContact.text")); // NOI18N
         lblContact.setName("lblContact"); // NOI18N
 
-        cboContact.setModel(new cis406.ComboBox("contact", "last_name"));
+        cboContact.setModel(new cis406.ComboBoxModel("contact", "last_name"));
         cboContact.setName("cboContact"); // NOI18N
 
         lblType.setText(resourceMap.getString("lblType.text")); // NOI18N
@@ -165,6 +165,6 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
         return true;
     }
     public void rePopulate() {
-        cboContact.setModel(new ComboBox("contact", "last_name"));
+        cboContact.setModel(new ComboBoxModel("contact", "last_name"));
     }
 }
