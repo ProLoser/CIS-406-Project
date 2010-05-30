@@ -11,6 +11,10 @@
 
 package cis406.student;
 
+import cis406.TableModel;
+import cis406.internship.Internship;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author David
@@ -31,22 +35,62 @@ public class TaskBrowsePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        reportTable = new javax.swing.JTable();
+
         setName("Form"); // NOI18N
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        reportTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        reportTable.setName("reportTable"); // NOI18N
+        reportTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(reportTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable reportTable;
     // End of variables declaration//GEN-END:variables
 
+       public void loadTable() {
+        reportTable.setModel(Internship.generateTable());
+    }
+       public void delete() {
+        int rowId = getSelectedRow();
+        if (Internship.delete(rowId)) {
+            JOptionPane.showMessageDialog(null, "Internship #" + rowId + " was deleted");
+            loadTable();
+        } else {
+            JOptionPane.showMessageDialog(null, "Internship #" + rowId + " could not be found");
+        }
+    }
+       public int getSelectedRow() {
+        int row = reportTable.getSelectedRow();
+        if (row != -1) {
+            return ((TableModel) reportTable.getModel()).getRowId(row);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row first");
+            return 0;
+        }
+    }
 }

@@ -48,7 +48,7 @@ public class EditPanel extends javax.swing.JPanel {
         txtLastCis = new javax.swing.JTextField();
         cboStanding = new javax.swing.JComboBox(standing);
         cboQuarter = new javax.swing.JComboBox(quarters);
-        cboQuarterYear = new javax.swing.JComboBox(term_year);
+        cboGradYr = new javax.swing.JComboBox(term_year);
         chkRelocate = new javax.swing.JCheckBox();
         chkSWIFT = new javax.swing.JCheckBox();
         chkMISSA = new javax.swing.JCheckBox();
@@ -82,7 +82,7 @@ public class EditPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         lblPostedDate = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        chkGraduated = new javax.swing.JCheckBox();
 
         setName("Form"); // NOI18N
 
@@ -122,12 +122,13 @@ public class EditPanel extends javax.swing.JPanel {
         cboStanding.setName("cboStanding"); // NOI18N
         cboStanding.setNextFocusableComponent(cboQuarter);
 
+        cboQuarter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fall", "Winter", "Spring", "Summer", " " }));
         cboQuarter.setName("cboQuarter"); // NOI18N
-        cboQuarter.setNextFocusableComponent(cboQuarterYear);
+        cboQuarter.setNextFocusableComponent(cboGradYr);
 
-        cboQuarterYear.setModel(new javax.swing.DefaultComboBoxModel(term_year));
-        cboQuarterYear.setName("cboQuarterYear"); // NOI18N
-        cboQuarterYear.setNextFocusableComponent(chkRelocate);
+        cboGradYr.setModel(new javax.swing.DefaultComboBoxModel(term_year));
+        cboGradYr.setName("cboGradYr"); // NOI18N
+        cboGradYr.setNextFocusableComponent(chkRelocate);
 
         chkRelocate.setName("chkRelocate"); // NOI18N
 
@@ -240,8 +241,8 @@ public class EditPanel extends javax.swing.JPanel {
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
 
-        jCheckBox1.setText(resourceMap.getString("jCheckBox1.text")); // NOI18N
-        jCheckBox1.setName("jCheckBox1"); // NOI18N
+        chkGraduated.setText(resourceMap.getString("chkGraduated.text")); // NOI18N
+        chkGraduated.setName("chkGraduated"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -301,7 +302,7 @@ public class EditPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cboQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboQuarterYear, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cboGradYr, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel23)
@@ -335,7 +336,7 @@ public class EditPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox1)
+                        .addComponent(chkGraduated)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)))
                 .addContainerGap(86, Short.MAX_VALUE))
@@ -370,7 +371,7 @@ public class EditPanel extends javax.swing.JPanel {
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboQuarter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboQuarterYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cboGradYr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -414,7 +415,7 @@ public class EditPanel extends javax.swing.JPanel {
                         .addGap(92, 92, 92)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                .addComponent(jCheckBox1)
+                                .addComponent(chkGraduated)
                                 .addComponent(jLabel5))
                             .addComponent(jLabel2))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -436,18 +437,18 @@ public class EditPanel extends javax.swing.JPanel {
 }//GEN-LAST:event_txtEmailActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInternship;
+    private javax.swing.JComboBox cboGradYr;
     private javax.swing.JComboBox cboMajor;
     private javax.swing.JComboBox cboMinor;
     private javax.swing.JComboBox cboQuarter;
-    private javax.swing.JComboBox cboQuarterYear;
     private javax.swing.JComboBox cboStanding;
     private javax.swing.JCheckBox chkFAST;
+    private javax.swing.JCheckBox chkGraduated;
     private javax.swing.JCheckBox chkIWDSA;
     private javax.swing.JCheckBox chkMISSA;
     private javax.swing.JCheckBox chkOtherClub;
     private javax.swing.JCheckBox chkRelocate;
     private javax.swing.JCheckBox chkSWIFT;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
@@ -504,7 +505,7 @@ public class EditPanel extends javax.swing.JPanel {
     private Boolean chkIwdsa;
     private Boolean chkOther;
     private Boolean chkRelocateTst;
-    Student newStudent;
+    Student newStudent = null;
     HashMap fields = new HashMap();
     private String lastUpdate;
     Date now = new Date();
@@ -512,27 +513,31 @@ public class EditPanel extends javax.swing.JPanel {
     String[] quarters = {"Fall", "Winter", "Spring", "Summer"};
     String[] term_year = {"2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"};
     String[] standing = {"Freshman ( <44 units ) ", "Sophomore ( 45-89 units ) ", "Junior( 90-134 units ) ", "Senior ( 135+ units ) "};
-    
 
-    public void save() {
+    public void newStudent() {
         newStudent = new Student();
-        Boolean success=true;
-        if(!newStudent.setBroncoNum(txtBroncoNum.getText())){
+    }
+
+    public Boolean save() {
+
+        Boolean success = true;
+        if (!newStudent.setBroncoNum(txtBroncoNum.getText())) {
             lblBronco.setForeground(Color.red);
             success = false;
-        }else{
+        } else {
             lblBronco.setForeground(Color.black);
         }
-        newStudent.lastName =(txtLName.getText());
+        newStudent.lastName = (txtLName.getText());
         newStudent.firstName = txtFName.getText();
         newStudent.email = txtEmail.getText();
         newStudent.phone = txtPhone.getText();
-        newStudent.gradeLevel = cboStanding.getSelectedItem().toString();
+        newStudent.gradeLevel = cboStanding.getSelectedIndex();
         newStudent.updateDate = now;
         newStudent.interests = txaInterests.getText();
         newStudent.major = ((cis406.ComboItem) cboMajor.getSelectedItem()).id;
         newStudent.minor = ((cis406.ComboItem) cboMinor.getSelectedItem()).id;
-        newStudent.gradDate = cboQuarter.getSelectedItem().toString();
+        newStudent.gradQtr = ((cis406.ComboItem) cboQuarter.getSelectedItem()).id;
+        newStudent.gradYr = ((cis406.ComboItem) cboGradYr.getSelectedItem()).id;
         newStudent.lastCISCourse = txtLastCis.getText();
         newStudent.setRelocate(chkRelocate.isSelected());
         newStudent.setClubMissa(chkMISSA.isSelected());
@@ -540,11 +545,40 @@ public class EditPanel extends javax.swing.JPanel {
         newStudent.setClubIwdsa(chkIWDSA.isSelected());
         newStudent.setClubSwift(chkSWIFT.isSelected());
         newStudent.setClubOther(chkOtherClub.isSelected());
+        newStudent.setGraduated(chkGraduated.isSelected());
 
         if (!success) {
             JOptionPane.showMessageDialog(null, "Please enter a valid Bronco Number");
-        }else newStudent.save();
-        
+            success = false;
+            return success;
+        } else {
+            newStudent.save();
+            return success;
+        }
+    }
+
+    public void load(int id) {
+        Student data = new Student(id);
+        txtBroncoNum.setText(Integer.toString(data.broncoNum));
+        txtLName.setText(data.getLastName());
+        txtFName.setText(data.getFirstName());
+        txtEmail.setText(data.getEmail());
+        txtPhone.setText(data.getPhone());
+        cboStanding.setSelectedIndex(data.getGradeLevel());
+        lblPostedDate.setText(data.getUpdateDate());
+        txaInterests.setText(data.interests);
+        cboMajor.setSelectedIndex(data.getMajor());
+        cboMinor.setSelectedIndex(data.getMinor());
+        cboQuarter.setSelectedIndex(data.getGradQtr());
+        cboGradYr.setSelectedIndex(data.getGradYr());
+        txtLastCis.setText(data.getLastCISCourse());
+        chkRelocate.setSelected(false);
+        chkMISSA.setSelected(false);
+        chkFAST.setSelected(false);
+        chkIWDSA.setSelected(false);
+        chkSWIFT.setSelected(false);
+        chkOtherClub.setSelected(false);
+        chkGraduated.setSelected(false);
 
     }
 
@@ -555,7 +589,6 @@ public class EditPanel extends javax.swing.JPanel {
         txtEmail.setText("");
         txtPhone.setText("");
         cboStanding.setSelectedIndex(0);
-        newStudent.updateDate = now;
         txaInterests.getText();
         cboMajor.setSelectedIndex(0);
         cboMinor.setSelectedIndex(0);
@@ -567,6 +600,7 @@ public class EditPanel extends javax.swing.JPanel {
         chkIWDSA.setSelected(false);
         chkSWIFT.setSelected(false);
         chkOtherClub.setSelected(false);
+        chkGraduated.setSelected(false);
     }
 
     @Action

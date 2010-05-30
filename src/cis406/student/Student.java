@@ -4,6 +4,7 @@ import java.util.Date;
 import cis406.*;
 import cis406.Database;
 import cis406.Person;
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -11,8 +12,9 @@ import java.util.Vector;
 public class Student extends Person {
 //attributes
 
+    int id;
     int broncoNum;
-    String gradeLevel;
+    int gradeLevel;
     int relocate;
     Date updateDate;
     String interests;
@@ -23,15 +25,18 @@ public class Student extends Person {
     int clubOther;
     int major;
     int minor;
-    String gradDate;
+    int gradYr;
+    int gradQtr;
     String lastCISCourse;
+    int graduated;
 
     //constructor
     public Student() {
         super(); // runs the code in the Person constructor method
         // Then you proceed to run your own modifications
+        id = 0;
         broncoNum = 0;
-        gradeLevel = "";
+        gradeLevel = 0;
         relocate = 0;
         updateDate = null;
         interests = "";
@@ -42,13 +47,15 @@ public class Student extends Person {
         clubOther = 0;
         major = 0;
         minor = 0;
-        gradDate = "";
+        gradYr = 0;
+        gradQtr = 0;
         lastCISCourse = "";
+        graduated = 0;
     }
 
     /*constructor with params
-    *
-     * 17 total params
+     *
+     * 18 total params
      * @param broncoNum
      * @param studName
      * @param email
@@ -64,27 +71,40 @@ public class Student extends Person {
      * @param clubOther
      * @param major
      * @param minor
-     * @param gradDate
+     * @param gradQtr
+     * @param gradYr
      * @param lastCISCourse
      *
      */
-    public Student(int broncoNum, String firstName, String lastName, String middleInitial, String email, String phone, String gradeLevel, int relocate, Date updateDate, String interests, int clubMissa, int clubFast, int clubIwdsa, int clubSwift, int clubOther, int major, int minor, String gradDate, String lastCISCourse) {
-        super(firstName, lastName, middleInitial, email, phone);
-        //this.studID = studID;
-        this.broncoNum = broncoNum;
-        this.gradeLevel = gradeLevel;
-        this.relocate = relocate;
-        this.updateDate = updateDate;
-        this.interests = interests;
-        this.clubMissa = clubMissa;
-        this.clubFast = clubFast;
-        this.clubIwdsa = clubIwdsa;
-        this.clubSwift = clubSwift;
-        this.clubOther = clubOther;
-        this.major = major;
-        this.minor = minor;
-        this.gradDate = gradDate;
-        this.lastCISCourse = lastCISCourse;
+    public Student(int id) {
+        ResultSet data = Database.read("student", id);
+        try {
+            data.next();
+            broncoNum = data.getInt("bronco_id");
+            firstName = data.getString("first_name");
+            lastName = data.getString("last_name");
+            email = data.getString("email");
+            phone = data.getString("phone");
+            gradeLevel = data.getInt("class_standing");
+            relocate = data.getInt("relocate");
+            updateDate = data.getDate("last_update");
+            interests = data.getString("interest");
+            clubMissa = data.getInt("missa_club");
+            clubFast = data.getInt("fast_club");
+            clubIwdsa = data.getInt("iwdsa_club");
+            clubSwift = data.getInt("swift_club");
+            clubOther = data.getInt("other_club");
+            major = data.getInt("major_id");
+            minor = data.getInt("minor_id");
+            gradQtr = data.getInt("expected_graduation_quarter");
+            gradYr = data.getInt("expected_graduation_year");
+            lastCISCourse = data.getString("last_cis_class");
+            graduated = data.getInt("graduated");
+
+        } catch (Exception e) {
+            System.out.println("Failed to locate a record");
+            System.out.println(e.getMessage());
+        }
     }
 
     //public String getStudID() {
@@ -93,26 +113,17 @@ public class Student extends Person {
     //public void setStudID(String studID) {
     //	this.studID = studID;
     //}
-
     public int getBroncoNum() {
         return broncoNum;
     }
 
     public Boolean setBroncoNum(String broncoNum) {
-        try{
-        this.broncoNum = Integer.parseInt(broncoNum);
-        return true;
-        }catch (Exception e){
+        try {
+            this.broncoNum = Integer.parseInt(broncoNum);
+            return true;
+        } catch (Exception e) {
             return false;
         }
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public int getClubFast() {
@@ -125,7 +136,7 @@ public class Student extends Person {
         } else {
             this.clubFast = 0;
         }
-     }
+    }
 
     public int getClubIwdsa() {
         return clubIwdsa;
@@ -175,11 +186,11 @@ public class Student extends Person {
         }
     }
 
-    public String getGradeLevel() {
+    public int getGradeLevel() {
         return gradeLevel;
     }
 
-    public void setGradeLevel(String gradeLevel) {
+    public void setGradeLevel(int gradeLevel) {
         this.gradeLevel = gradeLevel;
     }
 
@@ -191,14 +202,6 @@ public class Student extends Person {
         this.major = major;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public int getRelocate() {
         return relocate;
     }
@@ -208,7 +211,7 @@ public class Student extends Person {
             this.relocate = 1;
         } else {
             this.relocate = 0;
-        } 
+        }
     }
 
     public String getLastCISCourse() {
@@ -235,23 +238,51 @@ public class Student extends Person {
         this.minor = minor;
     }
 
-    public String getGradDate() {
-        return gradDate;
-    }
-
-    public void setGradDate(String gradDate) {
-        this.gradDate = gradDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
+    public String getUpdateDate() {
+        return updateDate.toString();
     }
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
-    public void save(){
+    public int getGradQtr() {
+        return gradQtr;
+    }
+
+    public void setGradQtr(int gradQtr) {
+        this.gradQtr = gradQtr;
+    }
+
+    public int getGradYr() {
+        return gradYr;
+    }
+
+    public void setGradYr(int gradYr) {
+        this.gradYr = gradYr;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getGraduated() {
+        return graduated;
+    }
+
+    public void setGraduated(Boolean confirm) {
+        if (confirm) {
+            this.graduated = 1;
+        } else {
+            this.graduated = 0;
+        }
+    }
+
+    public Boolean save() {
         java.sql.Date sqlDate;
         Database db = new Database("student");
         db.addField("bronco_id", broncoNum);
@@ -266,24 +297,43 @@ public class Student extends Person {
         db.addField("interest", interests);
         db.addField("major_id", major);
         db.addField("minor_id", minor);
-        db.addField("expected_graduation_quarter", gradDate);
+        db.addField("expected_graduation_quarter", gradQtr);
+        db.addField("expected_graduation_year", gradYr);
+        db.addField("last_cis_class", lastCISCourse);
         db.addField("relocate", relocate);
         db.addField("missa_club", clubMissa);
         db.addField("fast_club", clubFast);
         db.addField("iwdsa_club", clubIwdsa);
         db.addField("swift_club", clubSwift);
         db.addField("other_club", clubOther);
+        db.addField("graduated", graduated);
         try {
-            db.insert();
+            if (id == 0) {
+                db.insert();
+            } else {
+                db.update(id);
+
+            }
+            return true;
         } catch (Exception e) {
             System.out.println("Failed to save the student");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
         }
-        //String sqlStr = "INSERT INTO student (swift_club, other_club, phone, minor, relocate, missa_club, bronco_id, first_name, last_update, email, interest, last_name, expected_graduation_quarter, iwdsa_club, fast_club, class_standing, major) VALUES (clubSwift, clubOther, phone, minor, relocate, clubMissa, broncoNum, firstName, updateDate, email, interests, lastName, gradDate, clubIwdsa, clubFast, gradeLevel, major)";
-        //Database.executeWrite( sqlStr);
     }
 
-     static public TableModel generateTable() {
+    public static Boolean delete(int id) {
+        Boolean success = false;
+        if (Database.delete("student", id) > 0) {
+            success = true;
+        } else {
+            System.out.println("The student could not be found");
+        }
+
+        return success;
+    }
+
+    static public TableModel generateTable() {
         Database db = new Database("student");
         TableModel table = null;
         Vector<String> fields = new Vector<String>();
@@ -345,8 +395,10 @@ public class Student extends Person {
         classDescription += major;
         classDescription += "minor" + "=";
         classDescription += minor;
-        classDescription += "gradDate" + "=";
-        classDescription += gradDate;
+        classDescription += "gradQtr" + "=";
+        classDescription += gradQtr;
+        classDescription += "gradYr" + "=";
+        classDescription += gradYr;
         classDescription += "lastCISCourse" + "=";
         classDescription += lastCISCourse;
         classDescription += "email" + "=";

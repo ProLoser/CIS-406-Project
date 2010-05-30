@@ -8,7 +8,6 @@
  *
  * Created on May 29, 2010, 12:11:32 AM
  */
-
 package cis406.student;
 
 import cis406.PanelInterface;
@@ -19,7 +18,9 @@ import java.awt.CardLayout;
  * @author Owner
  */
 public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface {
-String activeCard = "Browse";
+
+    String activeCard = "Browse";
+
     /** Creates new form NewJPanel */
     public TaskMainPanel() {
         initComponents();
@@ -58,12 +59,23 @@ String activeCard = "Browse";
         editPanel.setName("editPanel"); // NOI18N
         add(editPanel, "Edit");
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cis406.student.TaskBrowsePanel browsePanel;
     private cis406.student.TaskEditPanel editPanel;
     // End of variables declaration//GEN-END:variables
+
+    public void browsing() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Browse");
+        activeCard = "Browse";
+        browsePanel.loadTable();
+    }
+
+    public void editing() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Edit");
+        activeCard = "Edit";
+    }
 
     public void clickNew() {
         CardLayout cl = (CardLayout) (getLayout());
@@ -72,7 +84,7 @@ String activeCard = "Browse";
     }
 
     public void clickSave() {
-          editPanel.save();
+        editPanel.save();
     }
 
     public void clickLoad() {
@@ -80,15 +92,22 @@ String activeCard = "Browse";
     }
 
     public void clickDelete() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (activeCard.equals("Browse")) {
+            browsePanel.delete();
+        } else {
+        }
     }
 
     public void clickReset() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (activeCard.equals("Edit")) {
+            editPanel.reset();
+        } else {
+            browsePanel.loadTable();
+        }
     }
 
     public void clickCancel() {
-
+        browsing();
     }
 
     public void clickEditing() {
@@ -104,7 +123,7 @@ String activeCard = "Browse";
     }
 
     public void switchTo(String actionCommand) {
-      if (actionCommand.equalsIgnoreCase("Edit")) {
+        if (actionCommand.equalsIgnoreCase("Edit")) {
             clickEditing();
         } else {
             clickBrowsing();
@@ -112,7 +131,12 @@ String activeCard = "Browse";
     }
 
     public Boolean switchAway() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        /*if (activeCard.equals("Edit")) {
+        if (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
+        editPanel.save();
+        return false;
+        }
+        }*/
+        return true;
     }
-
 }
