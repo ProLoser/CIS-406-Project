@@ -35,30 +35,30 @@ public class ContactEditPanel extends javax.swing.JPanel {
         jSeparator = new javax.swing.JSeparator();
         lblContactTitle = new javax.swing.JLabel();
         lblFName = new javax.swing.JLabel();
-        txtFName = new javax.swing.JTextField();
+        txtFName = new javax.swing.JFormattedTextField();
         lblLName = new javax.swing.JLabel();
-        txtLName = new javax.swing.JTextField();
+        txtLName = new javax.swing.JFormattedTextField();
         lblStreet = new javax.swing.JLabel();
-        txtStreet = new javax.swing.JTextField();
+        txtStreet = new javax.swing.JFormattedTextField();
         lblZip = new javax.swing.JLabel();
-        txtZip = new javax.swing.JTextField();
+        txtZip = new javax.swing.JFormattedTextField();
         lblCity = new javax.swing.JLabel();
-        txtCity = new javax.swing.JTextField();
+        txtCity = new javax.swing.JFormattedTextField();
         lblState = new javax.swing.JLabel();
         cboState = new javax.swing.JComboBox();
         lblEmail = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JFormattedTextField();
         lblPhone = new javax.swing.JLabel();
         txtPhoneLeftParenthesis = new javax.swing.JLabel();
-        txtPhoneArea = new javax.swing.JTextField();
+        txtPhoneArea = new javax.swing.JFormattedTextField();
         lblPhoneRightParenthesis = new javax.swing.JLabel();
-        txtPhoneFirst = new javax.swing.JTextField();
+        txtPhoneFirst = new javax.swing.JFormattedTextField();
         txtPhoneDash = new javax.swing.JLabel();
-        txtPhoneLast = new javax.swing.JTextField();
+        txtPhoneLast = new javax.swing.JFormattedTextField();
         lblPhoneExt = new javax.swing.JLabel();
-        txtPhoneExt = new javax.swing.JTextField();
+        txtPhoneExt = new javax.swing.JFormattedTextField();
         lblPosition = new javax.swing.JLabel();
-        txtPosition = new javax.swing.JTextField();
+        txtPosition = new javax.swing.JFormattedTextField();
         lblCommMethod = new javax.swing.JLabel();
         cboCommMethod = new javax.swing.JComboBox();
         lblNotes = new javax.swing.JLabel();
@@ -101,41 +101,31 @@ public class ContactEditPanel extends javax.swing.JPanel {
         lblFName.setText(resourceMap.getString("lblFName.text")); // NOI18N
         lblFName.setName("lblFName"); // NOI18N
 
+        txtFName.setText(resourceMap.getString("txtFName.text")); // NOI18N
         txtFName.setName("txtFName"); // NOI18N
 
         lblLName.setText(resourceMap.getString("lblLName.text")); // NOI18N
         lblLName.setName("lblLName"); // NOI18N
 
+        txtLName.setText(resourceMap.getString("txtLName.text")); // NOI18N
         txtLName.setName("txtLName"); // NOI18N
 
         lblStreet.setText(resourceMap.getString("lblStreet.text")); // NOI18N
         lblStreet.setName("lblStreet"); // NOI18N
 
+        txtStreet.setText(resourceMap.getString("txtStreet.text")); // NOI18N
         txtStreet.setName("txtStreet"); // NOI18N
 
         lblZip.setText(resourceMap.getString("lblZip.text")); // NOI18N
         lblZip.setName("lblZip"); // NOI18N
 
+        txtZip.setText(resourceMap.getString("txtZip.text")); // NOI18N
         txtZip.setName("txtZip"); // NOI18N
-        txtZip.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtZipMouseExited(evt);
-            }
-        });
-        txtZip.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtZipActionPerformed(evt);
-            }
-        });
-        txtZip.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtZipFocusLost(evt);
-            }
-        });
 
         lblCity.setText(resourceMap.getString("lblCity.text")); // NOI18N
         lblCity.setName("lblCity"); // NOI18N
 
+        txtCity.setText(resourceMap.getString("txtCity.text")); // NOI18N
         txtCity.setName("txtCity"); // NOI18N
 
         lblState.setText(resourceMap.getString("lblState.text")); // NOI18N
@@ -147,6 +137,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
         lblEmail.setText(resourceMap.getString("lblEmail.text")); // NOI18N
         lblEmail.setName("lblEmail"); // NOI18N
 
+        txtEmail.setText(resourceMap.getString("txtEmail.text")); // NOI18N
         txtEmail.setName("txtEmail"); // NOI18N
 
         lblPhone.setText(resourceMap.getString("lblPhone.text")); // NOI18N
@@ -155,27 +146,31 @@ public class ContactEditPanel extends javax.swing.JPanel {
         txtPhoneLeftParenthesis.setText(resourceMap.getString("txtPhoneLeftParenthesis.text")); // NOI18N
         txtPhoneLeftParenthesis.setName("txtPhoneLeftParenthesis"); // NOI18N
 
+        txtPhoneArea.setText(resourceMap.getString("txtPhoneArea.text")); // NOI18N
         txtPhoneArea.setName("txtPhoneArea"); // NOI18N
 
         lblPhoneRightParenthesis.setText(resourceMap.getString("lblPhoneRightParenthesis.text")); // NOI18N
         lblPhoneRightParenthesis.setName("lblPhoneRightParenthesis"); // NOI18N
 
-        txtPhoneFirst.setMaximumSize(new java.awt.Dimension(3, 3));
+        txtPhoneFirst.setText(resourceMap.getString("txtPhoneFirst.text")); // NOI18N
         txtPhoneFirst.setName("txtPhoneFirst"); // NOI18N
 
         txtPhoneDash.setText(resourceMap.getString("txtPhoneDash.text")); // NOI18N
         txtPhoneDash.setName("txtPhoneDash"); // NOI18N
 
+        txtPhoneLast.setText(resourceMap.getString("txtPhoneLast.text")); // NOI18N
         txtPhoneLast.setName("txtPhoneLast"); // NOI18N
 
         lblPhoneExt.setText(resourceMap.getString("lblPhoneExt.text")); // NOI18N
         lblPhoneExt.setName("lblPhoneExt"); // NOI18N
 
+        txtPhoneExt.setText(resourceMap.getString("txtPhoneExt.text")); // NOI18N
         txtPhoneExt.setName("txtPhoneExt"); // NOI18N
 
         lblPosition.setText(resourceMap.getString("lblPosition.text")); // NOI18N
         lblPosition.setName("lblPosition"); // NOI18N
 
+        txtPosition.setText(resourceMap.getString("txtPosition.text")); // NOI18N
         txtPosition.setName("txtPosition"); // NOI18N
 
         lblCommMethod.setText(resourceMap.getString("lblCommMethod.text")); // NOI18N
@@ -203,44 +198,6 @@ public class ContactEditPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCompanyTitle)
                     .addComponent(lblContactTitle)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCity)
-                            .addComponent(lblState)
-                            .addComponent(lblPhone)
-                            .addComponent(lblStreet)
-                            .addComponent(lblZip)
-                            .addComponent(lblEmail)
-                            .addComponent(lblFName))
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboState, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtPhoneLeftParenthesis)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPhoneArea, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPhoneRightParenthesis)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPhoneFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPhoneDash)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPhoneLast, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPhoneExt)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPhoneExt, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblLName)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jSeparator, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -253,14 +210,52 @@ public class ContactEditPanel extends javax.swing.JPanel {
                             .addComponent(cboIndustry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCity)
+                            .addComponent(lblState)
+                            .addComponent(lblPhone)
+                            .addComponent(lblStreet)
+                            .addComponent(lblZip)
+                            .addComponent(lblFName)
+                            .addComponent(lblEmail)
                             .addComponent(lblPosition)
                             .addComponent(lblCommMethod)
                             .addComponent(lblNotes))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
                             .addComponent(cboCommMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cboState, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblLName)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(txtPhoneLeftParenthesis)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtPhoneArea, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblPhoneRightParenthesis)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtPhoneFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtPhoneDash)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtPhoneLast, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lblPhoneExt)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtPhoneExt))
+                                        .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(103, 103, 103))
+                            .addComponent(txtPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -281,9 +276,9 @@ public class ContactEditPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFName)
+                    .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLName)
-                    .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStreet)
@@ -307,9 +302,9 @@ public class ContactEditPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPhoneLeftParenthesis)
-                    .addComponent(lblPhoneRightParenthesis)
                     .addComponent(lblPhone)
                     .addComponent(txtPhoneArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPhoneRightParenthesis)
                     .addComponent(txtPhoneFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPhoneDash)
                     .addComponent(txtPhoneLast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -317,8 +312,8 @@ public class ContactEditPanel extends javax.swing.JPanel {
                     .addComponent(txtPhoneExt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPosition))
+                    .addComponent(lblPosition)
+                    .addComponent(txtPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCommMethod)
@@ -340,34 +335,6 @@ public class ContactEditPanel extends javax.swing.JPanel {
             lblIndustryDivision.setText("Industry:");
         }
 }//GEN-LAST:event_cboCompanyActionPerformed
-
-    private void txtZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZipActionPerformed
-
-    }//GEN-LAST:event_txtZipActionPerformed
-
-    private void txtZipMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtZipMouseExited
-
-    }//GEN-LAST:event_txtZipMouseExited
-
-    private void txtZipFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtZipFocusLost
-        String city = "";
-        String state = "";
-        String zipfield = txtZip.getText();
-        Database db = new Database("Zip");
-        db.and("ZIP", zipfield);
-        try {
-            ResultSet rs = db.select();
-            while (rs.next()) {
-                city = rs.getString("CITY");
-                state = rs.getString("STATE");
-            }
-        } catch (Exception e) {
-            System.out.println("Could not execute query");
-            System.out.println(e.getMessage());
-        }
-        txtCity.setText(city);
-        cboState.setSelectedItem(state);
-    }//GEN-LAST:event_txtZipFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -395,19 +362,19 @@ public class ContactEditPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblZip;
     private javax.swing.JScrollPane scpNotes;
     private javax.swing.JTextArea txaNotes;
-    private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtFName;
-    private javax.swing.JTextField txtLName;
-    private javax.swing.JTextField txtPhoneArea;
+    private javax.swing.JFormattedTextField txtCity;
+    private javax.swing.JFormattedTextField txtEmail;
+    private javax.swing.JFormattedTextField txtFName;
+    private javax.swing.JFormattedTextField txtLName;
+    private javax.swing.JFormattedTextField txtPhoneArea;
     private javax.swing.JLabel txtPhoneDash;
-    private javax.swing.JTextField txtPhoneExt;
-    private javax.swing.JTextField txtPhoneFirst;
-    private javax.swing.JTextField txtPhoneLast;
+    private javax.swing.JFormattedTextField txtPhoneExt;
+    private javax.swing.JFormattedTextField txtPhoneFirst;
+    private javax.swing.JFormattedTextField txtPhoneLast;
     private javax.swing.JLabel txtPhoneLeftParenthesis;
-    private javax.swing.JTextField txtPosition;
-    private javax.swing.JTextField txtStreet;
-    private javax.swing.JTextField txtZip;
+    private javax.swing.JFormattedTextField txtPosition;
+    private javax.swing.JFormattedTextField txtStreet;
+    private javax.swing.JFormattedTextField txtZip;
     // End of variables declaration//GEN-END:variables
 
     public void clickNew() {
@@ -440,6 +407,10 @@ public class ContactEditPanel extends javax.swing.JPanel {
         record.setComm_method(cboCommMethod.getSelectedIndex());
         record.setDescription(txaNotes.getText());
         record.save();
+        
+        cboCompany.setModel(new cis406.ComboBox("company", "name"));
+        cboIndustry.setModel(new cis406.ComboBox("industry", "industry_name"));
+        //CorrespondencePanel.rePopulate();
     }
     public void clickLoad() {
     }

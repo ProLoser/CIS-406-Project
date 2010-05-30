@@ -57,6 +57,11 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
         txtDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDate.setText(resourceMap.getString("txtDate.text")); // NOI18N
         txtDate.setName("txtDate"); // NOI18N
+        txtDate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDateFocusLost(evt);
+            }
+        });
 
         lblNotes.setText(resourceMap.getString("lblNotes.text")); // NOI18N
         lblNotes.setName("lblNotes"); // NOI18N
@@ -110,6 +115,10 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDateFocusLost
+        //
+    }//GEN-LAST:event_txtDateFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cboContact;
@@ -150,9 +159,12 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
     public void clickBrowsing() {
     }
     public void switchTo(String actionCommand) {
-        cboContact.setModel(new ComboBox("contact", "last_name"));
+        rePopulate();
     }
     public Boolean switchAway() {
         return true;
+    }
+    public void rePopulate() {
+        cboContact.setModel(new ComboBox("contact", "last_name"));
     }
 }
