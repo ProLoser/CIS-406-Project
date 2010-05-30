@@ -11,7 +11,7 @@
 
 package cis406.security;
 
-import cis406.ComboBox;
+import cis406.ComboBoxModel;
 import cis406.PanelInterface;
 import cis406.Database;
 import java.sql.ResultSet;
@@ -187,7 +187,7 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
     }
 
     public void switchTo(String actionCommand) {
-        cboUsername.setModel(new ComboBox("users", "user_name"));
+        cboUsername.setModel(new ComboBoxModel("users", "user_name"));
 
     }
 
@@ -248,7 +248,7 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
         usernameLabel.setText(resourceMap.getString("usernameLabel.text")); // NOI18N
         usernameLabel.setName("usernameLabel"); // NOI18N
 
-        ddlSecurityQuestions.setModel(new ComboBox("question_key", "question"));
+        ddlSecurityQuestions.setModel(new ComboBoxModel("question_key", "question"));
         ddlSecurityQuestions.setName("ddlSecurityQuestions"); // NOI18N
 
         lblFirstName.setText(resourceMap.getString("lblFirstName.text")); // NOI18N
@@ -259,7 +259,7 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
 
         txtLastName.setName("txtLastName"); // NOI18N
 
-        cboUsername.setModel(new ComboBox("users", "user_name"));
+        cboUsername.setModel(new ComboBoxModel("users", "user_name"));
         cboUsername.setName("cboUsername"); // NOI18N
         cboUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -12,7 +12,7 @@ package cis406.security;
 
 import cis406.PanelInterface;
 import cis406.TableModel;
-import cis406.ComboBox;
+import cis406.ComboBoxModel;
 import cis406.TableColumnAdjuster;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -188,7 +188,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements PanelInterfa
 
         setName("Form"); // NOI18N
 
-        ddlUsers.setModel(new ComboBox("users", "user_name"));
+        ddlUsers.setModel(new ComboBoxModel("users", "user_name"));
         ddlUsers.setName("ddlUsers"); // NOI18N
         ddlUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

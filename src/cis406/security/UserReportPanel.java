@@ -12,7 +12,7 @@ package cis406.security;
 
 import cis406.PanelInterface;
 import cis406.TableModel;
-import cis406.ComboBox;
+import cis406.ComboBoxModel;
 import cis406.TableColumnAdjuster;
 import java.awt.CardLayout;
 import java.awt.Color;

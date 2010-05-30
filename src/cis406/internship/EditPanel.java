@@ -10,7 +10,7 @@
  */
 package cis406.internship;
 
-import cis406.ComboBox;
+import cis406.ComboBoxModel;
 import cis406.ComboItem;
 import cis406.DateUtils;
 import java.awt.Color;
@@ -114,7 +114,7 @@ public class EditPanel extends javax.swing.JPanel {
         quantity1Label.setText(resourceMap.getString("quantity1Label.text")); // NOI18N
         quantity1Label.setName("quantity1Label"); // NOI18N
 
-        companyComboBox.setModel(new ComboBox("company", "name"));
+        companyComboBox.setModel(new ComboBoxModel("company", "name"));
         companyComboBox.setName("companyComboBox"); // NOI18N
 
         companyLabel.setText(resourceMap.getString("companyLabel.text")); // NOI18N
@@ -126,7 +126,7 @@ public class EditPanel extends javax.swing.JPanel {
         quantityField.setName("quantityField"); // NOI18N
 
         careerComboBox.setEditable(true);
-        careerComboBox.setModel(new ComboBox("career_path", "name"));
+        careerComboBox.setModel(new ComboBoxModel("career_path", "name"));
         careerComboBox.setName("careerComboBox"); // NOI18N
 
         careerLabel.setText(resourceMap.getString("careerLabel.text")); // NOI18N
@@ -321,8 +321,9 @@ public class EditPanel extends javax.swing.JPanel {
 
     public void load(int id) {
         Internship data = new Internship(id);
-        companyComboBox.setSelectedIndex(data.getCompanyId());
-        careerComboBox.setSelectedIndex(data.getCareerPathId());
+        companyComboBox.setSelectedItem(new ComboItem("",data.getCompanyId()));
+        companyComboBox.getModel()..setSelectedIndex(data.getCompanyId());
+        careerComboBox.setse.setSelectedIndex(data.getCareerPathId());
         titleField.setText(data.getTitle());
         descriptionTextarea.setText(data.getDescription());
         postedField.setText(data.getPostDate());

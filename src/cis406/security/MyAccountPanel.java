@@ -219,7 +219,7 @@ public class MyAccountPanel extends javax.swing.JPanel implements PanelInterface
         jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
         jLabel9.setName("jLabel9"); // NOI18N
 
-        ddlSecurityQuestions.setModel(new cis406.ComboBox("question_key", "question"));
+        ddlSecurityQuestions.setModel(new cis406.ComboBoxModel("question_key", "question"));
         ddlSecurityQuestions.setName("ddlSecurityQuestions"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
