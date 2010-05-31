@@ -112,7 +112,11 @@ public class EditPanel extends javax.swing.JPanel {
         lblZip.setText(resourceMap.getString("lblZip.text")); // NOI18N
         lblZip.setName("lblZip"); // NOI18N
 
-        txtZip.setText(resourceMap.getString("txtZip.text")); // NOI18N
+        try {
+            txtZip.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtZip.setName("txtZip"); // NOI18N
         txtZip.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -142,7 +146,7 @@ public class EditPanel extends javax.swing.JPanel {
         lblPhone.setName("lblPhone"); // NOI18N
 
         try {
-            txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-#### x ##########")));
+            txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-#### x ********")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -362,12 +366,13 @@ public class EditPanel extends javax.swing.JPanel {
         Boolean success = true;
 
         Contact record = new Contact();
+        Company compRecord = new Company();
         // Saves the Industry if it's a new entry
         if (cboIndustry.getSelectedIndex() == -1) {
             Industry indust = new Industry(cboIndustry.getSelectedItem().toString());
-            record.setIndustryId(indust.save());
+            record.setIndustry_id(indust.save());
         } else {
-            record.setIndustryId(((ComboItem) cboIndustry.getSelectedItem()).id);
+            record.setIndustry_id(((ComboItem) cboIndustry.getSelectedItem()).id);
         }
         // Saves the Company if it's a new entry
         if (cboCompany.getSelectedIndex() == -1) {
@@ -397,7 +402,7 @@ public class EditPanel extends javax.swing.JPanel {
     public void load(int id) {
         Contact data = new Contact(id);
         ((ComboBoxModel)cboCompany.getModel()).setSelectedId(data.getCompany_id());
-        ((ComboBoxModel)cboIndustry.getModel()).setSelectedId(data.getIndustryId());
+        ((ComboBoxModel)cboIndustry.getModel()).setSelectedId(data.getIndustry_id());
         txtFName.setText(data.getFname());
         txtLName.setText(data.getLname());
         txtStreet.setText(data.getStreet());
@@ -412,16 +417,17 @@ public class EditPanel extends javax.swing.JPanel {
     public void reset() {
         cboCompany.setSelectedIndex(0);
         cboIndustry.setSelectedIndex(0);
-        txtFName.setText("");
-        txtLName.setText("");
-        txtStreet.setText("");
-        txtZip.setText("");
-        txtCity.setText("");
+        txtFName.setText(null);
+        txtLName.setText(null);
+        txtStreet.setText(null);
+        //Zip
+        txtZip.setValue(null);
+        txtCity.setText(null);
         cboState.setSelectedIndex(0);
-        txtEmail.setText("");
-        txtPhone.setText("");
-        txtPosition.setText("");
+        txtEmail.setText(null);
+        txtPhone.setText(null);
+        txtPosition.setText(null);
         cboCommMethod.setSelectedIndex(0);
-        txaNotes.setText("");
+        txaNotes.setText(null);
     }
 }
