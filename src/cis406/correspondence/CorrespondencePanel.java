@@ -95,4 +95,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
     public Boolean switchAway() {
         return true;
     }
+    public void rePopulate() {
+        correspondenceEditPanel1.rePopulate();
+    }
 }

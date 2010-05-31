@@ -24,11 +24,7 @@ public class Contact {
     private String city;
     private String state;
     private String email;
-    private int phone_area;
-    private int phone_first;
-    private int phone_last;
-    private int phone_ext;
-    private String phone;
+    private int phone;
     private String position;
     private int comm_method;
     private String description;
@@ -49,7 +45,7 @@ public class Contact {
             city = data.getString("city");
             state = data.getString("state");
             email = data.getString("email");
-            phone = data.getString("phone");
+            phone = data.getInt("phone");
             position = data.getString("position");
             comm_method = data.getInt("comm_method");
             description = data.getString("description");
@@ -57,7 +53,7 @@ public class Contact {
             System.out.println("Failed to locate a record");
         }
     }
-    public Contact(String fname, String lname, int company_id, String street, int zip, String city, String state, String email, int phone_area, int phone_first, int phone_last, int phone_ext, String position, int comm_method, String description) {
+    public Contact(String fname, String lname, int company_id, String street, int zip, String city, String state, String email, int phone, String position, int comm_method, String description) {
         setFname(fname);
         setLname(lname);
         setCompany_id(company_id);
@@ -66,7 +62,7 @@ public class Contact {
         setCity(city);
         setState(state);
         setEmail(email);
-        setPhone(phone_area, phone_first, phone_last, phone_ext);
+        setPhone(phone);
         setPosition(position);
         setComm_method(comm_method);
         setDescription(description);
@@ -128,11 +124,10 @@ public class Contact {
     public String getEmail() {
         return email;
     }
-    public void setPhone(int phone_area, int phone_first, int phone_last, int phone_ext) {
-        String phoneTemp = Integer.toString(phone_area) + Integer.toString(phone_first) + Integer.toString(phone_last) + Integer.toString(phone_ext);
-        this.phone = phoneTemp;
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
     public void setPosition(String position) {
