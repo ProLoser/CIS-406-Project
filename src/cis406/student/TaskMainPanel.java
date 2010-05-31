@@ -88,7 +88,7 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
     }
 
     public void clickLoad() {
-        clickEditing();
+        editing();
     }
 
     public void clickDelete() {
@@ -110,24 +110,7 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
         browsing();
     }
 
-    public void clickEditing() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Edit");
-        activeCard = "Edit";
-    }
-
-    public void clickBrowsing() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Browse");
-        activeCard = "Browse";
-    }
-
-    public void switchTo(String actionCommand) {
-        if (actionCommand.equalsIgnoreCase("Edit")) {
-            clickEditing();
-        } else {
-            clickBrowsing();
-        }
+    public void switchTo() {
     }
 
     public Boolean switchAway() {

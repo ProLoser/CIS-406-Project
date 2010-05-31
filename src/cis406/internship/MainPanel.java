@@ -82,15 +82,6 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
         editing();
     }
 
-    public void clickEditing() {
-    }
-
-    public void clickBrowsing() {
-        if (false) { // (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
-            editPanel.save();
-        }
-    }
-
     public void clickSave() {
         if (activeCard.equals("Edit") && editPanel.save()) {
             browsing();
@@ -121,7 +112,7 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
         return true;
     }
 
-    public void switchTo(String actionCommand) {
+    public void switchTo() {
         browsing();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -77,15 +77,6 @@ public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
         editing();
     }
 
-    public void clickEditing() {
-    }
-
-    public void clickBrowsing() {
-        if (false) { // (JOptionPane.showConfirmDialog(null, "You may have unfinished changes. Save?") == JOptionPane.YES_OPTION) {
-            contactEditPanel1.save();
-        }
-    }
-
     public void clickSave() {
         if (activeCard.equals("Edit") && contactEditPanel1.save()) {
             browsing();
@@ -104,7 +95,7 @@ public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
         activeCard = "Browse";
         contactBrowsePanel1.loadTable();
     }
-    public void switchTo(String actionCommand) {
+    public void switchTo() {
         browsing();
     }
     public Boolean switchAway() {

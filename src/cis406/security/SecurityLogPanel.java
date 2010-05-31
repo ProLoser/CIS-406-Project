@@ -152,13 +152,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements PanelInterfa
     public void clickCancel() {
     }
 
-    public void clickBrowsing() {
-    }
-
-    public void clickEditing() {
-    }
-
-    public void switchTo(String actionCommand) {
+    public void switchTo() {
         logTable.setModel(generateTable());
 
         TableColumnAdjuster tca = new TableColumnAdjuster(logTable);

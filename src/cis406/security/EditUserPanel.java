@@ -169,24 +169,10 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
         ddlSecurityQuestions.setSelectedIndex(0);
     }
 
-    public void clickBrowsing() {
-//        clickClear();
-//        String userID = SelectUserDialog.getValue();
-//
-//        if (Integer.parseInt(userID) > -1) {
-
-//        }
-
-    }
-
-    public void clickEditing() {
-
-    }
-
     public void clickCancel() {
     }
 
-    public void switchTo(String actionCommand) {
+    public void switchTo() {
         cboUsername.setModel(new ComboBoxModel("users", "user_name"));
 
     }

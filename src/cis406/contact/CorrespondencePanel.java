@@ -154,11 +154,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
     }
     public void clickCancel() {
     }
-    public void clickEditing() {
-    }
-    public void clickBrowsing() {
-    }
-    public void switchTo(String actionCommand) {
+    public void switchTo() {
         rePopulate();
     }
     public Boolean switchAway() {

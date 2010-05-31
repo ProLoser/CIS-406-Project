@@ -48,7 +48,7 @@ String activeCard = "Browse";
     private cis406.student.EditPanel editPanel;
     // End of variables declaration//GEN-END:variables
 
-    public void clickBrowsing() {
+    public void browsing() {
         CardLayout cl = (CardLayout) (getLayout());
         cl.show(this, "Browse");
         activeCard = "Browse";
@@ -64,14 +64,14 @@ String activeCard = "Browse";
     public void clickDelete() {
     }
 
-    public void clickEditing() {
+    public void editing() {
         CardLayout cl = (CardLayout) (getLayout());
         cl.show(this, "Edit");
         activeCard = "Edit";
     }
 
     public void clickLoad() {
-        clickEditing();
+        editing();
     }
 
     public void clickNew() {
@@ -88,11 +88,6 @@ String activeCard = "Browse";
         return true;
     }
 
-    public void switchTo(String actionCommand) {
-        if (actionCommand.equalsIgnoreCase("Edit")) {
-            clickEditing();
-        } else {
-            clickBrowsing();
-        }
+    public void switchTo() {
     }
 }
