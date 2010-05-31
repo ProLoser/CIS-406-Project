@@ -67,6 +67,7 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
 
     public void clickNew() {
         editPanel.newTask();
+        editPanel.reset();
         editing();
     }
 
