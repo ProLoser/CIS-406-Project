@@ -1,9 +1,9 @@
 package cis406.contact;
 
-import cis406.ComboBoxModel;
-import cis406.DateUtils;
+
 import cis406.PanelInterface;
 import cis406.contact.Correspondence;
+import java.awt.CardLayout;
 
 /**
  *
@@ -11,10 +11,12 @@ import cis406.contact.Correspondence;
  */
 public class CorrespondencePanel extends javax.swing.JPanel implements PanelInterface {
 
+    String activeCard = "Browse";
+
     /** Creates new form CorrespondencePanel */
     public CorrespondencePanel() {
         initComponents();
-        txtDate.setText(DateUtils.now());
+        
     }
 
     /** This method is called from within the constructor to
@@ -26,141 +28,65 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblContact = new javax.swing.JLabel();
-        cboContact = new javax.swing.JComboBox();
-        lblType = new javax.swing.JLabel();
-        cboType = new javax.swing.JComboBox();
-        lblDate = new javax.swing.JLabel();
-        txtDate = new javax.swing.JFormattedTextField();
-        postedCalButton = new org.sourceforge.jcalendarbutton.JCalendarButton();
-        lblNotes = new javax.swing.JLabel();
-        scpNotes = new javax.swing.JScrollPane();
-        txaNotes = new javax.swing.JTextArea();
+        correspondenceEditPanel1 = new cis406.contact.CorrespondenceEditPanel();
+        correspondenceBrowsePanel1 = new cis406.contact.CorrespondenceBrowsePanel();
 
         setName("Form"); // NOI18N
+        setLayout(new java.awt.CardLayout());
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(CorrespondencePanel.class);
-        lblContact.setText(resourceMap.getString("lblContact.text")); // NOI18N
-        lblContact.setName("lblContact"); // NOI18N
+        correspondenceEditPanel1.setName("correspondenceEditPanel1"); // NOI18N
+        add(correspondenceEditPanel1, "Edit");
 
-        cboContact.setModel(new cis406.ComboBoxModel("contact", "last_name"));
-        cboContact.setName("cboContact"); // NOI18N
+        correspondenceBrowsePanel1.setName("correspondenceBrowsePanel1"); // NOI18N
 
-        lblType.setText(resourceMap.getString("lblType.text")); // NOI18N
-        lblType.setName("lblType"); // NOI18N
-
-        cboType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Face to Face", "Email", "Phone", "Letter" }));
-        cboType.setName("cboType"); // NOI18N
-
-        lblDate.setText(resourceMap.getString("lblDate.text")); // NOI18N
-        lblDate.setName("lblDate"); // NOI18N
-
-        txtDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtDate.setText(resourceMap.getString("txtDate.text")); // NOI18N
-        txtDate.setName("txtDate"); // NOI18N
-
-        postedCalButton.setName("postedCalButton"); // NOI18N
-
-        lblNotes.setText(resourceMap.getString("lblNotes.text")); // NOI18N
-        lblNotes.setName("lblNotes"); // NOI18N
-
-        scpNotes.setName("scpNotes"); // NOI18N
-
-        txaNotes.setColumns(20);
-        txaNotes.setRows(5);
-        txaNotes.setName("txaNotes"); // NOI18N
-        scpNotes.setViewportView(txaNotes);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblContact)
-                    .addComponent(lblType)
-                    .addComponent(lblDate)
-                    .addComponent(lblNotes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboContact, 0, 260, Short.MAX_VALUE)
-                    .addComponent(cboType, 0, 260, Short.MAX_VALUE)
-                    .addComponent(scpNotes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(postedCalButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+        javax.swing.GroupLayout correspondenceBrowsePanel1Layout = new javax.swing.GroupLayout(correspondenceBrowsePanel1);
+        correspondenceBrowsePanel1.setLayout(correspondenceBrowsePanel1Layout);
+        correspondenceBrowsePanel1Layout.setHorizontalGroup(
+            correspondenceBrowsePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblContact)
-                    .addComponent(cboContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblType))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDate)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(postedCalButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNotes)
-                    .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
-                .addContainerGap())
+        correspondenceBrowsePanel1Layout.setVerticalGroup(
+            correspondenceBrowsePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
         );
+
+        add(correspondenceBrowsePanel1, "Browse");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cboContact;
-    private javax.swing.JComboBox cboType;
-    private javax.swing.JLabel lblContact;
-    private javax.swing.JLabel lblDate;
-    private javax.swing.JLabel lblNotes;
-    private javax.swing.JLabel lblType;
-    private org.sourceforge.jcalendarbutton.JCalendarButton postedCalButton;
-    private javax.swing.JScrollPane scpNotes;
-    private javax.swing.JTextArea txaNotes;
-    private javax.swing.JFormattedTextField txtDate;
+    private cis406.contact.CorrespondenceBrowsePanel correspondenceBrowsePanel1;
+    private cis406.contact.CorrespondenceEditPanel correspondenceEditPanel1;
     // End of variables declaration//GEN-END:variables
+public void clickReset() {
+    }
 
-    public void clickNew() {
-    }
-    public void clickSave() {
-        Correspondence record = new Correspondence();
-        record.setContact_id(cboContact.getSelectedIndex());
-        record.setType(cboType.getSelectedIndex());
-        record.setDate(txtDate.getText());
-        record.setNotes(txaNotes.getText());
-        record.save();
-    }
-    public void clickLoad() {
-    }
     public void clickDelete() {
-    }
-    public void clickReset() {
-        txtDate.setText("mm/dd/yy");
-        cboType.setSelectedIndex(0);
-        txaNotes.setText("");
-        cboContact.setSelectedIndex(0);
     }
     public void clickCancel() {
     }
+    public void clickLoad() {
+    }
+    public void clickNew() {
+    }
+    public void clickSave() {
+    }
+    public void editing() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Edit");
+        activeCard = "Edit";
+    }
+    public void browsing() {
+        CardLayout cl = (CardLayout) (getLayout());
+        cl.show(this, "Browse");
+        activeCard = "Browse";
+        correspondenceBrowsePanel1.loadTable();
+    }
     public void switchTo() {
-        rePopulate();
+        browsing();
     }
     public Boolean switchAway() {
         return true;
     }
-    public void rePopulate() {
-        cboContact.setModel(new ComboBoxModel("contact", "last_name"));
-    }
+    
 }

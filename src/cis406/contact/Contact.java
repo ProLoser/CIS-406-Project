@@ -33,7 +33,6 @@ public class Contact {
     private int comm_method;
     private String description;
     //company
-    private int companyId;
     private int industryId;
 
     public Contact() {
@@ -74,18 +73,13 @@ public class Contact {
     }
 
     //company
-    public int getCompanyId() {
-        return companyId;
-    }
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
-    }
     public int getIndustryId() {
         return industryId;
     }
     public void setIndustryId(int industryId) {
         this.industryId = industryId;
     }
+    //Contact
     public void setFname(String fname) {
         this.fname = fname;
     }
@@ -180,7 +174,7 @@ public class Contact {
             System.out.println(e.getMessage());
         }
     }
-        /**
+     /**
      * Populates a internships report table
      * @return
      */

@@ -1,12 +1,9 @@
 package cis406.contact;
 
-import cis406.ComboItem;
 import cis406.ComboBoxModel;
 import cis406.ComboItem;
-import cis406.DateUtils;
-import java.awt.Color;
-import javax.swing.JOptionPane;
-import org.jdesktop.application.Action;
+import cis406.Database;
+import java.sql.ResultSet;
 /**
  *
  * @author Mark Lenser
@@ -124,6 +121,11 @@ public class ContactEditPanel extends javax.swing.JPanel {
 
         txtZip.setText(resourceMap.getString("txtZip.text")); // NOI18N
         txtZip.setName("txtZip"); // NOI18N
+        txtZip.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtZipFocusLost(evt);
+            }
+        });
 
         lblCity.setText(resourceMap.getString("lblCity.text")); // NOI18N
         lblCity.setName("lblCity"); // NOI18N
@@ -227,7 +229,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboCommMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboState, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                            .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -333,6 +335,26 @@ public class ContactEditPanel extends javax.swing.JPanel {
         division();
 }//GEN-LAST:event_cboCompanyActionPerformed
 
+    private void txtZipFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtZipFocusLost
+        String city = "";
+        String state = "";
+        String zipfield = txtZip.getText();
+        Database db = new Database("Zip");
+        db.and("ZIP", zipfield);
+        try {
+            ResultSet rs = db.select();
+            while (rs.next()) {
+                city = rs.getString("CITY");
+                state = rs.getString("STATE");
+            }
+        } catch (Exception e) {
+            System.out.println("Could not execute query");
+            System.out.println(e.getMessage());
+        }
+        txtCity.setText(city);
+        cboState.setSelectedItem(state);
+    }//GEN-LAST:event_txtZipFocusLost
+
     public void division() {
         String company = cboCompany.getSelectedItem().toString();
 
@@ -400,9 +422,9 @@ public class ContactEditPanel extends javax.swing.JPanel {
         // Saves the Company if it's a new entry
         if (cboCompany.getSelectedIndex() == -1) {
             Company comp = new Company(cboCompany.getSelectedItem().toString());
-            record.setCompanyId(comp.save());
+            record.setCompany_id(comp.save());
         } else {
-            record.setCompanyId(((ComboItem) cboCompany.getSelectedItem()).id);
+            record.setCompany_id(((ComboItem) cboCompany.getSelectedItem()).id);
         }
         record.setFname(txtFName.getText());
         record.setLname(txtLName.getText());
@@ -424,7 +446,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
     }
     public void load(int id) {
         Contact data = new Contact(id);
-        ((ComboBoxModel)cboCompany.getModel()).setSelectedId(data.getCompanyId());
+        ((ComboBoxModel)cboCompany.getModel()).setSelectedId(data.getCompany_id());
         ((ComboBoxModel)cboIndustry.getModel()).setSelectedId(data.getIndustryId());
         txtFName.setText(data.getFname());
         txtLName.setText(data.getLname());

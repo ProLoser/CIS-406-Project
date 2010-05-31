@@ -7,10 +7,10 @@ import javax.swing.JOptionPane;
  *
  * @author Mark Lenser
  */
-public class ContactBrowsePanel extends javax.swing.JPanel {
+public class CorrespondenceBrowsePanel extends javax.swing.JPanel {
 
-    /** Creates new form AddContact */
-    public ContactBrowsePanel() {
+    /** Creates new form CorrespondenceBrowsePanel */
+    public CorrespondenceBrowsePanel() {
         initComponents();
         loadTable();
     }
@@ -25,14 +25,13 @@ public class ContactBrowsePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblReport = new javax.swing.JTable();
+        tblCorrespondenceReport = new javax.swing.JTable();
 
         setName("Form"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(681, 400));
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        tblReport.setModel(new javax.swing.table.DefaultTableModel(
+        tblCorrespondenceReport.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -40,8 +39,8 @@ public class ContactBrowsePanel extends javax.swing.JPanel {
 
             }
         ));
-        tblReport.setName("tblReport"); // NOI18N
-        jScrollPane1.setViewportView(tblReport);
+        tblCorrespondenceReport.setName("tblCorrespondenceReport"); // NOI18N
+        jScrollPane1.setViewportView(tblCorrespondenceReport);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -49,14 +48,14 @@ public class ContactBrowsePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -64,19 +63,19 @@ public class ContactBrowsePanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblReport;
+    private javax.swing.JTable tblCorrespondenceReport;
     // End of variables declaration//GEN-END:variables
 
     public void loadTable() {
-        tblReport.setModel(Contact.generateTable());
+        tblCorrespondenceReport.setModel(Correspondence.generateTable());
     }
     public void delete() {
         int rowId = getSelectedRow();
         if (Contact.delete(rowId)) {
-            JOptionPane.showMessageDialog(null, "Contact #" + rowId + " was deleted");
+            JOptionPane.showMessageDialog(null, "Correspondence #" + rowId + " was deleted");
             loadTable();
         } else {
-            JOptionPane.showMessageDialog(null, "Contact #" + rowId + " could not be found");
+            JOptionPane.showMessageDialog(null, "Correspondence #" + rowId + " could not be found");
         }
     }
     /**
@@ -84,9 +83,9 @@ public class ContactBrowsePanel extends javax.swing.JPanel {
      * @return
      */
     public int getSelectedRow() {
-        int row = tblReport.getSelectedRow();
+        int row = tblCorrespondenceReport.getSelectedRow();
         if (row != -1) {
-            return ((TableModel) tblReport.getModel()).getRowId(row);
+            return ((TableModel) tblCorrespondenceReport.getModel()).getRowId(row);
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row first");
             return 0;

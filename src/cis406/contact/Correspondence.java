@@ -5,7 +5,10 @@
 
 package cis406.contact;
 
+import cis406.TableModel;
 import cis406.Database;
+import java.util.Vector;
+import java.sql.ResultSet;
 
 /**
  *
@@ -52,5 +55,33 @@ public class Correspondence {
             System.out.println("Failed to Add the correspondence");
             System.out.println(e.getMessage());
         }
+    }
+    /**
+     * Populates a internships report table
+     * @return
+     */
+    public static TableModel generateTable() {
+        Database db = new Database("correspondence");
+        TableModel table = null;
+        Vector<String> fields = new Vector<String>();
+
+        // Prepare the database query to be used to populate the table
+        db.innerJoin("contact");
+
+        // Populating a map of my fields so that I can choose which columns to
+        // display and what labels to display them as.
+        fields.add("date");
+        // Use table.fieldname when querying multiple tables joined together
+        fields.add("contact.last_name AS contact");
+        
+        try {
+            // Generate the table from the query
+            table = new TableModel(db.select(fields));
+            table.parseData();
+        } catch (Exception e) {
+            System.out.println("Failed to load the internship table");
+            System.out.println(e.getMessage());
+        }
+        return table;
     }
 }

@@ -280,6 +280,9 @@
         <Property name="text" type="java.lang.String" resourceKey="txtZip.text"/>
         <Property name="name" type="java.lang.String" value="txtZip" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtZipFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCity">
       <Properties>
