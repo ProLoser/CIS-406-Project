@@ -15,6 +15,8 @@ public class Company {
     private String name;
     private int industry_id;
 
+    public Company() {
+    }
     public Company(String name) {
         this.name = name;
     }
@@ -24,10 +26,10 @@ public class Company {
     public void setName(String name) {
         this.name = name;
     }
-    public int getIndustryId() {
+    public int getIndustry_id() {
         return industry_id;
     }
-    public void setIndustryId(int industryId) {
+    public void setIndustry_id(int industryId) {
         this.industry_id = industryId;
     }
 

@@ -18,7 +18,6 @@ import java.sql.ResultSet;
 public class Contact {
     private String fname;
     private String lname;
-    private int company_id;
     private String street;
     private int zip;
     private String city;
@@ -28,8 +27,9 @@ public class Contact {
     private String position;
     private int comm_method;
     private String description;
-    //company
-    private int industryId;
+
+    private int company_id;
+    private int industry_id;
 
     public Contact() {
     }
@@ -69,11 +69,18 @@ public class Contact {
     }
 
     //company
-    public int getIndustryId() {
-        return industryId;
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
     }
-    public void setIndustryId(int industryId) {
-        this.industryId = industryId;
+    public int getCompany_id() {
+        return company_id;
+    }
+    public int getIndustry_id() {
+        return industry_id;
+    }
+    public void setIndustry_id(int industryId) {
+        this.industry_id = industryId;
     }
     //Contact
     public void setFname(String fname) {
@@ -87,12 +94,6 @@ public class Contact {
     }
     public String getLname() {
         return lname;
-    }
-    public void setCompany_id(int company_id) {
-        this.company_id = company_id;
-    }
-    public int getCompany_id() {
-        return company_id;
     }
     public void setStreet(String street) {
         this.street = street;
