@@ -21,8 +21,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblBronco" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblLName" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -41,19 +41,36 @@
                           <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jScrollPane1" max="32767" attributes="1"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtEmail" min="-2" pref="150" max="-2" attributes="2"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jScrollPane1" max="32767" attributes="1"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtEmail" min="-2" pref="150" max="-2" attributes="2"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <Component id="txtPhone" max="32767" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="txtPhoneLeftParenthesis" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtPhoneArea" min="-2" pref="39" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblPhoneRightParenthesis" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtPhoneFirst" min="-2" pref="41" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtPhoneDash" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtPhoneLast" min="-2" pref="58" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+              <EmptySpace pref="80" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnInternship" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
@@ -166,8 +183,13 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPhone" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtPhoneLeftParenthesis" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPhoneArea" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPhoneRightParenthesis" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPhoneFirst" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPhoneDash" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPhoneLast" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -273,15 +295,7 @@
       <Properties>
         <Property name="name" type="java.lang.String" value="txtLName" noResource="true"/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="txtPhone"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txtPhone">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="txtPhone" noResource="true"/>
-        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="txtEmail"/>
+          <ComponentRef name="default"/>
         </Property>
       </Properties>
     </Component>
@@ -619,6 +633,39 @@
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="chkGraduated.text"/>
         <Property name="name" type="java.lang.String" value="chkGraduated" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtPhoneFirst">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtPhoneFirst" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtPhoneDash">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtPhoneDash.text"/>
+        <Property name="name" type="java.lang.String" value="txtPhoneDash" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtPhoneArea">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtPhoneArea" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPhoneRightParenthesis">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="lblPhoneRightParenthesis.text"/>
+        <Property name="name" type="java.lang.String" value="lblPhoneRightParenthesis" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtPhoneLast">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtPhoneLast" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtPhoneLeftParenthesis">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="txtPhoneLeftParenthesis.text"/>
+        <Property name="name" type="java.lang.String" value="txtPhoneLeftParenthesis" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
