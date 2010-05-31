@@ -51,6 +51,11 @@ public class BrowsePanel extends javax.swing.JPanel {
         ));
         reportTable.setName("reportTable"); // NOI18N
         reportTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        reportTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(reportTable);
         reportTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -71,6 +76,11 @@ public class BrowsePanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void reportTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportTableMouseClicked
+       
+    }//GEN-LAST:event_reportTableMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable reportTable;
@@ -85,7 +95,7 @@ public class BrowsePanel extends javax.swing.JPanel {
         if (Internship.delete(rowId)) {
             JOptionPane.showMessageDialog(null, "Internship #" + rowId + " was deleted");
             loadTable();
-        } else {
+        } else if (getSelectedRow() != 0) {
             JOptionPane.showMessageDialog(null, "Internship #" + rowId + " could not be found");
         }
     }

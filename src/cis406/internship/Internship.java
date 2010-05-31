@@ -7,7 +7,9 @@ package cis406.internship;
 import cis406.TableModel;
 import cis406.Database;
 import java.io.File;
-import java.sql.Blob;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -29,7 +31,9 @@ public class Internship {
     private Date expiration;
     private int quantity;
     private String attachment;
-    private Blob attachmentData;
+    private String folder;
+    private String originalAttachment;
+    private InputStream attachmentData;
 
     public Internship() {
     }
@@ -49,14 +53,37 @@ public class Internship {
             quantity = data.getInt("quantity");
             postDate = data.getDate("post_date");
             expiration = data.getDate("expiration");
-            attachmentData = data.getBlob("attachment");
+            attachmentData = data.getBinaryStream("attachment");
+            attachment = data.getString("filename");
+            originalAttachment = attachment;
+            this.id = id;
         } catch (Exception e) {
             System.out.println("Failed to locate a record");
+            System.out.println(e.getMessage());
         }
     }
 
     public String getAttachment() {
         return attachment;
+    }
+
+    public boolean downloadAttachment(String newFolder) {
+        boolean success = false;
+        try {
+            File f = new File(newFolder + attachment);
+            OutputStream out = new FileOutputStream(f);
+            byte buf[] = new byte[1024];
+            int len;
+            while ((len = attachmentData.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            out.close();
+            success = true;
+        } catch (Exception e) {
+            System.out.println("ERROR(djv_exportBlob) Unable to export:" + newFolder + "\\" + attachment);
+            e.printStackTrace();
+        }
+        return success;
     }
 
     public void setAttachment(String attachment) {
@@ -162,8 +189,14 @@ public class Internship {
         Database db = new Database("internship");
         db.addField("title", title);
         // Add Attachment
-        File attachmentFile = new File(attachment);
-        //db.addField("attachment", attachmentFile);
+        if (!attachment.isEmpty() && !attachment.equals(originalAttachment)) {
+            File attachmentFile = new File(attachment);
+            db.addField("attachment", attachmentFile);
+            db.addField("filename", attachmentFile.getName());
+        } else if (attachment.isEmpty() && !originalAttachment.isEmpty()) {
+            db.addField("attachment", null);
+            db.addField("filename", null);
+        }
 
         db.addField("company_id", companyId);
         db.addField("career_path_id", careerPathId);

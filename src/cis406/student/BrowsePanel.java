@@ -23,7 +23,7 @@ public class BrowsePanel extends javax.swing.JPanel {
     /** Creates new form StudentBrowsePanel */
     public BrowsePanel() {
         initComponents();
-         loadTable();
+        //loadTable();
     }
 
     /** This method is called from within the constructor to
@@ -50,7 +50,6 @@ public class BrowsePanel extends javax.swing.JPanel {
 
             }
         ));
-        reportTable.setColumnSelectionAllowed(true);
         reportTable.setName("reportTable"); // NOI18N
         reportTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(reportTable);
@@ -88,10 +87,10 @@ public class BrowsePanel extends javax.swing.JPanel {
         public void delete() {
         int rowId = getSelectedRow();
         if (Student.delete(rowId)) {
-            JOptionPane.showMessageDialog(null, "Internship #" + rowId + " was deleted");
+            JOptionPane.showMessageDialog(null, "Student #" + rowId + " was deleted");
             loadTable();
         } else {
-            JOptionPane.showMessageDialog(null, "Internship #" + rowId + " could not be found");
+            JOptionPane.showMessageDialog(null, "Student #" + rowId + " could not be found");
         }
     }
        public int getSelectedRow() {

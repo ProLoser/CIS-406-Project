@@ -1,13 +1,17 @@
-package cis406.contact;
+package cis406.correspondence;
 
+import cis406.correspondence.Correspondence;
 import cis406.ComboBoxModel;
 import cis406.DateUtils;
+import cis406.contact.Contact;
 
 /**
  *
  * @author Mark Lenser
  */
 public class CorrespondenceEditPanel extends javax.swing.JPanel {
+
+    Correspondence record = null;
 
     /** Creates new form CorrespondenceEditPanel */
     public CorrespondenceEditPanel() {
@@ -73,7 +77,6 @@ public class CorrespondenceEditPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,7 +97,6 @@ public class CorrespondenceEditPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -131,21 +133,33 @@ public class CorrespondenceEditPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea txaNotes;
     private javax.swing.JFormattedTextField txtDate;
     // End of variables declaration//GEN-END:variables
-public void clickNew() {
+    public void newCorrespondence() {
+        record = new Correspondence();
     }
-    public void clickSave() {
+    public boolean save() {
+        Boolean success = true;
+
         Correspondence record = new Correspondence();
         record.setContact_id(cboContact.getSelectedIndex());
         record.setType(cboType.getSelectedIndex());
         record.setDate(txtDate.getText());
         record.setNotes(txaNotes.getText());
         record.save();
+
+        //CorrespondencePanel.rePopulate();
+        return success;
     }
-    public void clickLoad() {
+    public void load(int id) {
+        Correspondence data = new Correspondence(id);
+        cboContact.setSelectedItem(data.getContact_id());
+        cboType.setSelectedItem(data.getType());
+        txtDate.setText(data.getDate());
+        txaNotes.setText(data.getNotes());
+        //attachmentField.setText(data.getAttachment());
     }
     public void clickDelete() {
     }
-    public void clickReset() {
+    public void reset() {
         txtDate.setText("mm/dd/yy");
         cboType.setSelectedIndex(0);
         txaNotes.setText("");

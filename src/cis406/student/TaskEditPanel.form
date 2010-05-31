@@ -26,22 +26,32 @@
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblStartDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDueDate" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtDueDate" linkSize="1" min="-2" max="-2" attributes="1"/>
-                          <Component id="txtCurrentDate" linkSize="1" min="-2" pref="57" max="-2" attributes="1"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="txtDueDate" linkSize="1" min="-2" max="-2" attributes="1"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnDueCal" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="1">
+                              <Component id="txtStartDate" linkSize="1" min="-2" pref="57" max="-2" attributes="1"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnStartCal" min="-2" pref="21" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCompleteDate" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtCompleteDate" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnCompleteCal" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="chkCompleted" min="-2" max="-2" attributes="0"/>
@@ -50,14 +60,12 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="206" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cboTaskCategory" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
-                      <Component id="txtContactName" alignment="0" max="32767" attributes="1"/>
-                      <Component id="jTextField3" alignment="0" pref="98" max="32767" attributes="1"/>
-                  </Group>
+                  <Component id="cboTaskCategory" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
+                  <Component id="txtContactName" alignment="0" max="32767" attributes="1"/>
+                  <Component id="txtTaskTitle" alignment="0" pref="98" max="32767" attributes="1"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace pref="89" max="32767" attributes="0"/>
+              <EmptySpace pref="226" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,24 +85,27 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtTaskTitle" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="jLabel7" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel9" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblStartDate" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtStartDate" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnStartCal" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCompleteDate" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCompleteDate" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCurrentDate" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCompleteCal" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="txtDueDate" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel8" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDueDate" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDueCal" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel10" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="chkCompleted" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -104,16 +115,16 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="txtCurrentDate">
+    <Component class="javax.swing.JTextField" name="txtStartDate">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtCurrentDate.text"/>
-        <Property name="name" type="java.lang.String" value="txtCurrentDate" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="txtStartDate.text"/>
+        <Property name="name" type="java.lang.String" value="txtStartDate" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="lblDueDate">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel8.text"/>
-        <Property name="name" type="java.lang.String" value="jLabel8" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="lblDueDate.text"/>
+        <Property name="name" type="java.lang.String" value="lblDueDate" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDueDate">
@@ -125,15 +136,15 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDueDateActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="txtTaskTitle">
       <Properties>
-        <Property name="name" type="java.lang.String" value="jTextField3" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="txtTaskTitle" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9">
+    <Component class="javax.swing.JLabel" name="lblCompleteDate">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel9.text"/>
-        <Property name="name" type="java.lang.String" value="jLabel9" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="lblCompleteDate.text"/>
+        <Property name="name" type="java.lang.String" value="lblCompleteDate" noResource="true"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -146,11 +157,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="txaDescription">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="name" type="java.lang.String" value="jTextArea1" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="txaDescription" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -209,16 +220,31 @@
         <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
+    <Component class="javax.swing.JLabel" name="lblStartDate">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jLabel7.text"/>
-        <Property name="name" type="java.lang.String" value="jLabel7" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="lblStartDate.text"/>
+        <Property name="name" type="java.lang.String" value="lblStartDate" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="org.sourceforge.jcalendarbutton.JCalendarButton" name="btnDueCal">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="btnDueCal" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="jLabel4.text"/>
         <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="org.sourceforge.jcalendarbutton.JCalendarButton" name="btnStartCal">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="btnStartCal" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="org.sourceforge.jcalendarbutton.JCalendarButton" name="btnCompleteCal">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="btnCompleteCal" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

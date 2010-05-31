@@ -19,7 +19,7 @@ import java.awt.CardLayout;
  */
 public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface {
 
-    String activeCard = "Browse";
+    String activeCard = "Edit";
 
     /** Creates new form NewJPanel */
     public TaskMainPanel() {
@@ -41,19 +41,7 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
 
-        browsePanel.setName("taskBrowse"); // NOI18N
-
-        javax.swing.GroupLayout browsePanelLayout = new javax.swing.GroupLayout(browsePanel);
-        browsePanel.setLayout(browsePanelLayout);
-        browsePanelLayout.setHorizontalGroup(
-            browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        browsePanelLayout.setVerticalGroup(
-            browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
-        );
-
+        browsePanel.setName("browsePanel"); // NOI18N
         add(browsePanel, "Browse");
 
         editPanel.setName("editPanel"); // NOI18N
@@ -78,22 +66,30 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
     }
 
     public void clickNew() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Edit");
-        activeCard = "Edit";
+        editPanel.newTask();
+        editing();
     }
 
     public void clickSave() {
-        editPanel.save();
+        if (activeCard.equals("Edit") && editPanel.save()) {
+            browsing();
+        }
     }
 
     public void clickLoad() {
-        editing();
+       if (activeCard.equals("Browse")) {
+            int record = browsePanel.getSelectedRow();
+            if (record != 0) {
+                editing();
+                editPanel.load(record);
+            }
+        }
     }
 
     public void clickDelete() {
         if (activeCard.equals("Browse")) {
             browsePanel.delete();
+            browsePanel.loadTable();
         } else {
         }
     }
@@ -111,6 +107,7 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
     }
 
     public void switchTo() {
+        browsing();
     }
 
     public Boolean switchAway() {

@@ -161,13 +161,10 @@ public class MainView extends FrameView {
         deleteButton = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JToolBar.Separator();
-        editButton = new javax.swing.JToggleButton();
-        browseButton = new javax.swing.JToggleButton();
         mainTabbedPane = new javax.swing.JTabbedPane();
         internshipPanel1 = new cis406.internship.MainPanel();
         contactPanel1 = new cis406.contact.ContactPanel();
-        correspondence1 = new cis406.contact.CorrespondencePanel();
+        correspondencePanel1 = new cis406.correspondence.CorrespondencePanel();
         securityPanel1 = new cis406.security.SecurityPanel();
         myAccountPanel1 = new cis406.security.MyAccountPanel();
         taskMainPanel1 = new cis406.student.TaskMainPanel();
@@ -256,34 +253,6 @@ public class MainView extends FrameView {
         cancelButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mainToolBar.add(cancelButton);
 
-        jSeparator2.setName("jSeparator2"); // NOI18N
-        mainToolBar.add(jSeparator2);
-
-        editButton.setAction(actionMap.get("clickForm")); // NOI18N
-        activeViewButtonGroup.add(editButton);
-        editButton.setIcon(resourceMap.getIcon("editButton.icon")); // NOI18N
-        editButton.setText(resourceMap.getString("editButton.text")); // NOI18N
-        editButton.setActionCommand(resourceMap.getString("editButton.actionCommand")); // NOI18N
-        editButton.setFocusable(false);
-        editButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        editButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        editButton.setName("editButton"); // NOI18N
-        editButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        mainToolBar.add(editButton);
-
-        browseButton.setAction(actionMap.get("clickReport")); // NOI18N
-        activeViewButtonGroup.add(browseButton);
-        browseButton.setIcon(resourceMap.getIcon("browseButton.icon")); // NOI18N
-        browseButton.setSelected(true);
-        browseButton.setText(resourceMap.getString("browseButton.text")); // NOI18N
-        browseButton.setActionCommand(resourceMap.getString("browseButton.actionCommand")); // NOI18N
-        browseButton.setFocusable(false);
-        browseButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        browseButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        browseButton.setName("browseButton"); // NOI18N
-        browseButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        mainToolBar.add(browseButton);
-
         mainTabbedPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         mainTabbedPane.setName("jTabbedPane"); // NOI18N
         mainTabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -298,8 +267,8 @@ public class MainView extends FrameView {
         contactPanel1.setName("contactPanel1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("contactPanel1.TabConstraints.tabTitle"), contactPanel1); // NOI18N
 
-        correspondence1.setName("correspondence1"); // NOI18N
-        mainTabbedPane.addTab(resourceMap.getString("correspondence1.TabConstraints.tabTitle"), correspondence1); // NOI18N
+        correspondencePanel1.setName("correspondencePanel1"); // NOI18N
+        mainTabbedPane.addTab(resourceMap.getString("correspondencePanel1.TabConstraints.tabTitle"), correspondencePanel1); // NOI18N
 
         securityPanel1.setName("securityPanel1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("securityPanel1.TabConstraints.tabTitle"), securityPanel1); // NOI18N
@@ -317,18 +286,18 @@ public class MainView extends FrameView {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 959, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 939, Short.MAX_VALUE)
+                .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(mainToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -405,7 +374,7 @@ public class MainView extends FrameView {
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 763, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 789, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -516,13 +485,11 @@ public class MainView extends FrameView {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup activeViewButtonGroup;
     private javax.swing.JMenuItem backupMenuItem;
-    private javax.swing.JToggleButton browseButton;
     private javax.swing.JButton cancelButton;
     private cis406.contact.ContactPanel contactPanel1;
-    private cis406.contact.CorrespondencePanel correspondence1;
+    private cis406.correspondence.CorrespondencePanel correspondencePanel1;
     private javax.swing.JMenu databaseMenu;
     public javax.swing.JButton deleteButton;
-    private javax.swing.JToggleButton editButton;
     private cis406.internship.MainPanel internshipPanel1;
     private javax.swing.JMenuItem internshipSummaryMenuItem;
     private javax.swing.JDialog jDialog1;
@@ -530,7 +497,6 @@ public class MainView extends FrameView {
     private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JToolBar.Separator jSeparator2;
     public javax.swing.JButton loadButton;
     private javax.swing.JPanel mainPanel;
     private cis406.student.MainPanel mainPanel1;
