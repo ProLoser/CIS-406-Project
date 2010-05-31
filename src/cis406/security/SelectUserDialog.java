@@ -1,14 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * SelectUserDialog.java
- *
- * Created on May 6, 2010, 6:37:43 PM
- */
-
 package cis406.security;
 
 import cis406.Database;
@@ -16,10 +5,6 @@ import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.application.Action;
 
-/**
- *
- * @author qwerty
- */
 public class SelectUserDialog extends javax.swing.JDialog {
 
     /** Creates new form SelectUserDialog */

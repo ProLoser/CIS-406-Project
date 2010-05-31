@@ -1,29 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * UserLoginBox.java
- *
- * Created on May 13, 2010, 1:56:19 PM
- */
-
 package cis406.security;
 
-import cis406.ComboBoxModel;
-import java.lang.String;
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
-/**
- *
- * @author qwerty
- */
 public class FirstTimeUserBox extends javax.swing.JDialog {
 
     private static boolean result = false;
-    String username = "";
+    User user;
 
     /**
      * Creates new form UserLoginBox
@@ -32,7 +15,7 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.username = username;
+        user = new User(username);
 
         JOptionPane.showMessageDialog(null, "This is your first login, please choose a password and security question.");
     }
@@ -80,7 +63,7 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
         jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
         jLabel10.setName("jLabel10"); // NOI18N
 
-        ddlSecurityQuestions.setModel(new ComboBoxModel("question_key", "question"));
+        ddlSecurityQuestions.setModel(new cis406.ComboBoxModel("question_key", "question"));
         ddlSecurityQuestions.setName("ddlSecurityQuestions"); // NOI18N
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
@@ -149,33 +132,19 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
 
     @Action
     public void clickUpdate() {
-        // convert passwords character array to string
-        String firstPassword = "";
-        for (int i = 0; i < txtPassword1.getPassword().length; i++){
-            firstPassword += txtPassword1.getPassword()[i];
-        }
-        String secondPassword = "";
-        for (int i = 0; i < txtPassword2.getPassword().length; i++){
-            secondPassword += txtPassword2.getPassword()[i];
-        }
+        if (txtPassword1.getPassword().length > 0) {
+            if (user.setAndCheckPassword(txtPassword1.getPassword(), txtPassword2.getPassword())) {
+                user.setSecurityQuestionID(ddlSecurityQuestions.getSelectedItem().toString());
+                user.setSecurityAnswer(txtAnswer.getText());
+                user.firstLoginUpdate();
 
-        if (!firstPassword.equals("")) {
-            if (firstPassword.equals(secondPassword)){
-                if (User.checkPassword(txtPassword1.getPassword(), username)) {
-                    User user = new User();
-
-                    user.setPassword(txtPassword1.getPassword());
-                    user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
-                    user.setSecurityAnswer(txtAnswer.getText());
-                    user.newUserUpdate(username, txtAnswer.getText());
-
-                    result = true;
-                    this.dispose();
-                }
+                result = true;
+                this.dispose();
             }
-            else { JOptionPane.showMessageDialog(null, "The passwords you entered do not match."); }
         }
-        else { JOptionPane.showMessageDialog(null, "The must choose a new password."); }
+        else {
+            JOptionPane.showMessageDialog(null, "You must enter a password.");
+        }
     }
 
     /**

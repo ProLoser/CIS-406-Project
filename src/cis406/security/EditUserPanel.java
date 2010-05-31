@@ -1,156 +1,115 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * EditUserPanel.java
- *
- * Created on May 12, 2010, 2:46:18 PM
- */
-
 package cis406.security;
 
-import cis406.ComboBoxModel;
 import cis406.PanelInterface;
-import cis406.Database;
-import java.sql.ResultSet;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Raf
- */
 public class EditUserPanel extends javax.swing.JPanel implements PanelInterface {
+    User user;
 
     /** Creates new form EditUserPanel */
     public EditUserPanel() {
         initComponents();
 
         if (!(cboUsername.getItemCount() < 1)){
-            try {
-                ResultSet rs = Database.execute("select * from users where user_name = '" + cboUsername.getSelectedItem().toString()+ "'");
-                while (rs.next()) {
-                    txtFirstName.setText(rs.getString("first_name"));
-                    txtLastName.setText(rs.getString("last_name"));
-                    txtAnswer.setText(rs.getString("answer"));
-                    ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
-                    ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
+            user = new User(cboUsername.getSelectedItem().toString());
 
-                    // find user's security question and select it from the combo box
-                    ResultSet rsSecurityQuestion = Database.execute("select question from question_key where question_key_id = " + rs.getInt("question_key_id"));
-                    while (rsSecurityQuestion.next()) {
-                        HashMap questions = new HashMap();
+            txtFirstName.setText(user.getfName());
+            txtLastName.setText(user.getlName());
+            txtAnswer.setText(user.getSecurityAnswer());
+            ddlStatus.setSelectedIndex(user.getStatus());
+            ddlSecurityLevel.setSelectedIndex(user.getSecurityLevel());
 
-                        for (int i = 0; i < ddlSecurityQuestions.getItemCount(); i++) {
-                            questions.put(i, ddlSecurityQuestions.getItemAt(i).toString());
-                        }
-
-                        for (int i = 0; i < questions.size(); i++) {
-                            if (questions.get(i).equals(rsSecurityQuestion.getString("question"))) {
-                                ddlSecurityQuestions.setSelectedIndex(i);
-                            }
-                        }
-                    }
-
-                    
-                    if (ddlSecurityLevel.getSelectedIndex() == 0) {
-                        ddlStatus.setEnabled(false);
-                        ddlSecurityLevel.setEnabled(false);
-
-                        if (Integer.parseInt(cis406.MainApp.loginResult[2]) > 0) {
-                            txtPassword1.setEnabled(false);
-                            txtPassword2.setEnabled(false);
-                            txtFirstName.setEnabled(false);
-                            txtLastName.setEnabled(false);
-                            ddlSecurityQuestions.setEnabled(false);
-                            txtAnswer.setEnabled(false);
-                        }
-                    }
-                    else {
-                        ddlStatus.setEnabled(true);
-                        ddlSecurityLevel.setEnabled(true);
-                        txtPassword1.setEnabled(true);
-                        txtPassword2.setEnabled(true);
-                        txtFirstName.setEnabled(true);
-                        txtLastName.setEnabled(true);
-                        ddlSecurityQuestions.setEnabled(true);
-                        txtAnswer.setEnabled(true);
-                    }
+            // Go through every security question in
+            // combobox and select it if it matches the user's
+            for (int i = 0; i < ddlSecurityQuestions.getItemCount(); i++) {
+                if (ddlSecurityQuestions.getItemAt(i).toString().equals(user.getSecurityQuestion())) {
+                    ddlSecurityQuestions.setSelectedIndex(i);
                 }
-
-            } catch (Exception e) {
-                System.out.println("Could not execute query");
-                System.out.println(e.getMessage());
             }
+
+            setControlSecurity();
         }
     }
+
+    /**
+     * disables or enables text boxes and combo boxes
+     */
+    public void setControlSecurity() {
+        // If currently viewing an administrator
+        if (ddlSecurityLevel.getSelectedIndex() == 0) {
+            ddlStatus.setEnabled(false);
+            ddlSecurityLevel.setEnabled(false);
+
+            if (Integer.parseInt(cis406.MainApp.loginResult[2]) > 0) {
+                        txtPassword1.setEnabled(false);
+                        txtPassword2.setEnabled(false);
+                        txtFirstName.setEnabled(false);
+                        txtLastName.setEnabled(false);
+                        ddlSecurityQuestions.setEnabled(false);
+                        txtAnswer.setEnabled(false);
+            }
+        }
+        else {
+            ddlStatus.setEnabled(true);
+            ddlSecurityLevel.setEnabled(true);
+            txtPassword1.setEnabled(true);
+            txtPassword2.setEnabled(true);
+            txtFirstName.setEnabled(true);
+            txtLastName.setEnabled(true);
+            ddlSecurityQuestions.setEnabled(true);
+            txtAnswer.setEnabled(true);
+        }
+    }
+
     public void clickNew() {
         clickReset();
     }
 
     public void clickSave() {
-        // convert passwords character array to string
-        String firstPassword = "";
-        for (int i = 0; i < txtPassword1.getPassword().length; i++){
-            firstPassword += txtPassword1.getPassword()[i];
+        user = new User(cboUsername.getSelectedItem().toString());
+        user.setStatus(ddlStatus.getSelectedIndex());
+        user.setSecurityLevel(ddlSecurityLevel.getSelectedIndex());
+        user.setSecurityAnswer(txtAnswer.getText());
+        user.setSecurityQuestionID(ddlSecurityQuestions.getSelectedItem().toString());
+
+        if (!user.setfName(txtFirstName.getText())) {
+            JOptionPane.showMessageDialog(null, "Incorrect first name format.  Bad: 'bob' Good: 'Bob'");
+            return;
         }
-        String secondPassword = "";
-        for (int i = 0; i < txtPassword2.getPassword().length; i++){
-            secondPassword += txtPassword2.getPassword()[i];
+        if (!user.setlName(txtLastName.getText())) {
+            JOptionPane.showMessageDialog(null, "Incorrect last name format..  Bad: 'jones' Good: 'Jones'");
+            return;
         }
 
-        if (!firstPassword.isEmpty()) {
-            if (firstPassword.equals(secondPassword)){
-                if (User.checkPassword(txtPassword1.getPassword(), cboUsername.getSelectedItem().toString())) {
-                    User user = new User();
-
-                    user.setUsername(cboUsername.getSelectedItem().toString());
-                    user.setStatus(ddlStatus.getSelectedIndex());
-                    user.setSecurityLevel(ddlSecurityLevel.getSelectedIndex());
-                    user.setPassword(txtPassword1.getPassword());
-                    if (!user.setfName(txtFirstName.getText())) {
-                        JOptionPane.showMessageDialog(null, "Incorrect first name format.  Bad: 'bob' Good: 'Bob'");
-                        return;
-                    }
-                    if (!user.setlName(txtLastName.getText())) {
-                        JOptionPane.showMessageDialog(null, "Incorrect last name format..  Bad: 'jones' Good: 'Jones'");
-                        return;
-                    }
-                    user.setSecurityAnswer(txtAnswer.getText());
-                    user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
-
-                    user.updateUser();
-                }
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "The passwords you entered do not match.");
-            }
-        }
-        else {
-            User user = new User();
-
-            user.setUsername(cboUsername.getSelectedItem().toString());
-            user.setStatus(ddlStatus.getSelectedIndex());
-            user.setSecurityLevel(ddlSecurityLevel.getSelectedIndex());
-            if (!user.setfName(txtFirstName.getText())) {
-                JOptionPane.showMessageDialog(null, "Incorrect first name format.  Bad: 'bob' Good: 'Bob'");
+        if (txtPassword1.getPassword().length > 0) {
+            if (!(user.setAndCheckPassword(txtPassword1.getPassword(), txtPassword2.getPassword()))) {
                 return;
             }
-            if (!user.setlName(txtLastName.getText())) {
-                JOptionPane.showMessageDialog(null, "Incorrect last name format..  Bad: 'jones' Good: 'Jones'");
-                return;
-            }
-            user.setSecurityAnswer(txtAnswer.getText());
-            user.setSecurityQuestion(ddlSecurityQuestions.getSelectedItem().toString());
-
-            user.updateUser();
         }
+        user.updateUser();
+        cboUsername.setModel(new cis406.ComboBoxModel("users", "user_name"));
+        JOptionPane.showMessageDialog(null, "User saved successfully");
     }
 
     public void clickLoad() {
+        cboUsername.setModel(new cis406.ComboBoxModel("users", "user_name"));
 
+        user = new User(cboUsername.getSelectedItem().toString());
+        txtFirstName.setText(user.getfName());
+        txtLastName.setText(user.getlName());
+        txtAnswer.setText(user.getSecurityAnswer());
+        ddlStatus.setSelectedIndex(user.getStatus());
+        ddlSecurityLevel.setSelectedIndex(user.getSecurityLevel());
+
+        // Go through every security question in
+        // combobox and select it if it matches the user's
+        for (int i = 0; i < ddlSecurityQuestions.getItemCount(); i++) {
+            if (ddlSecurityQuestions.getItemAt(i).toString().equals(user.getSecurityQuestion())) {
+                ddlSecurityQuestions.setSelectedIndex(i);
+            }
+        }
+
+        setControlSecurity();
     }
 
     public void clickDelete() {
@@ -169,12 +128,19 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
         ddlSecurityQuestions.setSelectedIndex(0);
     }
 
+    public void clickBrowsing() {
+
+    }
+
+    public void clickEditing() {
+
+    }
+
     public void clickCancel() {
     }
 
     public void switchTo() {
-        cboUsername.setModel(new ComboBoxModel("users", "user_name"));
-
+        
     }
 
     public Boolean switchAway() {
@@ -234,7 +200,7 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
         usernameLabel.setText(resourceMap.getString("usernameLabel.text")); // NOI18N
         usernameLabel.setName("usernameLabel"); // NOI18N
 
-        ddlSecurityQuestions.setModel(new ComboBoxModel("question_key", "question"));
+        ddlSecurityQuestions.setModel(new cis406.ComboBoxModel("question_key", "question"));
         ddlSecurityQuestions.setName("ddlSecurityQuestions"); // NOI18N
 
         lblFirstName.setText(resourceMap.getString("lblFirstName.text")); // NOI18N
@@ -245,7 +211,7 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
 
         txtLastName.setName("txtLastName"); // NOI18N
 
-        cboUsername.setModel(new ComboBoxModel("users", "user_name"));
+        cboUsername.setModel(new cis406.ComboBoxModel("users", "user_name"));
         cboUsername.setName("cboUsername"); // NOI18N
         cboUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,35 +256,47 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ddlSecurityQuestions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(36, 36, 36)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblFirstName)
-                                            .addComponent(lblLastName))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtLastName)
-                                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(63, 63, 63))
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel3))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ddlSecurityLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ddlStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(44, 44, 44)
+                            .addComponent(usernameLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(cboUsername, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ddlSecurityQuestions, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(36, 36, 36)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(lblFirstName)
+                                                .addComponent(lblLastName))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtLastName)
+                                                .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGap(63, 63, 63))
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -328,40 +306,25 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(44, 44, 44)
-                            .addComponent(usernameLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cboUsername, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(24, 24, 24)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel3))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(ddlStatus, 0, 178, Short.MAX_VALUE)
-                                .addComponent(ddlSecurityLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(22, 22, 22))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usernameLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(ddlStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(ddlSecurityLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(ddlSecurityLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -393,7 +356,7 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(25, 25, 25))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -402,60 +365,23 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
     }//GEN-LAST:event_jLabel1ComponentHidden
 
     private void cboUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboUsernameActionPerformed
-        try {
-            ResultSet rs = Database.execute("select * from users where user_name = '" + cboUsername.getSelectedItem().toString()+ "'");
-            while (rs.next()) {
-                txtFirstName.setText(rs.getString("first_name"));
-                txtLastName.setText(rs.getString("last_name"));
-                txtAnswer.setText(rs.getString("answer"));
-                ddlStatus.setSelectedIndex(Integer.parseInt(rs.getString("status")));
-                ddlSecurityLevel.setSelectedIndex(Integer.parseInt(rs.getString("clearance")));
+        user = new User(cboUsername.getSelectedItem().toString());
 
-                // find user's security question and select it from the combo box
-                ResultSet rsSecurityQuestion = Database.execute("select question from question_key where question_key_id = " + rs.getInt("question_key_id"));
-                while (rsSecurityQuestion.next()) {
-                    HashMap questions = new HashMap();
+        txtFirstName.setText(user.getfName());
+        txtLastName.setText(user.getlName());
+        txtAnswer.setText(user.getSecurityAnswer());
+        ddlStatus.setSelectedIndex(user.getStatus());
+        ddlSecurityLevel.setSelectedIndex(user.getSecurityLevel());
 
-                    for (int i = 0; i < ddlSecurityQuestions.getItemCount(); i++) {
-                        questions.put(i, ddlSecurityQuestions.getItemAt(i).toString());
-                    }
-
-                    for (int i = 0; i < questions.size(); i++) {
-                        if (questions.get(i).equals(rsSecurityQuestion.getString("question"))) {
-                            ddlSecurityQuestions.setSelectedIndex(i);
-                        }
-                    }
-                }
-                
-                if (ddlSecurityLevel.getSelectedIndex() == 0) {
-                    ddlStatus.setEnabled(false);
-                    ddlSecurityLevel.setEnabled(false);
-
-                    if (Integer.parseInt(cis406.MainApp.loginResult[2]) > 0) {
-                        txtPassword1.setEnabled(false);
-                        txtPassword2.setEnabled(false);
-                        txtFirstName.setEnabled(false);
-                        txtLastName.setEnabled(false);
-                        ddlSecurityQuestions.setEnabled(false);
-                        txtAnswer.setEnabled(false);
-                    }
-                }
-                else {
-                    ddlStatus.setEnabled(true);
-                    ddlSecurityLevel.setEnabled(true);
-                    txtPassword1.setEnabled(true);
-                    txtPassword2.setEnabled(true);
-                    txtFirstName.setEnabled(true);
-                    txtLastName.setEnabled(true);
-                    ddlSecurityQuestions.setEnabled(true);
-                    txtAnswer.setEnabled(true);
-                }
+        // Go through every security question in
+        // combobox and select it if it matches the user's
+        for (int i = 0; i < ddlSecurityQuestions.getItemCount(); i++) {
+            if (ddlSecurityQuestions.getItemAt(i).toString().equals(user.getSecurityQuestion())) {
+                ddlSecurityQuestions.setSelectedIndex(i);
             }
-
-        } catch (Exception e) {
-            System.out.println("Could not execute query");
-            System.out.println(e.getMessage());
         }
+
+        setControlSecurity();
     }//GEN-LAST:event_cboUsernameActionPerformed
 
 

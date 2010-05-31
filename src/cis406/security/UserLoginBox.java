@@ -1,23 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * UserLoginBox.java
- *
- * Created on May 13, 2010, 1:56:19 PM
- */
-
 package cis406.security;
 
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
-/**
- *
- * @author qwerty
- */
 public class UserLoginBox extends javax.swing.JDialog {
 
     private static String[] result = new String[3];
@@ -139,7 +124,7 @@ public class UserLoginBox extends javax.swing.JDialog {
     public void clickLogin() {
         getInputs();
         if (User.login(userInfo[0], userInfo[1])) {
-            if (User.firstLogon(userInfo[0])) {
+            if (User.getFirstLogon(userInfo[0])) {
                 if (!(FirstTimeUserBox.updateNewUser(userInfo[0]))) {
                     return;
                 }
@@ -165,7 +150,7 @@ public class UserLoginBox extends javax.swing.JDialog {
 
         if (!username.isEmpty()) {
             if (User.exists(username)) {
-                if (!User.firstLogon(username)) {
+                if (!User.getFirstLogon(username)) {
                     if (RecoverPasswordBox.recoverPassword(username)) {
                         JOptionPane.showMessageDialog(null, "Your password has been changed successfully.");
 

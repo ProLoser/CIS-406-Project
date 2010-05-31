@@ -1,18 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cis406.security;
 
 import cis406.Database;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import java.util.regex.*;
 
-/**
- *
- * @author Raf
- */
 public class User {
 
     int securityLevel;
@@ -21,9 +12,11 @@ public class User {
     String password = "";
     String username;
     String security_answer = "";
+    String security_question = "";
     int question_id;
     int status;
     int id;
+    boolean firstLogon;
 
     public User(int securityLevel, String fName, String lName,
             String password, String username, int status) {
@@ -37,6 +30,34 @@ public class User {
     }
 
     public User() {
+
+    }
+
+    public User(String username) {
+        this.username = username;
+        try {
+            ResultSet rs = cis406.Database.execute("select * from users where user_name = '" + username + "'");
+            while (rs.next()) {
+                this.securityLevel = rs.getInt("clearance");
+                this.fName = rs.getString("first_name");
+                this.lName = rs.getString("last_name");
+                this.password = rs.getString("password");
+                this.status = rs.getInt("status");
+                this.question_id = rs.getInt("question_key_id");
+                this.security_answer = rs.getString("answer");
+
+                // convert 1 or 0 to boolean that represents if it would be their first logon
+                if (rs.getInt("has_logged_on") == 0) {
+                    firstLogon = true;
+                }
+
+                // set their security question
+                ResultSet question = cis406.Database.execute("select question from question_key where question_key_id = " + question_id);
+                while (question.next()) {
+                    security_question = question.getString("question");
+                }
+            }
+        } catch (Exception e) { System.out.println(e.getMessage()); };
     }
 
     // <editor-fold defaultstate="collapsed" desc="Getters and Setters">
@@ -96,10 +117,10 @@ public class User {
     }
 
     public String getSecurityQuestion() {
-        return security_answer;
+        return security_question;
     }
 
-    public void setSecurityQuestion(String question) {
+    public void setSecurityQuestionID(String question) {
         try {
             ResultSet rs = Database.execute("select question_key_id from question_key where question = '" + question + "'");
 
@@ -113,7 +134,7 @@ public class User {
         }
     }
 
-    public void setPassword(char[] password) {;
+    public void setPassword(char[] password) {
         String strPassword = "";
         for (int i = 0; i < password.length; i++){
             strPassword += password[i];
@@ -125,6 +146,62 @@ public class User {
             e.printStackTrace();
         }
         this.password = hash;
+    }
+
+    public boolean setAndCheckPassword(char[] password1, char[] password2) {
+        String strPassword1 = "";
+        for (int i = 0; i < password1.length; i++){
+            strPassword1 += password1[i];
+        }
+
+        String strPassword2 = "";
+        for (int i = 0; i < password2.length; i++){
+            strPassword2 += password2[i];
+        }
+
+        if (!(strPassword1.equals(strPassword2))) {
+            JOptionPane.showMessageDialog(null, "The passwords you entered do not match.");
+            return false;
+        }
+
+        
+        int requiredLength = cis406.MainApp.settings.getPassword_length();
+
+        // Make sure password meets requirements
+        String lowercase = "((?=.*[a-z]).{" + requiredLength + ",})";
+        String uppercase = "((?=.*[A-Z]).{" + requiredLength + ",})";
+        String numbers = "((?=.*\\d).{" + requiredLength + ",})";
+        String complexchars = "((?=.*[\\W]).{" + requiredLength + ",})";
+        Integer complexityCount = 0;
+
+        if (strPassword1.matches(lowercase)) { complexityCount++; }
+        if (strPassword1.matches(uppercase)) { complexityCount++; }
+        if (strPassword1.matches(numbers)) { complexityCount++; }
+        if (strPassword1.matches(complexchars)) { complexityCount++; }
+
+        if (complexityCount < 3)
+        {
+            JOptionPane.showMessageDialog(null, "Change your password, it doesn't meet CSU Pomona's password complexity requirements:\n\n" +
+                                                "Your password should contain 3 of the following: a lowercase letter, uppercase letter, number, or special character (@#$ etc).\n" +
+                                                "Your password should be at least " + requiredLength + " characters long.");
+            return false;
+        }
+
+        // fail if password equals username
+        if (strPassword1.equals(username)) {
+            JOptionPane.showMessageDialog(null, "Your password cannot match your username");
+            return false;
+        }
+        
+        String hash = byteArrayToHexString(computeHash(strPassword1));
+
+        if (password.equals(hash)) {
+            JOptionPane.showMessageDialog(null, "Your new password cannot be the same as your current password");
+            return false;
+        }
+
+        this.password = hash;
+        return true;
     }
 
     public void setSecurityLevel(int securityLevel) {
@@ -184,41 +261,19 @@ public class User {
      * information
      */
     public void updateUser() {
-        if (!password.isEmpty()) {
             Database.executeWrite("UPDATE users SET password = '"
                     + password + "', status = " + status + ", first_name = '" + fName
                     + "', last_name = '" + lName + "', clearance = " + securityLevel
                     + ", question_key_id = " + question_id + ", answer = '" + security_answer + "' WHERE user_name = '" + username + "'");
             SecurityLog.addEntry("Password and user information updated for " + username + ".");
-        }
-        else {
-            Database.executeWrite("UPDATE users SET status = " + status + ", first_name = '" + fName
+    }
+
+    public void firstLoginUpdate() {
+            Database.executeWrite("UPDATE users SET password = '"
+                    + password + "', status = " + status + ", first_name = '" + fName
                     + "', last_name = '" + lName + "', clearance = " + securityLevel
                     + ", question_key_id = " + question_id + ", answer = '" + security_answer + "' WHERE user_name = '" + username + "'");
-            SecurityLog.addEntry("User information updated for " + username + ".");
-        }
-    }
-
-    public void assistantUpdate() {
-        if (!password.isEmpty()) {
-            Database.executeWrite("UPDATE users SET password = '"
-                    + password + "', first_name = '" + fName
-                    + "', last_name = '" + lName + "', question_key_id = " + question_id
-                    + ", answer = '" + security_answer + "' WHERE user_name = '" + username + "'");
-            SecurityLog.addEntry("Password and user information updated for " + username + ".");
-        }
-        else {
-            Database.executeWrite("UPDATE users SET first_name = '" + fName
-                    + "', last_name = '" + lName + "', question_key_id = " + question_id
-                    + ", answer = '" + security_answer + "' WHERE user_name = '" + username + "'");
-            SecurityLog.addEntry("User information updated for " + username + ".");
-        }
-    }
-
-    public void newUserUpdate(String user_name, String answer) {
-        Database.executeWrite("UPDATE users SET password = '" + password
-                + "', question_key_id = " + question_id + ", answer = '"
-                + answer + "', has_logged_on = 1 WHERE user_name = '" + user_name + "'");
+            SecurityLog.firstLoginEntry(username);
     }
 
     /**
@@ -226,7 +281,7 @@ public class User {
      * @param username Username to check
      * @return Boolean that represents whether they have ever logged on
      */
-    public static boolean firstLogon(String username) {
+    public static boolean getFirstLogon(String username) {
         boolean firstLogon = false;
 
         if (exists(username)) {
@@ -258,9 +313,8 @@ public class User {
     public static boolean login(String username, String password) {
         String hash = "";
         Boolean result = false;
-        Settings settings = new Settings();
 
-        if (User.getFailedLogins(username) > settings.getLoginAttempts() - 1){
+        if (User.getFailedLogins(username) > cis406.MainApp.settings.getLoginAttempts() - 1){
             return false;
         }
 
@@ -303,9 +357,8 @@ public class User {
     }
 
     public static void failedLogin(String username){
-        Settings settings = new Settings();
         int failedLogins = getFailedLogins(username) + 1;
-        int allowedAttempts = settings.loginAttempts;
+        int allowedAttempts = cis406.MainApp.settings.loginAttempts;
 
         if (failedLogins < allowedAttempts){
         Database.executeWrite("update users set failed_logon_attempts = " + failedLogins + " where user_name = '" + username + "'");
@@ -400,8 +453,7 @@ public class User {
 
     public static boolean checkPassword(char[] password, String username) {
         boolean result = false;
-        Settings settings = new Settings();
-        int requiredLength = settings.getPassword_length();
+        int requiredLength = cis406.MainApp.settings.getPassword_length();
 
         // convert password character array to string
         String strPassword = "";
@@ -425,7 +477,7 @@ public class User {
         {
             JOptionPane.showMessageDialog(null, "Change your password, it doesn't meet CSU Pomona's password complexity requirements:\n\n" +
                                                 "Your password should contain 3 of the following: a lowercase letter, uppercase letter, number, or special character (@#$ etc).\n" +
-                                                "Your password should be at least " + settings.getPassword_length() + " characters long.");
+                                                "Your password should be at least " + requiredLength + " characters long.");
         }
         else if (!strPassword.equals(username)) {
             if (exists(username)) {
@@ -461,11 +513,16 @@ public class User {
         Database.executeWrite("update users set password = '" + password + "' where user_name = '" + username + "'");
     }
 
-    public static byte[] computeHash(String x) throws Exception {
+    public static byte[] computeHash(String x) {
         java.security.MessageDigest d = null;
-        d = java.security.MessageDigest.getInstance("SHA-1");
-        d.reset();
-        d.update(x.getBytes());
+
+        try{
+            d = java.security.MessageDigest.getInstance("SHA-1");
+            d.reset();
+            d.update(x.getBytes());
+        }
+        catch (Exception e) { System.out.println(e.getMessage()); }
+        
         return d.digest();
     }
 

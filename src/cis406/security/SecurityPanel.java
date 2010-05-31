@@ -1,22 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * SecurityPanel.java
- *
- * Created on May 17, 2010, 2:55:45 PM
- */
-
 package cis406.security;
 
 import cis406.PanelInterface;
 
-/**
- *
- * @author Raf
- */
 public class SecurityPanel extends javax.swing.JPanel implements PanelInterface {
 
     private int activeTabIndex;

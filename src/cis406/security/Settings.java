@@ -1,15 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cis406.security;
 
 import java.sql.ResultSet;
 
-/**
- *
- * @author elunoysolo
- */
 public class Settings {
 
     int password_length;

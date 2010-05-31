@@ -1,30 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * UserLoginBox.java
- *
- * Created on May 13, 2010, 1:56:19 PM
- */
-
 package cis406.security;
 
-import cis406.Database;
-import java.lang.String;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
-/**
- *
- * @author qwerty
- */
 public class RecoverPasswordBox extends javax.swing.JDialog {
 
     private static boolean result = false;
     String username = "";
+    User user;
 
     /**
      * Creates new form UserLoginBox
@@ -34,18 +17,9 @@ public class RecoverPasswordBox extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.username = username;
-        
+        user = new User(username);
 
-        try{
-            ResultSet rs = Database.execute("SELECT * FROM users INNER JOIN  question_key ON users.question_key_id=question_key.question_key_id WHERE 1=1  AND lower(user_name) = '" + username.toLowerCase() + "'");
-            
-            while (rs.next()){
-                System.out.println(rs.getString("question"));
-                lblQuestion.setText(rs.getString("question"));
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        lblQuestion.setText(user.getSecurityQuestion());
     }
 
     /** This method is called from within the constructor to
@@ -158,50 +132,21 @@ public class RecoverPasswordBox extends javax.swing.JDialog {
 
     @Action
     public void clickRecover() {
-        
-        // convert passwords character array to string
-        String firstPassword = "";
-        for (int i = 0; i < txtPassword1.getPassword().length; i++){
-            firstPassword += txtPassword1.getPassword()[i];
-        }
-        String secondPassword = "";
-        for (int i = 0; i < txtPassword2.getPassword().length; i++){
-            secondPassword += txtPassword2.getPassword()[i];
-        }
-
-        if (!firstPassword.equals("")) {
-            if (firstPassword.equals(secondPassword)){
-                if (User.checkPassword(txtPassword1.getPassword(), username)) {
-                    try{
-                        ResultSet rs = Database.execute("select answer from users where user_name = '" + username + "'");
-
-                        while (rs.next()){
-                            if (txtAnswer.getText().toLowerCase().equals(rs.getString("answer").toLowerCase())) {
-                                User user = new User();
-
-                                user.setPassword(txtPassword1.getPassword());
-                                user.setUsername(username);
-                                user.recoverPassword();
-                                User.resetFailedLogons(username);
-                                result = true;
-
-                                this.dispose();
-                            }
-                            else {
-                                JOptionPane.showMessageDialog(null, "Your answer doesn't match match the one you used when you setup the question.");
-                            }
-                        }
-                    } catch (Exception ex) {
-                        System.out.println(ex.getMessage());
-                    }
+        if (txtAnswer.getText().toLowerCase().equals(user.getSecurityAnswer())) {
+            if (txtPassword1.getPassword().length > 0) {
+                if (user.setAndCheckPassword(txtPassword1.getPassword(), txtPassword2.getPassword())) {
+                    User.resetFailedLogons(username);
+                    user.updateUser();
+                    result = true;
+                    this.dispose();
                 }
             }
             else {
-                JOptionPane.showMessageDialog(null, "Your two passwords don't match.");
+                JOptionPane.showMessageDialog(null, "You must enter a password.");
             }
         }
         else {
-            JOptionPane.showMessageDialog(null, "You must enter a new password");
+            JOptionPane.showMessageDialog(null, "Your answer doesn't match match the one you used when you setup the question.");
         }
     }
 

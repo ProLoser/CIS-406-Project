@@ -1,23 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * UserTab.java
- *
- * Created on May 3, 2010, 3:15:24 PM
- */
-
 package cis406.security;
 
 import cis406.PanelInterface;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author OK Computer
- */
 public class NewUserPanel extends javax.swing.JPanel implements PanelInterface{
 
     /** Creates new form UserTab */

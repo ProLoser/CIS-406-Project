@@ -1,20 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * SystemSettingsPanel.java
- *
- * Created on May 6, 2010, 7:40:42 PM
- */
 package cis406.security;
 
 import cis406.PanelInterface;
 import cis406.TableModel;
 import cis406.ComboBoxModel;
 import cis406.TableColumnAdjuster;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -25,10 +14,6 @@ import java.awt.print.PrinterJob;
 import java.sql.ResultSet;
 import org.jdesktop.application.Action;
 
-/**
- *
- * @author qwerty
- */
 public class SecurityLogPanel extends javax.swing.JPanel implements PanelInterface, Printable {
 
     /** Creates new form SystemSettingsPanel */
