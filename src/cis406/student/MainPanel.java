@@ -71,7 +71,7 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
     }
 
     public void clickReset() {
-    if (activeCard.equals("Edit")) {
+        if (activeCard.equals("Edit")) {
             editPanel.reset();
         } else {
             browsePanel.loadTable();
@@ -79,14 +79,14 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
     }
 
     public void clickDelete() {
-          if (activeCard.equals("Browse")) {
+        if (activeCard.equals("Browse")) {
             browsePanel.delete();
         } else {
         }
     }
 
     public void clickLoad() {
-if (activeCard.equals("Browse")) {
+        if (activeCard.equals("Browse")) {
             int record = browsePanel.getSelectedRow();
             if (record != 0) {
                 editing();
@@ -111,6 +111,6 @@ if (activeCard.equals("Browse")) {
     }
 
     public void switchTo() {
-            browsing();
+        browsing();
     }
 }

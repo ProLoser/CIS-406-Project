@@ -11,6 +11,10 @@
 
 package cis406.student;
 
+import java.awt.Color;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Owner
@@ -31,13 +35,13 @@ public class TaskEditPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCurrentDate = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        txtStartDate = new javax.swing.JTextField();
+        lblDueDate = new javax.swing.JLabel();
         txtDueDate = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        txtTaskTitle = new javax.swing.JTextField();
+        lblCompleteDate = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txaDescription = new javax.swing.JTextArea();
         txtCompleteDate = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -46,17 +50,20 @@ public class TaskEditPanel extends javax.swing.JPanel {
         chkCompleted = new javax.swing.JCheckBox();
         txtContactName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblStartDate = new javax.swing.JLabel();
+        btnDueCal = new org.sourceforge.jcalendarbutton.JCalendarButton();
         jLabel4 = new javax.swing.JLabel();
+        btnStartCal = new org.sourceforge.jcalendarbutton.JCalendarButton();
+        btnCompleteCal = new org.sourceforge.jcalendarbutton.JCalendarButton();
 
         setName("Form"); // NOI18N
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(TaskEditPanel.class);
-        txtCurrentDate.setText(resourceMap.getString("txtCurrentDate.text")); // NOI18N
-        txtCurrentDate.setName("txtCurrentDate"); // NOI18N
+        txtStartDate.setText(resourceMap.getString("txtStartDate.text")); // NOI18N
+        txtStartDate.setName("txtStartDate"); // NOI18N
 
-        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
-        jLabel8.setName("jLabel8"); // NOI18N
+        lblDueDate.setText(resourceMap.getString("lblDueDate.text")); // NOI18N
+        lblDueDate.setName("lblDueDate"); // NOI18N
 
         txtDueDate.setText(resourceMap.getString("txtDueDate.text")); // NOI18N
         txtDueDate.setName("txtDueDate"); // NOI18N
@@ -66,17 +73,17 @@ public class TaskEditPanel extends javax.swing.JPanel {
             }
         });
 
-        jTextField3.setName("jTextField3"); // NOI18N
+        txtTaskTitle.setName("txtTaskTitle"); // NOI18N
 
-        jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
-        jLabel9.setName("jLabel9"); // NOI18N
+        lblCompleteDate.setText(resourceMap.getString("lblCompleteDate.text")); // NOI18N
+        lblCompleteDate.setName("lblCompleteDate"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setName("jTextArea1"); // NOI18N
-        jScrollPane1.setViewportView(jTextArea1);
+        txaDescription.setColumns(20);
+        txaDescription.setRows(5);
+        txaDescription.setName("txaDescription"); // NOI18N
+        jScrollPane1.setViewportView(txaDescription);
 
         txtCompleteDate.setText(resourceMap.getString("txtCompleteDate.text")); // NOI18N
         txtCompleteDate.setName("txtCompleteDate"); // NOI18N
@@ -100,11 +107,17 @@ public class TaskEditPanel extends javax.swing.JPanel {
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
-        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
-        jLabel7.setName("jLabel7"); // NOI18N
+        lblStartDate.setText(resourceMap.getString("lblStartDate.text")); // NOI18N
+        lblStartDate.setName("lblStartDate"); // NOI18N
+
+        btnDueCal.setName("btnDueCal"); // NOI18N
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
+
+        btnStartCal.setName("btnStartCal"); // NOI18N
+
+        btnCompleteCal.setName("btnCompleteCal"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -117,33 +130,40 @@ public class TaskEditPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblStartDate)
+                    .addComponent(lblDueDate))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCurrentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDueCal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnStartCal, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
+                                .addComponent(lblCompleteDate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCompleteDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCompleteDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCompleteCal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(chkCompleted)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel10))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cboTaskCategory, 0, 0, Short.MAX_VALUE)
-                        .addComponent(txtContactName)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                    .addComponent(cboTaskCategory, 0, 0, Short.MAX_VALUE)
+                    .addComponent(txtContactName)
+                    .addComponent(txtTaskTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCompleteDate, txtCurrentDate, txtDueDate});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCompleteDate, txtDueDate, txtStartDate});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,27 +179,30 @@ public class TaskEditPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTaskTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9)
+                    .addComponent(lblStartDate)
+                    .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStartCal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCompleteDate)
                     .addComponent(txtCompleteDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCurrentDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCompleteCal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txtDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
+                    .addComponent(lblDueDate)
+                    .addComponent(btnDueCal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(chkCompleted))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCompleteDate, txtCurrentDate, txtDueDate});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCompleteDate, txtDueDate, txtStartDate});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -189,6 +212,9 @@ public class TaskEditPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.sourceforge.jcalendarbutton.JCalendarButton btnCompleteCal;
+    private org.sourceforge.jcalendarbutton.JCalendarButton btnDueCal;
+    private org.sourceforge.jcalendarbutton.JCalendarButton btnStartCal;
     private javax.swing.JComboBox cboTaskCategory;
     private javax.swing.JCheckBox chkCompleted;
     private javax.swing.JLabel jLabel1;
@@ -196,26 +222,73 @@ public class TaskEditPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblCompleteDate;
+    private javax.swing.JLabel lblDueDate;
+    private javax.swing.JLabel lblStartDate;
+    private javax.swing.JTextArea txaDescription;
     private javax.swing.JTextField txtCompleteDate;
     private javax.swing.JTextField txtContactName;
-    private javax.swing.JTextField txtCurrentDate;
     private javax.swing.JTextField txtDueDate;
+    private javax.swing.JTextField txtStartDate;
+    private javax.swing.JTextField txtTaskTitle;
     // End of variables declaration//GEN-END:variables
 private int id;
 private int category;
 private String name;
 private String taskTitle;
-private String task;
-    public void save(){
+private String description;
+private Date startDate;
+private Date completeDate;
+private Date dueDate;
+private int complete;
+private Task newTask = new Task();
 
+public void newTask() {
+        newTask = new Task();
+        
     }
 
+    public Boolean save() {
+        Boolean success = true;
+        newTask.category = cboTaskCategory.getSelectedIndex();
+        newTask.description = txaDescription.getText();
+        newTask.taskTitle = txtTaskTitle.getText();
+        newTask.name = txtContactName.getText();
+        newTask.setCompleted(chkCompleted.isSelected());
+        /*if (!newTask.setEnterDate(txtStartDate.getText())) {
+            lblStartDate.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblStartDate.setForeground(Color.BLACK);
+        }
+        if (!newTask.setDueDate(txtDueDate.getText())) {
+            lblDueDate.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblDueDate.setForeground(Color.BLACK);
+        }
+        if (!newTask.setCompletionDate(txtCompleteDate.getText())) {
+            lblCompleteDate.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblCompleteDate.setForeground(Color.BLACK);
+        }
+        */
+        
+        if (!success) {
+            JOptionPane.showMessageDialog(null, "Please check the data for errors");
+            success = false;
+            return success;
+        }else{
+            newTask.save();
+            return success;
+        }
+    }
+
+    public void load(int id) {
+
+    }
         public void reset() {
       
     }

@@ -78,17 +78,24 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
     }
 
     public void clickNew() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Edit");
-        activeCard = "Edit";
+        editPanel.newTask();
+        editing();
     }
 
     public void clickSave() {
-        editPanel.save();
+        if (activeCard.equals("Edit") && editPanel.save()) {
+            browsing();
+        }
     }
 
     public void clickLoad() {
-        editing();
+       if (activeCard.equals("Browse")) {
+            int record = browsePanel.getSelectedRow();
+            if (record != 0) {
+                editing();
+                editPanel.load(record);
+            }
+        }
     }
 
     public void clickDelete() {

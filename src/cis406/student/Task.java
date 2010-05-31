@@ -87,12 +87,12 @@ public class Task {
         java.sql.Date sqlCompleteDate;
         Database db = new Database("task");
         db.addField("description", description);
-        sqlStartDate = new java.sql.Date(enterDate.getTime());
-        db.addField("start_date", sqlStartDate);
-        sqlDueDate = new java.sql.Date(dueDate.getTime());
-        db.addField("due_date", sqlDueDate);
-        sqlCompleteDate = new java.sql.Date(completeDate.getTime());
-        db.addField("complete_date", sqlCompleteDate);
+        //sqlStartDate = new java.sql.Date(enterDate.getTime());
+        //db.addField("start_date", sqlStartDate);
+        //sqlDueDate = new java.sql.Date(dueDate.getTime());
+        //db.addField("due_date", sqlDueDate);
+        //sqlCompleteDate = new java.sql.Date(completeDate.getTime());
+        //db.addField("complete_date", sqlCompleteDate);
         db.addField("task_title", taskTitle);
         db.addField("t_name", name);
         db.addField("completed", completed);
@@ -124,15 +124,15 @@ public class Task {
     }
 
     static public TableModel generateTable() {
-        Database db = new Database("student");
+        Database db = new Database("task");
         TableModel table = null;
         Vector<String> fields = new Vector<String>();
 
         fields.add("task_category AS TaskCategory");
         fields.add("task_title AS TaskTitle");
         fields.add("t_name AS Name");
-        fields.add("due_date AS DueDate");
-        fields.add("start_date AS StartDate");
+        //fields.add("due_date AS DueDate");
+        //fields.add("start_date AS StartDate");
         try {
             // Generate the table from the query
             table = new TableModel(db.select(fields));

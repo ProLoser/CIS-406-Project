@@ -8,7 +8,6 @@
  *
  * Created on May 18, 2010, 10:57:17 AM
  */
-
 package cis406.student;
 
 import cis406.TableModel;
@@ -24,6 +23,7 @@ public class TaskBrowsePanel extends javax.swing.JPanel {
     /** Creates new form TaskReportPanel */
     public TaskBrowsePanel() {
         initComponents();
+        loadTable();
     }
 
     /** This method is called from within the constructor to
@@ -44,14 +44,16 @@ public class TaskBrowsePanel extends javax.swing.JPanel {
 
         reportTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
         reportTable.setName("reportTable"); // NOI18N
-        reportTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(reportTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -65,26 +67,26 @@ public class TaskBrowsePanel extends javax.swing.JPanel {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable reportTable;
     // End of variables declaration//GEN-END:variables
 
-       public void loadTable() {
-        reportTable.setModel(Internship.generateTable());
+    public void loadTable() {
+        reportTable.setModel(Task.generateTable());
     }
-       public void delete() {
+
+    public void delete() {
         int rowId = getSelectedRow();
         if (Internship.delete(rowId)) {
-            JOptionPane.showMessageDialog(null, "Internship #" + rowId + " was deleted");
+            JOptionPane.showMessageDialog(null, "Task #" + rowId + " was deleted");
             loadTable();
         } else {
-            JOptionPane.showMessageDialog(null, "Internship #" + rowId + " could not be found");
+            JOptionPane.showMessageDialog(null, "Task #" + rowId + " could not be found");
         }
     }
-       public int getSelectedRow() {
+
+    public int getSelectedRow() {
         int row = reportTable.getSelectedRow();
         if (row != -1) {
             return ((TableModel) reportTable.getModel()).getRowId(row);
