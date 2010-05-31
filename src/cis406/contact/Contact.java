@@ -208,10 +208,10 @@ public class Contact {
      */
     public static Boolean delete(int id) {
         Boolean success = false;
-        if (Database.delete("internship", id) > 0) {
+        if (Database.delete("contact", id) > 0) {
             success = true;
         } else {
-            System.out.println("The internship could not be found");
+            System.out.println("The contact could not be found");
         }
 
         return success;

@@ -8,12 +8,12 @@ import java.sql.ResultSet;
  *
  * @author Mark Lenser
  */
-public class ContactEditPanel extends javax.swing.JPanel {
+public class EditPanel extends javax.swing.JPanel {
 
     Contact record = null;
 
     /** Creates new form AddContact */
-    public ContactEditPanel() {
+    public EditPanel() {
         initComponents();
         //division();
     }
@@ -68,7 +68,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
         setName("Form"); // NOI18N
         setPreferredSize(new java.awt.Dimension(681, 400));
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(ContactEditPanel.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(EditPanel.class);
         lblCompanyTitle.setFont(resourceMap.getFont("lblCompanyTitle.font")); // NOI18N
         lblCompanyTitle.setText(resourceMap.getString("lblCompanyTitle.text")); // NOI18N
         lblCompanyTitle.setName("lblCompanyTitle"); // NOI18N

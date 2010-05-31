@@ -9,12 +9,12 @@ import cis406.contact.Contact;
  *
  * @author Mark Lenser
  */
-public class CorrespondenceEditPanel extends javax.swing.JPanel {
+public class EditPanel extends javax.swing.JPanel {
 
     Correspondence record = null;
 
-    /** Creates new form CorrespondenceEditPanel */
-    public CorrespondenceEditPanel() {
+    /** Creates new form EditPanel */
+    public EditPanel() {
         initComponents();
         txtDate.setText(DateUtils.now());
     }
@@ -46,7 +46,7 @@ public class CorrespondenceEditPanel extends javax.swing.JPanel {
         cboType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Face to Face", "Email", "Phone", "Letter" }));
         cboType.setName("cboType"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(CorrespondenceEditPanel.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(EditPanel.class);
         lblType.setText(resourceMap.getString("lblType.text")); // NOI18N
         lblType.setName("lblType"); // NOI18N
 

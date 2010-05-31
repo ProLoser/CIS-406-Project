@@ -7,10 +7,10 @@ import javax.swing.JOptionPane;
  *
  * @author Mark Lenser
  */
-public class ContactBrowsePanel extends javax.swing.JPanel {
+public class BrowsePanel extends javax.swing.JPanel {
 
     /** Creates new form AddContact */
-    public ContactBrowsePanel() {
+    public BrowsePanel() {
         initComponents();
         //loadTable();
     }
