@@ -31,10 +31,10 @@ public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
         setLayout(new java.awt.CardLayout());
 
         contactBrowsePanel1.setName("contactBrowsePanel1"); // NOI18N
-        add(contactBrowsePanel1, "card2");
+        add(contactBrowsePanel1, "Browse");
 
         contactEditPanel1.setName("contactEditPanel1"); // NOI18N
-        add(contactEditPanel1, "card3");
+        add(contactEditPanel1, "Edit");
     }// </editor-fold>//GEN-END:initComponents
 
 
