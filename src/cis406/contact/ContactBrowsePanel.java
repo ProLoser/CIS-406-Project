@@ -12,7 +12,7 @@ public class ContactBrowsePanel extends javax.swing.JPanel {
     /** Creates new form AddContact */
     public ContactBrowsePanel() {
         initComponents();
-        loadTable();
+        //loadTable();
     }
 
     /** This method is called from within the constructor to

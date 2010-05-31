@@ -11,7 +11,6 @@
 package cis406.student;
 
 import cis406.*;
-import cis406.PanelInterface;
 import java.awt.CardLayout;
 
 /**
@@ -36,17 +35,17 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        editPanel = new cis406.student.EditPanel();
         browsePanel = new cis406.student.BrowsePanel();
+        editPanel = new cis406.student.EditPanel();
 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
 
-        editPanel.setName("editPanel"); // NOI18N
-        add(editPanel, "Edit");
-
         browsePanel.setName("browsePanel"); // NOI18N
         add(browsePanel, "Browse");
+
+        editPanel.setName("editPanel"); // NOI18N
+        add(editPanel, "Edit");
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private cis406.student.BrowsePanel browsePanel;

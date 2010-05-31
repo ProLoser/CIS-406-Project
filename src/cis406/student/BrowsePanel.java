@@ -23,7 +23,7 @@ public class BrowsePanel extends javax.swing.JPanel {
     /** Creates new form StudentBrowsePanel */
     public BrowsePanel() {
         initComponents();
-         loadTable();
+        //loadTable();
     }
 
     /** This method is called from within the constructor to

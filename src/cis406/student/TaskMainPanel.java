@@ -42,7 +42,7 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
         setLayout(new java.awt.CardLayout());
 
         browsePanel.setName("browsePanel"); // NOI18N
-        add(browsePanel, "card3");
+        add(browsePanel, "Browse");
 
         editPanel.setName("editPanel"); // NOI18N
         add(editPanel, "Edit");

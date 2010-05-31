@@ -6,7 +6,7 @@ import java.awt.CardLayout;
  *
  * @author Mark Lenser
  */
-public class ContactPanel extends javax.swing.JPanel {
+public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
 
     String activeCard = "Browse";
 
@@ -91,4 +91,9 @@ public class ContactPanel extends javax.swing.JPanel {
     public void switchTo() {
         browsing();
     }
+
+    public Boolean switchAway() {
+        return true;
+    }
+
 }

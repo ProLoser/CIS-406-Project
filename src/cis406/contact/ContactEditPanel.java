@@ -15,7 +15,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
     /** Creates new form AddContact */
     public ContactEditPanel() {
         initComponents();
-        division();
+        //division();
     }
 
     /** This method is called from within the constructor to
