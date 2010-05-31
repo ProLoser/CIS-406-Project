@@ -146,7 +146,6 @@ public class EditPanel extends javax.swing.JPanel {
         record.setNotes(txaNotes.getText());
         record.save();
 
-        //CorrespondencePanel.rePopulate();
         return success;
     }
     public void load(int id) {
@@ -155,7 +154,6 @@ public class EditPanel extends javax.swing.JPanel {
         cboType.setSelectedItem(data.getType());
         txtDate.setText(data.getDate());
         txaNotes.setText(data.getNotes());
-        //attachmentField.setText(data.getAttachment());
     }
     public void clickDelete() {
     }
