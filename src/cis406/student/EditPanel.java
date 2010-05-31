@@ -42,7 +42,6 @@ public class EditPanel extends javax.swing.JPanel {
         txtBroncoNum = new javax.swing.JTextField();
         txtFName = new javax.swing.JTextField();
         txtLName = new javax.swing.JTextField();
-        txtPhone = new javax.swing.JFormattedTextField();
         txtEmail = new javax.swing.JTextField();
         cboMajor = new javax.swing.JComboBox();
         cboMinor = new javax.swing.JComboBox();
@@ -84,6 +83,12 @@ public class EditPanel extends javax.swing.JPanel {
         lblPostedDate = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         chkGraduated = new javax.swing.JCheckBox();
+        txtPhoneFirst = new javax.swing.JFormattedTextField();
+        txtPhoneDash = new javax.swing.JLabel();
+        txtPhoneArea = new javax.swing.JFormattedTextField();
+        lblPhoneRightParenthesis = new javax.swing.JLabel();
+        txtPhoneLast = new javax.swing.JFormattedTextField();
+        txtPhoneLeftParenthesis = new javax.swing.JLabel();
 
         setName("Form"); // NOI18N
 
@@ -95,10 +100,6 @@ public class EditPanel extends javax.swing.JPanel {
         txtFName.setNextFocusableComponent(txtLName);
 
         txtLName.setName("txtLName"); // NOI18N
-        txtLName.setNextFocusableComponent(txtPhone);
-
-        txtPhone.setName("txtPhone"); // NOI18N
-        txtPhone.setNextFocusableComponent(txtEmail);
 
         txtEmail.setName("txtEmail"); // NOI18N
         txtEmail.setNextFocusableComponent(txaInterests);
@@ -245,14 +246,29 @@ public class EditPanel extends javax.swing.JPanel {
         chkGraduated.setText(resourceMap.getString("chkGraduated.text")); // NOI18N
         chkGraduated.setName("chkGraduated"); // NOI18N
 
+        txtPhoneFirst.setName("txtPhoneFirst"); // NOI18N
+
+        txtPhoneDash.setText(resourceMap.getString("txtPhoneDash.text")); // NOI18N
+        txtPhoneDash.setName("txtPhoneDash"); // NOI18N
+
+        txtPhoneArea.setName("txtPhoneArea"); // NOI18N
+
+        lblPhoneRightParenthesis.setText(resourceMap.getString("lblPhoneRightParenthesis.text")); // NOI18N
+        lblPhoneRightParenthesis.setName("lblPhoneRightParenthesis"); // NOI18N
+
+        txtPhoneLast.setName("txtPhoneLast"); // NOI18N
+
+        txtPhoneLeftParenthesis.setText(resourceMap.getString("txtPhoneLeftParenthesis.text")); // NOI18N
+        txtPhoneLeftParenthesis.setName("txtPhoneLeftParenthesis"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblBronco)
                             .addComponent(lblLName)
@@ -262,20 +278,34 @@ public class EditPanel extends javax.swing.JPanel {
                             .addComponent(txtLName)
                             .addComponent(txtFName)
                             .addComponent(txtBroncoNum, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPhone)
                             .addComponent(lblEmail)
                             .addComponent(jLabel14))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel13))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPhoneLeftParenthesis)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel13))
-                            .addComponent(txtPhone))))
-                .addGap(80, 80, 80)
+                                .addComponent(txtPhoneArea, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPhoneRightParenthesis)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPhoneFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPhoneDash)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPhoneLast, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnInternship)
                     .addGroup(layout.createSequentialGroup()
@@ -363,8 +393,13 @@ public class EditPanel extends javax.swing.JPanel {
                             .addComponent(lblLName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPhoneLeftParenthesis)
+                            .addComponent(txtPhoneArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPhoneRightParenthesis)
+                            .addComponent(txtPhoneFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPhoneDash)
+                            .addComponent(txtPhoneLast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -436,6 +471,7 @@ public class EditPanel extends javax.swing.JPanel {
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_txtEmailActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInternship;
     private javax.swing.JComboBox cboGradYr;
@@ -474,6 +510,7 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblFName;
     private javax.swing.JLabel lblLName;
     private javax.swing.JLabel lblPhone;
+    private javax.swing.JLabel lblPhoneRightParenthesis;
     private javax.swing.JLabel lblPostedDate;
     private javax.swing.JTextArea txaInterests;
     private javax.swing.JTextField txtBroncoNum;
@@ -481,7 +518,11 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtFName;
     private javax.swing.JTextField txtLName;
     private javax.swing.JTextField txtLastCis;
-    private javax.swing.JFormattedTextField txtPhone;
+    private javax.swing.JFormattedTextField txtPhoneArea;
+    private javax.swing.JLabel txtPhoneDash;
+    private javax.swing.JFormattedTextField txtPhoneFirst;
+    private javax.swing.JFormattedTextField txtPhoneLast;
+    private javax.swing.JLabel txtPhoneLeftParenthesis;
     // End of variables declaration//GEN-END:variables
     private String fName;
     private String lName;
@@ -506,7 +547,7 @@ public class EditPanel extends javax.swing.JPanel {
     private Boolean chkIwdsa;
     private Boolean chkOther;
     private Boolean chkRelocateTst;
-    Student newStudent = null;
+    Student newStudent = new Student();
     HashMap fields = new HashMap();
     private String lastUpdate;
     Date now = new Date();
@@ -531,14 +572,14 @@ public class EditPanel extends javax.swing.JPanel {
         newStudent.lastName = (txtLName.getText());
         newStudent.firstName = txtFName.getText();
         newStudent.email = txtEmail.getText();
-        newStudent.phone = txtPhone.getText();
+        newStudent.phone = txtPhoneFirst.getText();
         newStudent.gradeLevel = cboStanding.getSelectedIndex();
         newStudent.updateDate = now;
         newStudent.interests = txaInterests.getText();
         newStudent.major = ((cis406.ComboItem) cboMajor.getSelectedItem()).id;
         newStudent.minor = ((cis406.ComboItem) cboMinor.getSelectedItem()).id;
-        newStudent.gradQtr = ((cis406.ComboItem) cboQuarter.getSelectedItem()).id;
-        newStudent.gradYr = ((cis406.ComboItem) cboGradYr.getSelectedItem()).id;
+        newStudent.gradQtr = cboQuarter.getSelectedIndex();
+        newStudent.gradYr = cboGradYr.getSelectedIndex();
         newStudent.lastCISCourse = txtLastCis.getText();
         newStudent.setRelocate(chkRelocate.isSelected());
         newStudent.setClubMissa(chkMISSA.isSelected());
@@ -564,14 +605,16 @@ public class EditPanel extends javax.swing.JPanel {
         txtLName.setText(data.getLastName());
         txtFName.setText(data.getFirstName());
         txtEmail.setText(data.getEmail());
-        txtPhone.setText(data.getPhone());
-        cboStanding.setSelectedItem(data.getGradeLevel());
+        txtPhoneArea.setText(data.getPhone().toString().substring(0, 3));
+        txtPhoneFirst.setText(data.getPhone().toString().substring(3, 6));
+        txtPhoneLast.setText(data.getPhone().toString().substring(6));
+        cboStanding.setSelectedIndex(data.getGradeLevel());
         lblPostedDate.setText(data.getUpdateDate());
         txaInterests.setText(data.interests);
         ((ComboBoxModel)cboMajor.getModel()).setSelectedId(data.getMajor());
         ((ComboBoxModel)cboMinor.getModel()).setSelectedId(data.getMinor());
-        cboQuarter.setSelectedItem(data.getGradQtr());
-        cboGradYr.setSelectedItem(data.getGradYr());
+        cboQuarter.setSelectedIndex(data.getGradQtr());
+        cboGradYr.setSelectedIndex(data.getGradYr());
         txtLastCis.setText(data.getLastCISCourse());
 
         if (data.getRelocate() ==1){
@@ -599,22 +642,23 @@ public class EditPanel extends javax.swing.JPanel {
         }
 
         if (data.getClubSwift() ==1){
-            chkSWIFT.setSelected(false);
+            chkSWIFT.setSelected(true);
         }else{
             chkSWIFT.setSelected(false);
         }
 
         if (data.getClubOther() ==1){
-            chkOtherClub.setSelected(false);
+            chkOtherClub.setSelected(true);
         }else{
             chkOtherClub.setSelected(false);
         }
 
         if (data.getGraduated() ==1){
-            chkGraduated.setSelected(false);
+            chkGraduated.setSelected(true);
         }else{
             chkGraduated.setSelected(false);
         }
+        newStudent = data;
     }
 
     public void reset() {
@@ -622,7 +666,9 @@ public class EditPanel extends javax.swing.JPanel {
         txtLName.setText("");
         txtFName.setText("");
         txtEmail.setText("");
-        txtPhone.setText("");
+        txtPhoneArea.setText("");
+        txtPhoneFirst.setText("");
+        txtPhoneLast.setText("");
         cboStanding.setSelectedIndex(0);
         txaInterests.getText();
         cboMajor.setSelectedIndex(0);
@@ -636,6 +682,7 @@ public class EditPanel extends javax.swing.JPanel {
         chkSWIFT.setSelected(false);
         chkOtherClub.setSelected(false);
         chkGraduated.setSelected(false);
+        newStudent = new Student();
     }
 
     @Action

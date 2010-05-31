@@ -76,10 +76,11 @@ public class Student extends Person {
      * @param lastCISCourse
      *
      */
-    public Student(int id) {
-        ResultSet data = Database.read("student", id);
+    public Student(int recordID) {
+        ResultSet data = Database.read("student", recordID);
         try {
             data.next();
+            id = data.getInt("student_id");
             broncoNum = data.getInt("bronco_id");
             firstName = data.getString("first_name");
             lastName = data.getString("last_name");
