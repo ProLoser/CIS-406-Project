@@ -19,7 +19,7 @@ import java.awt.CardLayout;
  */
 public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface {
 
-    String activeCard = "Browse";
+    String activeCard = "Edit";
 
     /** Creates new form NewJPanel */
     public TaskMainPanel() {
@@ -89,6 +89,7 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
     public void clickDelete() {
         if (activeCard.equals("Browse")) {
             browsePanel.delete();
+            browsePanel.loadTable();
         } else {
         }
     }
@@ -106,6 +107,7 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
     }
 
     public void switchTo() {
+        browsing();
     }
 
     public Boolean switchAway() {
