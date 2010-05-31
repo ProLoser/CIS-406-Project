@@ -55,15 +55,7 @@ public class NewUserPanel extends javax.swing.JPanel implements PanelInterface{
 
     }
 
-    public void clickBrowsing() {
-
-    }
-
-    public void clickEditing() {
-
-    }
-
-    public void switchTo(String actionCommand) {
+    public void switchTo() {
 
     }
 

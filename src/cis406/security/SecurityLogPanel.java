@@ -2,7 +2,7 @@ package cis406.security;
 
 import cis406.PanelInterface;
 import cis406.TableModel;
-import cis406.ComboBox;
+import cis406.ComboBoxModel;
 import cis406.TableColumnAdjuster;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -137,13 +137,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements PanelInterfa
     public void clickCancel() {
     }
 
-    public void clickBrowsing() {
-    }
-
-    public void clickEditing() {
-    }
-
-    public void switchTo(String actionCommand) {
+    public void switchTo() {
         logTable.setModel(generateTable());
 
         TableColumnAdjuster tca = new TableColumnAdjuster(logTable);
@@ -173,7 +167,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements PanelInterfa
 
         setName("Form"); // NOI18N
 
-        ddlUsers.setModel(new ComboBox("users", "user_name"));
+        ddlUsers.setModel(new ComboBoxModel("users", "user_name"));
         ddlUsers.setName("ddlUsers"); // NOI18N
         ddlUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

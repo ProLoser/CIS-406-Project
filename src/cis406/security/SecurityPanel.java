@@ -33,13 +33,7 @@ public class SecurityPanel extends javax.swing.JPanel implements PanelInterface 
     public void clickCancel() {
         ((PanelInterface)securityTabs.getSelectedComponent()).clickCancel();
     }
-    public void clickEditing() {
-        ((PanelInterface)securityTabs.getSelectedComponent()).clickEditing();
-    }
-    public void clickBrowsing() {
-        ((PanelInterface)securityTabs.getSelectedComponent()).clickBrowsing();
-    }
-    public void switchTo(String actionCommand) {
+    public void switchTo() {
         removeTabs();
     }
 
@@ -125,8 +119,7 @@ public class SecurityPanel extends javax.swing.JPanel implements PanelInterface 
         if (activeTabIndex != securityTabs.getSelectedIndex()) {
             ((PanelInterface) securityTabs.getComponentAt(activeTabIndex)).switchAway();
             activeTabIndex = securityTabs.getSelectedIndex();
-            String actionCommand = "wonked";
-            ((PanelInterface) securityTabs.getSelectedComponent()).switchTo(actionCommand);
+            ((PanelInterface) securityTabs.getSelectedComponent()).switchTo();
 
         }
     }//GEN-LAST:event_securityTabsStateChanged

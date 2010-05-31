@@ -19,29 +19,6 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
-    <Container class="cis406.contact.ContactBrowsePanel" name="contactBrowsePanel1">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="contactBrowsePanel1" noResource="true"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="Browse"/>
-        </Constraint>
-      </Constraints>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="721" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="453" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
     <Component class="cis406.contact.ContactEditPanel" name="contactEditPanel1">
       <Properties>
         <Property name="name" type="java.lang.String" value="contactEditPanel1" noResource="true"/>
@@ -49,6 +26,16 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="Edit"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="cis406.contact.ContactBrowsePanel" name="contactBrowsePanel1">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="contactBrowsePanel1" noResource="true"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="Browse"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -25,7 +25,6 @@ import javax.swing.JOptionPane;
 public class MainView extends FrameView {
 
     private int activeTabIndex;
-
     // panels to remove based on security level of logged in user
     final String[] assistantPanels = {"Security"};
     final String[] coordinatorPanels = {"My Account"};
@@ -131,9 +130,11 @@ public class MainView extends FrameView {
             jFileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int success = jFileChooser2.showOpenDialog(null);
             if (success == JFileChooser.APPROVE_OPTION) {
-                try{
+                try {
                     DriverManager.getConnection("jdbc:derby:internshipsdb;shutdown=true");
-                }catch (Exception ex) { System.out.println(ex.getMessage()); }
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
                 Database.restoreDatabase(jFileChooser2.getSelectedFile().getAbsolutePath());
 
                 JOptionPane.showMessageDialog(null, "Application is shutting down for database restore, please re-open it.");
@@ -195,6 +196,7 @@ public class MainView extends FrameView {
 
         mainPanel.setName("mainPanel"); // NOI18N
 
+        mainToolBar.setFloatable(false);
         mainToolBar.setRollover(true);
         mainToolBar.setName("mainToolBar"); // NOI18N
 
@@ -349,6 +351,7 @@ public class MainView extends FrameView {
         reportMenu.setText(resourceMap.getString("reportMenu.text")); // NOI18N
         reportMenu.setName("reportMenu"); // NOI18N
 
+        internshipSummaryMenuItem.setAction(actionMap.get("printInternshipSummaryReport")); // NOI18N
         internshipSummaryMenuItem.setText(resourceMap.getString("internshipSummaryMenuItem.text")); // NOI18N
         internshipSummaryMenuItem.setName("internshipSummaryMenuItem"); // NOI18N
         reportMenu.add(internshipSummaryMenuItem);
@@ -444,11 +447,12 @@ public class MainView extends FrameView {
 
     private void mainTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mainTabbedPaneStateChanged
         if (activeTabIndex != mainTabbedPane.getSelectedIndex()) {
-            ((PanelInterface) mainTabbedPane.getComponentAt(activeTabIndex)).switchAway();
-            activeTabIndex = mainTabbedPane.getSelectedIndex();
-            String actionCommand = activeViewButtonGroup.getSelection().getActionCommand();
-            ((PanelInterface) mainTabbedPane.getSelectedComponent()).switchTo(actionCommand);
-
+            if (((PanelInterface) mainTabbedPane.getComponentAt(activeTabIndex)).switchAway()) {
+                activeTabIndex = mainTabbedPane.getSelectedIndex();
+                ((PanelInterface) mainTabbedPane.getSelectedComponent()).switchTo();
+            } else {
+                mainTabbedPane.setSelectedIndex(activeTabIndex);
+            }
         }
 }//GEN-LAST:event_mainTabbedPaneStateChanged
 
@@ -456,21 +460,19 @@ public class MainView extends FrameView {
      * Removes tabs based on security level
      * @param security_level Integer representing security level
      */
-    private void setupTabs (int security_level){
-        if (security_level == 1){
-            for (int i = 0; i < coordinatorPanels.length; i++){
+    private void setupTabs(int security_level) {
+        if (security_level == 1) {
+            for (int i = 0; i < coordinatorPanels.length; i++) {
                 mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(coordinatorPanels[i]));
             }
             databaseMenu.setEnabled(false);
-        }
-        else if (security_level == 2){
-            for (int i = 0; i < assistantPanels.length; i++){
+        } else if (security_level == 2) {
+            for (int i = 0; i < assistantPanels.length; i++) {
                 mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(assistantPanels[i]));
             }
             databaseMenu.setEnabled(false);
-        }
-        else if (security_level == 0){
-            for (int i = 0; i < adminPanels.length; i++){
+        } else if (security_level == 0) {
+            for (int i = 0; i < adminPanels.length; i++) {
                 mainTabbedPane.removeTabAt(mainTabbedPane.indexOfTab(adminPanels[i]));
             }
             databaseMenu.setEnabled(true);
@@ -508,15 +510,9 @@ public class MainView extends FrameView {
     }
 
     @Action
-    public void clickForm() {
-        ((PanelInterface) mainTabbedPane.getSelectedComponent()).clickEditing();
+    public void printInternshipSummaryReport() {
+        cis406.internship.ReportDialog.load();
     }
-
-    @Action
-    public void clickReport() {
-        ((PanelInterface) mainTabbedPane.getSelectedComponent()).clickBrowsing();
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup activeViewButtonGroup;
     private javax.swing.JMenuItem backupMenuItem;

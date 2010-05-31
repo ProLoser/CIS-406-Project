@@ -1,6 +1,6 @@
 package cis406.contact;
 
-import cis406.ComboBox;
+import cis406.ComboBoxModel;
 import cis406.DateUtils;
 import cis406.PanelInterface;
 import cis406.contact.Correspondence;
@@ -32,6 +32,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
         cboType = new javax.swing.JComboBox();
         lblDate = new javax.swing.JLabel();
         txtDate = new javax.swing.JFormattedTextField();
+        postedCalButton = new org.sourceforge.jcalendarbutton.JCalendarButton();
         lblNotes = new javax.swing.JLabel();
         scpNotes = new javax.swing.JScrollPane();
         txaNotes = new javax.swing.JTextArea();
@@ -42,7 +43,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
         lblContact.setText(resourceMap.getString("lblContact.text")); // NOI18N
         lblContact.setName("lblContact"); // NOI18N
 
-        cboContact.setModel(new cis406.ComboBox("contact", "last_name"));
+        cboContact.setModel(new cis406.ComboBoxModel("contact", "last_name"));
         cboContact.setName("cboContact"); // NOI18N
 
         lblType.setText(resourceMap.getString("lblType.text")); // NOI18N
@@ -57,6 +58,8 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
         txtDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDate.setText(resourceMap.getString("txtDate.text")); // NOI18N
         txtDate.setName("txtDate"); // NOI18N
+
+        postedCalButton.setName("postedCalButton"); // NOI18N
 
         lblNotes.setText(resourceMap.getString("lblNotes.text")); // NOI18N
         lblNotes.setName("lblNotes"); // NOI18N
@@ -80,11 +83,14 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
                     .addComponent(lblDate)
                     .addComponent(lblNotes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboContact, javax.swing.GroupLayout.Alignment.LEADING, 0, 260, Short.MAX_VALUE)
-                    .addComponent(cboType, javax.swing.GroupLayout.Alignment.LEADING, 0, 260, Short.MAX_VALUE)
-                    .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboContact, 0, 260, Short.MAX_VALUE)
+                    .addComponent(cboType, 0, 260, Short.MAX_VALUE)
+                    .addComponent(scpNotes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(postedCalButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -99,9 +105,11 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
                     .addComponent(cboType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblType))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDate))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDate)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(postedCalButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNotes)
@@ -118,6 +126,7 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblNotes;
     private javax.swing.JLabel lblType;
+    private org.sourceforge.jcalendarbutton.JCalendarButton postedCalButton;
     private javax.swing.JScrollPane scpNotes;
     private javax.swing.JTextArea txaNotes;
     private javax.swing.JFormattedTextField txtDate;
@@ -145,14 +154,13 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
     }
     public void clickCancel() {
     }
-    public void clickEditing() {
-    }
-    public void clickBrowsing() {
-    }
-    public void switchTo(String actionCommand) {
-        cboContact.setModel(new ComboBox("contact", "last_name"));
+    public void switchTo() {
+        rePopulate();
     }
     public Boolean switchAway() {
         return true;
+    }
+    public void rePopulate() {
+        cboContact.setModel(new ComboBoxModel("contact", "last_name"));
     }
 }

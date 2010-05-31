@@ -5,13 +5,15 @@
 package cis406;
 
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 
 /**
  *
  * @author Dean
  */
-public class ComboBox extends DefaultComboBoxModel {
+public class ComboBoxModel extends DefaultComboBoxModel {
 
     private ResultSet data;
     private String table;
@@ -20,22 +22,23 @@ public class ComboBox extends DefaultComboBoxModel {
     private String field1;
     private String field2;
     private String separator = ", ";
+    private Map rows;
 
-    public ComboBox(String table, String displayField) {
+    public ComboBoxModel(String table, String displayField) {
         this.table = table;
         this.displayField = displayField;
         query(" ORDER BY " + displayField + " ASC");
         addFields();
     }
 
-    public ComboBox(String table, String displayField, String conditions) {
+    public ComboBoxModel(String table, String displayField, String conditions) {
         this.table = table;
         this.displayField = displayField;
         query(conditions);
         addFields();
     }
 
-    public ComboBox(String displayField, ResultSet data) {
+    public ComboBoxModel(String displayField, ResultSet data) {
         this.data = data;
         this.displayField = displayField;
         try {
@@ -45,6 +48,14 @@ public class ComboBox extends DefaultComboBoxModel {
             System.out.println(e.getMessage());
         }
         addFields();
+    }
+
+    /**
+     * Sets the currently selected item to be the item that matches the id#
+     * @param id
+     */
+    public void setSelectedId(int id) {
+        setSelectedItem(rows.get(id));
     }
 
     public ResultSet getData() {
@@ -104,9 +115,13 @@ public class ComboBox extends DefaultComboBoxModel {
     }
 
     private void addFields() {
+        ComboItem row;
+        rows = new HashMap();
         try {
             while (data.next()) {
-                addElement(new ComboItem(data.getString(displayField), data.getInt(Database.id(table))));
+                row = new ComboItem(data.getString(displayField), data.getInt(Database.id(table)));
+                addElement(row);
+                rows.put(data.getInt(Database.id(table)), row);
             }
         } catch (Exception e) {
             System.out.println("Failed to add the fields from the data");

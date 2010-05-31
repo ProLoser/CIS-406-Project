@@ -219,4 +219,8 @@ public class TaskEditPanel extends javax.swing.JPanel {
     public void save(){
 
     }
+
+        public void reset() {
+      
+    }
 }
