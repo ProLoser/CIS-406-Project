@@ -19,6 +19,16 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
+    <Component class="cis406.student.TaskBrowsePanel" name="browsePanel">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="browsePanel" noResource="true"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="card3"/>
+        </Constraint>
+      </Constraints>
+    </Component>
     <Component class="cis406.student.TaskEditPanel" name="editPanel">
       <Properties>
         <Property name="name" type="java.lang.String" value="editPanel" noResource="true"/>

@@ -41,20 +41,8 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
 
-        browsePanel.setName("taskBrowse"); // NOI18N
-
-        javax.swing.GroupLayout browsePanelLayout = new javax.swing.GroupLayout(browsePanel);
-        browsePanel.setLayout(browsePanelLayout);
-        browsePanelLayout.setHorizontalGroup(
-            browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        browsePanelLayout.setVerticalGroup(
-            browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
-        );
-
-        add(browsePanel, "Browse");
+        browsePanel.setName("browsePanel"); // NOI18N
+        add(browsePanel, "card3");
 
         editPanel.setName("editPanel"); // NOI18N
         add(editPanel, "Edit");
