@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package cis406.contact;
+package cis406.correspondence;
 
 import cis406.TableModel;
 import cis406.Database;

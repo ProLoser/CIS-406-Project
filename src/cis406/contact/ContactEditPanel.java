@@ -438,7 +438,7 @@ public class ContactEditPanel extends javax.swing.JPanel {
         record.setComm_method(cboCommMethod.getSelectedIndex());
         record.setDescription(txaNotes.getText());
         record.save();
-        
+
         cboCompany.setModel(new cis406.ComboBoxModel("company", "name"));
         cboIndustry.setModel(new cis406.ComboBoxModel("industry", "industry_name"));
         //CorrespondencePanel.rePopulate();
@@ -460,8 +460,6 @@ public class ContactEditPanel extends javax.swing.JPanel {
         txaNotes.setText(data.getDescription());
         //attachmentField.setText(data.getAttachment());
     }
-    public void clickDelete() {
-    }
     public void reset() {
         cboCompany.setSelectedIndex(0);
         cboIndustry.setSelectedIndex(0);
@@ -479,15 +477,5 @@ public class ContactEditPanel extends javax.swing.JPanel {
         txtPosition.setText("");
         cboCommMethod.setSelectedIndex(0);
         txaNotes.setText("");
-    }
-    public void clickCancel() {
-    }
-    public void clickEditing() {
-    }
-    public void clickBrowsing() {
-    }
-    public void switchTo(String actionCommand) {
-    }
-    public void switchAway() {
     }
 }

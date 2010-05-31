@@ -6,7 +6,8 @@ import java.awt.CardLayout;
  *
  * @author Mark Lenser
  */
-public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
+public class ContactPanel extends javax.swing.JPanel {
+
     String activeCard = "Browse";
 
     /** Creates new form ContactPanel */
@@ -23,17 +24,17 @@ public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contactEditPanel1 = new cis406.contact.ContactEditPanel();
         contactBrowsePanel1 = new cis406.contact.ContactBrowsePanel();
+        contactEditPanel1 = new cis406.contact.ContactEditPanel();
 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
 
-        contactEditPanel1.setName("contactEditPanel1"); // NOI18N
-        add(contactEditPanel1, "Edit");
-
         contactBrowsePanel1.setName("contactBrowsePanel1"); // NOI18N
-        add(contactBrowsePanel1, "Browse");
+        add(contactBrowsePanel1, "card2");
+
+        contactEditPanel1.setName("contactEditPanel1"); // NOI18N
+        add(contactEditPanel1, "card3");
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -42,7 +43,6 @@ public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
     private cis406.contact.ContactEditPanel contactEditPanel1;
     // End of variables declaration//GEN-END:variables
 
-
     public void clickReset() {
         if (activeCard.equals("Edit")) {
             contactEditPanel1.reset();
@@ -50,18 +50,15 @@ public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
             contactBrowsePanel1.loadTable();
         }
     }
-
     public void clickDelete() {
         if (activeCard.equals("Browse")) {
             contactBrowsePanel1.delete();
         } else {
         }
     }
-
     public void clickCancel() {
         browsing();
     }
-
     public void clickLoad() {
         if (activeCard.equals("Browse")) {
             int record = contactBrowsePanel1.getSelectedRow();
@@ -71,24 +68,20 @@ public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
             }
         }
     }
-
     public void clickNew() {
         contactEditPanel1.newContact();
         editing();
     }
-
     public void clickSave() {
         if (activeCard.equals("Edit") && contactEditPanel1.save()) {
             browsing();
         }
     }
-
     public void editing() {
         CardLayout cl = (CardLayout) (getLayout());
         cl.show(this, "Edit");
         activeCard = "Edit";
     }
-
     public void browsing() {
         CardLayout cl = (CardLayout) (getLayout());
         cl.show(this, "Browse");
@@ -97,8 +90,5 @@ public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
     }
     public void switchTo() {
         browsing();
-    }
-    public Boolean switchAway() {
-        return true;
     }
 }

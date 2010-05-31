@@ -1,6 +1,9 @@
-package cis406.contact;
+package cis406.correspondence;
 
 import cis406.TableModel;
+import cis406.contact.Contact;
+import cis406.contact.Contact;
+import cis406.correspondence.Correspondence;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,7 +15,7 @@ public class CorrespondenceBrowsePanel extends javax.swing.JPanel {
     /** Creates new form CorrespondenceBrowsePanel */
     public CorrespondenceBrowsePanel() {
         initComponents();
-        loadTable();
+        //loadTable();
     }
 
     /** This method is called from within the constructor to
@@ -27,7 +30,7 @@ public class CorrespondenceBrowsePanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCorrespondenceReport = new javax.swing.JTable();
 
-        setName("Form"); // NOI18N
+        setName("frmCorrBrowse"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -55,8 +58,8 @@ public class CorrespondenceBrowsePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
