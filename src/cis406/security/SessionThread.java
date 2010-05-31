@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package cis406.security;
 
 import javax.swing.JOptionPane;
@@ -17,11 +12,9 @@ public class SessionThread implements Runnable {
             runner.start();
 	}
 	public void run() {
-            Settings settings = new Settings();
-
             try {
                 while (true) {
-                    if (Win32IdleTime.getIdleTimeMillisWin32() > settings.getSession_timeout() * 60 * 1000) {
+                    if (Win32IdleTime.getIdleTimeMillisWin32() > cis406.MainApp.settings.getSession_timeout() * 60 * 1000) {
                         JOptionPane.showMessageDialog(null, "You have been automatically logged out due to inactivity!");
                         System.exit(0);
                     }

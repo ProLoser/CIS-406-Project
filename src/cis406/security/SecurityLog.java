@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package cis406.security;
 
 import cis406.Database;
@@ -10,16 +5,6 @@ import cis406.MainApp;
 import java.sql.*;
 import javax.swing.DefaultListModel;
 
-/**
- * So far adds log entries for:
-     * logins
-     * password changed
-     * system settings changed
-     * new user created
-     * user disabled for login attempts
-     * user updated info
- * @author qwerty
- */
 public class SecurityLog {
     private ResultSet rs;
     private DefaultListModel security_log_model;
@@ -32,9 +17,28 @@ public class SecurityLog {
     }
 
     public static void addEntry(String message) {
+        String username = MainApp.loginResult[1];
+
+        if (username == null) {
+            username = "First Login User";
+        }
+
         if (!disableUserLogEntries) {
             Timestamp now = new Timestamp(System.currentTimeMillis());
-            Database.executeWrite("insert into user_log (date, time, description, user_name) values ('" + now + "', '" + now + "', '" + message + "', '" + MainApp.loginResult[1] + "')");
+            Database.executeWrite("insert into user_log (date, time, description, user_name) values ('" + now + "', '" + now + "', '" + message + "', '" + username + "')");
+        }
+    }
+
+    public static void firstLoginEntry(String username) {
+        if (username == null) {
+            username = "First Login User";
+        }
+
+        String message = "First time logging in - updated password and security answer";
+
+        if (!disableUserLogEntries) {
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+            Database.executeWrite("insert into user_log (date, time, description, user_name) values ('" + now + "', '" + now + "', '" + message + "', '" + username + "')");
         }
     }
 

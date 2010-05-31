@@ -1,52 +1,35 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * SettingsPanel.java
- *
- * Created on May 12, 2010, 3:08:11 PM
- */
-
 package cis406.security;
 
 import cis406.PanelInterface;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Raf
- */
 public class SettingsPanel extends javax.swing.JPanel implements PanelInterface {
 
     /** Creates new form SettingsPanel */
     public SettingsPanel() {
         initComponents();
+        txtLoginAttempts.setText(Integer.toString(cis406.MainApp.settings.getLoginAttempts()));
+        txtTimeout.setText(Integer.toString(cis406.MainApp.settings.getSession_timeout()));
+        txtPasswordInterval.setText(Integer.toString(cis406.MainApp.settings.getPassword_interval()));
+        txtPasswordLength.setText(Integer.toString(cis406.MainApp.settings.getPassword_length()));
     }
- public void clickNew() {
+    public void clickNew() {
         clickReset();
     }
 
     public void clickSave() {
-        Settings settings = new Settings();
-        
-        settings.setPassword_length(Integer.parseInt(txtPasswordLength.getText()));
-        settings.setSession_timeout(Integer.parseInt(txtTimeout.getText()));
-        settings.setPassword_interval(Integer.parseInt(txtPasswordInterval.getText()));
-        settings.setLoginAttempts(Integer.parseInt(txtLoginAttempts.getText()));
+        cis406.MainApp.settings.setPassword_length(Integer.parseInt(txtPasswordLength.getText()));
+        cis406.MainApp.settings.setSession_timeout(Integer.parseInt(txtTimeout.getText()));
+        cis406.MainApp.settings.setPassword_interval(Integer.parseInt(txtPasswordInterval.getText()));
+        cis406.MainApp.settings.setLoginAttempts(Integer.parseInt(txtLoginAttempts.getText()));
 
-        settings.save();
+        cis406.MainApp.settings.save();
         SecurityLog.addEntry("System settings changed.");
-
+        JOptionPane.showMessageDialog(null, "System settings changed, restart needed to take effect");
     }
 
     public void clickLoad() {
-        Settings settings = new Settings();
 
-        txtLoginAttempts.setText(Integer.toString(settings.getLoginAttempts()));
-        txtTimeout.setText(Integer.toString(settings.getSession_timeout()));
-        txtPasswordInterval.setText(Integer.toString(settings.getPassword_interval()));
-        txtPasswordLength.setText(Integer.toString(settings.getPassword_length()));
     }
 
     public void clickDelete() {
@@ -63,7 +46,6 @@ public class SettingsPanel extends javax.swing.JPanel implements PanelInterface 
 
     public void clickBrowsing() {
 
-
     }
 
     public void clickEditing() {
@@ -71,7 +53,7 @@ public class SettingsPanel extends javax.swing.JPanel implements PanelInterface 
     }
 
     public void switchTo(String actionCommand) {
-        clickLoad();
+        
     }
 
     public Boolean switchAway() {
