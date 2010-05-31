@@ -1,8 +1,5 @@
-package cis406.contact;
-
-
+package cis406.correspondence;
 import cis406.PanelInterface;
-import cis406.contact.Correspondence;
 import java.awt.CardLayout;
 
 /**
@@ -10,13 +7,11 @@ import java.awt.CardLayout;
  * @author Mark Lenser
  */
 public class CorrespondencePanel extends javax.swing.JPanel implements PanelInterface {
-
     String activeCard = "Browse";
 
-    /** Creates new form CorrespondencePanel */
+    /** Creates new form ContactPanel */
     public CorrespondencePanel() {
         initComponents();
-        
     }
 
     /** This method is called from within the constructor to
@@ -28,48 +23,60 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        correspondenceEditPanel1 = new cis406.contact.CorrespondenceEditPanel();
-        correspondenceBrowsePanel1 = new cis406.contact.CorrespondenceBrowsePanel();
+        correspondenceEditPanel1 = new cis406.correspondence.CorrespondenceEditPanel();
+        correspondenceBrowsePanel1 = new cis406.correspondence.CorrespondenceBrowsePanel();
 
-        setName("Form"); // NOI18N
+        setName("frmCorr"); // NOI18N
         setLayout(new java.awt.CardLayout());
 
         correspondenceEditPanel1.setName("correspondenceEditPanel1"); // NOI18N
         add(correspondenceEditPanel1, "Edit");
 
         correspondenceBrowsePanel1.setName("correspondenceBrowsePanel1"); // NOI18N
-
-        javax.swing.GroupLayout correspondenceBrowsePanel1Layout = new javax.swing.GroupLayout(correspondenceBrowsePanel1);
-        correspondenceBrowsePanel1.setLayout(correspondenceBrowsePanel1Layout);
-        correspondenceBrowsePanel1Layout.setHorizontalGroup(
-            correspondenceBrowsePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 545, Short.MAX_VALUE)
-        );
-        correspondenceBrowsePanel1Layout.setVerticalGroup(
-            correspondenceBrowsePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
-        );
-
+        correspondenceBrowsePanel1.setVerifyInputWhenFocusTarget(false);
         add(correspondenceBrowsePanel1, "Browse");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cis406.contact.CorrespondenceBrowsePanel correspondenceBrowsePanel1;
-    private cis406.contact.CorrespondenceEditPanel correspondenceEditPanel1;
+    private cis406.correspondence.CorrespondenceBrowsePanel correspondenceBrowsePanel1;
+    private cis406.correspondence.CorrespondenceEditPanel correspondenceEditPanel1;
     // End of variables declaration//GEN-END:variables
-public void clickReset() {
-    }
 
+
+    public void clickReset() {
+        if (activeCard.equals("Edit")) {
+            correspondenceEditPanel1.reset();
+        } else {
+            correspondenceBrowsePanel1.loadTable();
+        }
+    }
     public void clickDelete() {
+        if (activeCard.equals("Browse")) {
+            correspondenceBrowsePanel1.delete();
+        } else {
+        }
     }
     public void clickCancel() {
+        browsing();
     }
     public void clickLoad() {
+        if (activeCard.equals("Browse")) {
+            int record = correspondenceBrowsePanel1.getSelectedRow();
+            if (record != 0) {
+                editing();
+                correspondenceEditPanel1.load(record);
+            }
+        }
     }
     public void clickNew() {
+        correspondenceEditPanel1.newCorrespondence();
+        editing();
     }
     public void clickSave() {
+        if (activeCard.equals("Edit") && correspondenceEditPanel1.save()) {
+            browsing();
+        }
     }
     public void editing() {
         CardLayout cl = (CardLayout) (getLayout());
@@ -88,5 +95,4 @@ public void clickReset() {
     public Boolean switchAway() {
         return true;
     }
-    
 }

@@ -10,12 +10,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Component id="mainToolBar" alignment="0" pref="959" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="mainTabbedPane" pref="933" max="32767" attributes="0"/>
+                  <Component id="mainTabbedPane" pref="939" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Component id="mainToolBar" alignment="0" pref="959" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -23,7 +23,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="mainToolBar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="mainTabbedPane" pref="694" max="32767" attributes="0"/>
+                  <Component id="mainTabbedPane" pref="709" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -210,20 +210,20 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Contacts">
+                  <JTabbedPaneConstraints tabName="Contact">
                     <Property name="tabTitle" type="java.lang.String" resourceKey="contactPanel1.TabConstraints.tabTitle"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="cis406.contact.CorrespondencePanel" name="correspondence1">
+            <Component class="cis406.correspondence.CorrespondencePanel" name="correspondencePanel1">
               <Properties>
-                <Property name="name" type="java.lang.String" value="correspondence1" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="correspondencePanel1" noResource="true"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Correspondences">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="correspondence1.TabConstraints.tabTitle"/>
+                    <Property name="tabTitle" type="java.lang.String" resourceKey="correspondencePanel1.TabConstraints.tabTitle"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -260,18 +260,6 @@
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Tasks">
                     <Property name="tabTitle" type="java.lang.String" resourceKey="taskMainPanel1.TabConstraints.tabTitle"/>
-                  </JTabbedPaneConstraints>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="cis406.student.MainPanel" name="mainPanel1">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="mainPanel1" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Students">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="mainPanel1.TabConstraints.tabTitle"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -405,7 +393,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="763" max="32767" attributes="0"/>
+                  <EmptySpace pref="789" max="32767" attributes="0"/>
                   <Component id="progressBar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>

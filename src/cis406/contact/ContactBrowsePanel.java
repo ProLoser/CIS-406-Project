@@ -27,7 +27,7 @@ public class ContactBrowsePanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblReport = new javax.swing.JTable();
 
-        setName("Form"); // NOI18N
+        setName("frmContactBrowse"); // NOI18N
         setPreferredSize(new java.awt.Dimension(681, 400));
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
@@ -56,8 +56,8 @@ public class ContactBrowsePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

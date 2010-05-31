@@ -167,11 +167,10 @@ public class MainView extends FrameView {
         mainTabbedPane = new javax.swing.JTabbedPane();
         internshipPanel1 = new cis406.internship.MainPanel();
         contactPanel1 = new cis406.contact.ContactPanel();
-        correspondence1 = new cis406.contact.CorrespondencePanel();
+        correspondencePanel1 = new cis406.correspondence.CorrespondencePanel();
         securityPanel1 = new cis406.security.SecurityPanel();
         myAccountPanel1 = new cis406.security.MyAccountPanel();
         taskMainPanel1 = new cis406.student.TaskMainPanel();
-        mainPanel1 = new cis406.student.MainPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -298,8 +297,8 @@ public class MainView extends FrameView {
         contactPanel1.setName("contactPanel1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("contactPanel1.TabConstraints.tabTitle"), contactPanel1); // NOI18N
 
-        correspondence1.setName("correspondence1"); // NOI18N
-        mainTabbedPane.addTab(resourceMap.getString("correspondence1.TabConstraints.tabTitle"), correspondence1); // NOI18N
+        correspondencePanel1.setName("correspondencePanel1"); // NOI18N
+        mainTabbedPane.addTab(resourceMap.getString("correspondencePanel1.TabConstraints.tabTitle"), correspondencePanel1); // NOI18N
 
         securityPanel1.setName("securityPanel1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("securityPanel1.TabConstraints.tabTitle"), securityPanel1); // NOI18N
@@ -310,25 +309,22 @@ public class MainView extends FrameView {
         taskMainPanel1.setName("taskMainPanel1"); // NOI18N
         mainTabbedPane.addTab(resourceMap.getString("taskMainPanel1.TabConstraints.tabTitle"), taskMainPanel1); // NOI18N
 
-        mainPanel1.setName("mainPanel1"); // NOI18N
-        mainTabbedPane.addTab(resourceMap.getString("mainPanel1.TabConstraints.tabTitle"), mainPanel1); // NOI18N
-
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(mainToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 959, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 939, Short.MAX_VALUE)
+                .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(mainToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -405,7 +401,7 @@ public class MainView extends FrameView {
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 763, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 789, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -519,7 +515,7 @@ public class MainView extends FrameView {
     private javax.swing.JToggleButton browseButton;
     private javax.swing.JButton cancelButton;
     private cis406.contact.ContactPanel contactPanel1;
-    private cis406.contact.CorrespondencePanel correspondence1;
+    private cis406.correspondence.CorrespondencePanel correspondencePanel1;
     private javax.swing.JMenu databaseMenu;
     public javax.swing.JButton deleteButton;
     private javax.swing.JToggleButton editButton;
@@ -533,7 +529,6 @@ public class MainView extends FrameView {
     private javax.swing.JToolBar.Separator jSeparator2;
     public javax.swing.JButton loadButton;
     private javax.swing.JPanel mainPanel;
-    private cis406.student.MainPanel mainPanel1;
     private javax.swing.JTabbedPane mainTabbedPane;
     private javax.swing.JToolBar mainToolBar;
     private javax.swing.JMenuBar menuBar;
