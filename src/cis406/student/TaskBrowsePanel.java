@@ -23,7 +23,7 @@ public class TaskBrowsePanel extends javax.swing.JPanel {
     /** Creates new form TaskReportPanel */
     public TaskBrowsePanel() {
         initComponents();
-        //loadTable();
+        
     }
 
     /** This method is called from within the constructor to
