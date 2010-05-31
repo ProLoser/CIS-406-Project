@@ -28,7 +28,6 @@ public class EditPanel extends javax.swing.JPanel {
     /** Creates new form EditPanel */
     public EditPanel() {
         initComponents();
-        postedField.setText(DateUtils.now());
     }
 
     /** This method is called from within the constructor to
@@ -40,13 +39,14 @@ public class EditPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFileChooser1 = new javax.swing.JFileChooser();
+        browseFile = new javax.swing.JFileChooser();
+        downloadFolder = new javax.swing.JFileChooser();
         titleLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextarea = new javax.swing.JTextArea();
         postedField = new javax.swing.JFormattedTextField();
         expiresField = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
+        browseButton = new javax.swing.JButton();
         attachmentField = new javax.swing.JTextField();
         titleField = new javax.swing.JTextField();
         descriptionLabel = new javax.swing.JLabel();
@@ -62,8 +62,12 @@ public class EditPanel extends javax.swing.JPanel {
         postedCalButton = new org.sourceforge.jcalendarbutton.JCalendarButton();
         expiresCalButton = new org.sourceforge.jcalendarbutton.JCalendarButton();
         quantity2Label = new javax.swing.JLabel();
+        downloadButton = new javax.swing.JButton();
 
-        jFileChooser1.setName("jFileChooser1"); // NOI18N
+        browseFile.setName("browseFile"); // NOI18N
+
+        downloadFolder.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+        downloadFolder.setName("downloadFolder"); // NOI18N
 
         setName("Form"); // NOI18N
 
@@ -90,9 +94,9 @@ public class EditPanel extends javax.swing.JPanel {
         expiresField.setName("expiresFTextField"); // NOI18N
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(EditPanel.class, this);
-        jButton1.setAction(actionMap.get("browse")); // NOI18N
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
+        browseButton.setAction(actionMap.get("browse")); // NOI18N
+        browseButton.setText(resourceMap.getString("browseButton.text")); // NOI18N
+        browseButton.setName("browseButton"); // NOI18N
 
         attachmentField.setText(resourceMap.getString("attachmentTextField.text")); // NOI18N
         attachmentField.setEnabled(false);
@@ -146,6 +150,11 @@ public class EditPanel extends javax.swing.JPanel {
         quantity2Label.setText(resourceMap.getString("quantity2Label.text")); // NOI18N
         quantity2Label.setName("quantity2Label"); // NOI18N
 
+        downloadButton.setAction(actionMap.get("download")); // NOI18N
+        downloadButton.setText(resourceMap.getString("downloadButton.text")); // NOI18N
+        downloadButton.setEnabled(false);
+        downloadButton.setName("downloadButton"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,9 +173,9 @@ public class EditPanel extends javax.swing.JPanel {
                     .addComponent(quantityField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-                    .addComponent(careerComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 375, Short.MAX_VALUE)
-                    .addComponent(companyComboBox, 0, 375, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                    .addComponent(careerComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 361, Short.MAX_VALUE)
+                    .addComponent(companyComboBox, 0, 361, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(postedField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -178,10 +187,12 @@ public class EditPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(expiresCalButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(attachmentField, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                        .addComponent(attachmentField, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addComponent(titleField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))
+                        .addComponent(browseButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(downloadButton))
+                    .addComponent(titleField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -193,9 +204,10 @@ public class EditPanel extends javax.swing.JPanel {
                     .addComponent(titleLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
                     .addComponent(attachmentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(attachmentLabel))
+                    .addComponent(attachmentLabel)
+                    .addComponent(downloadButton)
+                    .addComponent(browseButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -218,7 +230,7 @@ public class EditPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(descriptionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addComponent(quantity1Label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(quantity2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,25 +245,27 @@ public class EditPanel extends javax.swing.JPanel {
 
     @Action
     public void browse() {
-        int success = jFileChooser1.showOpenDialog(this);
+        int success = browseFile.showOpenDialog(this);
         if (success == javax.swing.JFileChooser.APPROVE_OPTION) {
-            attachmentField.setText(jFileChooser1.getSelectedFile().getAbsolutePath());
+            attachmentField.setText(browseFile.getSelectedFile().getAbsolutePath());
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField attachmentField;
     private javax.swing.JLabel attachmentLabel;
+    private javax.swing.JButton browseButton;
+    private javax.swing.JFileChooser browseFile;
     private javax.swing.JComboBox careerComboBox;
     private javax.swing.JLabel careerLabel;
     private javax.swing.JComboBox companyComboBox;
     private javax.swing.JLabel companyLabel;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextArea descriptionTextarea;
+    private javax.swing.JButton downloadButton;
+    private javax.swing.JFileChooser downloadFolder;
     private org.sourceforge.jcalendarbutton.JCalendarButton expiresCalButton;
     private javax.swing.JCheckBox expiresCheckBox;
     private javax.swing.JFormattedTextField expiresField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private org.sourceforge.jcalendarbutton.JCalendarButton postedCalButton;
     private javax.swing.JFormattedTextField postedField;
@@ -265,6 +279,7 @@ public class EditPanel extends javax.swing.JPanel {
 
     public void newInternship() {
         record = new Internship();
+        reset();
     }
 
     public Boolean save() {
@@ -311,24 +326,24 @@ public class EditPanel extends javax.swing.JPanel {
 
 
         if (success & !record.save()) {
+            JOptionPane.showMessageDialog(null, "There was an error trying to save");
             success = false;
-        }
-        if (!success) {
+        } else if (!success) {
             JOptionPane.showMessageDialog(null, "Please check the data for errors");
         }
         return success;
     }
 
     public void load(int id) {
-        Internship data = new Internship(id);
-        ((ComboBoxModel)companyComboBox.getModel()).setSelectedId(data.getCompanyId());
-        ((ComboBoxModel)careerComboBox.getModel()).setSelectedId(data.getCareerPathId());
-        titleField.setText(data.getTitle());
-        descriptionTextarea.setText(data.getDescription());
-        postedField.setText(data.getPostDate());
-        if (data.getExpiration() != null) {
+        record = new Internship(id);
+        ((ComboBoxModel)companyComboBox.getModel()).setSelectedId(record.getCompanyId());
+        ((ComboBoxModel)careerComboBox.getModel()).setSelectedId(record.getCareerPathId());
+        titleField.setText(record.getTitle());
+        descriptionTextarea.setText(record.getDescription());
+        postedField.setText(record.getPostDate());
+        if (record.getExpiration() != null) {
             expiresCheckBox.setSelected(true);
-            expiresField.setText(data.getExpiration());
+            expiresField.setText(record.getExpiration());
             expiresField.setEnabled(true);
             expiresCalButton.setEnabled(true);
         } else {
@@ -337,8 +352,9 @@ public class EditPanel extends javax.swing.JPanel {
             expiresField.setEnabled(false);
             expiresCalButton.setEnabled(false);
         }
-        quantityField.setText(Integer.toString(data.getQuantity()));
-        //attachmentField.setText(data.getAttachment());
+        quantityField.setText(Integer.toString(record.getQuantity()));
+        attachmentField.setText(record.getAttachment());
+        downloadButton.setEnabled(record.getAttachment() != null);
     }
 
     public void reset() {
@@ -346,13 +362,14 @@ public class EditPanel extends javax.swing.JPanel {
         careerComboBox.setSelectedIndex(0);
         titleField.setText("");
         descriptionTextarea.setText("");
-        postedField.setText("mm-dd-yyyy");
+        postedField.setText(DateUtils.now());
         expiresCheckBox.setSelected(false);
         expiresField.setText("mm-dd-yyyy");
         expiresField.setEnabled(false);
         expiresCalButton.setEnabled(false);
         quantityField.setText("1");
         attachmentField.setText("");
+        downloadButton.setEnabled(record.getAttachment() != null);
     }
 
     /*public Boolean cancel() {
@@ -372,5 +389,13 @@ public class EditPanel extends javax.swing.JPanel {
     public void toggleExpires() {
         expiresField.setEnabled(expiresCheckBox.isSelected());
         expiresCalButton.setEnabled(expiresCheckBox.isSelected());
+    }
+
+    @Action
+    public void download() {
+        int success = downloadFolder.showOpenDialog(this);
+        if (success == javax.swing.JFileChooser.APPROVE_OPTION) {
+            record.downloadAttachment(downloadFolder.getSelectedFile().getPath());
+        }
     }
 }

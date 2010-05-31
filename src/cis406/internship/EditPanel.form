@@ -2,9 +2,15 @@
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.JFileChooser" name="jFileChooser1">
+    <Component class="javax.swing.JFileChooser" name="browseFile">
       <Properties>
-        <Property name="name" type="java.lang.String" value="jFileChooser1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="browseFile" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFileChooser" name="downloadFolder">
+      <Properties>
+        <Property name="fileSelectionMode" type="int" value="1"/>
+        <Property name="name" type="java.lang.String" value="downloadFolder" noResource="true"/>
       </Properties>
     </Component>
   </NonVisualComponents>
@@ -41,9 +47,9 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="375" max="32767" attributes="1"/>
-                  <Component id="careerComboBox" alignment="1" pref="375" max="32767" attributes="0"/>
-                  <Component id="companyComboBox" alignment="0" pref="375" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="361" max="32767" attributes="1"/>
+                  <Component id="careerComboBox" alignment="1" pref="361" max="32767" attributes="0"/>
+                  <Component id="companyComboBox" alignment="0" pref="361" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="postedField" min="-2" pref="98" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -56,11 +62,13 @@
                       <Component id="expiresCalButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="attachmentField" pref="278" max="32767" attributes="0"/>
+                      <Component id="attachmentField" pref="203" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="browseButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="downloadButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="titleField" alignment="1" pref="375" max="32767" attributes="0"/>
+                  <Component id="titleField" alignment="1" pref="361" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -76,9 +84,10 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="attachmentField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="attachmentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="downloadButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="browseButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -107,7 +116,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="descriptionLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="42" max="32767" attributes="0"/>
+                      <EmptySpace pref="58" max="32767" attributes="0"/>
                       <Component id="quantity1Label" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="quantity2Label" min="-2" pref="16" max="-2" attributes="0"/>
@@ -168,13 +177,13 @@
         <Property name="name" type="java.lang.String" value="expiresFTextField" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="browseButton">
       <Properties>
         <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
           <action class="cis406.InternshipPanel" id="browse" methodName="browse"/>
         </Property>
-        <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
-        <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="browseButton.text"/>
+        <Property name="name" type="java.lang.String" value="browseButton" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="attachmentField">
@@ -283,6 +292,16 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" resourceKey="quantity2Label.text"/>
         <Property name="name" type="java.lang.String" value="quantity2Label" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="downloadButton">
+      <Properties>
+        <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+          <action class="cis406.internship.EditPanel" id="download" methodName="download"/>
+        </Property>
+        <Property name="text" type="java.lang.String" resourceKey="downloadButton.text"/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="name" type="java.lang.String" value="downloadButton" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
