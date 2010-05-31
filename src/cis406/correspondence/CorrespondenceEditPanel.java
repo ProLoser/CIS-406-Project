@@ -139,19 +139,22 @@ public class CorrespondenceEditPanel extends javax.swing.JPanel {
     public boolean save() {
         Boolean success = true;
 
-        Contact record = new Contact();
-        record.setDescription(txaNotes.getText());
+        Correspondence record = new Correspondence();
+        record.setContact_id(cboContact.getSelectedIndex());
+        record.setType(cboType.getSelectedIndex());
+        record.setDate(txtDate.getText());
+        record.setNotes(txaNotes.getText());
         record.save();
 
         //CorrespondencePanel.rePopulate();
         return success;
     }
     public void load(int id) {
-        Contact data = new Contact(id);
-        cboContact.setSelectedItem(data.getState());
-        cboType.setSelectedItem(data.getState());
-        txtDate.setText(data.getPosition());
-        txaNotes.setText(data.getDescription());
+        Correspondence data = new Correspondence(id);
+        cboContact.setSelectedItem(data.getContact_id());
+        cboType.setSelectedItem(data.getType());
+        txtDate.setText(data.getDate());
+        txaNotes.setText(data.getNotes());
         //attachmentField.setText(data.getAttachment());
     }
     public void clickDelete() {

@@ -23,6 +23,19 @@ public class Correspondence {
 
     public Correspondence() {
     }
+    
+    public Correspondence(int id) {
+        ResultSet data = Database.read("correspondence", id);
+        try {
+            data.next();
+            contact_id = data.getInt("contact_id");
+            type = data.getInt("type");
+            date = data.getString("date");
+            notes = data.getString("note");
+        } catch (Exception e) {
+            System.out.println("Failed to locate a record");
+        }
+    }
     public Correspondence(int contact_id, int type, String date, String notes) {
         setContact_id(contact_id);
         setType(type);
@@ -32,14 +45,26 @@ public class Correspondence {
     public void setContact_id(int contact_id) {
         this.contact_id = contact_id;
     }
+    public int getContact_id() {
+        return contact_id;
+    }
     public void setType(int type) {
         this.type = type;
+    }
+    public int getType() {
+        return type;
     }
     public void setDate(String date) {
         this.date = date;
     }
+    public String getDate() {
+        return date;
+    }
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+    public String getNotes() {
+        return notes;
     }
     public void save() {
         Database db = new Database("correspondence");
@@ -48,7 +73,6 @@ public class Correspondence {
         db.addField("type", Integer.toString(type));
         db.addField("date", date);
         db.addField("note", notes);
-        
         try {
             db.insert();
         } catch (Exception e) {
