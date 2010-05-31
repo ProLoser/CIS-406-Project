@@ -33,6 +33,10 @@ public class User {
 
     }
 
+    /**
+     * Create a new user, all of the user's info will be loaded from the database.
+     * @param username The username you want to load
+     */
     public User(String username) {
         this.username = username;
         try {
@@ -257,8 +261,6 @@ public class User {
 
     /**
      * Update row in the database for the user you just instantiated
-     * after using the set methods in this class to add user
-     * information
      */
     public void updateUser() {
             Database.executeWrite("UPDATE users SET password = '"
@@ -268,6 +270,10 @@ public class User {
             SecurityLog.addEntry("Password and user information updated for " + username + ".");
     }
 
+    /**
+     * Update password and security question and
+     * answer after a user logs in for the first time
+     */
     public void firstLoginUpdate() {
             Database.executeWrite("UPDATE users SET password = '"
                     + password + "', status = " + status + ", first_name = '" + fName
@@ -277,7 +283,7 @@ public class User {
     }
 
     /**
-     * Checks if a user has every logged on
+     * Checks if a user has ever logged on
      * @param username Username to check
      * @return Boolean that represents whether they have ever logged on
      */
@@ -302,7 +308,7 @@ public class User {
     }
 
     /**
-     * Disable or enable a user (you shouldn't delete a user ever)
+     * Disable or enable a user (you should never delete a user)
      * @param username The user_name in the users database that you want to change the status of
      * @param value 0 for disable, 1 for enable, 2 for disabled for too many unsuccessful login attempts
      */
@@ -310,6 +316,12 @@ public class User {
         Database.executeWrite("update users set status = " + value + " where user_name = '" + username + "'");
     }
 
+    /**
+     * Attempt to login with a username and password, result is returned as boolean
+     * @param username The username you want try to login with
+     * @param password The password you want to try to login wtih
+     * @return True for success, false for failure
+     */
     public static boolean login(String username, String password) {
         String hash = "";
         Boolean result = false;
@@ -337,6 +349,11 @@ public class User {
         return result;
     }
 
+    /**
+     * Returns an integer that represents the security level of the account
+     * @param username The username to look up
+     * @return 0 for administrator, 1 for coordinator, 2 for assistant
+     */
     public static int getSecurityClearance(String username){
         int clearance = 0;
 
@@ -356,6 +373,10 @@ public class User {
         return clearance;
     }
 
+    /**
+     * Update database for a failed login
+     * @param username The username of the user that failed to login
+     */
     public static void failedLogin(String username){
         int failedLogins = getFailedLogins(username) + 1;
         int allowedAttempts = cis406.MainApp.settings.loginAttempts;
@@ -376,6 +397,11 @@ public class User {
         }
     }
 
+    /**
+     * Returns amount of consecutive failed logins by a user
+     * @param username The user whose failed logins you want to look up
+     * @return The number of times a user has failed to login in a row
+     */
     public static int getFailedLogins(String username){
         int failedLogonAttempts = 0;
         try
@@ -395,8 +421,8 @@ public class User {
         return failedLogonAttempts;
     }
     /**
-     *
-     * @param username
+     * Reset the number of consecutive failed logins a user has made
+     * @param username The username to reset the failed login count for
      */
     public static void resetFailedLogons(String username) {
         Database.executeWrite("update users set failed_logon_attempts = 0 where user_name = '" + username + "'");
@@ -451,61 +477,6 @@ public class User {
         return 0;
     }
 
-    public static boolean checkPassword(char[] password, String username) {
-        boolean result = false;
-        int requiredLength = cis406.MainApp.settings.getPassword_length();
-
-        // convert password character array to string
-        String strPassword = "";
-        for (int i = 0; i < password.length; i++){
-            strPassword += password[i];
-        }
-
-        // Make sure password meets requirements
-        String lowercase = "((?=.*[a-z]).{" + requiredLength + ",})";
-        String uppercase = "((?=.*[A-Z]).{" + requiredLength + ",})";
-        String numbers = "((?=.*\\d).{" + requiredLength + ",})";
-        String complexchars = "((?=.*[\\W]).{" + requiredLength + ",})";
-        Integer complexityCount = 0;
-
-        if (strPassword.matches(lowercase)) { complexityCount++; }
-        if (strPassword.matches(uppercase)) { complexityCount++; }
-        if (strPassword.matches(numbers)) { complexityCount++; }
-        if (strPassword.matches(complexchars)) { complexityCount++; }
-
-        if (complexityCount < 3)
-        {
-            JOptionPane.showMessageDialog(null, "Change your password, it doesn't meet CSU Pomona's password complexity requirements:\n\n" +
-                                                "Your password should contain 3 of the following: a lowercase letter, uppercase letter, number, or special character (@#$ etc).\n" +
-                                                "Your password should be at least " + requiredLength + " characters long.");
-        }
-        else if (!strPassword.equals(username)) {
-            if (exists(username)) {
-                try {
-                    ResultSet rs = cis406.Database.execute("select password from users where user_name = '" + username + "'");
-                    while (rs.next()) {
-                        String pwd = rs.getString("password");
-                        String hash = byteArrayToHexString(computeHash(strPassword));
-
-                        if (pwd.equals(hash)) {
-                            JOptionPane.showMessageDialog(null, "Your new password cannot be the same as your current password");
-                        }
-                        else {
-                            result = true;
-                        }
-                    }
-                } catch (Exception e) {
-                    System.out.println("Could not execute query");
-                    System.out.println(e.getMessage());
-                }
-            }
-            else {
-                result = true;
-            }
-        }
-        return result;
-    }
-
     /**
      * Change a users password after creating a new user object and setting username and password
      */
@@ -513,6 +484,12 @@ public class User {
         Database.executeWrite("update users set password = '" + password + "' where user_name = '" + username + "'");
     }
 
+    /**
+     * For hashing a user password before storing it in the database.
+     * Returns the byte array of a password in string form
+     * @param x The password to be hashed, in string form
+     * @return The byte array of a password
+     */
     public static byte[] computeHash(String x) {
         java.security.MessageDigest d = null;
 
@@ -526,6 +503,11 @@ public class User {
         return d.digest();
     }
 
+    /**
+     * Returns a hashed password in string format
+     * @param b The byte array to be hashed
+     * @return A string of a password hash
+     */
     public static String byteArrayToHexString(byte[] b) {
         StringBuffer sb = new StringBuffer(b.length * 2);
         for (int i = 0; i < b.length; i++) {
