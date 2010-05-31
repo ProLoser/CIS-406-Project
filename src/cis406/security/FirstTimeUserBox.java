@@ -1,6 +1,5 @@
 package cis406.security;
 
-import cis406.ComboBox;
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
@@ -64,7 +63,7 @@ public class FirstTimeUserBox extends javax.swing.JDialog {
         jLabel10.setText(resourceMap.getString("jLabel10.text")); // NOI18N
         jLabel10.setName("jLabel10"); // NOI18N
 
-        ddlSecurityQuestions.setModel(new ComboBox("question_key", "question"));
+        ddlSecurityQuestions.setModel(new cis406.ComboBoxModel("question_key", "question"));
         ddlSecurityQuestions.setName("ddlSecurityQuestions"); // NOI18N
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N

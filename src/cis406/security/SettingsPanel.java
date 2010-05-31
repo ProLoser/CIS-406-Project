@@ -52,7 +52,7 @@ public class SettingsPanel extends javax.swing.JPanel implements PanelInterface 
 
     }
 
-    public void switchTo(String actionCommand) {
+    public void switchTo() {
         
     }
 
