@@ -11,6 +11,7 @@
 package cis406.student;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
@@ -110,7 +111,7 @@ public class TaskEditPanel extends javax.swing.JPanel {
         btnCompleteCal.setEnabled(false);
         btnCompleteCal.setName("btnCompleteCal"); // NOI18N
 
-        txtStartDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-dd-M"))));
+        txtStartDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-dd-yyyy"))));
         txtStartDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtStartDate.setText(resourceMap.getString("txtStartDate.text")); // NOI18N
         txtStartDate.setName("txtStartDate"); // NOI18N
@@ -286,7 +287,7 @@ public class TaskEditPanel extends javax.swing.JPanel {
 
     public void load(int id) {
         Task data = new Task(id);
-        cboTaskCategory.setSelectedIndex(data.category);
+                 cboTaskCategory.setSelectedIndex(data.category);
         txaDescription.setText(data.description);
         txtTaskTitle.setText(data.taskTitle);
         if (data.completeDate != null) {

@@ -5,6 +5,7 @@ import cis406.*;
 import cis406.Database;
 import cis406.Person;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -240,7 +241,8 @@ public class Student extends Person {
     }
 
     public String getUpdateDate() {
-        return updateDate.toString();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        return dateFormat.format(updateDate.toString());
     }
 
     public void setUpdateDate(Date updateDate) {

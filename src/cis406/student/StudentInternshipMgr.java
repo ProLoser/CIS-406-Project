@@ -71,7 +71,8 @@ public class StudentInternshipMgr {
 
     public String getAssignDate() {
         if (assignDate != null) {
-            return assignDate.toString();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+            return dateFormat.format(assignDate);
         } else {
             return null;
         }
@@ -102,7 +103,8 @@ public class StudentInternshipMgr {
 
     public String getDateSecured() {
         if (dateSecured != null) {
-            return dateSecured.toString();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+            return dateFormat.format(dateSecured);
         } else {
             return null;
         }
@@ -126,8 +128,10 @@ public class StudentInternshipMgr {
         db.addField("course_credit", forCredit);
         db.addField("student_id", assignedStudent.getBroncoNum());
         db.addField("internship_id", assignedInternship.getId());
-        db.addField("date_secured", dateSecured);
-        db.addField("date_assigned", assignDate);
+        sqlSecuredDate = new java.sql.Date(dateSecured.getTime());
+        db.addField("date_secured", sqlSecuredDate);
+        sqlAssignDate = new java.sql.Date(assignDate.getTime());
+        db.addField("date_assigned", sqlAssignDate);
         try {
             if (id == 0) {
                 db.insert();
