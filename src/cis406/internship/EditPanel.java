@@ -41,6 +41,11 @@ public class EditPanel extends javax.swing.JPanel {
 
         browseFile = new javax.swing.JFileChooser();
         downloadFolder = new javax.swing.JFileChooser();
+        assignDialog = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        assignComboBox = new javax.swing.JComboBox();
+        yesButton = new javax.swing.JButton();
+        noButton = new javax.swing.JButton();
         titleLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextarea = new javax.swing.JTextArea();
@@ -69,9 +74,54 @@ public class EditPanel extends javax.swing.JPanel {
         downloadFolder.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
         downloadFolder.setName("downloadFolder"); // NOI18N
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(EditPanel.class);
+        assignDialog.setTitle(resourceMap.getString("assignDialog.title")); // NOI18N
+        assignDialog.setModal(true);
+        assignDialog.setName("assignDialog"); // NOI18N
+
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        assignComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        assignComboBox.setName("assignComboBox"); // NOI18N
+
+        yesButton.setText(resourceMap.getString("yesButton.text")); // NOI18N
+        yesButton.setName("yesButton"); // NOI18N
+
+        noButton.setText(resourceMap.getString("noButton.text")); // NOI18N
+        noButton.setName("noButton"); // NOI18N
+
+        javax.swing.GroupLayout assignDialogLayout = new javax.swing.GroupLayout(assignDialog.getContentPane());
+        assignDialog.getContentPane().setLayout(assignDialogLayout);
+        assignDialogLayout.setHorizontalGroup(
+            assignDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(assignDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(assignDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(assignComboBox, 0, 170, Short.MAX_VALUE)
+                    .addGroup(assignDialogLayout.createSequentialGroup()
+                        .addComponent(yesButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(noButton)))
+                .addContainerGap())
+        );
+        assignDialogLayout.setVerticalGroup(
+            assignDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(assignDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(assignComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(assignDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(yesButton)
+                    .addComponent(noButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(EditPanel.class);
         titleLabel.setText(resourceMap.getString("titleLabel.text")); // NOI18N
         titleLabel.setName("titleLabel"); // NOI18N
 
@@ -152,7 +202,6 @@ public class EditPanel extends javax.swing.JPanel {
 
         downloadButton.setAction(actionMap.get("download")); // NOI18N
         downloadButton.setText(resourceMap.getString("downloadButton.text")); // NOI18N
-        downloadButton.setEnabled(false);
         downloadButton.setName("downloadButton"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -251,6 +300,8 @@ public class EditPanel extends javax.swing.JPanel {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox assignComboBox;
+    private javax.swing.JDialog assignDialog;
     private javax.swing.JTextField attachmentField;
     private javax.swing.JLabel attachmentLabel;
     private javax.swing.JButton browseButton;
@@ -266,7 +317,9 @@ public class EditPanel extends javax.swing.JPanel {
     private org.sourceforge.jcalendarbutton.JCalendarButton expiresCalButton;
     private javax.swing.JCheckBox expiresCheckBox;
     private javax.swing.JFormattedTextField expiresField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton noButton;
     private org.sourceforge.jcalendarbutton.JCalendarButton postedCalButton;
     private javax.swing.JFormattedTextField postedField;
     private javax.swing.JLabel postedLabel;
@@ -275,6 +328,7 @@ public class EditPanel extends javax.swing.JPanel {
     private javax.swing.JFormattedTextField quantityField;
     private javax.swing.JTextField titleField;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JButton yesButton;
     // End of variables declaration//GEN-END:variables
 
     public void newInternship() {
@@ -325,19 +379,22 @@ public class EditPanel extends javax.swing.JPanel {
         }
 
 
-        if (success & !record.save()) {
-            JOptionPane.showMessageDialog(null, "There was an error trying to save");
-            success = false;
-        } else if (!success) {
+        if (success) {
+            if (!record.save()) {
+                JOptionPane.showMessageDialog(null, "There was an error trying to save");
+                success = false;
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Please check the data for errors");
+            success = false;
         }
         return success;
     }
 
     public void load(int id) {
         record = new Internship(id);
-        ((ComboBoxModel)companyComboBox.getModel()).setSelectedId(record.getCompanyId());
-        ((ComboBoxModel)careerComboBox.getModel()).setSelectedId(record.getCareerPathId());
+        ((ComboBoxModel) companyComboBox.getModel()).setSelectedId(record.getCompanyId());
+        ((ComboBoxModel) careerComboBox.getModel()).setSelectedId(record.getCareerPathId());
         titleField.setText(record.getTitle());
         descriptionTextarea.setText(record.getDescription());
         postedField.setText(record.getPostDate());
@@ -373,13 +430,12 @@ public class EditPanel extends javax.swing.JPanel {
     }
 
     /*public Boolean cancel() {
-        Internship currentData = new Internship();
-        currentData.setAttachment
+    Internship currentData = new Internship();
+    currentData.setAttachment
 
-        if (record.equals()) {
-        }
+    if (record.equals()) {
+    }
     }*/
-
     public void reloadComboBoxes() {
         companyComboBox.setModel(new ComboBoxModel("company", "name"));
         careerComboBox.setModel(new ComboBoxModel("career_path", "name"));
