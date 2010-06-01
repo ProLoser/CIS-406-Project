@@ -24,8 +24,8 @@ public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contactBrowsePanel1 = new cis406.contact.ContactBrowsePanel();
-        contactEditPanel1 = new cis406.contact.ContactEditPanel();
+        contactBrowsePanel1 = new cis406.contact.BrowsePanel();
+        contactEditPanel1 = new cis406.contact.EditPanel();
 
         setName("Form"); // NOI18N
         setLayout(new java.awt.CardLayout());
@@ -39,8 +39,8 @@ public class ContactPanel extends javax.swing.JPanel implements PanelInterface {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cis406.contact.ContactBrowsePanel contactBrowsePanel1;
-    private cis406.contact.ContactEditPanel contactEditPanel1;
+    private cis406.contact.BrowsePanel contactBrowsePanel1;
+    private cis406.contact.EditPanel contactEditPanel1;
     // End of variables declaration//GEN-END:variables
 
     public void clickReset() {

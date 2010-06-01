@@ -23,8 +23,8 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        correspondenceEditPanel1 = new cis406.correspondence.CorrespondenceEditPanel();
-        correspondenceBrowsePanel1 = new cis406.correspondence.CorrespondenceBrowsePanel();
+        correspondenceEditPanel1 = new cis406.correspondence.EditPanel();
+        correspondenceBrowsePanel1 = new cis406.correspondence.BrowsePanel();
 
         setName("frmCorr"); // NOI18N
         setLayout(new java.awt.CardLayout());
@@ -39,8 +39,8 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private cis406.correspondence.CorrespondenceBrowsePanel correspondenceBrowsePanel1;
-    private cis406.correspondence.CorrespondenceEditPanel correspondenceEditPanel1;
+    private cis406.correspondence.BrowsePanel correspondenceBrowsePanel1;
+    private cis406.correspondence.EditPanel correspondenceEditPanel1;
     // End of variables declaration//GEN-END:variables
 
 
@@ -91,8 +91,12 @@ public class CorrespondencePanel extends javax.swing.JPanel implements PanelInte
     }
     public void switchTo() {
         browsing();
+        rePopulate();
     }
     public Boolean switchAway() {
         return true;
+    }
+    public void rePopulate() {
+        correspondenceEditPanel1.rePopulate();
     }
 }

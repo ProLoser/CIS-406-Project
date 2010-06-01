@@ -10,10 +10,10 @@ import javax.swing.JOptionPane;
  *
  * @author Mark Lenser
  */
-public class CorrespondenceBrowsePanel extends javax.swing.JPanel {
+public class BrowsePanel extends javax.swing.JPanel {
 
     /** Creates new form CorrespondenceBrowsePanel */
-    public CorrespondenceBrowsePanel() {
+    public BrowsePanel() {
         initComponents();
         //loadTable();
     }

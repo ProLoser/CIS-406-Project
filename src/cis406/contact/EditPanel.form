@@ -67,32 +67,21 @@
                                       <Component id="txtLName" min="-2" pref="130" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="txtZip" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
-                                  <Component id="txtCity" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="1">
-                                          <Component id="txtPhoneLeftParenthesis" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtPhoneArea" min="-2" pref="39" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="lblPhoneRightParenthesis" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtPhoneFirst" min="-2" pref="41" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtPhoneDash" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtPhoneLast" min="-2" pref="58" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="lblPhoneExt" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtPhoneExt" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtEmail" alignment="0" max="32767" attributes="1"/>
                                       <Component id="txtStreet" alignment="0" min="-2" pref="256" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="txtPhone" alignment="0" pref="175" max="32767" attributes="1"/>
+                                              <Component id="txtEmail" alignment="1" max="32767" attributes="1"/>
+                                              <Component id="txtPosition" alignment="0" pref="175" max="32767" attributes="1"/>
+                                              <Component id="txtCity" alignment="0" pref="175" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtPosition" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -150,15 +139,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtPhoneLeftParenthesis" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPhone" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPhoneArea" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPhoneRightParenthesis" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPhoneFirst" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPhoneDash" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPhoneLast" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPhoneExt" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPhoneExt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPhone" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -277,7 +259,9 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtZip">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtZip.text"/>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="#####" subtype="-1" type="5"/>
+        </Property>
         <Property name="name" type="java.lang.String" value="txtZip" noResource="true"/>
       </Properties>
       <Events>
@@ -379,53 +363,16 @@
         <Property name="name" type="java.lang.String" value="lblPhone" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="txtPhoneLeftParenthesis">
+    <Component class="javax.swing.JFormattedTextField" name="txtPhone">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtPhoneLeftParenthesis.text"/>
-        <Property name="name" type="java.lang.String" value="txtPhoneLeftParenthesis" noResource="true"/>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="(###) ###-#### x ********" subtype="-1" type="5"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="txtPhone" noResource="true"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txtPhoneArea">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtPhoneArea.text"/>
-        <Property name="name" type="java.lang.String" value="txtPhoneArea" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblPhoneRightParenthesis">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblPhoneRightParenthesis.text"/>
-        <Property name="name" type="java.lang.String" value="lblPhoneRightParenthesis" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txtPhoneFirst">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtPhoneFirst.text"/>
-        <Property name="name" type="java.lang.String" value="txtPhoneFirst" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="txtPhoneDash">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtPhoneDash.text"/>
-        <Property name="name" type="java.lang.String" value="txtPhoneDash" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txtPhoneLast">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtPhoneLast.text"/>
-        <Property name="name" type="java.lang.String" value="txtPhoneLast" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblPhoneExt">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="lblPhoneExt.text"/>
-        <Property name="name" type="java.lang.String" value="lblPhoneExt" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txtPhoneExt">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="txtPhoneExt.text"/>
-        <Property name="name" type="java.lang.String" value="txtPhoneExt" noResource="true"/>
-      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="EditPanel_jFormattedTextField1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPosition">
       <Properties>

@@ -19,7 +19,7 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
   <SubComponents>
-    <Component class="cis406.correspondence.CorrespondenceEditPanel" name="correspondenceEditPanel1">
+    <Component class="cis406.correspondence.EditPanel" name="correspondenceEditPanel1">
       <Properties>
         <Property name="name" type="java.lang.String" value="correspondenceEditPanel1" noResource="true"/>
       </Properties>
@@ -29,7 +29,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="cis406.correspondence.CorrespondenceBrowsePanel" name="correspondenceBrowsePanel1">
+    <Component class="cis406.correspondence.BrowsePanel" name="correspondenceBrowsePanel1">
       <Properties>
         <Property name="name" type="java.lang.String" value="correspondenceBrowsePanel1" noResource="true"/>
         <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
