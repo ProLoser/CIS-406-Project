@@ -135,12 +135,12 @@ public class EditPanel extends javax.swing.JPanel {
         descriptionTextarea.setName("descriptionTextArea"); // NOI18N
         jScrollPane1.setViewportView(descriptionTextarea);
 
-        postedField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-d-yyyy"))));
+        postedField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-M-d"))));
         postedField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         postedField.setText(resourceMap.getString("postedFTextField.text")); // NOI18N
         postedField.setName("postedFTextField"); // NOI18N
 
-        expiresField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-d-yyyy"))));
+        expiresField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-M-d"))));
         expiresField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         expiresField.setText(resourceMap.getString("expiresFTextField.text")); // NOI18N
         expiresField.setEnabled(false);

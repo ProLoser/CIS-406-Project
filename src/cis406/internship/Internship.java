@@ -122,7 +122,7 @@ public class Internship {
     }
 
     public boolean setExpiration(String expiration) {
-        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+        DateFormat df = new SimpleDateFormat("yyyy-M-d");
         try {
             this.expiration = df.parse(expiration);
             return true;
@@ -148,7 +148,7 @@ public class Internship {
     }
 
     public boolean setPostDate(String postDate) {
-        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+        DateFormat df = new SimpleDateFormat("yyyy-M-d");
         try {
             this.postDate = df.parse(postDate);
             return true;
