@@ -32,13 +32,12 @@ public class SecurityLogPanel extends javax.swing.JPanel implements PanelInterfa
 
     @Action
     public void printTable() {
-        PrinterJob pj = PrinterJob.getPrinterJob();
+        PrinterJob pj=PrinterJob.getPrinterJob();
         pj.setPrintable(this);
-        pj.printDialog();
-        try {
-            pj.print();
-        } catch (Exception PrintException) {
-            System.out.println(PrintException.getMessage());
+        if (pj.printDialog()){
+            try{
+                pj.print();
+            }catch (Exception PrintException) { System.out.println(PrintException.getMessage()); }
         }
     }
 

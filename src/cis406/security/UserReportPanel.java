@@ -10,6 +10,7 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.util.Vector;
 import org.jdesktop.application.Action;
 
 public class UserReportPanel extends javax.swing.JPanel implements PanelInterface, Printable {
@@ -25,10 +26,11 @@ public class UserReportPanel extends javax.swing.JPanel implements PanelInterfac
     public void printTable() {
         PrinterJob pj=PrinterJob.getPrinterJob();
         pj.setPrintable(this);
-        pj.printDialog();
-        try{ 
-            pj.print();
-        }catch (Exception PrintException) { System.out.println(PrintException.getMessage()); }
+        if (pj.printDialog()){
+            try{
+                pj.print();
+            }catch (Exception PrintException) { System.out.println(PrintException.getMessage()); }
+        }
     }
 
     public int print(Graphics g, PageFormat pageFormat, int pageIndex) throws PrinterException {
@@ -89,15 +91,32 @@ public class UserReportPanel extends javax.swing.JPanel implements PanelInterfac
         return Printable.PAGE_EXISTS;
     }
 
-    static public TableModel generateTable() {
-        TableModel table = new TableModel(cis406.Database.execute("select * from users"));
-        table.addDisplayField("user_name");
-        table.addDisplayField("first_name");
-        table.addDisplayField("last_name");
-        table.addDisplayField("status");
-        table.addDisplayField("clearance");
-        table.addDisplayField("failed_logon_attempts");
-        return table.parseData();
+    public static TableModel generateTable() {
+        cis406.Database db = new cis406.Database("users");
+        TableModel table = null;
+        Vector<String> fields = new Vector<String>();
+
+        // Prepare the database query to be used to populate the table
+        db.innerJoin("status");
+        db.innerJoin("clearance");
+        // Populating a map of my fields so that I can choose which columns to
+        // display and what labels to display them as.
+        fields.add("user_name");
+        fields.add("first_name");
+        fields.add("last_name");
+        fields.add("failed_logon_attempts");
+        // Use table.fieldname when querying multiple tables joined together
+        fields.add("status.description AS user_status");
+        fields.add("clearance.description AS user_type");
+        try {
+            // Generate the table from the query
+            table = new TableModel(db.select(fields));
+            table.parseData();
+        } catch (Exception e) {
+            System.out.println("Failed to load the internship table");
+            System.out.println(e.getMessage());
+        }
+        return table;
     }
 
     public void clickNew() {

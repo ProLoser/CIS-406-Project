@@ -42,11 +42,11 @@ public class User {
         try {
             ResultSet rs = cis406.Database.execute("select * from users where user_name = '" + username + "'");
             while (rs.next()) {
-                this.securityLevel = rs.getInt("clearance");
+                this.securityLevel = rs.getInt("clearance_id");
                 this.fName = rs.getString("first_name");
                 this.lName = rs.getString("last_name");
                 this.password = rs.getString("password");
-                this.status = rs.getInt("status");
+                this.status = rs.getInt("status_id");
                 this.question_id = rs.getInt("question_key_id");
                 this.security_answer = rs.getString("answer");
 
@@ -246,7 +246,7 @@ public class User {
     public void addUser() {
         if (!exists(username)) {
             try {
-                Database.executeWrite("INSERT INTO users (first_name, user_name, status, last_name, clearance, password) VALUES ('" + fName + "', '" + username + "', " + 1 + ", '" + lName + "', " + securityLevel + ", '" + byteArrayToHexString(computeHash("P@ssw0rd")) + "')");
+                Database.executeWrite("INSERT INTO users (first_name, user_name, status_id, last_name, clearance_id, password) VALUES ('" + fName + "', '" + username + "', " + 1 + ", '" + lName + "', " + securityLevel + ", '" + byteArrayToHexString(computeHash("P@ssw0rd")) + "')");
                 SecurityLog.addEntry("User created: " + username + ".");
                 JOptionPane.showMessageDialog(null, "User created successfully.");
             } catch (Exception e) {
@@ -264,8 +264,8 @@ public class User {
      */
     public void updateUser() {
             Database.executeWrite("UPDATE users SET password = '"
-                    + password + "', status = " + status + ", first_name = '" + fName
-                    + "', last_name = '" + lName + "', clearance = " + securityLevel
+                    + password + "', status_id = " + status + ", first_name = '" + fName
+                    + "', last_name = '" + lName + "', clearance_id = " + securityLevel
                     + ", question_key_id = " + question_id + ", answer = '" + security_answer + "' WHERE user_name = '" + username + "'");
             SecurityLog.addEntry("Password and user information updated for " + username + ".");
     }
@@ -276,9 +276,9 @@ public class User {
      */
     public void firstLoginUpdate() {
             Database.executeWrite("UPDATE users SET password = '"
-                    + password + "', status = " + status + ", first_name = '" + fName
-                    + "', last_name = '" + lName + "', clearance = " + securityLevel
-                    + ", question_key_id = " + question_id + ", answer = '" + security_answer + "' WHERE user_name = '" + username + "'");
+                    + password + "', status_id = " + status + ", first_name = '" + fName
+                    + "', last_name = '" + lName + "', clearance_id = " + securityLevel
+                    + ", question_key_id = " + question_id + ", answer = '" + security_answer + "', has_logged_on = 1 WHERE user_name = '" + username + "'");
             SecurityLog.firstLoginEntry(username);
     }
 
@@ -313,7 +313,7 @@ public class User {
      * @param value 0 for disable, 1 for enable, 2 for disabled for too many unsuccessful login attempts
      */
     public static void changeStatus(String username, int value){
-        Database.executeWrite("update users set status = " + value + " where user_name = '" + username + "'");
+        Database.executeWrite("update users set status_id = " + value + " where user_name = '" + username + "'");
     }
 
     /**
@@ -359,10 +359,10 @@ public class User {
 
         try
         {
-            ResultSet rs = Database.execute("select clearance from users where user_name = '" + username + "'");
+            ResultSet rs = Database.execute("select clearance_id from users where user_name = '" + username + "'");
             while (rs.next())
             {
-                clearance = rs.getInt("clearance");
+                clearance = rs.getInt("clearance_id");
             }
 
         } catch (Exception e) {
@@ -459,10 +459,10 @@ public class User {
     public static int getStatus(String username) {
         try
         {
-            ResultSet rs = Database.execute("select status from users where user_name = '" + username + "'");
+            ResultSet rs = Database.execute("select status_id from users where user_name = '" + username + "'");
             while (rs.next())
             {
-                int status = rs.getInt("status");
+                int status = rs.getInt("status_id");
                 if (status == 2) {
                     return 2;
                 }
