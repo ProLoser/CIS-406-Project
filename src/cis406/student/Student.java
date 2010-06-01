@@ -363,48 +363,5 @@ public class Student extends Person {
         return table;
     }
 
-    @Override
-    public String toString() {
-        String classDescription = getClass().getName() + "[";
-        //classDescription +="studID" + "=";
-        //classDescription +=studID;
-        classDescription += "broncoNumber" + "=";
-        classDescription += broncoNum;
-        classDescription += "Name" + "=";
-        classDescription += getFullName();
-        classDescription += "email" + "=";
-        classDescription += email;
-        classDescription += "phone" + "=";
-        classDescription += phone;
-        classDescription += "gradeLevel" + "=";
-        classDescription += gradeLevel;
-        classDescription += "relocate" + "=";
-        classDescription += relocate;
-        classDescription += "updateDate" + "=";
-        classDescription += updateDate;
-        classDescription += "interests" + "=";
-        classDescription += interests;
-        classDescription += "clubMissa" + "=";
-        classDescription += clubMissa;
-        classDescription += "clubFast" + "=";
-        classDescription += clubFast;
-        classDescription += "clubIwdsa" + "=";
-        classDescription += clubIwdsa;
-        classDescription += "clubOther" + "=";
-        classDescription += clubOther;
-        classDescription += "major" + "=";
-        classDescription += major;
-        classDescription += "minor" + "=";
-        classDescription += minor;
-        classDescription += "gradQtr" + "=";
-        classDescription += gradQtr;
-        classDescription += "gradYr" + "=";
-        classDescription += gradYr;
-        classDescription += "lastCISCourse" + "=";
-        classDescription += lastCISCourse;
-        classDescription += "email" + "=";
-        classDescription += email;
-        classDescription += "]";
-        return classDescription;
-    }
+   
 }
