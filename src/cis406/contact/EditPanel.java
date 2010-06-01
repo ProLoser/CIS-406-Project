@@ -384,11 +384,11 @@ public class EditPanel extends javax.swing.JPanel {
         record.setFname(txtFName.getText());
         record.setLname(txtLName.getText());
         record.setStreet(txtStreet.getText());
-        record.setZip(Integer.parseInt(txtZip.getText()));
+        record.setZip( Integer.parseInt( (String)txtZip.getValue() ) );
         record.setCity(txtCity.getText());
         record.setState(cboState.getSelectedItem().toString());
         record.setEmail(txtEmail.getText());
-        record.setPhone(Integer.parseInt(txtPhone.getText()));
+        record.setPhone( Integer.parseInt( (String)txtPhone.getValue() ) );
         record.setPosition(txtPosition.getText());
         record.setComm_method(cboCommMethod.getSelectedIndex());
         record.setDescription(txaNotes.getText());
@@ -401,6 +401,7 @@ public class EditPanel extends javax.swing.JPanel {
     }
     public void load(int id) {
         Contact data = new Contact(id);
+
         ((ComboBoxModel)cboCompany.getModel()).setSelectedId(data.getCompany_id());
         ((ComboBoxModel)cboIndustry.getModel()).setSelectedId(data.getIndustry_id());
         txtFName.setText(data.getFname());
@@ -413,6 +414,7 @@ public class EditPanel extends javax.swing.JPanel {
         txtPhone.setText(Integer.toString(data.getPhone()));
         txtPosition.setText(data.getPosition());
         txaNotes.setText(data.getDescription());
+        System.out.println(data.getPhone());
     }
     public void reset() {
         cboCompany.setSelectedIndex(0);
@@ -420,12 +422,11 @@ public class EditPanel extends javax.swing.JPanel {
         txtFName.setText(null);
         txtLName.setText(null);
         txtStreet.setText(null);
-        //Zip
         txtZip.setValue(null);
         txtCity.setText(null);
         cboState.setSelectedIndex(0);
         txtEmail.setText(null);
-        txtPhone.setText(null);
+        txtPhone.setValue(null);
         txtPosition.setText(null);
         cboCommMethod.setSelectedIndex(0);
         txaNotes.setText(null);
