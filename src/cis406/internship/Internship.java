@@ -212,7 +212,7 @@ public class Internship {
         db.addField("quantity", quantity);
         try {
             if (id == 0) {
-                db.insert();
+                id = db.insert();
             } else {
                 db.update(id);
             }

@@ -82,12 +82,15 @@ public class EditPanel extends javax.swing.JPanel {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        assignComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        assignComboBox.setModel(new cis406.ComboBoxModel("student", "last_name"));
         assignComboBox.setName("assignComboBox"); // NOI18N
 
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(EditPanel.class, this);
+        yesButton.setAction(actionMap.get("assignStudent")); // NOI18N
         yesButton.setText(resourceMap.getString("yesButton.text")); // NOI18N
         yesButton.setName("yesButton"); // NOI18N
 
+        noButton.setAction(actionMap.get("closeAssignDialog")); // NOI18N
         noButton.setText(resourceMap.getString("noButton.text")); // NOI18N
         noButton.setName("noButton"); // NOI18N
 
@@ -143,7 +146,6 @@ public class EditPanel extends javax.swing.JPanel {
         expiresField.setEnabled(false);
         expiresField.setName("expiresFTextField"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(EditPanel.class, this);
         browseButton.setAction(actionMap.get("browse")); // NOI18N
         browseButton.setText(resourceMap.getString("browseButton.text")); // NOI18N
         browseButton.setName("browseButton"); // NOI18N
@@ -383,6 +385,8 @@ public class EditPanel extends javax.swing.JPanel {
             if (!record.save()) {
                 JOptionPane.showMessageDialog(null, "There was an error trying to save");
                 success = false;
+            } else {
+                assignDialog.setVisible(true);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please check the data for errors");
@@ -453,5 +457,16 @@ public class EditPanel extends javax.swing.JPanel {
         if (success == javax.swing.JFileChooser.APPROVE_OPTION) {
             record.downloadAttachment(downloadFolder.getSelectedFile().getPath());
         }
+    }
+
+    @Action
+    public void assignStudent() {
+        
+        assignDialog.dispose();
+    }
+
+    @Action
+    public void closeAssignDialog() {
+        assignDialog.dispose();
     }
 }
