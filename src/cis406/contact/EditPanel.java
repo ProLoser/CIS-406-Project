@@ -150,7 +150,13 @@ public class EditPanel extends javax.swing.JPanel {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtPhone.setText(resourceMap.getString("txtPhone.text")); // NOI18N
         txtPhone.setName("txtPhone"); // NOI18N
+        txtPhone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPhoneFocusLost(evt);
+            }
+        });
 
         lblPosition.setText(resourceMap.getString("lblPosition.text")); // NOI18N
         lblPosition.setName("lblPosition"); // NOI18N
@@ -316,6 +322,10 @@ public class EditPanel extends javax.swing.JPanel {
         cboState.setSelectedItem(state);
     }//GEN-LAST:event_txtZipFocusLost
 
+    private void txtPhoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneFocusLost
+
     public void division() {
         String company = cboCompany.getSelectedItem().toString();
 
@@ -380,6 +390,32 @@ public class EditPanel extends javax.swing.JPanel {
         } else {
             record.setCompany_id(((ComboItem) cboCompany.getSelectedItem()).id);
         }
+        
+        // Include our formatter in the javax package and the parse exception error object
+           /*
+        try {
+                // Set the mask format
+                MaskFormatter f = new MaskFormatter("### ###-####");
+
+                // Tell it to use literals as well in the mask (the hyphen in our case)
+                f.setValueContainsLiteralCharacters(false);
+
+                // The number to then format and put it out as a string
+                System.out.println(f.valueToString("1234567890"));
+        }
+        catch (ParseException p) { System.out.println(p.toString()); }
+            * 
+            */
+        String phonestr = (String)txtPhone.getText();
+        int phone = 0;
+        try {
+            phone = Integer.parseInt( phonestr.replaceAll( "\\D", "" ) );
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }      
+
+        
         record.setFname(txtFName.getText());
         record.setLname(txtLName.getText());
         record.setStreet(txtStreet.getText());
@@ -387,7 +423,7 @@ public class EditPanel extends javax.swing.JPanel {
         record.setCity(txtCity.getText());
         record.setState(cboState.getSelectedItem().toString());
         record.setEmail(txtEmail.getText());
-        record.setPhone( Integer.parseInt( (String)txtPhone.getValue() ) );
+        record.setPhone(phone);
         record.setPosition(txtPosition.getText());
         record.setComm_method(cboCommMethod.getSelectedIndex());
         record.setDescription(txaNotes.getText());
