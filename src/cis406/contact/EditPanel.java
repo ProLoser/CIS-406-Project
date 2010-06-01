@@ -4,6 +4,7 @@ import cis406.ComboBoxModel;
 import cis406.ComboItem;
 import cis406.Database;
 import java.sql.ResultSet;
+import java.awt.Color;
 /**
  *
  * @author Mark Lenser
@@ -150,7 +151,13 @@ public class EditPanel extends javax.swing.JPanel {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtPhone.setText(resourceMap.getString("txtPhone.text")); // NOI18N
         txtPhone.setName("txtPhone"); // NOI18N
+        txtPhone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPhoneFocusLost(evt);
+            }
+        });
 
         lblPosition.setText(resourceMap.getString("lblPosition.text")); // NOI18N
         lblPosition.setName("lblPosition"); // NOI18N
@@ -316,6 +323,10 @@ public class EditPanel extends javax.swing.JPanel {
         cboState.setSelectedItem(state);
     }//GEN-LAST:event_txtZipFocusLost
 
+    private void txtPhoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPhoneFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneFocusLost
+
     public void division() {
         String company = cboCompany.getSelectedItem().toString();
 
@@ -361,6 +372,7 @@ public class EditPanel extends javax.swing.JPanel {
 
     public void newContact() {
         record = new Contact();
+        reset();
     }
     public boolean save() {
         Boolean success = true;
@@ -380,14 +392,54 @@ public class EditPanel extends javax.swing.JPanel {
         } else {
             record.setCompany_id(((ComboItem) cboCompany.getSelectedItem()).id);
         }
-        record.setFname(txtFName.getText());
-        record.setLname(txtLName.getText());
-        record.setStreet(txtStreet.getText());
-        record.setZip( Integer.parseInt( (String)txtZip.getValue() ) );
-        record.setCity(txtCity.getText());
+        
+        String phonestr = (String)txtPhone.getText();
+        String phone = phonestr.replaceAll( "\\D", "" );
+
+        if (!record.setFname(txtFName.getText())) {
+            lblFName.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblFName.setForeground(Color.BLACK);
+        }
+        if (!record.setLname(txtLName.getText())) {
+            lblLName.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblLName.setForeground(Color.BLACK);
+        }
+        if (!record.setStreet(txtStreet.getText())) {
+            lblStreet.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblStreet.setForeground(Color.BLACK);
+        }
+        if (!record.setZip((String)txtZip.getValue())) {
+            lblZip.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblZip.setForeground(Color.BLACK);
+        }
+        if (!record.setCity(txtCity.getText())) {
+            lblCity.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblCity.setForeground(Color.BLACK);
+        }
         record.setState(cboState.getSelectedItem().toString());
-        record.setEmail(txtEmail.getText());
-        record.setPhone( Integer.parseInt( (String)txtPhone.getValue() ) );
+
+        if (!record.setEmail(txtEmail.getText())) {
+            lblEmail.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblEmail.setForeground(Color.BLACK);
+        }
+        if (!record.setPhone(phone)) {
+            lblPhone.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblPhone.setForeground(Color.BLACK);
+        }
         record.setPosition(txtPosition.getText());
         record.setComm_method(cboCommMethod.getSelectedIndex());
         record.setDescription(txaNotes.getText());
@@ -412,7 +464,6 @@ public class EditPanel extends javax.swing.JPanel {
         txtPhone.setText(Integer.toString(data.getPhone()));
         txtPosition.setText(data.getPosition());
         txaNotes.setText(data.getDescription());
-        System.out.println(data.getPhone());
     }
     public void reset() {
         cboCompany.setSelectedIndex(0);

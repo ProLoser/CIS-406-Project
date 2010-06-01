@@ -4,6 +4,8 @@ import cis406.ComboBoxModel;
 import cis406.ComboItem;
 import cis406.DateUtils;
 
+import java.awt.Color;
+
 /**
  *
  * @author Mark Lenser
@@ -142,6 +144,12 @@ public class EditPanel extends javax.swing.JPanel {
         Correspondence record = new Correspondence();
         record.setContact_id(((ComboItem) cboContact.getSelectedItem()).id);
         record.setType(cboType.getSelectedIndex());
+        if (!record.setDate(txtDate.getText())) {
+            lblDate.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblDate.setForeground(Color.BLACK);
+        }
         record.setDate(txtDate.getText());
         record.setNotes(txaNotes.getText());
         record.save();
