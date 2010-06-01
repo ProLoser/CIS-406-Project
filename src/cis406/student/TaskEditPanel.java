@@ -11,6 +11,7 @@
 package cis406.student;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
@@ -83,7 +84,7 @@ public class TaskEditPanel extends javax.swing.JPanel {
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
-        cboTaskCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Company", "Correspondance", "Industry", "Student", " " }));
+        cboTaskCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Company", "Contact", "Internship", "Student", " " }));
         cboTaskCategory.setName("cboTaskCategory"); // NOI18N
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(TaskEditPanel.class, this);
@@ -98,17 +99,19 @@ public class TaskEditPanel extends javax.swing.JPanel {
         lblStartDate.setText(resourceMap.getString("lblStartDate.text")); // NOI18N
         lblStartDate.setName("lblStartDate"); // NOI18N
 
+        btnDueCal.setEnabled(false);
         btnDueCal.setName("btnDueCal"); // NOI18N
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
 
+        btnStartCal.setEnabled(false);
         btnStartCal.setName("btnStartCal"); // NOI18N
 
         btnCompleteCal.setEnabled(false);
         btnCompleteCal.setName("btnCompleteCal"); // NOI18N
 
-        txtStartDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-d-yyyy"))));
+        txtStartDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-dd-yyyy"))));
         txtStartDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtStartDate.setText(resourceMap.getString("txtStartDate.text")); // NOI18N
         txtStartDate.setName("txtStartDate"); // NOI18N
@@ -284,14 +287,14 @@ public class TaskEditPanel extends javax.swing.JPanel {
 
     public void load(int id) {
         Task data = new Task(id);
-        cboTaskCategory.setSelectedIndex(data.category);
+                 cboTaskCategory.setSelectedIndex(data.category);
         txaDescription.setText(data.description);
         txtTaskTitle.setText(data.taskTitle);
         if (data.completeDate != null) {
             chkCompleted.setSelected(true);
             txtCompleteDate.setText(data.getCompleteDate());
             chkCompleted.setEnabled(true);
-            btnCompleteCal.setEnabled(true);
+            btnCompleteCal.setEnabled(false);
         } else {
             chkCompleted.setSelected(false);
             txtCompleteDate.setText("mm-dd-yyyy");
@@ -301,6 +304,7 @@ public class TaskEditPanel extends javax.swing.JPanel {
         txtDueDate.setText(data.getDueDate());
         txtStartDate.setText(data.getEnterDate());
         txtContactName.setText(data.getName());
+        newTask = data;
     }
 
     public void reset() {

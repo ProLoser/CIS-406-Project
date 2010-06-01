@@ -5,6 +5,7 @@ import cis406.*;
 import cis406.Database;
 import cis406.Person;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -108,12 +109,6 @@ public class Student extends Person {
         }
     }
 
-    //public String getStudID() {
-    //	return studID;
-    //}
-    //public void setStudID(String studID) {
-    //	this.studID = studID;
-    //}
     public int getBroncoNum() {
         return broncoNum;
     }
@@ -240,7 +235,8 @@ public class Student extends Person {
     }
 
     public String getUpdateDate() {
-        return updateDate.toString();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        return dateFormat.format(updateDate);
     }
 
     public void setUpdateDate(Date updateDate) {
@@ -363,48 +359,5 @@ public class Student extends Person {
         return table;
     }
 
-    @Override
-    public String toString() {
-        String classDescription = getClass().getName() + "[";
-        //classDescription +="studID" + "=";
-        //classDescription +=studID;
-        classDescription += "broncoNumber" + "=";
-        classDescription += broncoNum;
-        classDescription += "Name" + "=";
-        classDescription += getFullName();
-        classDescription += "email" + "=";
-        classDescription += email;
-        classDescription += "phone" + "=";
-        classDescription += phone;
-        classDescription += "gradeLevel" + "=";
-        classDescription += gradeLevel;
-        classDescription += "relocate" + "=";
-        classDescription += relocate;
-        classDescription += "updateDate" + "=";
-        classDescription += updateDate;
-        classDescription += "interests" + "=";
-        classDescription += interests;
-        classDescription += "clubMissa" + "=";
-        classDescription += clubMissa;
-        classDescription += "clubFast" + "=";
-        classDescription += clubFast;
-        classDescription += "clubIwdsa" + "=";
-        classDescription += clubIwdsa;
-        classDescription += "clubOther" + "=";
-        classDescription += clubOther;
-        classDescription += "major" + "=";
-        classDescription += major;
-        classDescription += "minor" + "=";
-        classDescription += minor;
-        classDescription += "gradQtr" + "=";
-        classDescription += gradQtr;
-        classDescription += "gradYr" + "=";
-        classDescription += gradYr;
-        classDescription += "lastCISCourse" + "=";
-        classDescription += lastCISCourse;
-        classDescription += "email" + "=";
-        classDescription += email;
-        classDescription += "]";
-        return classDescription;
-    }
+   
 }

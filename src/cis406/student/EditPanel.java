@@ -688,7 +688,7 @@ public class EditPanel extends javax.swing.JPanel {
     @Action
     public void launchInternshipAssign() {
         String message;
-        AssignStudentToInternship frame = new AssignStudentToInternship();
+        AssignStudentToInternshipDialog frame = new AssignStudentToInternshipDialog();
         if (newStudent == null) {
             message = "Please enter Student data and Save";
             JOptionPane.showMessageDialog(frame, message);
