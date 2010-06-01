@@ -95,8 +95,9 @@ public class Correspondence {
         // Populating a map of my fields so that I can choose which columns to
         // display and what labels to display them as.
         fields.add("date");
-        // Use table.fieldname when querying multiple tables joined together
         fields.add("contact.last_name AS contact");
+
+        // Use table.fieldname when querying multiple tables joined together
         
         try {
             // Generate the table from the query

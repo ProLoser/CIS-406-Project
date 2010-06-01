@@ -366,7 +366,6 @@ public class EditPanel extends javax.swing.JPanel {
         Boolean success = true;
 
         Contact record = new Contact();
-        Company compRecord = new Company();
         // Saves the Industry if it's a new entry
         if (cboIndustry.getSelectedIndex() == -1) {
             Industry indust = new Industry(cboIndustry.getSelectedItem().toString());
@@ -396,7 +395,6 @@ public class EditPanel extends javax.swing.JPanel {
 
         cboCompany.setModel(new cis406.ComboBoxModel("company", "name"));
         cboIndustry.setModel(new cis406.ComboBoxModel("industry", "industry_name"));
-        //CorrespondencePanel.rePopulate();
         return success;
     }
     public void load(int id) {
