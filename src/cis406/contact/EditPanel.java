@@ -4,6 +4,7 @@ import cis406.ComboBoxModel;
 import cis406.ComboItem;
 import cis406.Database;
 import java.sql.ResultSet;
+import java.awt.Color;
 /**
  *
  * @author Mark Lenser
@@ -371,6 +372,7 @@ public class EditPanel extends javax.swing.JPanel {
 
     public void newContact() {
         record = new Contact();
+        reset();
     }
     public boolean save() {
         Boolean success = true;
@@ -390,40 +392,53 @@ public class EditPanel extends javax.swing.JPanel {
         } else {
             record.setCompany_id(((ComboItem) cboCompany.getSelectedItem()).id);
         }
-        
-        // Include our formatter in the javax package and the parse exception error object
-           /*
-        try {
-                // Set the mask format
-                MaskFormatter f = new MaskFormatter("### ###-####");
-
-                // Tell it to use literals as well in the mask (the hyphen in our case)
-                f.setValueContainsLiteralCharacters(false);
-
-                // The number to then format and put it out as a string
-                System.out.println(f.valueToString("1234567890"));
-        }
-        catch (ParseException p) { System.out.println(p.toString()); }
-            * 
-            */
         String phonestr = (String)txtPhone.getText();
-        int phone = 0;
-        try {
-            phone = Integer.parseInt( phonestr.replaceAll( "\\D", "" ) );
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }      
+        String phone = phonestr.replaceAll( "\\D", "" );
 
-        
-        record.setFname(txtFName.getText());
-        record.setLname(txtLName.getText());
-        record.setStreet(txtStreet.getText());
-        record.setZip( Integer.parseInt( (String)txtZip.getValue() ) );
-        record.setCity(txtCity.getText());
+        if (!record.setFname(txtFName.getText())) {
+            lblFName.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblFName.setForeground(Color.BLACK);
+        }
+        if (!record.setLname(txtLName.getText())) {
+            lblLName.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblLName.setForeground(Color.BLACK);
+        }
+        if (!record.setStreet(txtStreet.getText())) {
+            lblStreet.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblStreet.setForeground(Color.BLACK);
+        }
+        if (!record.setZip((String)txtZip.getValue())) {
+            lblZip.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblZip.setForeground(Color.BLACK);
+        }
+        if (!record.setCity(txtCity.getText())) {
+            lblCity.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblCity.setForeground(Color.BLACK);
+        }
         record.setState(cboState.getSelectedItem().toString());
-        record.setEmail(txtEmail.getText());
-        record.setPhone(phone);
+
+        if (!record.setEmail(txtEmail.getText())) {
+            lblEmail.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblEmail.setForeground(Color.BLACK);
+        }
+        if (!record.setPhone(phone)) {
+            lblPhone.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblPhone.setForeground(Color.BLACK);
+        }
         record.setPosition(txtPosition.getText());
         record.setComm_method(cboCommMethod.getSelectedIndex());
         record.setDescription(txaNotes.getText());
@@ -448,7 +463,6 @@ public class EditPanel extends javax.swing.JPanel {
         txtPhone.setText(Integer.toString(data.getPhone()));
         txtPosition.setText(data.getPosition());
         txaNotes.setText(data.getDescription());
-        System.out.println(data.getPhone());
     }
     public void reset() {
         cboCompany.setSelectedIndex(0);

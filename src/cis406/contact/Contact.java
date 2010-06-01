@@ -7,6 +7,7 @@ package cis406.contact;
 
 import cis406.TableModel;
 import cis406.Database;
+import cis406.Validation;
 import java.util.Vector;
 import java.sql.ResultSet;
 
@@ -53,7 +54,7 @@ public class Contact {
             System.out.println("Failed to locate a record");
         }
     }
-    public Contact(String fname, String lname, int company_id, String street, int zip, String city, String state, String email, int phone, String position, int comm_method, String description) {
+    public Contact(String fname, String lname, int company_id, String street, String zip, String city, String state, String email, String phone, String position, int comm_method, String description) {
         setFname(fname);
         setLname(lname);
         setCompany_id(company_id);
@@ -83,32 +84,66 @@ public class Contact {
         this.industry_id = industryId;
     }
     //Contact
-    public void setFname(String fname) {
-        this.fname = fname;
+    public boolean setFname(String fname) {
+        if(Validation.isRequired(fname) && Validation.isChars(fname)) {
+            this.fname = fname;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     public String getFname() {
         return fname;
     }
-    public void setLname(String lname) {
-        this.lname = lname;
+    public boolean setLname(String lname) {
+        if(Validation.isRequired(lname) && Validation.isChars(lname)) {
+            this.lname = lname;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     public String getLname() {
         return lname;
     }
-    public void setStreet(String street) {
-        this.street = street;
+    public boolean setStreet(String street) {
+        if(Validation.isRequired(street) && Validation.isCharsNumsSpaces(street)) {
+            this.street = street;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     public String getStreet() {
         return street;
     }
-    public void setZip(int zip) {
-        this.zip = zip;
+    public boolean setZip(String zip) {
+        if(Validation.isRequired(zip) && Validation.isNums(zip)) {
+            try {
+                this.zip = Integer.parseInt(zip);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
     public int getZip() {
         return zip;
     }
-    public void setCity(String city) {
-        this.city = city;
+    public boolean setCity(String city) {
+        if(Validation.isRequired(city) && Validation.isChars(city)) {
+            this.city = city;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     public String getCity() {
         return city;
@@ -119,14 +154,30 @@ public class Contact {
     public String getState() {
         return state;
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public boolean setEmail(String email) {
+        if(Validation.isRequired(email) && Validation.isValidEmailAddress(email)) {
+            this.email = email;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     public String getEmail() {
         return email;
     }
-    public void setPhone(int phone) {
-        this.phone = phone;
+    public boolean setPhone(String phone) {
+        if(Validation.isNums(phone)) {
+            try {
+                this.phone = Integer.parseInt(phone);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
     public int getPhone() {
         return phone;
