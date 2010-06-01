@@ -41,6 +41,13 @@ public class Contact {
             fname = data.getString("first_name");
             lname = data.getString("last_name");
             company_id = data.getInt("company_id");
+            ResultSet compData = Database.read("company", company_id);
+            try {
+                compData.next();
+                industry_id = compData.getInt("industry_id");
+            } catch (Exception e) {
+                System.out.println("Failed to locate a company");
+            }
             street = data.getString("street");
             zip = data.getInt("zip");
             city = data.getString("city");
@@ -48,8 +55,10 @@ public class Contact {
             email = data.getString("email");
             phone = data.getInt("phone");
             position = data.getString("position");
-            comm_method = data.getInt("comm_method");
-            description = data.getString("description");
+            comm_method = data.getInt("preferred_contact");
+            description = data.getString("initial_contact_description");
+
+           //Erorrs in industry
         } catch (Exception e) {
             System.out.println("Failed to locate a record");
         }
