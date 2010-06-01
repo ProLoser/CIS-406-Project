@@ -109,12 +109,6 @@ public class Student extends Person {
         }
     }
 
-    //public String getStudID() {
-    //	return studID;
-    //}
-    //public void setStudID(String studID) {
-    //	this.studID = studID;
-    //}
     public int getBroncoNum() {
         return broncoNum;
     }
@@ -242,7 +236,7 @@ public class Student extends Person {
 
     public String getUpdateDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        return dateFormat.format(updateDate.toString());
+        return dateFormat.format(updateDate);
     }
 
     public void setUpdateDate(Date updateDate) {
