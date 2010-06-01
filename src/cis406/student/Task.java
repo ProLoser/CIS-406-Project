@@ -149,7 +149,8 @@ public class Task {
 
     public String getCompleteDate() {
         if (completeDate != null) {
-            return completeDate.toString();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+            return dateFormat.format(completeDate);
         } else {
             return null;
         }
@@ -176,7 +177,8 @@ public class Task {
 
     public String getDueDate() {
         if (dueDate != null) {
-            return dueDate.toString();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+            return dateFormat.format(dueDate);
         } else {
             return null;
         }
@@ -195,7 +197,8 @@ public class Task {
 
     public String getEnterDate() {
         if (enterDate != null) {
-            return enterDate.toString();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+            return dateFormat.format(enterDate);
         } else {
             return null;
         }

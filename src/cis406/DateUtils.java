@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
  * @author Mark Lenser
  */
 public class DateUtils {
-  public static final String DATE_FORMAT_NOW = "MM-dd-yyyy";
+  public static final String DATE_FORMAT_NOW = "yyyy-MM-dd";
 
   public static String now() {
     Calendar cal = Calendar.getInstance();

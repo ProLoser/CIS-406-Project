@@ -13,6 +13,83 @@
         <Property name="name" type="java.lang.String" value="downloadFolder" noResource="true"/>
       </Properties>
     </Component>
+    <Container class="javax.swing.JDialog" name="assignDialog">
+      <Properties>
+        <Property name="title" type="java.lang.String" resourceKey="assignDialog.title"/>
+        <Property name="modal" type="boolean" value="true"/>
+        <Property name="name" type="java.lang.String" value="assignDialog" noResource="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="assignComboBox" alignment="0" pref="170" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="yesButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <Component id="noButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="assignComboBox" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="yesButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="noButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel1.text"/>
+            <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="assignComboBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new cis406.ComboBoxModel(&quot;student&quot;, &quot;last_name&quot;)" type="code"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="assignComboBox" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="yesButton">
+          <Properties>
+            <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+              <action class="cis406.internship.EditPanel" id="assignStudent" methodName="assignStudent"/>
+            </Property>
+            <Property name="text" type="java.lang.String" resourceKey="yesButton.text"/>
+            <Property name="name" type="java.lang.String" value="yesButton" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="noButton">
+          <Properties>
+            <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+              <action class="cis406.internship.EditPanel" id="closeAssignDialog" methodName="closeAssignDialog"/>
+            </Property>
+            <Property name="text" type="java.lang.String" resourceKey="noButton.text"/>
+            <Property name="name" type="java.lang.String" value="noButton" noResource="true"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </NonVisualComponents>
   <Properties>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
@@ -159,7 +236,7 @@
     <Component class="javax.swing.JFormattedTextField" name="postedField">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="M-d-yyyy" subtype="-1" type="1"/>
+          <Format format="yyyy-M-d" subtype="-1" type="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" resourceKey="postedFTextField.text"/>
@@ -169,7 +246,7 @@
     <Component class="javax.swing.JFormattedTextField" name="expiresField">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="M-d-yyyy" subtype="-1" type="1"/>
+          <Format format="yyyy-M-d" subtype="-1" type="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" resourceKey="expiresFTextField.text"/>
@@ -300,7 +377,6 @@
           <action class="cis406.internship.EditPanel" id="download" methodName="download"/>
         </Property>
         <Property name="text" type="java.lang.String" resourceKey="downloadButton.text"/>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="downloadButton" noResource="true"/>
       </Properties>
     </Component>

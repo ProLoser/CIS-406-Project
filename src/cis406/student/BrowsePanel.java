@@ -93,7 +93,7 @@ public class BrowsePanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Student #" + rowId + " could not be found");
         }
     }
-       public int getSelectedRow() {
+     public int getSelectedRow() {
         int row = reportTable.getSelectedRow();
         if (row != -1) {
             return ((TableModel) reportTable.getModel()).getRowId(row);
@@ -101,5 +101,5 @@ public class BrowsePanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row first");
             return 0;
         }
-}
+    }
 }
