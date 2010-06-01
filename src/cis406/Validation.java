@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class Validation {
     //Validation
-    public static boolean isRequired(String str) {
+    public static boolean isNotEmpty(String str) {
 
         //It can't contain only numbers if it's null or empty...
         if (str == null || str.length() == 0)

@@ -392,6 +392,7 @@ public class EditPanel extends javax.swing.JPanel {
         } else {
             record.setCompany_id(((ComboItem) cboCompany.getSelectedItem()).id);
         }
+        
         String phonestr = (String)txtPhone.getText();
         String phone = phonestr.replaceAll( "\\D", "" );
 

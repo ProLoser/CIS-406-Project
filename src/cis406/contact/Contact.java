@@ -85,7 +85,7 @@ public class Contact {
     }
     //Contact
     public boolean setFname(String fname) {
-        if(Validation.isRequired(fname) && Validation.isChars(fname)) {
+        if(Validation.isNotEmpty(fname) && Validation.isChars(fname)) {
             this.fname = fname;
             return true;
         }
@@ -97,7 +97,7 @@ public class Contact {
         return fname;
     }
     public boolean setLname(String lname) {
-        if(Validation.isRequired(lname) && Validation.isChars(lname)) {
+        if(Validation.isNotEmpty(lname) && Validation.isChars(lname)) {
             this.lname = lname;
             return true;
         }
@@ -109,40 +109,55 @@ public class Contact {
         return lname;
     }
     public boolean setStreet(String street) {
-        if(Validation.isRequired(street) && Validation.isCharsNumsSpaces(street)) {
-            this.street = street;
-            return true;
+        if(Validation.isNotEmpty(street)) {
+            if(Validation.isCharsNumsSpaces(street))
+            {
+                this.street = street;
+                return true;
+            }
+            else {
+                return false;
+            }
         }
         else {
-            return false;
+            return true;
         }
     }
     public String getStreet() {
         return street;
     }
     public boolean setZip(String zip) {
-        if(Validation.isRequired(zip) && Validation.isNums(zip)) {
-            try {
+        if(Validation.isNotEmpty(zip)) {
+            if(Validation.isNums(zip))
+            {
                 this.zip = Integer.parseInt(zip);
                 return true;
-            } catch (Exception e) {
+            }
+            else {
                 return false;
             }
         }
         else {
-            return false;
+            return true;
         }
     }
     public int getZip() {
         return zip;
     }
+
     public boolean setCity(String city) {
-        if(Validation.isRequired(city) && Validation.isChars(city)) {
-            this.city = city;
-            return true;
+        if(Validation.isNotEmpty(city)) {
+            if(Validation.isChars(city))
+            {
+                this.city = city;
+                return true;
+            }
+            else {
+                return false;
+            }
         }
         else {
-            return false;
+            return true;
         }
     }
     public String getCity() {
@@ -155,7 +170,7 @@ public class Contact {
         return state;
     }
     public boolean setEmail(String email) {
-        if(Validation.isRequired(email) && Validation.isValidEmailAddress(email)) {
+        if(Validation.isNotEmpty(email) && Validation.isValidEmailAddress(email)) {
             this.email = email;
             return true;
         }
@@ -167,16 +182,21 @@ public class Contact {
         return email;
     }
     public boolean setPhone(String phone) {
-        if(Validation.isNums(phone)) {
-            try {
-                this.phone = Integer.parseInt(phone);
-                return true;
-            } catch (Exception e) {
+        if(Validation.isNotEmpty(phone)) {
+            if(Validation.isNums(phone)) {
+                try {
+                    this.phone = Integer.parseInt(phone);
+                    return true;
+                } catch (Exception e) {
+                    return false;
+                }
+            }
+            else {
                 return false;
             }
         }
         else {
-            return false;
+            return true;
         }
     }
     public int getPhone() {
