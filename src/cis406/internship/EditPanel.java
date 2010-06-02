@@ -78,6 +78,7 @@ public class EditPanel extends javax.swing.JPanel {
         assignDialog.setTitle(resourceMap.getString("assignDialog.title")); // NOI18N
         assignDialog.setModal(true);
         assignDialog.setName("assignDialog"); // NOI18N
+        assignDialog.setResizable(false);
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
@@ -102,10 +103,10 @@ public class EditPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(assignDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(assignComboBox, 0, 170, Short.MAX_VALUE)
+                    .addComponent(assignComboBox, 0, 220, Short.MAX_VALUE)
                     .addGroup(assignDialogLayout.createSequentialGroup()
                         .addComponent(yesButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addComponent(noButton)))
                 .addContainerGap())
         );

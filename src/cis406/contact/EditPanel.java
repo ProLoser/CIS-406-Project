@@ -384,6 +384,7 @@ public class EditPanel extends javax.swing.JPanel {
         Company compRecord = new Company();
         // Saves the Industry if it's a new entry
         if (cboIndustry.getSelectedIndex() == -1) {
+            System.out.println(cboIndustry.getSelectedIndex());
             Industry indust = new Industry(cboIndustry.getSelectedItem().toString());
             indust_save = indust.save();
             compRecord.setIndustry_id(indust_save);
@@ -397,6 +398,7 @@ public class EditPanel extends javax.swing.JPanel {
             record.setCompany_id(comp.save());
         } else {
             record.setCompany_id(((ComboItem) cboCompany.getSelectedItem()).id);
+            //insert comp industry
         }
         
         String phonestr = (String)txtPhone.getText();
