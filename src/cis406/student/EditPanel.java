@@ -28,14 +28,13 @@ import org.jdesktop.application.Action;
  *
  * @author Oscar Munoz
  */
-public class EditPanel extends javax.swing.JPanel  {
+public class EditPanel extends javax.swing.JPanel {
 
     /** Creates new form StudentPanel */
     public EditPanel() {
         initComponents();
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-        Calendar cal = Calendar.getInstance();
-        lblPostedDate.setText(sdf.format(cal.getTime()));
+        reset();
+
     }
 
     /** This method is called from within the constructor to
@@ -88,7 +87,6 @@ public class EditPanel extends javax.swing.JPanel  {
         jLabel1 = new javax.swing.JLabel();
         btnInternship = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        lblPostedDate = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         chkGraduated = new javax.swing.JCheckBox();
         txtPhoneFirst = new javax.swing.JFormattedTextField();
@@ -97,6 +95,7 @@ public class EditPanel extends javax.swing.JPanel  {
         lblPhoneRightParenthesis = new javax.swing.JLabel();
         txtPhoneLast = new javax.swing.JFormattedTextField();
         txtPhoneLeftParenthesis = new javax.swing.JLabel();
+        lblPostedDate = new javax.swing.JFormattedTextField();
 
         setName("Form"); // NOI18N
 
@@ -250,10 +249,6 @@ public class EditPanel extends javax.swing.JPanel  {
 
         jLabel2.setName("jLabel2"); // NOI18N
 
-        lblPostedDate.setFont(resourceMap.getFont("lblPostedDate.font")); // NOI18N
-        lblPostedDate.setText(resourceMap.getString("lblPostedDate.text")); // NOI18N
-        lblPostedDate.setName("lblPostedDate"); // NOI18N
-
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
 
@@ -278,6 +273,13 @@ public class EditPanel extends javax.swing.JPanel  {
 
         txtPhoneLeftParenthesis.setText(resourceMap.getString("txtPhoneLeftParenthesis.text")); // NOI18N
         txtPhoneLeftParenthesis.setName("txtPhoneLeftParenthesis"); // NOI18N
+
+        try {
+            lblPostedDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        lblPostedDate.setName("lblPostedDate"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -328,8 +330,8 @@ public class EditPanel extends javax.swing.JPanel  {
                     .addComponent(btnInternship)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblPostedDate))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblPostedDate, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -475,10 +477,10 @@ public class EditPanel extends javax.swing.JPanel  {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(lblPostedDate))
+                    .addComponent(lblPostedDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnInternship)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -489,7 +491,6 @@ public class EditPanel extends javax.swing.JPanel  {
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_txtEmailActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInternship;
     private javax.swing.JComboBox cboGradYr;
@@ -529,7 +530,7 @@ public class EditPanel extends javax.swing.JPanel  {
     private javax.swing.JLabel lblLName;
     private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblPhoneRightParenthesis;
-    private javax.swing.JLabel lblPostedDate;
+    private javax.swing.JFormattedTextField lblPostedDate;
     private javax.swing.JTextArea txaInterests;
     private javax.swing.JTextField txtBroncoNum;
     private javax.swing.JTextField txtEmail;
@@ -588,11 +589,13 @@ public class EditPanel extends javax.swing.JPanel  {
             lblBronco.setForeground(Color.black);
         }
         newStudent.setLastName(txtLName.getText());
-        newStudent.setFirstName(txtFName.getText()) ;
+        newStudent.setFirstName(txtFName.getText());
         newStudent.setEmail(txtEmail.getText());
-        newStudent.setPhone(txtPhoneArea.getText()+txtPhoneFirst.getText()+txtPhoneLast.getText()) ;
-        newStudent.setGradeLevel(cboStanding.getSelectedIndex()) ;
-        newStudent.setUpdateDate(now);
+        newStudent.setPhone(txtPhoneArea.getText() + txtPhoneFirst.getText() + txtPhoneLast.getText());
+        newStudent.setGradeLevel(cboStanding.getSelectedIndex());
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        newStudent.setUpdateDate(sdf.format(cal.getTime()));
         newStudent.setInterests(txaInterests.getText());
         newStudent.setMajor(((cis406.ComboItem) cboMajor.getSelectedItem()).id);
         newStudent.setMinor(((cis406.ComboItem) cboMinor.getSelectedItem()).id);
@@ -629,51 +632,51 @@ public class EditPanel extends javax.swing.JPanel  {
         cboStanding.setSelectedIndex(data.getGradeLevel());
         lblPostedDate.setText(data.getUpdateDate());
         txaInterests.setText(data.getInterests());
-        ((ComboBoxModel)cboMajor.getModel()).setSelectedId(data.getMajor());
-        ((ComboBoxModel)cboMinor.getModel()).setSelectedId(data.getMinor());
+        ((ComboBoxModel) cboMajor.getModel()).setSelectedId(data.getMajor());
+        ((ComboBoxModel) cboMinor.getModel()).setSelectedId(data.getMinor());
         cboQuarter.setSelectedIndex(data.getGradQtr());
         cboGradYr.setSelectedIndex(data.getGradYr());
         txtLastCis.setText(data.getLastCISCourse());
 
-        if (data.getRelocate() ==1){
+        if (data.getRelocate() == 1) {
             chkRelocate.setSelected(true);
-        }else{
+        } else {
             chkRelocate.setSelected(false);
         }
 
-        if (data.getClubMissa() ==1){
+        if (data.getClubMissa() == 1) {
             chkMISSA.setSelected(true);
-        }else{
+        } else {
             chkMISSA.setSelected(false);
         }
 
-        if (data.getClubFast() ==1){
+        if (data.getClubFast() == 1) {
             chkFAST.setSelected(true);
-        }else{
+        } else {
             chkFAST.setSelected(false);
         }
 
-        if (data.getClubIwdsa() ==1){
+        if (data.getClubIwdsa() == 1) {
             chkIWDSA.setSelected(true);
-        }else{
+        } else {
             chkIWDSA.setSelected(false);
         }
 
-        if (data.getClubSwift() ==1){
+        if (data.getClubSwift() == 1) {
             chkSWIFT.setSelected(true);
-        }else{
+        } else {
             chkSWIFT.setSelected(false);
         }
 
-        if (data.getClubOther() ==1){
+        if (data.getClubOther() == 1) {
             chkOtherClub.setSelected(true);
-        }else{
+        } else {
             chkOtherClub.setSelected(false);
         }
 
-        if (data.getGraduated() ==1){
+        if (data.getGraduated() == 1) {
             chkGraduated.setSelected(true);
-        }else{
+        } else {
             chkGraduated.setSelected(false);
         }
         newStudent = data;
@@ -700,6 +703,7 @@ public class EditPanel extends javax.swing.JPanel  {
         chkSWIFT.setSelected(false);
         chkOtherClub.setSelected(false);
         chkGraduated.setSelected(false);
+        lblPostedDate.setText(DateUtils.now());
         newStudent = new Student();
     }
 
@@ -717,6 +721,4 @@ public class EditPanel extends javax.swing.JPanel  {
 
 
     }
-
-   
 }

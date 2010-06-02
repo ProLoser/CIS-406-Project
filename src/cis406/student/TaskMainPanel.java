@@ -74,6 +74,7 @@ public class TaskMainPanel extends javax.swing.JPanel implements PanelInterface 
     public void clickSave() {
         if (activeCard.equals("Edit") && editPanel.save()) {
             browsing();
+            
         }
     }
 

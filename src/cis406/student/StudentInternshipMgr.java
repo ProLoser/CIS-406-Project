@@ -17,11 +17,12 @@ import java.util.Vector;
  * @author Oscar
  */
 public class StudentInternshipMgr {
-    private int id ;
+
+    private int id;
     private Student assignedStudent = new Student();
     private Internship assignedInternship = new Internship();
-    private Date assignDate;
-    private Date dateSecured;
+    private String assignDate;
+    private String dateSecured;
     private int forCredit;
 
 
@@ -71,22 +72,17 @@ public class StudentInternshipMgr {
 
     public String getAssignDate() {
         if (assignDate != null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-            return dateFormat.format(assignDate);
+            return (assignDate);
         } else {
             return null;
         }
     }
 
     public Boolean setAssignDate(String assignDate) {
-        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-        try{
-            this.assignDate = df.parse(assignDate);
-            return true;
-        }catch (Exception e){
-            System.out.println("Failed to convert the assign date");
-            return false;
-        }
+
+        this.assignDate = (assignDate);
+        return true;
+
     }
 
     public int getForCredit() {
@@ -103,22 +99,17 @@ public class StudentInternshipMgr {
 
     public String getDateSecured() {
         if (dateSecured != null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-            return dateFormat.format(dateSecured);
+            return (dateSecured);
         } else {
             return null;
         }
     }
 
     public Boolean setDateSecured(String dateSecured) {
-        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-        try {
-            this.dateSecured = df.parse(dateSecured);
-            return true;
-        } catch (Exception e) {
-            System.out.println("Failed to convert the secured date");
-            return false;
-        }
+
+        this.dateSecured = (dateSecured);
+        return true;
+
     }
 
     public Boolean assignInternship() {
@@ -128,10 +119,8 @@ public class StudentInternshipMgr {
         db.addField("course_credit", forCredit);
         db.addField("student_id", assignedStudent.getId());
         db.addField("internship_id", assignedInternship.getId());
-        sqlSecuredDate = new java.sql.Date(dateSecured.getTime());
-        db.addField("date_secured", sqlSecuredDate);
-        sqlAssignDate = new java.sql.Date(assignDate.getTime());
-        db.addField("date_assigned", sqlAssignDate);
+        db.addField("date_secured", dateSecured);
+        db.addField("date_assigned", assignDate);
         try {
             if (id == 0) {
                 db.insert();
@@ -157,14 +146,15 @@ public class StudentInternshipMgr {
         db.innerJoin("minor");
         // Populating a map of my fields so that I can choose which columns to
         // display and what labels to display them as. Use null to not alias.
-        fields.add("bronco_id AS BroncoNumber");
         fields.add("last_name AS LastName");
         fields.add("first_name as FirstName");
+        fields.add("student_id AS StudentID");
         fields.add("last_update AS updated");
         // Use table.fieldname when querying multiple tables joined together
         fields.add("major.major_name AS major");
         fields.add("minor.minor_name AS minor");
-        //fields.put("graduated","graduated");
+        db.setOrderBy("last_name ASC");
+        fields.add("graduated AS Graduated");
         try {
             // Generate the table from the query
             table = new TableModel(db.select(fields));
@@ -174,15 +164,6 @@ public class StudentInternshipMgr {
             System.out.println(e.getMessage());
         }
         return table;
-    }
-
-
-    public void setAssignDate(Date assignDate) {
-        this.assignDate = assignDate;
-    }
-
-    public void setDateSecured(Date dateSecured) {
-        this.dateSecured = dateSecured;
     }
 
     public int getId() {
@@ -202,7 +183,6 @@ public class StudentInternshipMgr {
     }
 
      */
-
     public Internship getaInternship() {
         return assignedInternship;
     }

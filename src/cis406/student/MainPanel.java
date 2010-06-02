@@ -80,6 +80,7 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
     public void clickDelete() {
         if (activeCard.equals("Browse")) {
             browsePanel.delete();
+            browsePanel.loadTable();
         } else {
         }
     }
@@ -103,6 +104,7 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
     public void clickSave() {
         if (activeCard.equals("Edit") && editPanel.save()) {
             browsing();
+            browsePanel.loadTable();
         }
     }
 

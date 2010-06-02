@@ -30,9 +30,7 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
     public AssignStudentToInternshipDialog() {
         initComponents();
         loadTable();
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-        Calendar cal = Calendar.getInstance();
-        lblAssignDate.setText(sdf.format(cal.getTime()));
+        lblAssignDate.setText(DateUtils.now());
     }
 
     /** This method is called from within the constructor to
@@ -59,11 +57,11 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
         lblEmail = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        lblAssignDate = new javax.swing.JLabel();
         lblDateSecured = new javax.swing.JLabel();
         txtDateSecured = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
         chkForCredit = new javax.swing.JCheckBox();
+        lblAssignDate = new javax.swing.JFormattedTextField();
 
         jDialog1.setName("jDialog1"); // NOI18N
 
@@ -149,15 +147,14 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
-        lblAssignDate.setFont(resourceMap.getFont("lblAssignDate.font")); // NOI18N
-        lblAssignDate.setText(resourceMap.getString("lblAssignDate.text")); // NOI18N
-        lblAssignDate.setName("lblAssignDate"); // NOI18N
-
         lblDateSecured.setText(resourceMap.getString("lblDateSecured.text")); // NOI18N
         lblDateSecured.setName("lblDateSecured"); // NOI18N
 
-        txtDateSecured.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-dd-yyyy"))));
-        txtDateSecured.setText(resourceMap.getString("txtDateSecured.text")); // NOI18N
+        try {
+            txtDateSecured.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtDateSecured.setName("txtDateSecured"); // NOI18N
         txtDateSecured.setNextFocusableComponent(chkForCredit);
 
@@ -167,6 +164,13 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
         chkForCredit.setText(resourceMap.getString("chkForCredit.text")); // NOI18N
         chkForCredit.setName("chkForCredit"); // NOI18N
         chkForCredit.setNextFocusableComponent(btnAssignInternship);
+
+        try {
+            lblAssignDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        lblAssignDate.setName("lblAssignDate"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,11 +191,15 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(chkForCredit))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblBroncoNum))
-                                .addGap(75, 75, 75)
+                                .addGap(87, 87, 87)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel7))
@@ -200,17 +208,13 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
                                     .addComponent(lblEmail)
                                     .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(lblDateSecured, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3))
-                                    .addComponent(jLabel8))
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtDateSecured)
-                                        .addComponent(lblAssignDate))
-                                    .addComponent(chkForCredit))))
+                                    .addComponent(lblDateSecured)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblAssignDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtDateSecured, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))))
                         .addGap(8, 8, 8)))
                 .addContainerGap())
         );
@@ -223,30 +227,36 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addComponent(jLabel1)
+                                    .addComponent(lblFullName))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addComponent(lblBroncoNum)
+                                    .addComponent(jLabel2)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblAssignDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtDateSecured, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDateSecured, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel1)
-                            .addComponent(lblFullName)
+                            .addComponent(chkForCredit)
+                            .addComponent(jLabel8)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(lblEmail)
-                            .addComponent(jLabel7)
-                            .addComponent(lblBroncoNum)
-                            .addComponent(jLabel2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel3)
-                            .addComponent(lblAssignDate))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(txtDateSecured, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDateSecured, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(chkForCredit)
-                            .addComponent(jLabel8))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                            .addComponent(jLabel7))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAvailableInternships)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -285,7 +295,7 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAssignDate;
+    private javax.swing.JFormattedTextField lblAssignDate;
     private javax.swing.JLabel lblAvailableInternships;
     private javax.swing.JLabel lblBroncoNum;
     private javax.swing.JLabel lblDateSecured;

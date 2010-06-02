@@ -17,7 +17,7 @@ public class Student extends Person {
     private int broncoNum;
     private int gradeLevel;
     private int relocate;
-    private Date updateDate;
+    private String updateDate;
     private String interests;
     private int clubMissa;
     private int clubFast;
@@ -89,7 +89,7 @@ public class Student extends Person {
             phone = data.getString("phone");
             gradeLevel = data.getInt("class_standing");
             relocate = data.getInt("relocate");
-            updateDate = data.getDate("last_update");
+            updateDate = data.getString("last_update");
             interests = data.getString("interest");
             clubMissa = data.getInt("missa_club");
             clubFast = data.getInt("fast_club");
@@ -235,11 +235,10 @@ public class Student extends Person {
     }
 
     public String getUpdateDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        return dateFormat.format(updateDate);
+        return (updateDate);
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(String updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -280,7 +279,6 @@ public class Student extends Person {
     }
 
     public Boolean save() {
-        java.sql.Date sqlDate;
         Database db = new Database("student");
         db.addField("bronco_id", broncoNum);
         db.addField("last_name", lastName);
@@ -288,9 +286,7 @@ public class Student extends Person {
         db.addField("email", email);
         db.addField("phone", phone);
         db.addField("class_standing", gradeLevel);
-
-        sqlDate = new java.sql.Date(updateDate.getTime());
-        db.addField("last_update", sqlDate);
+        db.addField("last_update", updateDate);
         db.addField("interest", interests);
         db.addField("major_id", major);
         db.addField("minor_id", minor);
@@ -340,14 +336,15 @@ public class Student extends Person {
         db.innerJoin("minor");
         // Populating a map of my fields so that I can choose which columns to
         // display and what labels to display them as. Use null to not alias.
-        fields.add("bronco_id AS BroncoNumber");
         fields.add("last_name AS LastName");
         fields.add("first_name as FirstName");
+        fields.add("student_id AS StudentID");
         fields.add("last_update AS updated");
         // Use table.fieldname when querying multiple tables joined together
         fields.add("major.major_name AS major");
         fields.add("minor.minor_name AS minor");
-        //fields.put("graduated","graduated");
+        fields.add("graduated AS Graduated");
+        db.setOrderBy("last_name ASC");
         try {
             // Generate the table from the query
             table = new TableModel(db.select(fields));
@@ -370,7 +367,8 @@ public class Student extends Person {
         db.innerJoin("minor");
         // Populating a map of my fields so that I can choose which columns to
         // display and what labels to display them as. Use null to not alias.
-        fields.add("bronco_id AS BroncoNumber");
+        fields.add("student_id AS StudentID");
+        fields.add("bronco_id AS BroncoID");
         fields.add("last_name AS LastName");
         fields.add("first_name as FirstName");
         fields.add("last_update AS updated");

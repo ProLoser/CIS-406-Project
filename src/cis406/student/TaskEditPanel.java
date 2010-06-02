@@ -10,6 +10,7 @@
  */
 package cis406.student;
 
+import cis406.DateUtils;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,6 +26,7 @@ public class TaskEditPanel extends javax.swing.JPanel {
     /** Creates new form TaskEditPanel */
     public TaskEditPanel() {
         initComponents();
+        reset();
     }
 
     /** This method is called from within the constructor to
@@ -112,20 +114,29 @@ public class TaskEditPanel extends javax.swing.JPanel {
         btnCompleteCal.setEnabled(false);
         btnCompleteCal.setName("btnCompleteCal"); // NOI18N
 
-        txtStartDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-dd-yyyy"))));
+        try {
+            txtStartDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtStartDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtStartDate.setText(resourceMap.getString("txtStartDate.text")); // NOI18N
         txtStartDate.setName("txtStartDate"); // NOI18N
 
-        txtCompleteDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
+        try {
+            txtCompleteDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtCompleteDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtCompleteDate.setText(resourceMap.getString("txtCompleteDate.text")); // NOI18N
         txtCompleteDate.setEnabled(false);
         txtCompleteDate.setName("txtCompleteDate"); // NOI18N
 
-        txtDueDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-d-yyyy"))));
+        try {
+            txtDueDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtDueDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtDueDate.setText(resourceMap.getString("txtDueDate.text")); // NOI18N
         txtDueDate.setName("txtDueDate"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -270,12 +281,14 @@ public class TaskEditPanel extends javax.swing.JPanel {
         }
         if (chkCompleted.isSelected() & !newTask.setCompletionDate(txtCompleteDate.getText())) {
             lblCompleteDate.setForeground(Color.RED);
+            
             success = false;
-        } else {
+        } else
+        {
             lblCompleteDate.setForeground(Color.BLACK);
+            newTask.setCompletionDate(null);
+
         }
-
-
         if (!success) {
             JOptionPane.showMessageDialog(null, "Please check the data for errors");
             success = false;
@@ -288,7 +301,7 @@ public class TaskEditPanel extends javax.swing.JPanel {
 
     public void load(int id) {
         Task data = new Task(id);
-                 cboTaskCategory.setSelectedIndex(data.getCategory());
+        cboTaskCategory.setSelectedIndex(data.getCategory());
         txaDescription.setText(data.getDescription());
         txtTaskTitle.setText(data.getTaskTitle());
         if (data.getCompleteDate() != null) {
@@ -298,7 +311,7 @@ public class TaskEditPanel extends javax.swing.JPanel {
             btnCompleteCal.setEnabled(false);
         } else {
             chkCompleted.setSelected(false);
-            txtCompleteDate.setText("mm-dd-yyyy");
+            txtCompleteDate.setText("");
             chkCompleted.setEnabled(true);
             btnCompleteCal.setEnabled(false);
         }
@@ -313,9 +326,9 @@ public class TaskEditPanel extends javax.swing.JPanel {
         txaDescription.setText("");
         txtTaskTitle.setText("");
         chkCompleted.setSelected(false);
-        txtCompleteDate.setText("mm-dd-yyyy");
-        txtDueDate.setText("mm-dd-yyyy");
-        txtStartDate.setText("mm-dd-yyyy");
+        txtCompleteDate.setText("");
+        txtDueDate.setText("");
+        txtStartDate.setText(DateUtils.now());
         txtContactName.setText("");
     }
 

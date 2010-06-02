@@ -24,9 +24,9 @@ public class Task {
     private String name;
     private String taskTitle;
     private String description;
-    private Date enterDate;
-    private Date dueDate;
-    private Date completeDate;
+    private String enterDate;
+    private String dueDate;
+    private String completeDate;
     private int completed;
 
     public Task() {
@@ -51,9 +51,9 @@ public class Task {
             name = data.getString("t_name");
             taskTitle = data.getString("task_title");
             description = data.getString("description");
-            enterDate = data.getDate("start_date");
-            dueDate = data.getDate("due_date");
-            completeDate = data.getDate("complete_date");
+            enterDate = data.getString("start_date");
+            dueDate = data.getString("due_date");
+            completeDate = data.getString("complete_date");
             completed = data.getInt("completed");
 
         } catch (Exception e) {
@@ -89,13 +89,10 @@ public class Task {
         java.sql.Date sqlCompleteDate;
         Database db = new Database("task");
         db.addField("description", description);
-        sqlStartDate = new java.sql.Date(enterDate.getTime());
-        db.addField("start_date", sqlStartDate);
-        sqlDueDate = new java.sql.Date(dueDate.getTime());
-        db.addField("due_date", sqlDueDate);
+        db.addField("start_date", enterDate);
+        db.addField("due_date", dueDate);
         if (completeDate != null) {
-            sqlCompleteDate = new java.sql.Date(completeDate.getTime());
-            db.addField("complete_date", sqlCompleteDate);
+            db.addField("complete_date", completeDate);
         }
         db.addField("task_title", taskTitle);
         db.addField("t_name", name);
@@ -136,6 +133,7 @@ public class Task {
         fields.add("t_name AS Name");
         fields.add("task_category AS TaskCategory");
         fields.add("start_date AS StartDate");
+        db.setOrderBy("due_date ASC, task_title ASC");
         try {
             // Generate the table from the query
             table = new TableModel(db.select(fields));
@@ -147,7 +145,7 @@ public class Task {
         return table;
     }
 
-        static public TableModel generateReportTable() {
+    static public TableModel generateReportTable() {
         Database db = new Database("task");
         TableModel table = null;
         Vector<String> fields = new Vector<String>();
@@ -172,22 +170,15 @@ public class Task {
 
     public String getCompleteDate() {
         if (completeDate != null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-            return dateFormat.format(completeDate);
+            return completeDate;
         } else {
             return null;
         }
     }
 
     public Boolean setCompletionDate(String completionDate) {
-        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-        try {
-            this.completeDate = df.parse(completionDate);
-            return true;
-        } catch (Exception e) {
-            System.out.println("Failed to convert the due date");
-            return false;
-        }
+        this.completeDate = completionDate;
+        return true;
     }
 
     public String getDescription() {
@@ -200,42 +191,31 @@ public class Task {
 
     public String getDueDate() {
         if (dueDate != null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-            return dateFormat.format(dueDate);
+            return dueDate;
         } else {
             return null;
         }
     }
 
     public Boolean setDueDate(String dueDate) {
-        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-        try {
-            this.dueDate = df.parse(dueDate);
-            return true;
-        } catch (Exception e) {
-            System.out.println("Failed to convert the due date");
-            return false;
-        }
+
+        this.dueDate = dueDate;
+        return true;
     }
 
     public String getEnterDate() {
         if (enterDate != null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-            return dateFormat.format(enterDate);
+            return enterDate;
         } else {
             return null;
         }
     }
 
     public Boolean setEnterDate(String enterDate) {
-        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-        try {
-            this.enterDate = df.parse(enterDate);
-            return true;
-        } catch (Exception e) {
-            System.out.println("Failed to convert the due date");
-            return false;
-        }
+
+        this.enterDate = enterDate;
+        return true;
+
     }
 
     public int getId() {
