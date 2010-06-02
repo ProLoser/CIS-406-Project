@@ -154,7 +154,6 @@ public class Internship {
     }
 
     public boolean setPostDate(String postDate) {
-        this.expiration = null;
         DateFormat df = new SimpleDateFormat("y-M-d");
         try {
             df.parse(postDate);
