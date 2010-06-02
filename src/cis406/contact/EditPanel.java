@@ -459,13 +459,12 @@ public class EditPanel extends javax.swing.JPanel {
             } else {
                 //assignDialog.setVisible(true);
             }
+            cboCompany.setModel(new cis406.ComboBoxModel("company", "name"));
+            cboIndustry.setModel(new cis406.ComboBoxModel("industry", "industry_name"));
         } else {
             JOptionPane.showMessageDialog(null, "Please check the data for errors");
             success = false;
         }
-
-        cboCompany.setModel(new cis406.ComboBoxModel("company", "name"));
-        cboIndustry.setModel(new cis406.ComboBoxModel("industry", "industry_name"));
         
         return success;
     }
@@ -483,7 +482,13 @@ public class EditPanel extends javax.swing.JPanel {
         txtCity.setText(record.getCity());
         cboState.setSelectedItem(record.getState());
         txtEmail.setText(record.getEmail());
-        txtPhone.setText(Integer.toString(record.getPhone()));
+        int phone = record.getPhone();
+        if (phone == 0) {
+            txtPhone.setText("");
+        }
+        else {
+            txtPhone.setText(Integer.toString(phone));
+        }
         txtPosition.setText(record.getPosition());
         txaNotes.setText(record.getDescription());
     }
