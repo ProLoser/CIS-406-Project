@@ -14,6 +14,8 @@ import cis406.DateUtils;
 import cis406.TableModel;
 import cis406.internship.Internship;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
@@ -28,7 +30,9 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
     public AssignStudentToInternshipDialog() {
         initComponents();
         loadTable();
-        lblAssignDate.setText(DateUtils.now());
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+        Calendar cal = Calendar.getInstance();
+        lblAssignDate.setText(sdf.format(cal.getTime()));
     }
 
     /** This method is called from within the constructor to
@@ -112,6 +116,7 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
 
         btnAssignInternship.setText(resourceMap.getString("btnAssignInternship.text")); // NOI18N
         btnAssignInternship.setName("btnAssignInternship"); // NOI18N
+        btnAssignInternship.setNextFocusableComponent(btnCancel);
         btnAssignInternship.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignInternshipActionPerformed(evt);
@@ -134,6 +139,7 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
 
         btnCancel.setText(resourceMap.getString("btnCancel.text")); // NOI18N
         btnCancel.setName("btnCancel"); // NOI18N
+        btnCancel.setNextFocusableComponent(txtDateSecured);
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -153,12 +159,14 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
         txtDateSecured.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-dd-yyyy"))));
         txtDateSecured.setText(resourceMap.getString("txtDateSecured.text")); // NOI18N
         txtDateSecured.setName("txtDateSecured"); // NOI18N
+        txtDateSecured.setNextFocusableComponent(chkForCredit);
 
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
         jLabel8.setName("jLabel8"); // NOI18N
 
         chkForCredit.setText(resourceMap.getString("chkForCredit.text")); // NOI18N
         chkForCredit.setName("chkForCredit"); // NOI18N
+        chkForCredit.setNextFocusableComponent(btnAssignInternship);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,11 +201,9 @@ public class AssignStudentToInternshipDialog extends javax.swing.JFrame {
                                     .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(17, 17, 17)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(lblDateSecured, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel3)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(lblDateSecured, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel3))
                                     .addComponent(jLabel8))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

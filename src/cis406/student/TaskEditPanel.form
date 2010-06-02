@@ -189,6 +189,9 @@
           <action class="cis406.student.TaskEditPanel" id="toggleComplete" methodName="toggleComplete"/>
         </Property>
         <Property name="name" type="java.lang.String" value="chkCompleted" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="txtCompleteDate"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtContactName">
