@@ -29,6 +29,7 @@ public class UserReportPanel extends javax.swing.JPanel implements PanelInterfac
         if (pj.printDialog()){
             try{
                 pj.print();
+                SecurityLog.addEntry("User printed a user report");
             }catch (Exception PrintException) { System.out.println(PrintException.getMessage()); }
         }
     }

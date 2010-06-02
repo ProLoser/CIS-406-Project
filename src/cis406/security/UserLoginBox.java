@@ -135,10 +135,15 @@ public class UserLoginBox extends javax.swing.JDialog {
             result[2] = Integer.toString(User.getSecurityClearance(userInfo[0]));
             this.dispose();
         } else {
-            if (User.exists(userInfo[0])){
-                User.failedLogin(userInfo[0]);
+            if (User.exists(userInfo[0])) {
+                if (!(User.getStatus(txtUsername.getText()) == 1)) {
+                    JOptionPane.showMessageDialog(null, "Your account is disabled, please use the recover password/account");
+                }
+                else{
+                    User.failedLogin(userInfo[0]);
+                }
             }
-            else{
+            else {
                 JOptionPane.showMessageDialog(null, "Failed to login. Please try again.");
             }
         }

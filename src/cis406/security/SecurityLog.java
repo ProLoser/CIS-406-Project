@@ -30,15 +30,18 @@ public class SecurityLog {
     }
 
     public static void firstLoginEntry(String username) {
-        if (username == null) {
-            username = "First Login User";
-        }
-
         String message = "First time logging in - updated password and security answer";
 
         if (!disableUserLogEntries) {
             Timestamp now = new Timestamp(System.currentTimeMillis());
             Database.executeWrite("insert into user_log (date, time, description, user_name) values ('" + now + "', '" + now + "', '" + message + "', '" + username + "')");
+        }
+    }
+
+    public static void failedLoginEntry(String username) {
+        if (!disableUserLogEntries) {
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+            Database.executeWrite("insert into user_log (date, time, description, user_name) values ('" + now + "', '" + now + "', '" + "User failed to login." + "', '" + username + "')");
         }
     }
 

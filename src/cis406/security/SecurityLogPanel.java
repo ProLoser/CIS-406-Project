@@ -37,6 +37,7 @@ public class SecurityLogPanel extends javax.swing.JPanel implements PanelInterfa
         if (pj.printDialog()){
             try{
                 pj.print();
+                SecurityLog.addEntry("User printed a security log report.");
             }catch (Exception PrintException) { System.out.println(PrintException.getMessage()); }
         }
     }

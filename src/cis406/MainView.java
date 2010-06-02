@@ -118,6 +118,7 @@ public class MainView extends FrameView {
         int success = jFileChooser2.showOpenDialog(null);
         if (success == JFileChooser.APPROVE_OPTION) {
             Database.backupDatabase(Database.connect(), jFileChooser2.getSelectedFile().getAbsolutePath());
+            SecurityLog.addEntry("Database backed up to " + jFileChooser2.getSelectedFile().getAbsolutePath());
         }
     }
 
@@ -136,6 +137,7 @@ public class MainView extends FrameView {
                     System.out.println(ex.getMessage());
                 }
                 Database.restoreDatabase(jFileChooser2.getSelectedFile().getAbsolutePath());
+                SecurityLog.addEntry("Database backed up from " + jFileChooser2.getSelectedFile().getAbsolutePath());
 
                 JOptionPane.showMessageDialog(null, "Application is shutting down for database restore, please re-open it.");
                 System.exit(0);
