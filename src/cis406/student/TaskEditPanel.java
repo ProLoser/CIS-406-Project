@@ -251,10 +251,10 @@ public class TaskEditPanel extends javax.swing.JPanel {
 
     public Boolean save() {
         Boolean success = true;
-        newTask.category = cboTaskCategory.getSelectedIndex();
-        newTask.description = txaDescription.getText();
-        newTask.taskTitle = txtTaskTitle.getText();
-        newTask.name = txtContactName.getText();
+        newTask.setCategory(cboTaskCategory.getSelectedIndex());
+        newTask.setDescription(txaDescription.getText());
+        newTask.setTaskTitle(txtTaskTitle.getText());
+        newTask.setName(txtContactName.getText());
         newTask.setCompleted(chkCompleted.isSelected());
         if (!newTask.setEnterDate(txtStartDate.getText())) {
             lblStartDate.setForeground(Color.RED);
@@ -288,10 +288,10 @@ public class TaskEditPanel extends javax.swing.JPanel {
 
     public void load(int id) {
         Task data = new Task(id);
-                 cboTaskCategory.setSelectedIndex(data.category);
-        txaDescription.setText(data.description);
-        txtTaskTitle.setText(data.taskTitle);
-        if (data.completeDate != null) {
+                 cboTaskCategory.setSelectedIndex(data.getCategory());
+        txaDescription.setText(data.getDescription());
+        txtTaskTitle.setText(data.getTaskTitle());
+        if (data.getCompleteDate() != null) {
             chkCompleted.setSelected(true);
             txtCompleteDate.setText(data.getCompleteDate());
             chkCompleted.setEnabled(true);

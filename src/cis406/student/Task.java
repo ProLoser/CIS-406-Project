@@ -19,15 +19,15 @@ import java.util.Vector;
 public class Task {
 
     //attributed
-    int id;
-    int category;
-    String name;
-    String taskTitle;
-    String description;
-    Date enterDate;
-    Date dueDate;
-    Date completeDate;
-    int completed;
+    private int id;
+    private int category;
+    private String name;
+    private String taskTitle;
+    private String description;
+    private Date enterDate;
+    private Date dueDate;
+    private Date completeDate;
+    private int completed;
 
     public Task() {
         id = 0;

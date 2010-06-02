@@ -587,18 +587,18 @@ public class EditPanel extends javax.swing.JPanel  {
         } else {
             lblBronco.setForeground(Color.black);
         }
-        newStudent.lastName = (txtLName.getText());
-        newStudent.firstName = txtFName.getText();
-        newStudent.email = txtEmail.getText();
-        newStudent.phone = txtPhoneFirst.getText();
-        newStudent.gradeLevel = cboStanding.getSelectedIndex();
-        newStudent.updateDate = now;
-        newStudent.interests = txaInterests.getText();
-        newStudent.major = ((cis406.ComboItem) cboMajor.getSelectedItem()).id;
-        newStudent.minor = ((cis406.ComboItem) cboMinor.getSelectedItem()).id;
-        newStudent.gradQtr = cboQuarter.getSelectedIndex();
-        newStudent.gradYr = cboGradYr.getSelectedIndex();
-        newStudent.lastCISCourse = txtLastCis.getText();
+        newStudent.setLastName(txtLName.getText());
+        newStudent.setFirstName(txtFName.getText()) ;
+        newStudent.setEmail(txtEmail.getText());
+        newStudent.setPhone(txtPhoneArea.getText()+txtPhoneFirst.getText()+txtPhoneLast.getText()) ;
+        newStudent.setGradeLevel(cboStanding.getSelectedIndex()) ;
+        newStudent.setUpdateDate(now);
+        newStudent.setInterests(txaInterests.getText());
+        newStudent.setMajor(((cis406.ComboItem) cboMajor.getSelectedItem()).id);
+        newStudent.setMinor(((cis406.ComboItem) cboMinor.getSelectedItem()).id);
+        newStudent.setGradQtr(cboQuarter.getSelectedIndex());
+        newStudent.setGradYr(cboGradYr.getSelectedIndex());
+        newStudent.setLastCISCourse(txtLastCis.getText());
         newStudent.setRelocate(chkRelocate.isSelected());
         newStudent.setClubMissa(chkMISSA.isSelected());
         newStudent.setClubFast(chkFAST.isSelected());
@@ -619,7 +619,7 @@ public class EditPanel extends javax.swing.JPanel  {
 
     public void load(int id) {
         Student data = new Student(id);
-        txtBroncoNum.setText(Integer.toString(data.broncoNum));
+        txtBroncoNum.setText(Integer.toString(data.getBroncoNum()));
         txtLName.setText(data.getLastName());
         txtFName.setText(data.getFirstName());
         txtEmail.setText(data.getEmail());
@@ -628,7 +628,7 @@ public class EditPanel extends javax.swing.JPanel  {
         txtPhoneLast.setText(data.getPhone().toString().substring(6));
         cboStanding.setSelectedIndex(data.getGradeLevel());
         lblPostedDate.setText(data.getUpdateDate());
-        txaInterests.setText(data.interests);
+        txaInterests.setText(data.getInterests());
         ((ComboBoxModel)cboMajor.getModel()).setSelectedId(data.getMajor());
         ((ComboBoxModel)cboMinor.getModel()).setSelectedId(data.getMinor());
         cboQuarter.setSelectedIndex(data.getGradQtr());

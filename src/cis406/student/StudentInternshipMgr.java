@@ -17,12 +17,12 @@ import java.util.Vector;
  * @author Oscar
  */
 public class StudentInternshipMgr {
-    int id ;
-    Student assignedStudent = new Student();
-    Internship assignedInternship = new Internship();
-    Date assignDate;
-    Date dateSecured;
-    int forCredit;
+    private int id ;
+    private Student assignedStudent = new Student();
+    private Internship assignedInternship = new Internship();
+    private Date assignDate;
+    private Date dateSecured;
+    private int forCredit;
 
 
     /*This class allows to assign a student to an internship through
@@ -126,7 +126,7 @@ public class StudentInternshipMgr {
         java.sql.Date sqlSecuredDate;
         Database db = new Database("student_internship");
         db.addField("course_credit", forCredit);
-        db.addField("student_id", assignedStudent.getBroncoNum());
+        db.addField("student_id", assignedStudent.getId());
         db.addField("internship_id", assignedInternship.getId());
         sqlSecuredDate = new java.sql.Date(dateSecured.getTime());
         db.addField("date_secured", sqlSecuredDate);
@@ -176,6 +176,23 @@ public class StudentInternshipMgr {
         return table;
     }
 
+
+    public void setAssignDate(Date assignDate) {
+        this.assignDate = assignDate;
+    }
+
+    public void setDateSecured(Date dateSecured) {
+        this.dateSecured = dateSecured;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /*public void assignInternship(Internship aInternship){
 
     }
@@ -185,6 +202,7 @@ public class StudentInternshipMgr {
     }
 
      */
+
     public Internship getaInternship() {
         return assignedInternship;
     }

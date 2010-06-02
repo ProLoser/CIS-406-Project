@@ -13,23 +13,23 @@ import java.util.Vector;
 public class Student extends Person {
 //attributes
 
-    int id;
-    int broncoNum;
-    int gradeLevel;
-    int relocate;
-    Date updateDate;
-    String interests;
-    int clubMissa;
-    int clubFast;
-    int clubIwdsa;
-    int clubSwift;
-    int clubOther;
-    int major;
-    int minor;
-    int gradYr;
-    int gradQtr;
-    String lastCISCourse;
-    int graduated;
+    private int id;
+    private int broncoNum;
+    private int gradeLevel;
+    private int relocate;
+    private Date updateDate;
+    private String interests;
+    private int clubMissa;
+    private int clubFast;
+    private int clubIwdsa;
+    private int clubSwift;
+    private int clubOther;
+    private int major;
+    private int minor;
+    private int gradYr;
+    private int gradQtr;
+    private String lastCISCourse;
+    private int graduated;
 
     //constructor
     public Student() {
