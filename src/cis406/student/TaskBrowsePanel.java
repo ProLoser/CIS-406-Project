@@ -12,13 +12,21 @@ package cis406.student;
 
 import cis406.TableModel;
 import cis406.internship.Internship;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import javax.swing.JOptionPane;
+import org.jdesktop.application.Action;
 
 /**
  *
  * @author David
  */
-public class TaskBrowsePanel extends javax.swing.JPanel {
+public class TaskBrowsePanel extends javax.swing.JPanel implements Printable{
 
     /** Creates new form TaskReportPanel */
     public TaskBrowsePanel() {
@@ -37,6 +45,7 @@ public class TaskBrowsePanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         reportTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setName("Form"); // NOI18N
 
@@ -56,24 +65,43 @@ public class TaskBrowsePanel extends javax.swing.JPanel {
         reportTable.setName("reportTable"); // NOI18N
         jScrollPane1.setViewportView(reportTable);
 
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(TaskBrowsePanel.class, this);
+        jButton1.setAction(actionMap.get("printTable")); // NOI18N
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(TaskBrowsePanel.class);
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(299, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable reportTable;
     // End of variables declaration//GEN-END:variables
 
     public void loadTable() {
         reportTable.setModel(Task.generateTable());
+    }
+
+    public void renderReportTable(){
+        reportTable.setModel(Task.generateReportTable());
     }
 
     public void delete() {
@@ -94,5 +122,78 @@ public class TaskBrowsePanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row first");
             return 0;
         }
+    }
+
+     @Action
+    public void printTable() {
+        PrinterJob pj = PrinterJob.getPrinterJob();
+        renderReportTable();
+        pj.setPrintable(this);
+        pj.printDialog();
+        try {
+            pj.print();
+            loadTable();
+        } catch (Exception PrintException) {
+            System.out.println(PrintException.getMessage());
+        }
+    }
+
+    public int print(Graphics g, PageFormat pageFormat, int pageIndex) throws PrinterException {
+                Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.black);
+        int fontHeight = g2.getFontMetrics().getHeight();
+        int fontDesent = g2.getFontMetrics().getDescent();
+
+        //leave room for page number
+        double pageHeight = pageFormat.getImageableHeight() - fontHeight;
+        double pageWidth = pageFormat.getImageableWidth();
+        double tableWidth = (double) reportTable.getColumnModel().getTotalColumnWidth();
+        double scale = 1;
+        //if (tableWidth >= pageWidth) {
+          //  scale = pageWidth / tableWidth;
+        //}
+
+        double headerHeightOnPage = reportTable.getTableHeader().getHeight() * scale;
+        double tableWidthOnPage = tableWidth * scale;
+
+        double oneRowHeight = (reportTable.getRowHeight() + reportTable.getRowMargin()) * scale;
+        int numRowsOnAPage = (int) ((pageHeight - headerHeightOnPage) / oneRowHeight);
+        double pageHeightForTable = oneRowHeight * numRowsOnAPage;
+        int totalNumPages = (int) Math.ceil(((double) reportTable.getRowCount()) / numRowsOnAPage);
+        if (pageIndex >= totalNumPages) {
+            return Printable.NO_SUCH_PAGE;
+        }
+
+        g2.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+        //bottom center
+        g2.drawString("Page: " + (pageIndex + 1), (int) pageWidth / 2 - 35, (int) (pageHeight + fontHeight - fontDesent));
+
+        g2.translate(0f, headerHeightOnPage);
+        g2.translate(0f, -pageIndex * pageHeightForTable);
+
+        //If this piece of the table is smaller
+        //than the size available,
+        //clip to the appropriate bounds.
+        if (pageIndex + 1 == totalNumPages) {
+            int lastRowPrinted = numRowsOnAPage * pageIndex;
+            int numRowsLeft = reportTable.getRowCount() - lastRowPrinted;
+            g2.setClip(0, (int) (pageHeightForTable * pageIndex), (int) Math.ceil(tableWidthOnPage), (int) Math.ceil(oneRowHeight * numRowsLeft));
+        } //else clip to the entire area available.
+        else {
+            g2.setClip(0, (int) (pageHeightForTable * pageIndex), (int) Math.ceil(tableWidthOnPage), (int) Math.ceil(pageHeightForTable));
+        }
+
+        g2.scale(scale, scale);
+        reportTable.paint(g2);
+        g2.scale(1 / scale, 1 / scale);
+        g2.translate(0f, pageIndex * pageHeightForTable);
+        g2.translate(0f, -headerHeightOnPage);
+        g2.setClip(0, 0, (int) Math.ceil(tableWidthOnPage), (int) Math.ceil(headerHeightOnPage));
+        g2.scale(scale, scale);
+        reportTable.getTableHeader().paint(g2);
+        //paint header at top
+
+        return Printable.PAGE_EXISTS;
+
     }
 }

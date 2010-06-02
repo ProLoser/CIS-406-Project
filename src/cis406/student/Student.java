@@ -359,5 +359,49 @@ public class Student extends Person {
         return table;
     }
 
-   
+
+        static public TableModel generateReportTable() {
+        Database db = new Database("student");
+        TableModel table = null;
+        Vector<String> fields = new Vector<String>();
+
+        // Prepare the database query to be used to populate the table
+        db.innerJoin("major");
+        db.innerJoin("minor");
+        // Populating a map of my fields so that I can choose which columns to
+        // display and what labels to display them as. Use null to not alias.
+        fields.add("bronco_id AS BroncoNumber");
+        fields.add("last_name AS LastName");
+        fields.add("first_name as FirstName");
+        fields.add("last_update AS updated");
+        // Use table.fieldname when querying multiple tables joined together
+        fields.add("email AS Email");
+        fields.add("phone AS Phone");
+        fields.add("class_standing AS ClassStanding");
+        fields.add("expected_graduation_quarter AS GradQuarter");
+        fields.add("expected_graduation_year AS GradYear");
+        fields.add("major.major_name AS major");
+        fields.add("minor.minor_name AS minor");
+        fields.add("interest AS Interests");
+        fields.add("last_cis_class AS LastCISClass");
+        fields.add("graduated AS Graduated");
+        fields.add("relocate AS Relocate");
+        fields.add("fast_club AS ClubFAST");
+        fields.add("iwdsa_club AS ClubIWDSA");
+        fields.add("missa_club AS ClubMISSA");
+        fields.add("swift_club AS ClubSWIFT");
+        fields.add("other_club AS ClubOther");
+
+        //fields.put("graduated","graduated");
+        try {
+            // Generate the table from the query
+            table = new TableModel(db.select(fields));
+            table.parseData();
+        } catch (Exception e) {
+            System.out.println("Failed to load the student table");
+            System.out.println(e.getMessage());
+        }
+        return table;
+    }
+
 }

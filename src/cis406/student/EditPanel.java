@@ -13,6 +13,11 @@ package cis406.student;
 import cis406.ComboBoxModel;
 import cis406.DateUtils;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,7 +27,7 @@ import org.jdesktop.application.Action;
  *
  * @author Oscar Munoz
  */
-public class EditPanel extends javax.swing.JPanel {
+public class EditPanel extends javax.swing.JPanel  {
 
     /** Creates new form StudentPanel */
     public EditPanel() {
@@ -699,4 +704,6 @@ public class EditPanel extends javax.swing.JPanel {
 
 
     }
+
+   
 }
