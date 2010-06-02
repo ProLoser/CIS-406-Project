@@ -366,10 +366,11 @@ public class EditPanel extends javax.swing.JPanel {
         } else {
             postedLabel.setForeground(Color.BLACK);
         }
-        if (expiresCheckBox.isSelected() & !record.setExpiration(expiresField.getText())) {
+        if (expiresCheckBox.isSelected() && !record.setExpiration(expiresField.getText())) {
             expiresCheckBox.setForeground(Color.RED);
             success = false;
         } else {
+            record.resetExpiration();
             expiresCheckBox.setForeground(Color.BLACK);
         }
         record.setDescription(descriptionTextarea.getText());

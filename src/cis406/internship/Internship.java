@@ -27,8 +27,8 @@ public class Internship {
     private int careerPathId;
     private String title;
     private String description;
-    private Date postDate;
-    private Date expiration;
+    private String postDate;
+    private String expiration;
     private int quantity;
     private String attachment = "";
     private String folder;
@@ -51,8 +51,8 @@ public class Internship {
             companyId = data.getInt("company_id");
             description = data.getString("description");
             quantity = data.getInt("quantity");
-            postDate = data.getDate("post_date");
-            expiration = data.getDate("expiration");
+            postDate = data.getString("post_date");
+            expiration = data.getString("expiration");
             attachmentData = data.getBinaryStream("attachment");
             attachment = data.getString("filename");
             originalAttachment = attachment;
@@ -122,14 +122,20 @@ public class Internship {
     }
 
     public boolean setExpiration(String expiration) {
-        DateFormat df = new SimpleDateFormat("yyyy-M-d");
+        this.expiration = null;
+        DateFormat df = new SimpleDateFormat("y-M-d");
         try {
-            this.expiration = df.parse(expiration);
+            df.parse(expiration);
+            this.expiration = expiration;
             return true;
         } catch (Exception e) {
             System.out.println("Failed to convert the expiration date");
             return false;
         }
+    }
+
+    public void resetExpiration() {
+        expiration = null;
     }
 
     public int getId() {
@@ -148,9 +154,11 @@ public class Internship {
     }
 
     public boolean setPostDate(String postDate) {
-        DateFormat df = new SimpleDateFormat("yyyy-M-d");
+        this.expiration = null;
+        DateFormat df = new SimpleDateFormat("y-M-d");
         try {
-            this.postDate = df.parse(postDate);
+            df.parse(postDate);
+            this.postDate = postDate;
             return true;
         } catch (Exception e) {
             System.out.println("Failed to convert the post date");
@@ -198,7 +206,7 @@ public class Internship {
             File attachmentFile = new File(attachment);
             db.addField("attachment", attachmentFile);
             db.addField("filename", attachmentFile.getName());
-        } else if (attachment.isEmpty() && !originalAttachment.isEmpty()) {
+        } else if (attachment.isEmpty() && originalAttachment != null && !originalAttachment.isEmpty()) {
             db.addField("attachment", null);
             db.addField("filename", null);
         }
@@ -207,11 +215,9 @@ public class Internship {
         db.addField("career_path_id", careerPathId);
         // Add date fields
 
-        sqlDate = new java.sql.Date(postDate.getTime());
-        db.addField("post_date", sqlDate);
+        db.addField("post_date", postDate);
         if (expiration != null) {
-            sqlDate = new java.sql.Date(expiration.getTime());
-            db.addField("expiration", sqlDate);
+            db.addField("expiration", expiration);
         }
         db.addField("description", description);
         db.addField("quantity", quantity);
