@@ -47,7 +47,6 @@ public class Validation {
     }
 
     public static boolean isCharsNumsSpaces(String str) {
-
         for (int i = 0; i < str.length(); i++) {
             //If we find a non-char character we return false.
             if (!Character.isLetter(str.charAt(i)) && !Character.isDigit(str.charAt(i)) && !Character.isSpaceChar(str.charAt(i))) {
@@ -58,10 +57,9 @@ public class Validation {
         return true;
     }
     public static boolean isCharsSpaces(String str) {
-
         for (int i = 0; i < str.length(); i++) {
             //If we find a non-char character we return false.
-            if (!Character.isDigit(str.charAt(i)) && !Character.isSpaceChar(str.charAt(i))) {
+            if (!Character.isLetter(str.charAt(i)) && !Character.isSpaceChar(str.charAt(i))) {
                 return false;
             }
         }
