@@ -189,7 +189,7 @@ public class Internship {
      * if the id attribute = 0
      * @return
      */
-    public Boolean save() {
+    public boolean save() {
         java.sql.Date sqlDate;
         Database db = new Database("internship");
         db.addField("title", title);

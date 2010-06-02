@@ -84,7 +84,7 @@ public class EditPanel extends javax.swing.JPanel {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        assignComboBox.setModel(new cis406.ComboBoxModel("student", "last_name"));
+        assignComboBox.setModel(new cis406.ComboBoxModel("student", "(last_name + \", \" + first_name) AS name", " ORDER BY last_name ASC"));
         assignComboBox.setName("assignComboBox"); // NOI18N
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(EditPanel.class, this);
