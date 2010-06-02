@@ -6,6 +6,7 @@ package cis406.internship;
 
 import cis406.TableModel;
 import cis406.Database;
+import cis406.Validation;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -13,7 +14,6 @@ import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Vector;
 
 /**
@@ -118,18 +118,15 @@ public class Internship {
         if (expiration == null) {
             return null;
         }
-        return expiration.toString();
+        return expiration;
     }
 
     public boolean setExpiration(String expiration) {
-        this.expiration = null;
-        DateFormat df = new SimpleDateFormat("y-M-d");
-        try {
-            df.parse(expiration);
+        if (Validation.isDate(expiration)) {
             this.expiration = expiration;
             return true;
-        } catch (Exception e) {
-            System.out.println("Failed to convert the expiration date");
+        } else {
+            this.expiration = null;
             return false;
         }
     }
@@ -150,7 +147,7 @@ public class Internship {
         if (postDate == null) {
             return null;
         }
-        return postDate.toString();
+        return postDate;
     }
 
     public boolean setPostDate(String postDate) {
@@ -197,7 +194,6 @@ public class Internship {
      * @return
      */
     public boolean save() {
-        java.sql.Date sqlDate;
         Database db = new Database("internship");
         db.addField("title", title);
         // Add Attachment

@@ -11,6 +11,7 @@
 package cis406.internship;
 
 import cis406.Database;
+import cis406.Printer;
 import java.sql.ResultSet;
 import org.jdesktop.application.Action;
 
@@ -125,32 +126,36 @@ public class ReportDialog extends javax.swing.JDialog {
     @Action
     public void print() {
         ResultSet rows;
-        String report = "Internship Summary Report \n\n";
+        String query = "SELECT COUNT(*) AS internships FROM internship WHERE post_date < '" + endDateField.getText() + "' AND post_date > '" + startDateField.getText() + "' AND ";
+        query = "SELECT COUNT(*) AS internships FROM internship WHERE ";
+        String report = "Internship Summary Report \n\nFrom: " + startDateField.getText() + " To: " + endDateField.getText();
         try {
             ResultSet category = Database.read("career_path");
             report += "Internships by Career Path\n=======================\n";
             while (category.next()) {
-                rows = Database.execute("SELECT COUNT(*) AS internships FROM internship WHERE career_path_id = " + category.getString("career_path_id"));
+                rows = Database.execute(query + "career_path_id = " + category.getString("career_path_id"));
                 while (rows.next()) {
                 report += "\n" + category.getString("name") + ": " + rows.getString("internships");
                 }
             }
-            report += "Internships by Industry\n=======================\n";
+            report += "\n\nInternships by Industry\n=======================\n";
             category = Database.read("industry");
             while (category.next()) {
-                rows = Database.execute("SELECT COUNT(*) AS internships FROM internship WHERE career_path_id = " + category.getString("industry_id"));
+                rows = Database.execute(query + "career_path_id = " + category.getString("industry_id"));
                 while (rows.next()) {
                 report += "\n" + category.getString("industry_name") + ": " + rows.getString("internships");
                 }
             }
 
             System.out.println(report);
+            Printer pr = new Printer();
+            pr.print(report);
 
         } catch (Exception e) {
             System.out.println("Failed to add the fields from the data");
             System.out.println(e.getMessage());
         }
-
+        dispose();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField endDateField;

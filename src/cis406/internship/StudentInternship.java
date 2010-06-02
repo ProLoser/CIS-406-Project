@@ -102,7 +102,10 @@ public class StudentInternship {
         }
 
         db.addField("course_credit", courseCredit);
-        db.addField("date_assigned", dateAssigned);
+
+        if (dateSecured != null) {
+            db.addField("date_assigned", dateAssigned);
+        }
         try {
             if (id == 0) {
                 id = db.insert();
@@ -111,7 +114,7 @@ public class StudentInternship {
             }
             return true;
         } catch (Exception e) {
-            System.out.println("Failed to add the internship");
+            System.out.println("Failed to assign a student to the internship");
             System.out.println(e.getMessage());
             return false;
         }

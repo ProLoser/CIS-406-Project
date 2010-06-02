@@ -368,14 +368,24 @@ public class EditPanel extends javax.swing.JPanel {
         } else {
             postedLabel.setForeground(Color.BLACK);
         }
-        if (expiresCheckBox.isSelected() && !record.setExpiration(expiresField.getText())) {
-            expiresCheckBox.setForeground(Color.RED);
-            success = false;
+        if (expiresCheckBox.isSelected()) {
+            if (!record.setExpiration(expiresField.getText())) {
+                expiresCheckBox.setForeground(Color.RED);
+                success = false;
+            } else {
+                expiresCheckBox.setForeground(Color.BLACK);
+            }
         } else {
             record.resetExpiration();
             expiresCheckBox.setForeground(Color.BLACK);
         }
+
         record.setDescription(descriptionTextarea.getText());
+
+
+
+
+
         if (!record.setQuantity(quantityField.getText())) {
             quantity1Label.setForeground(Color.RED);
             quantity2Label.setForeground(Color.RED);
@@ -384,8 +394,6 @@ public class EditPanel extends javax.swing.JPanel {
             quantity1Label.setForeground(Color.BLACK);
             quantity2Label.setForeground(Color.BLACK);
         }
-
-
         if (success) {
             // Saves the career path if it's a new entry
             if (careerComboBox.getSelectedIndex() == -1) {
@@ -395,10 +403,8 @@ public class EditPanel extends javax.swing.JPanel {
                 record.setCareerPathId(((ComboItem) careerComboBox.getSelectedItem()).id);
             }
         }
+        if (success) { // To see
 
-
-        if (success) {
-            // To see 
             int oldId = record.getId();
             if (!record.save()) {
                 JOptionPane.showMessageDialog(null, "There was an error trying to save");
@@ -415,25 +421,37 @@ public class EditPanel extends javax.swing.JPanel {
 
     public void load(int id) {
         record = new Internship(id);
+
+
         ((ComboBoxModel) companyComboBox.getModel()).setSelectedId(record.getCompanyId());
+
+
         ((ComboBoxModel) careerComboBox.getModel()).setSelectedId(record.getCareerPathId());
         titleField.setText(record.getTitle());
         descriptionTextarea.setText(record.getDescription());
         postedField.setText(record.getPostDate());
+
+
         if (record.getExpiration() != null) {
             expiresCheckBox.setSelected(true);
             expiresField.setText(record.getExpiration());
             expiresField.setEnabled(true);
             expiresCalButton.setEnabled(true);
+
+
         } else {
             expiresCheckBox.setSelected(false);
             expiresField.setText("mm-dd-yyyy");
             expiresField.setEnabled(false);
             expiresCalButton.setEnabled(false);
+
+
         }
         quantityField.setText(Integer.toString(record.getQuantity()));
         attachmentField.setText(record.getAttachment());
         downloadButton.setEnabled(record.getAttachment() != null);
+
+
     }
 
     public void reset() {
@@ -449,6 +467,8 @@ public class EditPanel extends javax.swing.JPanel {
         quantityField.setText("1");
         attachmentField.setText("");
         downloadButton.setEnabled(record.getAttachment() != null);
+
+
     }
 
     /*public Boolean cancel() {
@@ -461,33 +481,44 @@ public class EditPanel extends javax.swing.JPanel {
     public void reloadComboBoxes() {
         companyComboBox.setModel(new ComboBoxModel("company", "name"));
         careerComboBox.setModel(new ComboBoxModel("career_path", "name"));
+
+
     }
 
     @Action
     public void toggleExpires() {
         expiresField.setEnabled(expiresCheckBox.isSelected());
         expiresCalButton.setEnabled(expiresCheckBox.isSelected());
+
+
     }
 
     @Action
     public void download() {
         int success = downloadFolder.showOpenDialog(this);
+
+
         if (success == javax.swing.JFileChooser.APPROVE_OPTION) {
             record.downloadAttachment(downloadFolder.getSelectedFile().getPath());
+
+
         }
     }
 
     @Action
     public void assignStudent() {
         StudentInternship assignment = new StudentInternship();
-        assignment.setDateAssigned(DateUtils.now());
         assignment.setInternshipId(record.getId());
         assignment.setStudentId(((ComboItem) assignComboBox.getSelectedItem()).id);
+        assignment.save();
         assignDialog.dispose();
+
+
     }
 
     @Action
     public void closeAssignDialog() {
         assignDialog.dispose();
+
     }
 }
