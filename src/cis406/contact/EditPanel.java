@@ -150,11 +150,10 @@ public class EditPanel extends javax.swing.JPanel {
         lblPhone.setName("lblPhone"); // NOI18N
 
         try {
-            txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-#### x ********")));
+            txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-#### x *****")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtPhone.setText(resourceMap.getString("txtPhone.text")); // NOI18N
         txtPhone.setName("txtPhone"); // NOI18N
         txtPhone.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -453,11 +452,11 @@ public class EditPanel extends javax.swing.JPanel {
                 record.setCompany_id(((ComboItem) cboCompany.getSelectedItem()).id);
                 //insert comp industry
             }
+        }
+        if (success) {
             if (!record.save()) {
                 JOptionPane.showMessageDialog(null, "There was an error trying to save");
                 success = false;
-            } else {
-                //assignDialog.setVisible(true);
             }
             cboCompany.setModel(new cis406.ComboBoxModel("company", "name"));
             cboIndustry.setModel(new cis406.ComboBoxModel("industry", "industry_name"));
@@ -482,12 +481,12 @@ public class EditPanel extends javax.swing.JPanel {
         txtCity.setText(record.getCity());
         cboState.setSelectedItem(record.getState());
         txtEmail.setText(record.getEmail());
-        int phone = record.getPhone();
-        if (phone == 0) {
+        String phone = record.getPhone();
+        if (phone.equals("0")) {
             txtPhone.setText("");
         }
         else {
-            txtPhone.setText(Integer.toString(phone));
+            txtPhone.setText(phone);
         }
         txtPosition.setText(record.getPosition());
         txaNotes.setText(record.getDescription());

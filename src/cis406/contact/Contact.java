@@ -21,7 +21,7 @@ public class Contact {
     private String city = null;
     private String state = null;
     private String email = null;
-    private int phone;
+    private String phone;
     private String position = null;
     private int comm_method;
     private String description = null;
@@ -35,8 +35,6 @@ public class Contact {
         try {
             data.next();
             this.id = id;
-            System.out.println("id: " + id);
-            System.out.println("this.id: " + this.id);
             fname = data.getString("first_name");
             lname = data.getString("last_name");
             company_id = data.getInt("company_id");
@@ -45,7 +43,7 @@ public class Contact {
             city = data.getString("city");
             state = data.getString("state");
             email = data.getString("email");
-            phone = data.getInt("phone");
+            phone = data.getString("phone");
             position = data.getString("position");
             comm_method = data.getInt("preferred_contact");
             description = data.getString("initial_contact_description");
@@ -181,24 +179,21 @@ public class Contact {
     }
 
     public boolean setPhone(String phone) {
-        if (Validation.isNotEmpty(phone)) {
-            if (Validation.isNums(phone) && phone.length() == 10) {
-                System.out.println(phone);
-                try {
-                    this.phone = Integer.parseInt(phone);
-                    return true;
-                } catch (Exception e) {
-                    return false;
-                }
-            } else {
+        if (!Validation.isNotEmpty(phone) || (Validation.isNums(phone) && phone.length() >= 10 && phone.length() <= 15)) {
+            System.out.println(phone);
+            try {
+                this.phone = phone;
+                return true;
+            } catch (Exception e) {
+                System.out.println("Parse Fail");
                 return false;
             }
         } else {
-            return true;
+            return false;
         }
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
