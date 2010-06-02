@@ -350,7 +350,12 @@ public class EditPanel extends javax.swing.JPanel {
         Boolean success = true;
 
         // Saves the rest of the internship record
-        record.setTitle(titleField.getText());
+        if (!record.setTitle(titleField.getText())) {
+            postedLabel.setForeground(Color.RED);
+            success = false;
+        } else {
+            postedLabel.setForeground(Color.BLACK);
+        }
         // The selected item must be cast into a ComboItem object so you can access it's attributes
         record.setCompanyId(((ComboItem) companyComboBox.getSelectedItem()).id);
         record.setAttachment(attachmentField.getText());

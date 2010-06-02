@@ -175,8 +175,13 @@ public class Internship {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public Boolean setTitle(String title) {
+        if (title.isEmpty()) {
+            return false;
+        } else {
+            this.title = title;
+            return true;
+        }
     }
 
     /**

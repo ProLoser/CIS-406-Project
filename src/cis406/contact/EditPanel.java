@@ -381,25 +381,7 @@ public class EditPanel extends javax.swing.JPanel {
         Boolean success = true;
         int indust_save = 0;
 
-        Company compRecord = new Company();
-        // Saves the Industry if it's a new entry
-        if (cboIndustry.getSelectedIndex() == -1) {
-            System.out.println(cboIndustry.getSelectedIndex());
-            Industry indust = new Industry(cboIndustry.getSelectedItem().toString());
-            indust_save = indust.save();
-            compRecord.setIndustry_id(indust_save);
-        } else {
-            compRecord.setIndustry_id(((ComboItem) cboIndustry.getSelectedItem()).id);
-        }
-        // Saves the Company if it's a new entry
-        if (cboCompany.getSelectedIndex() == -1) {
-            Company comp = new Company(cboCompany.getSelectedItem().toString());
-            comp.setIndustry_id(indust_save);
-            record.setCompany_id(comp.save());
-        } else {
-            record.setCompany_id(((ComboItem) cboCompany.getSelectedItem()).id);
-            //insert comp industry
-        }
+        
         
         String phonestr = (String)txtPhone.getText();
         String phone = phonestr.replaceAll( "\\D", "" );
@@ -452,19 +434,37 @@ public class EditPanel extends javax.swing.JPanel {
         record.setComm_method(cboCommMethod.getSelectedIndex());
         record.setDescription(txaNotes.getText());
         if (success) {
+            Company compRecord = new Company();
+            // Saves the Industry if it's a new entry
+            if (cboIndustry.getSelectedIndex() == -1) {
+                System.out.println(cboIndustry.getSelectedIndex());
+                Industry indust = new Industry(cboIndustry.getSelectedItem().toString());
+                indust_save = indust.save();
+                compRecord.setIndustry_id(indust_save);
+            } else {
+                compRecord.setIndustry_id(((ComboItem) cboIndustry.getSelectedItem()).id);
+            }
+            // Saves the Company if it's a new entry
+            if (cboCompany.getSelectedIndex() == -1) {
+                Company comp = new Company(cboCompany.getSelectedItem().toString());
+                comp.setIndustry_id(indust_save);
+                record.setCompany_id(comp.save());
+            } else {
+                record.setCompany_id(((ComboItem) cboCompany.getSelectedItem()).id);
+                //insert comp industry
+            }
             if (!record.save()) {
                 JOptionPane.showMessageDialog(null, "There was an error trying to save");
                 success = false;
             } else {
                 //assignDialog.setVisible(true);
             }
+            cboCompany.setModel(new cis406.ComboBoxModel("company", "name"));
+            cboIndustry.setModel(new cis406.ComboBoxModel("industry", "industry_name"));
         } else {
             JOptionPane.showMessageDialog(null, "Please check the data for errors");
             success = false;
         }
-
-        cboCompany.setModel(new cis406.ComboBoxModel("company", "name"));
-        cboIndustry.setModel(new cis406.ComboBoxModel("industry", "industry_name"));
         
         return success;
     }
@@ -482,7 +482,13 @@ public class EditPanel extends javax.swing.JPanel {
         txtCity.setText(record.getCity());
         cboState.setSelectedItem(record.getState());
         txtEmail.setText(record.getEmail());
-        txtPhone.setText(Integer.toString(record.getPhone()));
+        int phone = record.getPhone();
+        if (phone == 0) {
+            txtPhone.setText("");
+        }
+        else {
+            txtPhone.setText(Integer.toString(phone));
+        }
         txtPosition.setText(record.getPosition());
         txaNotes.setText(record.getDescription());
     }
