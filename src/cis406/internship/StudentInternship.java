@@ -4,6 +4,7 @@
  */
 package cis406.internship;
 
+import cis406.Database;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +19,7 @@ public class StudentInternship {
     private int studentId;
     private int internshipId;
     private Date dateSecured;
-    private int courseCredit;
+    private int courseCredit = 0;
     private Date dateAssigned;
 
     public StudentInternship() {
@@ -32,20 +33,40 @@ public class StudentInternship {
         this.courseCredit = courseCredit;
     }
 
-    public Date getDateAssigned() {
-        return dateAssigned;
+    public String getDateAssigned() {
+        if (dateAssigned == null) {
+            return null;
+        }
+        return dateAssigned.toString();
     }
 
-    public void setDateAssigned(Date dateAssigned) {
-        this.dateAssigned = dateAssigned;
+    public boolean setDateAssigned(String dateAssigned) {
+        DateFormat df = new SimpleDateFormat("yyyy-M-d");
+        try {
+            this.dateAssigned = df.parse(dateAssigned);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Failed to convert the expiration date");
+            return false;
+        }
     }
 
-    public Date getDateSecured() {
-        return dateSecured;
+    public String getDateSecured() {
+        if (dateAssigned == null) {
+            return null;
+        }
+        return dateAssigned.toString();
     }
 
-    public void setDateSecured(Date dateSecured) {
-        this.dateSecured = dateSecured;
+    public boolean setDateSecured(String dateSecured) {
+        DateFormat df = new SimpleDateFormat("yyyy-M-d");
+        try {
+            this.dateSecured = df.parse(dateSecured);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Failed to convert the expiration date");
+            return false;
+        }
     }
 
     public int getId() {
@@ -73,6 +94,26 @@ public class StudentInternship {
     }
 
     public boolean save() {
-        return false;
+        Database db = new Database("student_internship");
+        db.addField("student_id", studentId);
+        db.addField("internship_id", internshipId);
+        if (dateSecured != null) {
+            db.addField("date_secured", dateSecured);
+        }
+
+        db.addField("course_credit", courseCredit);
+        db.addField("date_assigned", dateAssigned);
+        try {
+            if (id == 0) {
+                id = db.insert();
+            } else {
+                db.update(id);
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("Failed to add the internship");
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 }
