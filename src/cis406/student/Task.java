@@ -147,6 +147,29 @@ public class Task {
         return table;
     }
 
+        static public TableModel generateReportTable() {
+        Database db = new Database("task");
+        TableModel table = null;
+        Vector<String> fields = new Vector<String>();
+        fields.add("due_date AS DueDate");
+        fields.add("task_title AS TaskTitle");
+        fields.add("t_name AS Name");
+        fields.add("task_category AS TaskCategory");
+        fields.add("start_date AS StartDate");
+        fields.add("description AS Description");
+        fields.add("completed AS Completed");
+        fields.add("complete_date As DateCompleted");
+        try {
+            // Generate the table from the query
+            table = new TableModel(db.select(fields));
+            table.parseData();
+        } catch (Exception e) {
+            System.out.println("Failed to load the task table");
+            System.out.println(e.getMessage());
+        }
+        return table;
+    }
+
     public String getCompleteDate() {
         if (completeDate != null) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
