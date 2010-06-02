@@ -96,6 +96,7 @@ public class MainPanel extends javax.swing.JPanel implements PanelInterface {
 
     public void clickNew() {
         editPanel.newStudent();
+        editPanel.reset();
         editing();
     }
 

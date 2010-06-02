@@ -76,12 +76,9 @@
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="17" pref="17" max="17" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="lblDateSecured" max="32767" attributes="1"/>
-                                          <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="1"/>
-                                      </Group>
+                                  <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="lblDateSecured" max="32767" attributes="1"/>
+                                      <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="1"/>
                                   </Group>
                                   <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -250,6 +247,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="btnAssignInternship.text"/>
         <Property name="name" type="java.lang.String" value="btnAssignInternship" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="btnCancel"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAssignInternshipActionPerformed"/>
@@ -285,6 +285,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="btnCancel.text"/>
         <Property name="name" type="java.lang.String" value="btnCancel" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="txtDateSecured"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelActionPerformed"/>
@@ -316,6 +319,9 @@
         </Property>
         <Property name="text" type="java.lang.String" resourceKey="txtDateSecured.text"/>
         <Property name="name" type="java.lang.String" value="txtDateSecured" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="chkForCredit"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
@@ -328,6 +334,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="chkForCredit.text"/>
         <Property name="name" type="java.lang.String" value="chkForCredit" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="btnAssignInternship"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

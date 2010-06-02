@@ -18,6 +18,7 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -32,7 +33,9 @@ public class EditPanel extends javax.swing.JPanel  {
     /** Creates new form StudentPanel */
     public EditPanel() {
         initComponents();
-        lblPostedDate.setText(DateUtils.now());
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+        Calendar cal = Calendar.getInstance();
+        lblPostedDate.setText(sdf.format(cal.getTime()));
     }
 
     /** This method is called from within the constructor to
@@ -105,6 +108,7 @@ public class EditPanel extends javax.swing.JPanel  {
         txtFName.setNextFocusableComponent(txtLName);
 
         txtLName.setName("txtLName"); // NOI18N
+        txtLName.setNextFocusableComponent(txtPhoneArea);
 
         txtEmail.setName("txtEmail"); // NOI18N
         txtEmail.setNextFocusableComponent(txaInterests);
@@ -138,12 +142,16 @@ public class EditPanel extends javax.swing.JPanel  {
         cboGradYr.setNextFocusableComponent(chkRelocate);
 
         chkRelocate.setName("chkRelocate"); // NOI18N
+        chkRelocate.setNextFocusableComponent(chkSWIFT);
 
         chkSWIFT.setName("chkSWIFT"); // NOI18N
+        chkSWIFT.setNextFocusableComponent(chkFAST);
 
         chkMISSA.setName("chkMISSA"); // NOI18N
+        chkMISSA.setNextFocusableComponent(chkIWDSA);
 
         chkOtherClub.setName("chkOtherClub"); // NOI18N
+        chkOtherClub.setNextFocusableComponent(chkGraduated);
         chkOtherClub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkOtherClubActionPerformed(evt);
@@ -151,9 +159,10 @@ public class EditPanel extends javax.swing.JPanel  {
         });
 
         chkFAST.setName("chkFAST"); // NOI18N
+        chkFAST.setNextFocusableComponent(chkMISSA);
 
         chkIWDSA.setName("chkIWDSA"); // NOI18N
-        chkIWDSA.setNextFocusableComponent(btnInternship);
+        chkIWDSA.setNextFocusableComponent(chkOtherClub);
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -250,18 +259,22 @@ public class EditPanel extends javax.swing.JPanel  {
 
         chkGraduated.setText(resourceMap.getString("chkGraduated.text")); // NOI18N
         chkGraduated.setName("chkGraduated"); // NOI18N
+        chkGraduated.setNextFocusableComponent(btnInternship);
 
         txtPhoneFirst.setName("txtPhoneFirst"); // NOI18N
+        txtPhoneFirst.setNextFocusableComponent(txtPhoneLast);
 
         txtPhoneDash.setText(resourceMap.getString("txtPhoneDash.text")); // NOI18N
         txtPhoneDash.setName("txtPhoneDash"); // NOI18N
 
         txtPhoneArea.setName("txtPhoneArea"); // NOI18N
+        txtPhoneArea.setNextFocusableComponent(txtPhoneFirst);
 
         lblPhoneRightParenthesis.setText(resourceMap.getString("lblPhoneRightParenthesis.text")); // NOI18N
         lblPhoneRightParenthesis.setName("lblPhoneRightParenthesis"); // NOI18N
 
         txtPhoneLast.setName("txtPhoneLast"); // NOI18N
+        txtPhoneLast.setNextFocusableComponent(txtEmail);
 
         txtPhoneLeftParenthesis.setText(resourceMap.getString("txtPhoneLeftParenthesis.text")); // NOI18N
         txtPhoneLeftParenthesis.setName("txtPhoneLeftParenthesis"); // NOI18N
@@ -675,11 +688,11 @@ public class EditPanel extends javax.swing.JPanel  {
         txtPhoneFirst.setText("");
         txtPhoneLast.setText("");
         cboStanding.setSelectedIndex(0);
-        txaInterests.getText();
+        txaInterests.setText("");
         cboMajor.setSelectedIndex(0);
         cboMinor.setSelectedIndex(0);
         cboQuarter.setSelectedIndex(0);
-        txtLastCis.getText();
+        txtLastCis.setText("");
         chkRelocate.setSelected(false);
         chkMISSA.setSelected(false);
         chkFAST.setSelected(false);

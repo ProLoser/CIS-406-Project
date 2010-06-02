@@ -75,9 +75,9 @@ String activeCard = "Browse";
     }
 
     public void clickNew() {
-        CardLayout cl = (CardLayout) (getLayout());
-        cl.show(this, "Edit");
-        activeCard = "Edit";
+        editPanel.newStudent();
+        editPanel.reset();
+        editing();
     }
 
     public void clickSave() {

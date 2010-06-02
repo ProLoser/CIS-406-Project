@@ -294,6 +294,9 @@
     <Component class="javax.swing.JTextField" name="txtLName">
       <Properties>
         <Property name="name" type="java.lang.String" value="txtLName" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="txtPhoneArea"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmail">
@@ -401,21 +404,33 @@
     <Component class="javax.swing.JCheckBox" name="chkRelocate">
       <Properties>
         <Property name="name" type="java.lang.String" value="chkRelocate" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="chkSWIFT"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkSWIFT">
       <Properties>
         <Property name="name" type="java.lang.String" value="chkSWIFT" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="chkFAST"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkMISSA">
       <Properties>
         <Property name="name" type="java.lang.String" value="chkMISSA" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="chkIWDSA"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkOtherClub">
       <Properties>
         <Property name="name" type="java.lang.String" value="chkOtherClub" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="chkGraduated"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkOtherClubActionPerformed"/>
@@ -424,13 +439,16 @@
     <Component class="javax.swing.JCheckBox" name="chkFAST">
       <Properties>
         <Property name="name" type="java.lang.String" value="chkFAST" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="chkMISSA"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkIWDSA">
       <Properties>
         <Property name="name" type="java.lang.String" value="chkIWDSA" noResource="true"/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="btnInternship"/>
+          <ComponentRef name="chkOtherClub"/>
         </Property>
       </Properties>
     </Component>
@@ -630,11 +648,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" resourceKey="chkGraduated.text"/>
         <Property name="name" type="java.lang.String" value="chkGraduated" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="btnInternship"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtPhoneFirst">
       <Properties>
         <Property name="name" type="java.lang.String" value="txtPhoneFirst" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="txtPhoneLast"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="txtPhoneDash">
@@ -646,6 +670,9 @@
     <Component class="javax.swing.JFormattedTextField" name="txtPhoneArea">
       <Properties>
         <Property name="name" type="java.lang.String" value="txtPhoneArea" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="txtPhoneFirst"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPhoneRightParenthesis">
@@ -657,6 +684,9 @@
     <Component class="javax.swing.JFormattedTextField" name="txtPhoneLast">
       <Properties>
         <Property name="name" type="java.lang.String" value="txtPhoneLast" noResource="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="txtEmail"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="txtPhoneLeftParenthesis">

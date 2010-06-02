@@ -90,6 +90,7 @@ public class TaskEditPanel extends javax.swing.JPanel {
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(TaskEditPanel.class, this);
         chkCompleted.setAction(actionMap.get("toggleComplete")); // NOI18N
         chkCompleted.setName("chkCompleted"); // NOI18N
+        chkCompleted.setNextFocusableComponent(txtCompleteDate);
 
         txtContactName.setName("txtContactName"); // NOI18N
 
