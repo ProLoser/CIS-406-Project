@@ -336,8 +336,10 @@ public class User {
             db.and("user_name", username);
             db.and("password", hash);
             ResultSet rs = db.select();
-            //ResultSet rs = Database.execute("select * from users where user_name = '" + username + "' and password = '" + hash + "'");
             while (rs.next()) {
+                if (!(User.getStatus(username) == 1)) {
+                    return false;
+                }
                 result = true;
                 User.resetFailedLogons(username);
             }
@@ -378,6 +380,7 @@ public class User {
      * @param username The username of the user that failed to login
      */
     public static void failedLogin(String username){
+        SecurityLog.failedLoginEntry(username);
         int failedLogins = getFailedLogins(username) + 1;
         int allowedAttempts = cis406.MainApp.settings.loginAttempts;
 
@@ -410,7 +413,6 @@ public class User {
             while (rs.next())
             {
                 failedLogonAttempts = rs.getInt("failed_logon_attempts");
-                System.out.println(failedLogonAttempts);
             }
 
         } catch (Exception e) {
