@@ -70,7 +70,7 @@ public class Internship {
     public boolean downloadAttachment(String newFolder) {
         boolean success = false;
         try {
-            File f = new File(newFolder + attachment);
+            File f = new File(newFolder + "//" + attachment);
             OutputStream out = new FileOutputStream(f);
             byte buf[] = new byte[1024];
             int len;
@@ -80,7 +80,7 @@ public class Internship {
             out.close();
             success = true;
         } catch (Exception e) {
-            System.out.println("ERROR(djv_exportBlob) Unable to export:" + newFolder + "\\" + attachment);
+            System.out.println("Unable to download:" + newFolder + "//" + attachment);
             e.printStackTrace();
         }
         return success;

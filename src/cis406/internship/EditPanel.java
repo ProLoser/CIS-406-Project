@@ -78,6 +78,7 @@ public class EditPanel extends javax.swing.JPanel {
         assignDialog.setTitle(resourceMap.getString("assignDialog.title")); // NOI18N
         assignDialog.setModal(true);
         assignDialog.setName("assignDialog"); // NOI18N
+        assignDialog.setResizable(false);
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
@@ -101,8 +102,8 @@ public class EditPanel extends javax.swing.JPanel {
             .addGroup(assignDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(assignDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(assignComboBox, 0, 170, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(assignComboBox, 0, 228, Short.MAX_VALUE)
                     .addGroup(assignDialogLayout.createSequentialGroup()
                         .addComponent(yesButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
@@ -388,10 +389,12 @@ public class EditPanel extends javax.swing.JPanel {
 
 
         if (success) {
+            // To see 
+            int oldId = record.getId();
             if (!record.save()) {
                 JOptionPane.showMessageDialog(null, "There was an error trying to save");
                 success = false;
-            } else {
+            } else if (oldId == 0) {
                 assignDialog.setVisible(true);
             }
         } else {
