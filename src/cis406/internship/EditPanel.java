@@ -143,6 +143,7 @@ public class EditPanel extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         postedField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        postedField.setToolTipText(resourceMap.getString("postedFTextField.toolTipText")); // NOI18N
         postedField.setName("postedFTextField"); // NOI18N
 
         try {
@@ -151,6 +152,7 @@ public class EditPanel extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         expiresField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        expiresField.setToolTipText(resourceMap.getString("expiresFTextField.toolTipText")); // NOI18N
         expiresField.setEnabled(false);
         expiresField.setName("expiresFTextField"); // NOI18N
 

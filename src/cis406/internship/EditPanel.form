@@ -243,6 +243,7 @@
           <Format format="####-##-##" subtype="-1" type="5"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="postedFTextField.toolTipText"/>
         <Property name="name" type="java.lang.String" value="postedFTextField" noResource="true"/>
       </Properties>
     </Component>
@@ -252,6 +253,7 @@
           <Format format="####-##-##" subtype="-1" type="5"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="toolTipText" type="java.lang.String" resourceKey="expiresFTextField.toolTipText"/>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="expiresFTextField" noResource="true"/>
       </Properties>

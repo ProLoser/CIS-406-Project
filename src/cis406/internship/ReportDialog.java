@@ -8,9 +8,10 @@
  *
  * Created on May 30, 2010, 3:52:54 PM
  */
-
 package cis406.internship;
 
+import cis406.Database;
+import java.sql.ResultSet;
 import org.jdesktop.application.Action;
 
 /**
@@ -34,11 +35,11 @@ public class ReportDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        endDateLabel = new javax.swing.JLabel();
+        endDateField = new javax.swing.JFormattedTextField();
+        startDateLabel = new javax.swing.JLabel();
+        printButton = new javax.swing.JButton();
+        startDateField = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(ReportDialog.class);
@@ -47,24 +48,34 @@ public class ReportDialog extends javax.swing.JDialog {
         setName("Form"); // NOI18N
         setResizable(false);
 
-        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
-        jLabel3.setName("jLabel3"); // NOI18N
+        endDateLabel.setText(resourceMap.getString("endDateLabel.text")); // NOI18N
+        endDateLabel.setName("endDateLabel"); // NOI18N
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        jFormattedTextField3.setText(resourceMap.getString("jFormattedTextField3.text")); // NOI18N
-        jFormattedTextField3.setName("jFormattedTextField3"); // NOI18N
+        try {
+            endDateField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        endDateField.setText(resourceMap.getString("endDateField.text")); // NOI18N
+        endDateField.setToolTipText(resourceMap.getString("endDateField.toolTipText")); // NOI18N
+        endDateField.setName("endDateField"); // NOI18N
 
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
+        startDateLabel.setText(resourceMap.getString("startDateLabel.text")); // NOI18N
+        startDateLabel.setName("startDateLabel"); // NOI18N
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(ReportDialog.class, this);
-        jButton2.setAction(actionMap.get("print")); // NOI18N
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
+        printButton.setAction(actionMap.get("print")); // NOI18N
+        printButton.setText(resourceMap.getString("printButton.text")); // NOI18N
+        printButton.setName("printButton"); // NOI18N
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-d-yyyy"))));
-        jFormattedTextField1.setText(resourceMap.getString("jFormattedTextField1.text")); // NOI18N
-        jFormattedTextField1.setName("jFormattedTextField1"); // NOI18N
+        try {
+            startDateField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        startDateField.setText(resourceMap.getString("startDateField.text")); // NOI18N
+        startDateField.setToolTipText(resourceMap.getString("startDateField.toolTipText")); // NOI18N
+        startDateField.setName("startDateField"); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,16 +84,18 @@ public class ReportDialog extends javax.swing.JDialog {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                        .add(layout.createSequentialGroup()
-                            .add(jLabel2)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jFormattedTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(layout.createSequentialGroup()
-                            .add(jLabel3)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jFormattedTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                    .add(printButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(endDateLabel)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED))
+                            .add(layout.createSequentialGroup()
+                                .add(startDateLabel)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(startDateField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .add(endDateField))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -90,14 +103,14 @@ public class ReportDialog extends javax.swing.JDialog {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel2)
-                    .add(jFormattedTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(startDateLabel)
+                    .add(startDateField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jFormattedTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel3))
+                    .add(endDateField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(endDateLabel))
                 .add(18, 18, 18)
-                .add(jButton2)
+                .add(printButton)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -111,15 +124,39 @@ public class ReportDialog extends javax.swing.JDialog {
 
     @Action
     public void print() {
-        
+        ResultSet rows;
+        String report = "Internship Summary Report \n\n";
+        try {
+            ResultSet category = Database.read("career_path");
+            report += "Internships by Career Path\n=======================\n";
+            while (category.next()) {
+                rows = Database.execute("SELECT COUNT(*) AS internships FROM internship WHERE career_path_id = " + category.getString("career_path_id"));
+                while (rows.next()) {
+                report += "\n" + category.getString("name") + ": " + rows.getString("internships");
+                }
+            }
+            report += "Internships by Industry\n=======================\n";
+            category = Database.read("industry");
+            while (category.next()) {
+                rows = Database.execute("SELECT COUNT(*) AS internships FROM internship WHERE career_path_id = " + category.getString("industry_id"));
+                while (rows.next()) {
+                report += "\n" + category.getString("industry_name") + ": " + rows.getString("internships");
+                }
+            }
+
+            System.out.println(report);
+
+        } catch (Exception e) {
+            System.out.println("Failed to add the fields from the data");
+            System.out.println(e.getMessage());
+        }
+
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JFormattedTextField endDateField;
+    private javax.swing.JLabel endDateLabel;
+    private javax.swing.JButton printButton;
+    private javax.swing.JFormattedTextField startDateField;
+    private javax.swing.JLabel startDateLabel;
     // End of variables declaration//GEN-END:variables
-
 }
