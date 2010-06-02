@@ -79,6 +79,7 @@ public class EditPanel extends javax.swing.JPanel {
         assignDialog.setModal(true);
         assignDialog.setName("assignDialog"); // NOI18N
         assignDialog.setResizable(false);
+        assignDialog.setSize(new java.awt.Dimension(268, 145));
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
@@ -351,10 +352,10 @@ public class EditPanel extends javax.swing.JPanel {
 
         // Saves the rest of the internship record
         if (!record.setTitle(titleField.getText())) {
-            postedLabel.setForeground(Color.RED);
+            titleLabel.setForeground(Color.RED);
             success = false;
         } else {
-            postedLabel.setForeground(Color.BLACK);
+            titleLabel.setForeground(Color.BLACK);
         }
         // The selected item must be cast into a ComboItem object so you can access it's attributes
         record.setCompanyId(((ComboItem) companyComboBox.getSelectedItem()).id);

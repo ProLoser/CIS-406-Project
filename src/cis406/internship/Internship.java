@@ -30,9 +30,9 @@ public class Internship {
     private Date postDate;
     private Date expiration;
     private int quantity;
-    private String attachment;
+    private String attachment = "";
     private String folder;
-    private String originalAttachment;
+    private String originalAttachment = "";
     private InputStream attachmentData;
 
     public Internship() {
@@ -266,6 +266,7 @@ public class Internship {
         // Use table.fieldname when querying multiple tables joined together
         fields.add("career_path.name AS career_path");
         fields.add("company.name AS company");
+        db.setOrderBy("post_date DESC");
         try {
             // Generate the table from the query
             table = new TableModel(db.select(fields));

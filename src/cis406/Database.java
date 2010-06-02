@@ -36,7 +36,7 @@ public class Database {
     private Map<String, Object> andConditions;
     private Map<String, Object> orConditions;
     private Map<String, Object> fields;
-    private List<String> orderBys;
+    private String orderBy = "";
     private int limit = 0;
     private List<Object> preValues = null;
     private static Connection connect = null;
@@ -125,6 +125,16 @@ public class Database {
         return fields.get(field);
     }
 
+    public String getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    
+
     /**
      * Returns the current build of the query for use with a PreparedStatement
      * Requires compilePreValues() to be run before executing query
@@ -145,9 +155,8 @@ public class Database {
                 preValues.add(cond.getValue());
             }
         }
-        if (orderBys != null) {
-            conditions += " ORDER BY ";
-            conditions += implode((String[]) orderBys.toArray());
+        if (!orderBy.isEmpty()) {
+            conditions += " ORDER BY " + orderBy;
         }
         if (limit > 0) {
             conditions += " LIMIT " + limit;
@@ -344,8 +353,6 @@ public class Database {
         compilePreValues();
         return preStatement.executeUpdate();
     }
-
-
 
     /**
      * Compiles and executes an UPDATE query and adds a condition for the passed
@@ -556,11 +563,10 @@ public class Database {
     public static void restoreDatabase(String restoreFolder) {
         String dbURL = "jdbc:derby:internshipsdb;restoreFrom=" + restoreFolder;
 
-        try{
+        try {
             Connection conn = DriverManager.getConnection(dbURL);
             DriverManager.getConnection("jdbc:derby:internshipsdb");
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
