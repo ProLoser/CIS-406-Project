@@ -29,9 +29,9 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="cboContact" alignment="0" pref="338" max="32767" attributes="0"/>
-                  <Component id="cboType" alignment="0" pref="338" max="32767" attributes="1"/>
-                  <Component id="scpNotes" alignment="1" pref="338" max="32767" attributes="0"/>
+                  <Component id="cboContact" alignment="0" pref="332" max="32767" attributes="0"/>
+                  <Component id="cboType" alignment="0" pref="332" max="32767" attributes="1"/>
+                  <Component id="scpNotes" alignment="1" pref="332" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="txtDate" min="-2" pref="98" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -118,7 +118,6 @@
           <Format format="####-##-##" subtype="-1" type="5"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="    -  -  "/>
         <Property name="name" type="java.lang.String" value="txtDate" noResource="true"/>
       </Properties>
     </Component>

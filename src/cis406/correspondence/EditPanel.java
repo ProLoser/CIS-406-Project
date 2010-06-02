@@ -64,7 +64,6 @@ public class EditPanel extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         txtDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtDate.setText("    -  -  ");
         txtDate.setName("txtDate"); // NOI18N
 
         lblDate.setText(resourceMap.getString("lblDate.text")); // NOI18N
@@ -93,9 +92,9 @@ public class EditPanel extends javax.swing.JPanel {
                     .addComponent(lblNotes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboContact, 0, 338, Short.MAX_VALUE)
-                    .addComponent(cboType, 0, 338, Short.MAX_VALUE)
-                    .addComponent(scpNotes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                    .addComponent(cboContact, 0, 332, Short.MAX_VALUE)
+                    .addComponent(cboType, 0, 332, Short.MAX_VALUE)
+                    .addComponent(scpNotes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
