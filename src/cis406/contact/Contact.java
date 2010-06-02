@@ -183,6 +183,7 @@ public class Contact {
     public boolean setPhone(String phone) {
         if (Validation.isNotEmpty(phone)) {
             if (Validation.isNums(phone)) {
+                System.out.println(phone);
                 try {
                     this.phone = Integer.parseInt(phone);
                     return true;

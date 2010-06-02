@@ -135,14 +135,20 @@ public class EditPanel extends javax.swing.JPanel {
         descriptionTextarea.setName("descriptionTextArea"); // NOI18N
         jScrollPane1.setViewportView(descriptionTextarea);
 
-        postedField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-M-d"))));
+        try {
+            postedField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         postedField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        postedField.setText(resourceMap.getString("postedFTextField.text")); // NOI18N
         postedField.setName("postedFTextField"); // NOI18N
 
-        expiresField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-M-d"))));
+        try {
+            expiresField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         expiresField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        expiresField.setText(resourceMap.getString("expiresFTextField.text")); // NOI18N
         expiresField.setEnabled(false);
         expiresField.setName("expiresFTextField"); // NOI18N
 
@@ -224,9 +230,9 @@ public class EditPanel extends javax.swing.JPanel {
                     .addComponent(quantityField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                    .addComponent(careerComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 361, Short.MAX_VALUE)
-                    .addComponent(companyComboBox, 0, 361, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                    .addComponent(careerComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 413, Short.MAX_VALUE)
+                    .addComponent(companyComboBox, 0, 413, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(postedField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -243,7 +249,7 @@ public class EditPanel extends javax.swing.JPanel {
                         .addComponent(browseButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(downloadButton))
-                    .addComponent(titleField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
+                    .addComponent(titleField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -287,7 +293,7 @@ public class EditPanel extends javax.swing.JPanel {
                         .addComponent(quantity2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

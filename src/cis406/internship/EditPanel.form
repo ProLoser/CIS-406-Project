@@ -124,9 +124,9 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="361" max="32767" attributes="1"/>
-                  <Component id="careerComboBox" alignment="1" pref="361" max="32767" attributes="0"/>
-                  <Component id="companyComboBox" alignment="0" pref="361" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="413" max="32767" attributes="1"/>
+                  <Component id="careerComboBox" alignment="1" pref="413" max="32767" attributes="0"/>
+                  <Component id="companyComboBox" alignment="0" pref="413" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="postedField" min="-2" pref="98" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -145,7 +145,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="downloadButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="titleField" alignment="1" pref="361" max="32767" attributes="0"/>
+                  <Component id="titleField" alignment="1" pref="413" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -200,7 +200,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="quantityField" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" pref="134" max="32767" attributes="1"/>
+                  <Component id="jScrollPane1" pref="150" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -235,21 +235,19 @@
     </Container>
     <Component class="javax.swing.JFormattedTextField" name="postedField">
       <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="yyyy-M-d" subtype="-1" type="1"/>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="####-##-##" subtype="-1" type="5"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" resourceKey="postedFTextField.text"/>
         <Property name="name" type="java.lang.String" value="postedFTextField" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="expiresField">
       <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="yyyy-M-d" subtype="-1" type="1"/>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="####-##-##" subtype="-1" type="5"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" resourceKey="expiresFTextField.text"/>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="expiresFTextField" noResource="true"/>
       </Properties>

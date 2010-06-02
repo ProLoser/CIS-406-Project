@@ -58,8 +58,13 @@ public class EditPanel extends javax.swing.JPanel {
         lblContact.setText(resourceMap.getString("lblContact.text")); // NOI18N
         lblContact.setName("lblContact"); // NOI18N
 
+        try {
+            txtDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtDate.setText(resourceMap.getString("txtDate.text")); // NOI18N
+        txtDate.setText("    -  -  ");
         txtDate.setName("txtDate"); // NOI18N
 
         lblDate.setText(resourceMap.getString("lblDate.text")); // NOI18N

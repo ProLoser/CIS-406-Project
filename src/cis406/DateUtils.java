@@ -11,12 +11,11 @@ import java.text.SimpleDateFormat;
  * @author Mark Lenser
  */
 public class DateUtils {
-  public static final String DATE_FORMAT_NOW = "yyyy-MM-dd";
+    public static final String DATE_FORMAT_NOW = "yyyyMMdd";
 
-  public static String now() {
+    public static String now() {
     Calendar cal = Calendar.getInstance();
     SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
     return sdf.format(cal.getTime());
-
-  }
+    }
 }
