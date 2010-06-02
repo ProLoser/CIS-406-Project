@@ -126,7 +126,7 @@ public class MainView extends FrameView {
         int response = JOptionPane.showConfirmDialog(null, "Restoring the database will force this application to restart.  Continue?");
         System.out.println(response);
         if (response == 0) {
-            JOptionPane.showMessageDialog(null, "Find and select the internshipdb folder.  It should be inside of the 'INTERNSHIP DB BACKUP' folder created during backup.");
+            JOptionPane.showMessageDialog(null, "Find and select the internshipdb folder, and then click 'Open'.  It should be inside of the 'INTERNSHIP DB BACKUP' folder created during backup.");
             jFileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int success = jFileChooser2.showOpenDialog(null);
             if (success == JFileChooser.APPROVE_OPTION) {

@@ -174,30 +174,6 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="cis406.correspondence.CorrespondencePanel" name="correspondencePanel1">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="correspondencePanel1" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Correspondences">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="correspondencePanel1.TabConstraints.tabTitle"/>
-                  </JTabbedPaneConstraints>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="cis406.security.SecurityPanel" name="securityPanel1">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="securityPanel1" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Security">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="securityPanel1.TabConstraints.tabTitle"/>
-                  </JTabbedPaneConstraints>
-                </Constraint>
-              </Constraints>
-            </Component>
             <Component class="cis406.security.MyAccountPanel" name="myAccountPanel1">
               <Properties>
                 <Property name="name" type="java.lang.String" value="myAccountPanel1" noResource="true"/>

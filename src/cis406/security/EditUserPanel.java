@@ -87,7 +87,7 @@ public class EditUserPanel extends javax.swing.JPanel implements PanelInterface 
             }
         }
         user.updateUser();
-        cboUsername.setModel(new cis406.ComboBoxModel("users", "user_name"));
+        clickLoad();
         JOptionPane.showMessageDialog(null, "User saved successfully");
     }
 

@@ -1,9 +1,10 @@
 package cis406.correspondence;
 
-import cis406.correspondence.Correspondence;
 import cis406.ComboBoxModel;
+import cis406.ComboItem;
 import cis406.DateUtils;
-import cis406.contact.Contact;
+
+import java.awt.Color;
 
 /**
  *
@@ -16,7 +17,7 @@ public class EditPanel extends javax.swing.JPanel {
     /** Creates new form EditPanel */
     public EditPanel() {
         initComponents();
-        txtDate.setText(DateUtils.now());
+        reset();
     }
 
     /** This method is called from within the constructor to
@@ -135,13 +136,20 @@ public class EditPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     public void newCorrespondence() {
         record = new Correspondence();
+        reset();
     }
     public boolean save() {
         Boolean success = true;
 
         Correspondence record = new Correspondence();
-        record.setContact_id(cboContact.getSelectedIndex());
+        record.setContact_id(((ComboItem) cboContact.getSelectedItem()).id);
         record.setType(cboType.getSelectedIndex());
+        if (!record.setDate(txtDate.getText())) {
+            lblDate.setForeground(Color.RED);
+            success = false;
+        } else {
+            lblDate.setForeground(Color.BLACK);
+        }
         record.setDate(txtDate.getText());
         record.setNotes(txaNotes.getText());
         record.save();
@@ -150,7 +158,7 @@ public class EditPanel extends javax.swing.JPanel {
     }
     public void load(int id) {
         Correspondence data = new Correspondence(id);
-        cboContact.setSelectedItem(data.getContact_id());
+        ((ComboBoxModel)cboContact.getModel()).setSelectedId(data.getContact_id());
         cboType.setSelectedItem(data.getType());
         txtDate.setText(data.getDate());
         txaNotes.setText(data.getNotes());
@@ -158,7 +166,7 @@ public class EditPanel extends javax.swing.JPanel {
     public void clickDelete() {
     }
     public void reset() {
-        txtDate.setText("mm/dd/yy");
+        txtDate.setText(DateUtils.now());
         cboType.setSelectedIndex(0);
         txaNotes.setText("");
         cboContact.setSelectedIndex(0);

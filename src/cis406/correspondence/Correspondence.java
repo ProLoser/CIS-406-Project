@@ -7,8 +7,12 @@ package cis406.correspondence;
 
 import cis406.TableModel;
 import cis406.Database;
+import cis406.Validation;
 import java.util.Vector;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -18,7 +22,7 @@ public class Correspondence {
     private int id;
     private int contact_id;
     private int type;
-    private String date;
+    private Date date;
     private String notes;
 
     public Correspondence() {
@@ -30,7 +34,7 @@ public class Correspondence {
             data.next();
             contact_id = data.getInt("contact_id");
             type = data.getInt("type");
-            date = data.getString("date");
+            date = data.getDate("date");
             notes = data.getString("note");
         } catch (Exception e) {
             System.out.println("Failed to locate a record");
@@ -54,11 +58,26 @@ public class Correspondence {
     public int getType() {
         return type;
     }
-    public void setDate(String date) {
-        this.date = date;
+    public boolean setDate(String date) {
+        if(Validation.isNotEmpty(date)) {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                this.date = df.parse(date);
+                return true;
+            } catch (Exception e) {
+                System.out.println("Failed to convert the post date");
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
     public String getDate() {
-        return date;
+        if (date == null) {
+            return null;
+        }
+        return date.toString();
     }
     public void setNotes(String notes) {
         this.notes = notes;
@@ -95,8 +114,9 @@ public class Correspondence {
         // Populating a map of my fields so that I can choose which columns to
         // display and what labels to display them as.
         fields.add("date");
-        // Use table.fieldname when querying multiple tables joined together
         fields.add("contact.last_name AS contact");
+
+        // Use table.fieldname when querying multiple tables joined together
         
         try {
             // Generate the table from the query
