@@ -145,7 +145,7 @@ public class Contact {
     }
 
     public boolean setCity(String city) {
-        if (!Validation.isNotEmpty(city) || Validation.isChars(city)) {
+        if (!Validation.isNotEmpty(city) || Validation.isCharsSpaces(city)) {
             this.city = city;
             return true;
         } else {
