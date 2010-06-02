@@ -5,6 +5,8 @@ import cis406.ComboItem;
 import cis406.Database;
 import java.sql.ResultSet;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mark Lenser
@@ -216,7 +218,7 @@ public class EditPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboCommMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboState, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                            .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -294,7 +296,7 @@ public class EditPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNotes)
-                    .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                    .addComponent(scpNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -376,18 +378,21 @@ public class EditPanel extends javax.swing.JPanel {
     }
     public boolean save() {
         Boolean success = true;
+        int indust_save = 0;
 
-        Contact record = new Contact();
+        Company compRecord = new Company();
         // Saves the Industry if it's a new entry
         if (cboIndustry.getSelectedIndex() == -1) {
             Industry indust = new Industry(cboIndustry.getSelectedItem().toString());
-            record.setIndustry_id(indust.save());
+            indust_save = indust.save();
+            compRecord.setIndustry_id(indust_save);
         } else {
-            record.setIndustry_id(((ComboItem) cboIndustry.getSelectedItem()).id);
+            compRecord.setIndustry_id(((ComboItem) cboIndustry.getSelectedItem()).id);
         }
         // Saves the Company if it's a new entry
         if (cboCompany.getSelectedIndex() == -1) {
             Company comp = new Company(cboCompany.getSelectedItem().toString());
+            comp.setIndustry_id(indust_save);
             record.setCompany_id(comp.save());
         } else {
             record.setCompany_id(((ComboItem) cboCompany.getSelectedItem()).id);
@@ -443,27 +448,40 @@ public class EditPanel extends javax.swing.JPanel {
         record.setPosition(txtPosition.getText());
         record.setComm_method(cboCommMethod.getSelectedIndex());
         record.setDescription(txaNotes.getText());
-        record.save();
+        if (success) {
+            if (!record.save()) {
+                JOptionPane.showMessageDialog(null, "There was an error trying to save");
+                success = false;
+            } else {
+                //assignDialog.setVisible(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please check the data for errors");
+            success = false;
+        }
 
         cboCompany.setModel(new cis406.ComboBoxModel("company", "name"));
         cboIndustry.setModel(new cis406.ComboBoxModel("industry", "industry_name"));
+        
         return success;
     }
     public void load(int id) {
-        Contact data = new Contact(id);
+        record = new Contact(id);
+        int comp_id = record.getCompany_id();
+        Company compData = new Company(comp_id);
 
-        ((ComboBoxModel)cboCompany.getModel()).setSelectedId(data.getCompany_id());
-        ((ComboBoxModel)cboIndustry.getModel()).setSelectedId(data.getIndustry_id());
-        txtFName.setText(data.getFname());
-        txtLName.setText(data.getLname());
-        txtStreet.setText(data.getStreet());
-        txtZip.setText(Integer.toString(data.getZip()));
-        txtCity.setText(data.getCity());
-        cboState.setSelectedItem(data.getState());
-        txtEmail.setText(data.getEmail());
-        txtPhone.setText(Integer.toString(data.getPhone()));
-        txtPosition.setText(data.getPosition());
-        txaNotes.setText(data.getDescription());
+        ((ComboBoxModel)cboCompany.getModel()).setSelectedId(record.getCompany_id());
+        ((ComboBoxModel)cboIndustry.getModel()).setSelectedId(compData.getIndustry_id());
+        txtFName.setText(record.getFname());
+        txtLName.setText(record.getLname());
+        txtStreet.setText(record.getStreet());
+        txtZip.setText(Integer.toString(record.getZip()));
+        txtCity.setText(record.getCity());
+        cboState.setSelectedItem(record.getState());
+        txtEmail.setText(record.getEmail());
+        txtPhone.setText(Integer.toString(record.getPhone()));
+        txtPosition.setText(record.getPosition());
+        txaNotes.setText(record.getDescription());
     }
     public void reset() {
         cboCompany.setSelectedIndex(0);

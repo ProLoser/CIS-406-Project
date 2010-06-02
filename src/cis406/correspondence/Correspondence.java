@@ -22,7 +22,7 @@ public class Correspondence {
     private int id;
     private int contact_id;
     private int type;
-    private Date date;
+    private String date;
     private String notes;
 
     public Correspondence() {
@@ -32,9 +32,10 @@ public class Correspondence {
         ResultSet data = Database.read("correspondence", id);
         try {
             data.next();
+            this.id = id;
             contact_id = data.getInt("contact_id");
             type = data.getInt("type");
-            date = data.getDate("date");
+            date = data.getString("date");
             notes = data.getString("note");
         } catch (Exception e) {
             System.out.println("Failed to locate a record");
@@ -60,14 +61,8 @@ public class Correspondence {
     }
     public boolean setDate(String date) {
         if(Validation.isNotEmpty(date)) {
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                this.date = df.parse(date);
-                return true;
-            } catch (Exception e) {
-                System.out.println("Failed to convert the post date");
-                return false;
-            }
+            this.date = date;
+            return true;
         }
         else {
             return false;
@@ -85,7 +80,7 @@ public class Correspondence {
     public String getNotes() {
         return notes;
     }
-    public void save() {
+    public boolean save() {
         Database db = new Database("correspondence");
 
         db.addField("contact_id", Integer.toString(contact_id));
@@ -93,10 +88,16 @@ public class Correspondence {
         db.addField("date", date);
         db.addField("note", notes);
         try {
-            db.insert();
+            if (id == 0) {
+                id = db.insert();
+            } else {
+                db.update(id);
+            }
+            return true;
         } catch (Exception e) {
             System.out.println("Failed to Add the correspondence");
             System.out.println(e.getMessage());
+            return false;
         }
     }
     /**
@@ -127,5 +128,15 @@ public class Correspondence {
             System.out.println(e.getMessage());
         }
         return table;
+    }
+    public static Boolean delete(int id) {
+        Boolean success = false;
+        if (Database.delete("correspondence", id) > 0) {
+            success = true;
+        } else {
+            System.out.println("The correspondence could not be found");
+        }
+
+        return success;
     }
 }

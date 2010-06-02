@@ -6,16 +6,30 @@
 package cis406.contact;
 
 import cis406.Database;
+import java.sql.ResultSet;
 
 /**
  *
  * @author Mark Lenser
  */
 public class Company {
+    private int id;
     private String name;
     private int industry_id;
 
     public Company() {
+    }
+    public Company(int id) {
+        ResultSet data = Database.read("company", id);
+        try {
+            data.next();
+            this.id = id;
+            name = data.getString("name");
+            industry_id = data.getInt("industry_id");
+           //Erorrs in company
+        } catch (Exception e) {
+            System.out.println("Failed to locate a record");
+        }
     }
     public Company(String name) {
         this.name = name;
@@ -41,6 +55,7 @@ public class Company {
     public int save() {
         int newId = 0;
         Database db = new Database("company");
+        System.out.println("industry_id_comp:" + industry_id);
         db.addField("name", name);
         db.addField("industry_id", industry_id);
         try {

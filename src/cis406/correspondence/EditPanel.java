@@ -3,6 +3,7 @@ package cis406.correspondence;
 import cis406.ComboBoxModel;
 import cis406.ComboItem;
 import cis406.DateUtils;
+import javax.swing.JOptionPane;
 
 import java.awt.Color;
 
@@ -141,7 +142,6 @@ public class EditPanel extends javax.swing.JPanel {
     public boolean save() {
         Boolean success = true;
 
-        Correspondence record = new Correspondence();
         record.setContact_id(((ComboItem) cboContact.getSelectedItem()).id);
         record.setType(cboType.getSelectedIndex());
         if (!record.setDate(txtDate.getText())) {
@@ -152,26 +152,33 @@ public class EditPanel extends javax.swing.JPanel {
         }
         record.setDate(txtDate.getText());
         record.setNotes(txaNotes.getText());
+        if (success) {
+            if (!record.save()) {
+                JOptionPane.showMessageDialog(null, "There was an error trying to save");
+                success = false;
+            } else {
+                //assignDialog.setVisible(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please check the data for errors");
+            success = false;
+        }
         record.save();
 
         return success;
     }
     public void load(int id) {
-        Correspondence data = new Correspondence(id);
-        ((ComboBoxModel)cboContact.getModel()).setSelectedId(data.getContact_id());
-        cboType.setSelectedItem(data.getType());
-        txtDate.setText(data.getDate());
-        txaNotes.setText(data.getNotes());
-    }
-    public void clickDelete() {
+        record = new Correspondence(id);
+        ((ComboBoxModel)cboContact.getModel()).setSelectedId(record.getContact_id());
+        cboType.setSelectedItem(record.getType());
+        txtDate.setText(record.getDate());
+        txaNotes.setText(record.getNotes());
     }
     public void reset() {
         txtDate.setText(DateUtils.now());
         cboType.setSelectedIndex(0);
         txaNotes.setText("");
         cboContact.setSelectedIndex(0);
-    }
-    public void clickCancel() {
     }
     public void switchTo() {
         rePopulate();

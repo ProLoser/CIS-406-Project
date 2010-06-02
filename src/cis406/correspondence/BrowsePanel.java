@@ -1,16 +1,23 @@
 package cis406.correspondence;
 
-import cis406.TableModel;
-import cis406.contact.Contact;
 import cis406.contact.Contact;
 import cis406.correspondence.Correspondence;
+import cis406.TableModel;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import javax.swing.JOptionPane;
+import org.jdesktop.application.Action;
 
 /**
  *
  * @author Mark Lenser
  */
-public class BrowsePanel extends javax.swing.JPanel {
+public class BrowsePanel extends javax.swing.JPanel implements Printable {
 
     /** Creates new form CorrespondenceBrowsePanel */
     public BrowsePanel() {
@@ -29,6 +36,7 @@ public class BrowsePanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCorrespondenceReport = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setName("frmCorrBrowse"); // NOI18N
 
@@ -43,7 +51,14 @@ public class BrowsePanel extends javax.swing.JPanel {
             }
         ));
         tblCorrespondenceReport.setName("tblCorrespondenceReport"); // NOI18N
+        tblCorrespondenceReport.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tblCorrespondenceReport);
+
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getActionMap(BrowsePanel.class, this);
+        jButton1.setAction(actionMap.get("printTable")); // NOI18N
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(cis406.MainApp.class).getContext().getResourceMap(BrowsePanel.class);
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -51,20 +66,25 @@ public class BrowsePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblCorrespondenceReport;
     // End of variables declaration//GEN-END:variables
@@ -74,7 +94,7 @@ public class BrowsePanel extends javax.swing.JPanel {
     }
     public void delete() {
         int rowId = getSelectedRow();
-        if (Contact.delete(rowId)) {
+        if (Correspondence.delete(rowId)) {
             JOptionPane.showMessageDialog(null, "Correspondence #" + rowId + " was deleted");
             loadTable();
         } else {
@@ -93,5 +113,74 @@ public class BrowsePanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row first");
             return 0;
         }
+    }
+
+    //PRINTING
+    @Action
+    public void printTable() {
+        PrinterJob pj=PrinterJob.getPrinterJob();
+        pj.setPrintable(this);
+        if (pj.printDialog()){
+            try{
+                pj.print();
+            }catch (Exception PrintException) { System.out.println(PrintException.getMessage()); }
+        }
+    }
+    public int print(Graphics g, PageFormat pageFormat, int pageIndex) throws PrinterException {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.black);
+        int fontHeight = g2.getFontMetrics().getHeight();
+        int fontDesent = g2.getFontMetrics().getDescent();
+
+        //leave room for page number
+        double pageHeight = pageFormat.getImageableHeight() - fontHeight;
+        double pageWidth = pageFormat.getImageableWidth();
+        double tableWidth = (double) tblCorrespondenceReport.getColumnModel().getTotalColumnWidth();
+        double scale = 1;
+        if (tableWidth >= pageWidth) {
+            scale = pageWidth / tableWidth;
+        }
+
+        double headerHeightOnPage =  tblCorrespondenceReport.getTableHeader().getHeight() * scale;
+        double tableWidthOnPage = tableWidth * scale;
+
+        double oneRowHeight = (tblCorrespondenceReport.getRowHeight()  + tblCorrespondenceReport.getRowMargin()) * scale;
+        int numRowsOnAPage =  (int) ((pageHeight - headerHeightOnPage) / oneRowHeight);
+        double pageHeightForTable = oneRowHeight * numRowsOnAPage;
+        int totalNumPages = (int) Math.ceil(((double) tblCorrespondenceReport.getRowCount()) / numRowsOnAPage);
+        if (pageIndex >= totalNumPages) {
+            return Printable.NO_SUCH_PAGE;
+        }
+
+        g2.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+        //bottom center
+        g2.drawString("Page: " + (pageIndex + 1), (int) pageWidth / 2 - 35, (int) (pageHeight + fontHeight - fontDesent));
+
+        g2.translate(0f, headerHeightOnPage);
+        g2.translate(0f, -pageIndex * pageHeightForTable);
+
+        //If this piece of the table is smaller
+        //than the size available,
+        //clip to the appropriate bounds.
+        if (pageIndex + 1 == totalNumPages) {
+            int lastRowPrinted = numRowsOnAPage * pageIndex;
+            int numRowsLeft = tblCorrespondenceReport.getRowCount() - lastRowPrinted;
+            g2.setClip(0, (int) (pageHeightForTable * pageIndex), (int) Math.ceil(tableWidthOnPage), (int) Math.ceil(oneRowHeight * numRowsLeft));
+        } //else clip to the entire area available.
+        else {
+            g2.setClip(0, (int) (pageHeightForTable * pageIndex), (int) Math.ceil(tableWidthOnPage), (int) Math.ceil(pageHeightForTable));
+        }
+
+        g2.scale(scale, scale);
+        tblCorrespondenceReport.paint(g2);
+        g2.scale(1 / scale, 1 / scale);
+        g2.translate(0f, pageIndex * pageHeightForTable);
+        g2.translate(0f, -headerHeightOnPage);
+        g2.setClip(0, 0, (int) Math.ceil(tableWidthOnPage), (int) Math.ceil(headerHeightOnPage));
+        g2.scale(scale, scale);
+        tblCorrespondenceReport.getTableHeader().paint(g2);
+        //paint header at top
+
+        return Printable.PAGE_EXISTS;
     }
 }
